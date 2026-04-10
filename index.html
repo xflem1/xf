@@ -381,7 +381,7 @@ body.crew-mode .crew-footer{display:block}
   <input type="file" id="loadInput" accept=".json" style="display:none" onchange="loadFromFile(event)">
   <button onclick="openRenumber()">🔄 Renumber Scenes</button>
   <div class="spacer"></div>
-  <button onclick="updateCrewRegistry()" title="Download updated projects.json for GitHub">📋 Update Crew List</button>
+  <button onclick="copyCrewLink()" title="Copy crew link to clipboard">🔗 Crew Link</button>
   <button onclick="shareApp()" style="background:var(--fern);border-color:var(--fern);color:#fff">📤 Share App</button>
   <span class="status" id="statusMsg"></span>
 </div>
@@ -460,7 +460,9 @@ function defaultData() {
       kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
       dropboxLink: "",
       dbxAppKey: "",
-      crewPassword: ""
+      crewPassword: "",
+      ghRepo: "",
+      ghToken: ""
     },
     scenes: {},
     days: {}
@@ -602,11 +604,24 @@ function renderConfig() {
       </div>
     </div>
     <div class="section-hdr">CREW SHARING</div>
-    ${cfgField("Crew Dropbox Link","dropboxLink",c.dropboxLink)}
     ${cfgField("Crew Password","crewPassword",c.crewPassword)}
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
-      <strong>Crew Password:</strong> Crew must enter this password to view this project. Set a different password per project to control access.<br>
-      <strong>Dropbox Link:</strong> Auto-filled when you save to Dropbox. Crew fetches latest data from this link.
+      Crew must enter this password to view this project. Set a different password for each production.
+    </div>
+    <div class="section-hdr">GITHUB (auto-update crew list)</div>
+    <div class="dbx-setup">
+      <div style="margin-bottom:6px">
+        <label style="font-size:11px;font-weight:700;color:#666">GitHub Repo</label>
+        <input value="${esc(c.ghRepo)}" oninput="data.config.ghRepo=this.value;try{localStorage.setItem('xf_gh_repo',this.value)}catch(e){}" placeholder="e.g. xflem1/xf">
+      </div>
+      <div style="margin-bottom:6px">
+        <label style="font-size:11px;font-weight:700;color:#666">GitHub Token</label>
+        <input type="password" value="${esc(c.ghToken)}" oninput="data.config.ghToken=this.value;try{localStorage.setItem('xf_gh_token',this.value)}catch(e){}" placeholder="ghp_xxxx...">
+      </div>
+      <div style="font-size:10px;color:#aaa;line-height:1.5">
+        <strong>One-time setup:</strong> Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:#4a90d9">github.com/settings/tokens</a> → Fine-grained tokens → Generate new token → select your <strong>xf</strong> repo → Permissions: Contents → Read and Write → Generate. Paste above.<br>
+        The crew project list will auto-update on GitHub whenever you save.
+      </div>
     </div>
   `;
 }
@@ -1303,9 +1318,13 @@ let dbxSaveTimer = null;
 
 function dbxLoadTokens() {
   try {
-    // Restore app key from localStorage (device-level, not project-level)
+    // Restore device-level settings from localStorage
     const savedKey = localStorage.getItem(DBX_APPKEY_KEY);
     if (savedKey) data.config.dbxAppKey = savedKey;
+    const savedRepo = localStorage.getItem('xf_gh_repo');
+    if (savedRepo) data.config.ghRepo = savedRepo;
+    const savedGhToken = localStorage.getItem('xf_gh_token');
+    if (savedGhToken) data.config.ghToken = savedGhToken;
 
     const saved = localStorage.getItem(DBX_TOKEN_KEY);
     if (saved) {
@@ -1511,7 +1530,10 @@ async function dbxSaveProject(silent) {
     if (!silent) showStatus("Saved to Dropbox \u2713");
 
     // Auto-generate crew sharing link if not already set
-    if (!data.config.dropboxLink) dbxCreateShareLink(currentDbxPath);
+    if (!data.config.dropboxLink) await dbxCreateShareLink(currentDbxPath);
+
+    // Auto-update crew project list on GitHub
+    updateCrewRegistry();
 
     return true;
   } catch(err) {
@@ -2136,21 +2158,24 @@ function buildCrewHTML() {
 async function updateCrewRegistry() {
   const link = data.config.dropboxLink;
   const title = data.config.productionTitle;
-  if (!link || !link.trim()) {
-    showStatus("Set a Dropbox shared link in CONFIG \u2192 CREW SHARING first");
-    return;
-  }
-  if (!title || !title.trim()) {
-    showStatus("Set a Production Title in CONFIG first");
-    return;
-  }
+  const repo = (data.config.ghRepo || '').trim();
+  const token = (data.config.ghToken || '').trim();
 
-  // Fetch existing projects.json from the same host (if hosted)
+  if (!link || !link.trim() || !title || !title.trim()) return; // silently skip if not configured
+  if (!repo || !token) return; // silently skip if GitHub not configured
+
+  // Fetch existing projects.json from GitHub
   let existing = [];
+  let sha = null; // needed to update an existing file
   try {
-    const base = window.location.href.split('/').slice(0, -1).join('/');
-    const resp = await fetch(base + '/projects.json?' + Date.now());
-    if (resp.ok) existing = await resp.json();
+    const getResp = await fetch('https://api.github.com/repos/' + repo + '/contents/projects.json', {
+      headers: {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (getResp.ok) {
+      const fileData = await getResp.json();
+      sha = fileData.sha;
+      existing = JSON.parse(atob(fileData.content));
+    }
   } catch(e) {}
 
   // Build the entry for this project
@@ -2165,15 +2190,34 @@ async function updateCrewRegistry() {
   if (idx >= 0) existing[idx] = entry;
   else existing.push(entry);
 
-  // Download updated projects.json
+  // Push updated projects.json to GitHub
   const json = JSON.stringify(existing, null, 2);
-  const blob = new Blob([json], {type: 'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'projects.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
-  showStatus("projects.json downloaded \u2014 upload to your GitHub repo to update the crew list");
+  const content = btoa(unescape(encodeURIComponent(json)));
+  try {
+    const body = {
+      message: 'Update crew project list',
+      content: content
+    };
+    if (sha) body.sha = sha; // required for updates (not creates)
+
+    const putResp = await fetch('https://api.github.com/repos/' + repo + '/contents/projects.json', {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (putResp.ok) {
+      showStatus("Crew list updated on GitHub \u2713");
+    } else {
+      const err = await putResp.text();
+      console.log('GitHub update failed:', err);
+    }
+  } catch(e) {
+    console.log('GitHub push error:', e);
+  }
 }
 
 function copyCrewLink() {
