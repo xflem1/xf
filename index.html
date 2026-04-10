@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>XF Daily Notes</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><text x='16' y='22' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='16' fill='%23c0c0c0'>XF</text></svg>">
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="XF Notes">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blk:#0a0a0a;--charcoal:#1a1a1a;--graphite:#2d2d2d;--gunmetal:#3a3a3a;
+  --silver:#c0c0c0;--lt-silver:#e8e8e8;--off-white:#f5f5f5;--white:#fff;
+  --yellow:#fffacd;--fern:#1b5e20;--fern-light:#e8f5e9;
+  --dia:#e8eef7;--nodia:#f5f0ea;--prob:#fff3e0;--nt:#eaf5ee;
+  --accent:#c0c0c0;
+}
+body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk);min-height:100vh;display:flex;flex-direction:column}
+
+/* ─── Top Bar ──────────────────────────────────────────────────────────────── */
+.topbar{background:var(--blk);color:var(--silver);padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;position:sticky;top:0;z-index:100}
+.topbar h1{font-size:16px;font-weight:700;flex:1}
+.topbar .prod-title{font-size:12px;color:var(--silver);opacity:.7}
+
+/* ─── Tab Navigation ───────────────────────────────────────────────────────── */
+.tabs{background:var(--charcoal);display:flex;overflow-x:auto;flex-shrink:0;position:sticky;top:42px;z-index:99;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{height:3px}
+.tabs::-webkit-scrollbar-thumb{background:var(--gunmetal)}
+.tab{padding:8px 16px;color:var(--silver);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s}
+.tab:hover{background:var(--graphite)}
+.tab.active{color:var(--white);border-bottom-color:var(--silver);background:var(--graphite)}
+.tab.config-tab{color:#c9a84c}
+.tab.ref-tab{color:#8eaed4}
+.tab.day-tab{}
+
+/* ─── Main Content ─────────────────────────────────────────────────────────── */
+.content{flex:1;padding:12px;max-width:1100px;width:100%;margin:0 auto}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ─── CONFIG Panel ─────────────────────────────────────────────────────────── */
+.section-hdr{background:var(--blk);color:var(--silver);padding:6px 12px;font-size:11px;font-weight:700;letter-spacing:.5px;margin-top:12px;border-radius:4px 4px 0 0}
+.section-hdr:first-child{margin-top:0}
+.field-row{display:flex;border:1px solid #ddd;border-top:none}
+.field-row label{width:180px;min-width:180px;padding:8px 12px;background:var(--lt-silver);font-weight:700;font-size:13px;display:flex;align-items:center}
+.field-row input,.field-row textarea{flex:1;padding:8px 12px;border:none;background:var(--yellow);font-size:13px;font-family:inherit;outline:none}
+.field-row input:focus,.field-row textarea:focus{background:#fff8c4}
+.field-row textarea{min-height:60px;resize:vertical}
+
+/* ─── Reference Panel ──────────────────────────────────────────────────────── */
+.ref-controls{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
+.ref-controls input[type=text]{padding:6px 10px;border:1px solid #ccc;border-radius:4px;font-size:13px;width:200px}
+.scene-grid{display:flex;flex-direction:column;gap:2px}
+
+.scene-card{background:var(--white);border:1px solid #ddd;border-radius:6px;overflow:hidden;transition:box-shadow .15s}
+.scene-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.scene-header{display:flex;align-items:stretch;cursor:pointer}
+.scene-num{background:var(--blk);color:var(--silver);min-width:48px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.scene-preview{flex:1;padding:8px 12px;font-size:12px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center}
+.scene-expand-icon{padding:8px 12px;display:flex;align-items:center;color:#999;font-size:14px}
+.scene-body{display:none;padding:0}
+.scene-card.open .scene-body{display:block}
+.scene-card.open .scene-expand-icon{transform:rotate(180deg)}
+.day-scene-row .scene-body{display:none}
+.day-scene-row.open .scene-body{display:block !important}
+.day-scene-row.open .scene-expand-icon{transform:rotate(180deg)}
+
+.scene-location-bar{display:flex;gap:0;border-top:1px solid #eee;background:var(--lt-silver)}
+.scene-loc-field{display:flex;align-items:center;border-right:1px solid #ddd;flex:1}
+.scene-loc-field:last-child{border-right:none}
+.scene-loc-field label{padding:6px 8px;font-size:10px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;color:#555}
+.scene-loc-field input,.scene-loc-field select{flex:1;padding:6px 8px;border:none;font-size:12px;font-family:inherit;outline:none;background:transparent}
+.scene-loc-field select{background:transparent;cursor:pointer}
+.scene-loc-field input:focus,.scene-loc-field select:focus{background:#fffde7}
+
+.scene-field{display:flex;border-top:1px solid #eee}
+.scene-field-label{width:130px;min-width:130px;padding:8px 10px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px;display:flex;align-items:flex-start}
+.scene-field-label.notes-l{background:var(--lt-silver)}
+.scene-field-label.dia-l{background:var(--dia)}
+.scene-field-label.nodia-l{background:var(--nodia)}
+.scene-field-label.prob-l{background:var(--prob)}
+.scene-field-label.nt-l{background:var(--nt)}
+
+.scene-field textarea,.scene-field input{flex:1;padding:8px 10px;border:none;font-size:13px;font-family:inherit;outline:none;resize:vertical}
+.scene-field textarea{min-height:80px}
+.scene-field textarea.desc-area{min-height:210px}
+.scene-field textarea:focus{background:#fffde7}
+
+/* TX Grid - unified DIA / NO DIA */
+.tx-section-hdr{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--lt-silver);border-top:1px solid #eee}
+.tx-section-hdr .tx-sec-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;flex:1}
+.tx-section-hdr button{padding:3px 10px;border:1px solid #ccc;border-radius:3px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;background:var(--white);color:var(--blk);transition:all .15s}
+.tx-section-hdr button:hover{background:var(--blk);color:var(--silver)}
+.tx-section-hdr button.active{background:var(--fern);color:#fff;border-color:var(--fern)}
+.tx-grid{flex:1;display:flex;flex-direction:column}
+.tx-row{display:flex;border-top:1px solid #eee;align-items:stretch}
+.tx-row:first-child{border-top:none}
+.tx-label{width:32px;min-width:32px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--white)}
+.tx-label.even{background:var(--blk)}
+.tx-label.odd{background:var(--graphite)}
+.tx-toggle{width:60px;min-width:60px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.3px;user-select:none;transition:all .15s}
+.tx-toggle.dia{background:var(--dia);color:#2a5a8a}
+.tx-toggle.nodia{background:var(--nodia);color:#8a6a3a}
+.tx-row input{flex:1;padding:5px 8px;border:none;font-size:13px;outline:none;font-family:inherit}
+.tx-row input:focus{background:#fffde7}
+
+/* ─── Day Panel ────────────────────────────────────────────────────────────── */
+.day-header{background:var(--blk);color:var(--silver);padding:12px;border-radius:6px;margin-bottom:12px}
+.day-header-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.day-header-row:last-child{margin-bottom:0}
+.day-header label{font-size:11px;font-weight:600;opacity:.7}
+.day-header input{background:var(--yellow);border:none;padding:4px 8px;border-radius:3px;font-size:13px;font-family:inherit;color:var(--blk)}
+.day-header input.day-num{width:50px;font-size:20px;font-weight:700;text-align:center}
+.day-header input.day-field{width:140px}
+
+/* TX Map */
+.tx-map{background:var(--charcoal);border-radius:6px;margin-bottom:12px;overflow:hidden}
+.tx-map-hdr{display:flex;align-items:center;padding:8px 12px;gap:8px}
+.tx-map-hdr .tx-map-title{font-size:10px;font-weight:700;color:var(--silver);letter-spacing:.5px;flex:1}
+.tx-map-hdr .tx-map-warn{font-size:10px;font-weight:700;color:#ff6b6b;letter-spacing:.3px}
+.tx-map-grid{display:grid;grid-template-columns:40px 1fr;font-size:12px}
+.tx-map-ch{padding:5px 0;text-align:center;font-weight:700;color:var(--silver);border-top:1px solid var(--gunmetal)}
+.tx-map-ch.even{background:var(--blk)}
+.tx-map-ch.odd{background:var(--graphite)}
+.tx-map-scenes{padding:5px 10px;color:var(--lt-silver);border-top:1px solid var(--gunmetal);display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tx-map-tag{padding:2px 6px;border-radius:3px;font-size:10px;font-weight:600;white-space:nowrap}
+.tx-map-tag.dia{background:rgba(232,238,247,.15);color:#8ab4f8}
+.tx-map-tag.nodia{background:rgba(245,240,234,.15);color:#d4a574}
+.tx-map-tag.conflict{outline:2px solid #ff6b6b;outline-offset:-1px}
+.tx-map-empty{color:var(--gunmetal);font-style:italic;font-size:11px}
+
+.day-scene-row{background:var(--white);border:1px solid #ddd;border-radius:6px;margin-bottom:6px;overflow:hidden}
+.day-scene-top{display:flex;align-items:stretch}
+.day-scene-num{min-width:48px;display:flex;align-items:center;justify-content:center}
+.day-scene-num input{width:44px;padding:6px;text-align:center;font-weight:700;font-size:15px;border:none;background:var(--yellow);font-family:inherit;outline:none;border-radius:0}
+.day-scene-notes{flex:1;padding:8px 10px;font-size:12px;color:#555;background:var(--off-white);min-height:40px;white-space:pre-wrap;cursor:pointer;border-left:1px solid #eee}
+.day-scene-notes:empty::after{content:'Enter scene number...';color:#bbb}
+
+.day-scene-detail{display:none;border-top:1px solid #eee}
+.day-scene-row.open .day-scene-detail{display:block}
+.day-scene-detail .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.detail-col{border-right:1px solid #eee}
+.detail-col:last-child{border-right:none}
+.detail-col-hdr{padding:6px 10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.detail-col-hdr.dia-h{background:var(--dia)}
+.detail-col-hdr.nodia-h{background:var(--nodia)}
+.detail-tx-row{display:flex;border-top:1px solid #f0f0f0}
+.detail-tx-label{width:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--white)}
+.detail-tx-label.even{background:var(--blk)}
+.detail-tx-label.odd{background:var(--graphite)}
+.detail-tx-val{flex:1;padding:4px 8px;font-size:12px;min-height:24px;display:flex;align-items:center}
+.detail-footer{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #ddd}
+.detail-footer-cell{padding:8px 10px}
+.detail-footer-cell.prob{background:var(--prob)}
+.detail-footer-cell.nt{background:var(--nt)}
+.detail-footer-cell .df-label{font-size:10px;font-weight:700;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px}
+.detail-footer-cell .df-val{font-size:12px;white-space:pre-wrap;min-height:18px}
+
+.day-extra{margin-top:12px}
+.day-extra-hdr{padding:8px 12px;font-size:11px;font-weight:700;color:var(--white);border-radius:4px 4px 0 0}
+.day-extra-hdr.nurton-h{background:var(--fern)}
+.day-extra-hdr.eod-h{background:var(--graphite)}
+.day-extra textarea{width:100%;min-height:60px;padding:10px 12px;border:1px solid #ddd;border-top:none;border-radius:0 0 4px 4px;font-size:13px;font-family:inherit;resize:vertical;outline:none}
+.day-extra textarea:focus{background:#fffde7}
+
+/* ─── Toolbar (save/load) ──────────────────────────────────────────────────── */
+.toolbar{background:var(--charcoal);padding:6px 12px;display:flex;gap:8px;align-items:center;flex-shrink:0;position:sticky;bottom:0;z-index:100}
+.toolbar button{padding:6px 14px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.toolbar button:hover{background:var(--gunmetal);color:var(--white)}
+.toolbar button.save-btn{background:var(--fern);border-color:var(--fern);color:var(--white)}
+.toolbar button.save-btn:hover{background:#2e7d32}
+.toolbar .spacer{flex:1}
+.toolbar .status{font-size:11px;color:var(--silver);opacity:.6}
+
+/* ─── Mobile ───────────────────────────────────────────────────────────────── */
+@media(max-width:700px){
+  .topbar h1{font-size:14px}
+  .content{padding:8px}
+  .field-row{flex-direction:column}
+  .field-row label{width:100%;min-width:0;padding:6px 10px;font-size:12px}
+  .scene-field{flex-direction:column}
+  .scene-field-label{width:100%;min-width:0;padding:6px 10px}
+  .detail-grid{grid-template-columns:1fr !important}
+  .detail-footer{grid-template-columns:1fr !important}
+  .day-header-row{flex-direction:column;gap:6px}
+  .tx-alloc-bar{flex-direction:column;align-items:stretch}
+  .tx-alloc-item{justify-content:space-between}
+  .tx-alloc-item input{flex:1}
+  .day-scene-notes{font-size:11px}
+  .scene-location-bar{flex-direction:column}
+  .scene-loc-field{border-right:none;border-bottom:1px solid #ddd}
+}
+
+/* ─── Renumber Modal ──────────────────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:var(--white);border-radius:8px;width:100%;max-width:560px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--blk);color:var(--silver);border-radius:8px 8px 0 0}
+.modal-hdr h2{font-size:15px;font-weight:700}
+.modal-close{background:none;border:none;color:var(--silver);font-size:18px;cursor:pointer;padding:4px 8px}
+.modal-close:hover{color:var(--white)}
+.modal-body{padding:14px 18px;overflow-y:auto;flex:1}
+.modal-desc{font-size:12px;color:#666;margin-bottom:12px;line-height:1.5}
+.rn-controls{margin-bottom:10px}
+.rn-controls button{padding:5px 12px;border:1px solid #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:var(--lt-silver);font-family:inherit}
+.rn-controls button:hover{background:var(--blk);color:var(--silver)}
+.rn-list{display:flex;flex-direction:column;gap:4px}
+.rn-row{display:flex;align-items:center;gap:8px;padding:6px 0}
+.rn-row input{width:70px;padding:5px 8px;border:1px solid #ccc;border-radius:4px;font-size:13px;text-align:center;font-family:inherit;font-weight:700}
+.rn-row .rn-arrow{font-size:16px;color:#999}
+.rn-row .rn-info{flex:1;font-size:11px;color:#888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rn-row .rn-remove{background:none;border:none;color:#ccc;font-size:16px;cursor:pointer;padding:4px}
+.rn-row .rn-remove:hover{color:#ff6b6b}
+.rn-row input.conflict{border-color:#ff6b6b;background:#fff0f0}
+.rn-add{margin-top:8px}
+.rn-add button{padding:5px 12px;border:1px dashed #ccc;border-radius:4px;font-size:11px;cursor:pointer;background:transparent;color:#888;font-family:inherit}
+.rn-add button:hover{border-color:#999;color:#555}
+.modal-footer{padding:12px 18px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:10px}
+.rn-preview{font-size:11px;color:#888;max-height:60px;overflow-y:auto}
+.rn-preview .rn-warn{color:#ff6b6b;font-weight:600}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end}
+.modal-actions button{padding:7px 18px;border:1px solid #ccc;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;background:var(--white)}
+.modal-actions button:hover{background:var(--lt-silver)}
+.dbx-project{padding:10px 14px;cursor:pointer;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;transition:background .1s}
+.dbx-project:hover{background:var(--yellow)}
+.dbx-project .dbx-name{font-weight:600;font-size:13px}
+.dbx-project .dbx-date{font-size:11px;color:#888}
+.dbx-setup{padding:8px 12px;font-size:12px;line-height:1.6;border:1px solid #ddd;border-top:none}
+.dbx-setup input{padding:6px 10px;border:1px solid #ccc;border-radius:4px;font-size:12px;font-family:inherit;width:100%}
+.dbx-setup button{padding:5px 14px;border:1px solid #ccc;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;background:var(--white)}
+.dbx-setup button:hover{background:var(--lt-silver)}
+.dbx-setup button.primary{background:var(--blk);color:var(--silver);border-color:var(--blk)}
+.dbx-setup button.primary:hover{background:var(--graphite)}
+.rn-apply{background:var(--fern) !important;color:#fff !important;border-color:var(--fern) !important}
+.rn-apply:hover{background:#2e7d32 !important}
+
+/* ─── Landing Screen ──────────────────────────────────────────────────────── */
+.landing-overlay{position:fixed;inset:0;background:var(--blk);z-index:300;display:flex;align-items:center;justify-content:center}
+.landing{text-align:center;color:var(--silver)}
+.landing-logo{font-size:48px;font-weight:700;margin-bottom:6px;color:var(--white);letter-spacing:2px}
+.landing-sub{font-size:13px;opacity:.5;margin-bottom:40px;letter-spacing:.5px}
+.landing-options{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.landing-card{background:var(--charcoal);border:1px solid var(--gunmetal);border-radius:10px;padding:28px 32px;cursor:pointer;transition:all .2s;min-width:180px}
+.landing-card:hover{background:var(--graphite);border-color:var(--silver);transform:translateY(-2px)}
+.landing-card .lc-icon{font-size:32px;margin-bottom:10px}
+.landing-card .lc-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px}
+.landing-card .lc-desc{font-size:11px;opacity:.6;line-height:1.4}
+.landing-pw{margin-top:20px;display:none;flex-direction:column;align-items:center;gap:8px}
+.landing-pw.show{display:flex}
+.landing-pw input{padding:8px 14px;border:1px solid var(--gunmetal);border-radius:6px;background:var(--graphite);color:var(--white);font-size:14px;text-align:center;font-family:inherit;outline:none;width:200px;letter-spacing:1px}
+.landing-pw input:focus{border-color:var(--silver)}
+.landing-pw input.wrong{border-color:#ff6b6b;animation:shake .3s}
+.landing-pw button{padding:7px 24px;border:1px solid var(--fern);border-radius:6px;background:var(--fern);color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.landing-pw button:hover{background:#2e7d32}
+.landing-pw .pw-hint{font-size:10px;color:#ff6b6b;opacity:0;transition:opacity .2s}
+.landing-pw .pw-hint.show{opacity:1}
+.landing-crew-load{margin-top:20px;display:none;flex-direction:column;align-items:center;gap:10px}
+.landing-crew-load.show{display:flex}
+.landing-crew-load button{padding:10px 28px;border:1px solid var(--gunmetal);border-radius:6px;background:var(--graphite);color:var(--silver);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.landing-crew-load button:hover{background:var(--gunmetal);color:var(--white)}
+.landing-crew-load .lcl-or{font-size:10px;opacity:.4;letter-spacing:.5px}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* ─── Crew Mode ───────────────────────────────────────────────────────────── */
+body.crew-mode .toolbar{display:none}
+body.crew-mode .topbar{background:linear-gradient(135deg,var(--blk),#1a1a2e)}
+.crew-toolbar{display:none;background:var(--charcoal);padding:6px 12px;align-items:center;gap:8px;flex-shrink:0;position:sticky;bottom:0;z-index:100}
+body.crew-mode .crew-toolbar{display:flex}
+.crew-toolbar button{padding:6px 14px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.crew-toolbar button:hover{background:var(--gunmetal);color:var(--white)}
+.crew-toolbar .crew-reload{background:var(--fern);border-color:var(--fern);color:#fff}
+.crew-toolbar .crew-reload:hover{background:#2e7d32}
+.crew-toolbar .spacer{flex:1}
+.crew-toolbar .crew-status{font-size:11px;color:var(--silver);opacity:.6}
+.crew-badge{display:none;padding:3px 8px;border:1px solid var(--silver);border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--silver);opacity:.7}
+body.crew-mode .crew-badge{display:inline-block}
+body.crew-mode input,body.crew-mode textarea,body.crew-mode select{pointer-events:none !important;opacity:.85}
+body.crew-mode .tx-toggle{pointer-events:none !important}
+body.crew-mode .tx-section-hdr button{display:none}
+body.crew-mode .no-print{display:none !important}
+body.crew-mode .scene-num input{pointer-events:none !important}
+/* Crew footer — only visible in crew mode */
+.crew-footer{display:none;margin-top:24px;border-top:2px solid var(--blk)}
+body.crew-mode .crew-footer{display:block}
+.cf-section{margin-bottom:2px}
+.cf-hdr{background:var(--blk);color:var(--silver);padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.5px}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.cf-item{display:flex;border-bottom:1px solid #eee;padding:4px 12px}
+.cf-label{width:100px;min-width:100px;font-size:11px;font-weight:700;color:#666}
+.cf-val{font-size:11px;color:var(--blk);flex:1}
+
+/* ─── Print Styles ────────────────────────────────────────────────────────── */
+@media print {
+  body{background:#fff;min-height:auto}
+  .topbar,.tabs,.toolbar,.no-print{display:none !important}
+  .content{max-width:100%;padding:0;margin:0}
+  .panel{display:block !important}
+  .day-header{background:#0a0a0a !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}
+  .tx-map{background:#1a1a1a !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}
+  .tx-map-ch{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tx-map-tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tx-map-tag.conflict{outline-color:#ff6b6b}
+  .day-scene-row{break-inside:avoid;border:1px solid #ccc}
+  .day-scene-row .scene-body{display:block !important}
+  .day-scene-row.empty .scene-body{display:none !important}
+  .day-scene-row.empty{display:none}
+  .scene-num input{background:#fff !important;border:none}
+  .day-header input,.tx-alloc-item input{background:transparent !important;border:none;color:inherit}
+  .day-extra textarea{border:1px solid #ccc}
+  .scene-num,.tx-label,.detail-tx-label,.tx-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .detail-col-hdr,.day-extra-hdr,.section-hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .detail-footer-cell.prob,.detail-footer-cell.nt{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .day-header input.day-num{color:var(--silver) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── Landing Screen ────────────────────────────────────────────────────── -->
+<div class="landing-overlay" id="landingScreen">
+  <div class="landing">
+    <div class="landing-logo">XF</div>
+    <div class="landing-sub">DAILY NOTES</div>
+    <div class="landing-options">
+      <div class="landing-card" onclick="showEditLogin()">
+        <div class="lc-icon">✏️</div>
+        <div class="lc-title">Edit Mode</div>
+        <div class="lc-desc">Full access to all sheets,<br>scene data &amp; settings</div>
+      </div>
+      <div class="landing-card" onclick="showCrewPicker()">
+        <div class="lc-icon">👥</div>
+        <div class="lc-title">Crew Mode</div>
+        <div class="lc-desc">Read-only day sheets<br>for on-set viewing</div>
+      </div>
+    </div>
+    <div class="landing-pw" id="landingPw">
+      <input type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+      <button onclick="checkPw()">Enter</button>
+      <div class="pw-hint" id="pwHint">Incorrect password</div>
+    </div>
+    <div class="landing-crew-load" id="landingCrewLoad">
+      <button onclick="document.getElementById('crewLandingInput').click()">📂 Load Project File</button>
+      <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
+      <span class="lcl-or">Ask your sound mixer for the crew file</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Top Bar ────────────────────────────────────────────────────────────── -->
+<div class="topbar">
+  <h1>⚙ XF Daily Notes</h1>
+  <span class="prod-title" id="prodTitleBar"></span>
+  <span class="crew-badge">READ ONLY</span>
+</div>
+
+<!-- ─── Tabs ───────────────────────────────────────────────────────────────── -->
+<div class="tabs" id="tabs"></div>
+
+<!-- ─── Content ────────────────────────────────────────────────────────────── -->
+<div class="content" id="content"></div>
+
+<!-- ─── Bottom Toolbar ─────────────────────────────────────────────────────── -->
+<div class="toolbar">
+  <button onclick="quickSave()" style="background:#1b5e20;border-color:#1b5e20;color:#fff" title="Save to Dropbox (or download if not connected)">⚡ Save</button>
+  <button class="save-btn" onclick="saveToFile()">💾 Save Copy</button>
+  <button onclick="document.getElementById('loadInput').click()">📂 Load Project</button>
+  <input type="file" id="loadInput" accept=".json" style="display:none" onchange="loadFromFile(event)">
+  <button onclick="openRenumber()">🔄 Renumber Scenes</button>
+  <div class="spacer"></div>
+  <button onclick="copyCrewLink()" title="Copy crew link to clipboard">🔗 Crew Link</button>
+  <button onclick="shareApp()" style="background:var(--fern);border-color:var(--fern);color:#fff">📤 Share App</button>
+  <span class="status" id="statusMsg"></span>
+</div>
+
+<!-- ─── Crew Toolbar ──────────────────────────────────────────────────────── -->
+<div class="crew-toolbar" id="crewToolbar">
+  <button class="crew-reload" onclick="crewRefresh()">🔄 Refresh</button>
+  <input type="file" id="crewLoadInput" accept=".json" style="display:none" onchange="crewLoadFile(event)">
+  <span class="crew-status" id="crewStatusMsg"></span>
+  <div class="spacer"></div>
+  <button onclick="exitCrewMode()">✕ Exit</button>
+</div>
+
+<!-- ─── Renumber Modal ─────────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="renumberModal" style="display:none">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h2>🔄 Renumber Scenes</h2>
+      <button class="modal-close" onclick="closeRenumber()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc">Map old scene numbers to new ones. Only scenes with data will be shown. Any data in the target scene number will be overwritten.</p>
+      <div class="rn-controls">
+        <button onclick="rnAutoDetect()">Auto-detect scenes with data</button>
+      </div>
+      <div class="rn-list" id="rnList"></div>
+      <div class="rn-add">
+        <button onclick="rnAddRow()">+ Add mapping</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="rn-preview" id="rnPreview"></div>
+      <div class="modal-actions">
+        <button onclick="closeRenumber()">Cancel</button>
+        <button class="rn-apply" onclick="rnApply()">Apply Renumbering</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Dropbox Project Picker Modal ─────────────────────────────────────── -->
+<div class="modal-overlay" id="dbxPickerModal" style="display:none">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h2 id="dbxPickerTitle">📂 Open Project</h2>
+      <button class="modal-close" onclick="dbxClosePicker()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="dbxPickerList" style="max-height:300px;overflow-y:auto;border:1px solid #eee;border-radius:4px">
+        <div style="padding:12px;color:#888;font-size:12px;text-align:center">Loading projects...</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-actions" id="dbxPickerActions">
+        <button onclick="dbxNewProject()">+ New Project</button>
+        <button onclick="dbxClosePicker()">Skip</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═════════════════════════════════════════════════════════════════════════════
+// DATA MODEL
+// ═════════════════════════════════════════════════════════════════════════════
+const TX_LABELS = ["A","B","C","D","E","F","G"];
+const NUM_SCENES = 110;
+const NUM_DAYS = 30;
+const SCENES_PER_DAY = 12;
+
+function defaultData() {
+  const d = {
+    config: {
+      productionTitle: "", episode: "", productionCompany: "",
+      director: "", dop: "", firstAD: "", soundMixer: "", boomOp: "", utility: "",
+      kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
+      dropboxLink: "",
+      dbxAppKey: ""
+    },
+    scenes: {},
+    days: {}
+  };
+  for (let i = 1; i <= NUM_SCENES; i++) {
+    d.scenes[i] = {
+      intExt: "", place: "", time: "",
+      notes: "", description: "",
+      tx: {A:{name:"Boom",isDia:true},B:{name:"",isDia:true},C:{name:"",isDia:true},D:{name:"",isDia:true},E:{name:"",isDia:true},F:{name:"",isDia:true},G:{name:"",isDia:true}},
+      problems: "", nurton: ""
+    };
+  }
+  for (let i = 1; i <= NUM_DAYS; i++) {
+    d.days[i] = {
+      date: "", firstAD: "", location: "",
+      txAlloc: {A:"",B:"",C:"",D:"",E:"",F:""},
+      sceneNums: Array(SCENES_PER_DAY).fill(""),
+      nurtonExtra: "", eodNotes: ""
+    };
+  }
+  return d;
+}
+
+let data = defaultData();
+let txClipboard = null; // for copy/paste TX assignments
+
+function toggleTxDia(sceneNum, ch, el) {
+  const isDia = !data.scenes[sceneNum].tx[ch].isDia;
+  data.scenes[sceneNum].tx[ch].isDia = isDia;
+  el.className = 'tx-toggle ' + (isDia ? 'dia' : 'nodia');
+  el.textContent = isDia ? 'DIA' : 'NO DIA';
+}
+
+function copyTx(sceneNum) {
+  txClipboard = JSON.parse(JSON.stringify(data.scenes[sceneNum].tx));
+  showStatus("TX copied from Scene " + sceneNum);
+}
+
+function pasteTx(sceneNum) {
+  if (!txClipboard) { showStatus("Nothing to paste — copy TX first"); return; }
+  data.scenes[sceneNum].tx = JSON.parse(JSON.stringify(txClipboard));
+  // Re-render just the TX rows in place
+  document.querySelectorAll(`[data-tx-scene="${sceneNum}"]`).forEach(grid => {
+    const temp = document.createElement('div');
+    temp.innerHTML = renderTxSection(sceneNum);
+    grid.closest('.tx-section-wrap').replaceWith(temp.firstElementChild);
+  });
+  showStatus("TX pasted to Scene " + sceneNum);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// TAB SYSTEM
+// ═════════════════════════════════════════════════════════════════════════════
+let activeTab = "config";
+
+function buildTabs() {
+  const t = document.getElementById("tabs");
+  let html = `<div class="tab config-tab active" data-tab="config" onclick="switchTab('config')">CONFIG</div>`;
+  html += `<div class="tab ref-tab" data-tab="ref" onclick="switchTab('ref')">REFERENCE</div>`;
+  for (let i = 1; i <= NUM_DAYS; i++) {
+    html += `<div class="tab day-tab" data-tab="day-${i}" onclick="switchTab('day-${i}')">DAY ${String(i).padStart(2,'0')}</div>`;
+  }
+  t.innerHTML = html;
+}
+
+function switchTab(id) {
+  activeTab = id;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+  renderPanel(id);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// RENDERERS
+// ═════════════════════════════════════════════════════════════════════════════
+function renderPanel(id) {
+  const c = document.getElementById("content");
+  if (id === "config") {
+    c.innerHTML = renderConfig();
+    // Update Dropbox connection status after DOM is ready
+    setTimeout(() => dbxUpdateStatus(dbxIsConnected()), 0);
+  }
+  else if (id === "ref") c.innerHTML = renderReference();
+  else if (id.startsWith("day-")) c.innerHTML = renderDay(parseInt(id.split("-")[1]));
+  updateProdTitle();
+}
+
+function updateProdTitle() {
+  const el = document.getElementById("prodTitleBar");
+  const t = data.config.productionTitle;
+  const e = data.config.episode;
+  el.textContent = [t, e].filter(Boolean).join(" — ");
+}
+
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+function renderConfig() {
+  const c = data.config;
+  return `
+    <div class="section-hdr">PRODUCTION</div>
+    ${cfgField("Production Title","productionTitle",c.productionTitle)}
+    ${cfgField("Episode / Part","episode",c.episode)}
+    ${cfgField("Production Company","productionCompany",c.productionCompany)}
+    <div class="section-hdr">CREW</div>
+    ${cfgField("Director","director",c.director)}
+    ${cfgField("DOP","dop",c.dop)}
+    ${cfgField("1st Assistant Director","firstAD",c.firstAD)}
+    ${cfgField("Production Sound Mixer","soundMixer",c.soundMixer)}
+    ${cfgField("Boom Operator","boomOp",c.boomOp)}
+    ${cfgField("3rd / Utility","utility",c.utility)}
+    <div class="section-hdr">KIT NOTES</div>
+    ${cfgArea("Recorder / Mixer","kitRecorder",c.kitRecorder)}
+    ${cfgArea("Microphones","kitMics",c.kitMics)}
+    ${cfgArea("TX / RX","kitTxRx",c.kitTxRx)}
+    ${cfgArea("Crew Coms","kitComs",c.kitComs)}
+    <div class="section-hdr">DROPBOX</div>
+    <div class="dbx-setup" id="dbxSetupPanel">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-weight:700">Status:</span>
+        <span id="dbxStatus"><span style="color:#888">Checking...</span></span>
+      </div>
+      <div id="dbxSetupFields">
+        <div style="margin-bottom:6px">
+          <label style="font-size:11px;font-weight:700;color:#666">Dropbox App Key</label>
+          <input id="dbxAppKeyInput" value="${esc(c.dbxAppKey)}" oninput="data.config.dbxAppKey=this.value" placeholder="e.g. abc123xyz...">
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <button class="primary" onclick="dbxStartAuth()">Connect to Dropbox</button>
+        </div>
+        <div id="dbxCodeSection" style="display:none;margin-bottom:8px;padding:8px;background:#fffacd;border-radius:4px">
+          <div style="font-size:11px;margin-bottom:6px"><strong>Step 2:</strong> Paste the code from Dropbox below:</div>
+          <div style="display:flex;gap:6px">
+            <input id="dbxAuthCode" placeholder="Authorization code..." style="flex:1">
+            <button class="primary" onclick="dbxFinishAuth()">Connect</button>
+          </div>
+        </div>
+      </div>
+      <div id="dbxProjectListConfig" style="margin-top:8px"></div>
+      <div style="font-size:10px;color:#aaa;margin-top:8px;line-height:1.5">
+        <strong>First time?</strong> Go to <a href="https://www.dropbox.com/developers/apps" target="_blank" style="color:#4a90d9">dropbox.com/developers/apps</a> → Create App → Scoped access → App folder → name it "XF Daily Notes" → copy the App Key above. Under Permissions, enable files.content.write, files.content.read, files.metadata.read, sharing.write → Submit.
+      </div>
+    </div>
+    <div class="section-hdr">CREW SHARING</div>
+    ${cfgField("Crew Dropbox Link","dropboxLink",c.dropboxLink)}
+    <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
+      This link is baked into crew exports so they can tap "Load Latest Data" to fetch updates. If Dropbox is connected, this is auto-filled when you save.
+    </div>
+  `;
+}
+function cfgField(label, key, val) {
+  return `<div class="field-row"><label>${label}</label><input value="${esc(val)}" oninput="data.config.${key}=this.value;updateProdTitle()"></div>`;
+}
+function cfgArea(label, key, val) {
+  return `<div class="field-row"><label>${label}</label><textarea oninput="data.config.${key}=this.value">${esc(val)}</textarea></div>`;
+}
+
+// ─── REFERENCE ────────────────────────────────────────────────────────────────
+function renderReference() {
+  let html = `<div class="ref-controls">
+    <input type="text" id="refSearch" placeholder="Search scenes..." oninput="filterScenes(this.value)">
+    <span style="font-size:12px;color:#888">${NUM_SCENES} scenes</span>
+  </div><div class="scene-grid" id="sceneGrid">`;
+  for (let i = 1; i <= NUM_SCENES; i++) {
+    html += renderSceneCard(i);
+  }
+  html += `</div>`;
+  return html;
+}
+
+function renderSceneCard(n) {
+  const s = data.scenes[n];
+  const locPreview = [s.intExt, s.place, s.time].filter(Boolean).join(" — ");
+  const txNames = Object.values(s.tx).map(t=>t.name).filter(Boolean).join(", ");
+  const preview = locPreview || s.notes || txNames || "—";
+  return `
+  <div class="scene-card" id="scene-${n}" data-scene="${n}">
+    <div class="scene-header" onclick="toggleScene(${n})">
+      <div class="scene-num">${n}</div>
+      <div class="scene-preview">${esc(preview)}</div>
+      <div class="scene-expand-icon">▼</div>
+    </div>
+    <div class="scene-body">
+      <div class="scene-location-bar">
+        <div class="scene-loc-field">
+          <label>INT/EXT</label>
+          <select oninput="data.scenes[${n}].intExt=this.value;updateScenePreview(${n})">
+            <option value="">—</option>
+            <option value="INT." ${s.intExt==='INT.'?'selected':''}>INT.</option>
+            <option value="EXT." ${s.intExt==='EXT.'?'selected':''}>EXT.</option>
+            <option value="INT./EXT." ${s.intExt==='INT./EXT.'?'selected':''}>INT./EXT.</option>
+          </select>
+        </div>
+        <div class="scene-loc-field" style="flex:3">
+          <label>Place</label>
+          <input value="${esc(s.place)}" oninput="data.scenes[${n}].place=this.value;updateScenePreview(${n})" placeholder="e.g. Margaret's Apartment">
+        </div>
+        <div class="scene-loc-field">
+          <label>Time</label>
+          <input value="${esc(s.time)}" oninput="data.scenes[${n}].time=this.value;updateScenePreview(${n})" placeholder="e.g. Twilight">
+        </div>
+      </div>
+      <div class="scene-field">
+        <div class="scene-field-label notes-l">Scene Description</div>
+        <textarea class="desc-area" oninput="data.scenes[${n}].description=this.value">${esc(s.description)}</textarea>
+      </div>
+      <div class="scene-field">
+        <div class="scene-field-label notes-l">Notes</div>
+        <textarea oninput="data.scenes[${n}].notes=this.value;updateScenePreview(${n})">${esc(s.notes)}</textarea>
+      </div>
+      ${renderTxSection(n)}
+      <div class="scene-field">
+        <div class="scene-field-label prob-l">Potential Problems</div>
+        <textarea oninput="data.scenes[${n}].problems=this.value">${esc(s.problems)}</textarea>
+      </div>
+      <div class="scene-field">
+        <div class="scene-field-label nt-l">NurTon</div>
+        <textarea oninput="data.scenes[${n}].nurton=this.value">${esc(s.nurton)}</textarea>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderTxSection(n) {
+  const s = data.scenes[n];
+  return `
+    <div class="tx-section-wrap">
+    <div class="tx-section-hdr">
+      <span class="tx-sec-label">TX Assignments</span>
+      <button onclick="copyTx(${n})" title="Copy TX assignments">📋 Copy</button>
+      <button onclick="pasteTx(${n})" title="Paste TX assignments" class="${txClipboard?'active':''}">📥 Paste</button>
+    </div>
+    <div class="tx-grid" data-tx-scene="${n}">${TX_LABELS.map((tx,i) => {
+      const ch = s.tx[tx];
+      return `
+      <div class="tx-row">
+        <div class="tx-label ${i%2===0?'even':'odd'}">${tx}</div>
+        <div class="tx-toggle ${ch.isDia?'dia':'nodia'}" onclick="toggleTxDia(${n},'${tx}',this)">${ch.isDia?'DIA':'NO DIA'}</div>
+        <input value="${esc(ch.name)}" oninput="data.scenes[${n}].tx['${tx}'].name=this.value" placeholder="${tx === 'A' ? 'Boom' : 'Actor name...'}">
+      </div>`;
+    }).join("")}
+    </div>
+    </div>`;
+}
+
+function toggleScene(n) {
+  document.getElementById(`scene-${n}`).classList.toggle("open");
+}
+
+function updateScenePreview(n) {
+  const s = data.scenes[n];
+  const el = document.querySelector(`#scene-${n} .scene-preview`);
+  const locPreview = [s.intExt, s.place, s.time].filter(Boolean).join(" — ");
+  const txNames = Object.values(s.tx).map(t=>t.name).filter(Boolean).join(", ");
+  if (el) el.textContent = locPreview || s.notes || txNames || "—";
+}
+
+function filterScenes(q) {
+  q = q.toLowerCase();
+  document.querySelectorAll('.scene-card').forEach(card => {
+    const n = parseInt(card.dataset.scene);
+    const s = data.scenes[n];
+    const txAll = Object.values(s.tx).map(t=>t.name).join(" ");
+    const haystack = [n, s.notes, s.description, s.place, s.intExt, s.time, txAll, s.problems, s.nurton].join(" ").toLowerCase();
+    card.style.display = haystack.includes(q) ? "" : "none";
+  });
+}
+
+// ─── DAY SHEETS ───────────────────────────────────────────────────────────────
+function renderTxMap(dayNum) {
+  const d = data.days[dayNum];
+  const filledScenes = d.sceneNums.filter(s => s && s.trim()).map(s => parseInt(s)).filter(n => data.scenes[n]);
+  if (filledScenes.length === 0) return `<div class="tx-map" id="txmap-${dayNum}" style="display:none"></div>`;
+
+  // Build map: for each TX channel, collect {sceneNum, name, isDia}
+  const map = {};
+  TX_LABELS.forEach(ch => { map[ch] = []; });
+  for (const scNum of filledScenes) {
+    const sc = data.scenes[scNum];
+    TX_LABELS.forEach(ch => {
+      const t = sc.tx[ch];
+      if (t.name) map[ch].push({scNum, name: t.name, isDia: t.isDia});
+    });
+  }
+
+  // Detect conflicts: same channel, different people = conflict
+  // Same person with both DIA and NO DIA on one channel is fine
+  let hasConflict = false;
+  const conflicts = {};
+  TX_LABELS.forEach(ch => {
+    const names = [...new Set(map[ch].map(e => e.name.toLowerCase().trim()))];
+    conflicts[ch] = names.length > 1;
+    if (conflicts[ch]) hasConflict = true;
+  });
+
+  let rows = TX_LABELS.map((ch, i) => {
+    const entries = map[ch];
+    let cells = '';
+    if (entries.length === 0) {
+      cells = '<span class="tx-map-empty">\u2014</span>';
+    } else {
+      // Deduplicate: show unique name+type combos with scene numbers
+      const seen = {};
+      entries.forEach(e => {
+        const key = e.name.toLowerCase().trim() + '|' + e.isDia;
+        if (!seen[key]) seen[key] = {name: e.name, isDia: e.isDia, scenes: []};
+        seen[key].scenes.push(e.scNum);
+      });
+      cells = Object.values(seen).map(g => {
+        const isConflict = conflicts[ch] ? 'conflict' : '';
+        const typeClass = g.isDia ? 'dia' : 'nodia';
+        const label = g.isDia ? 'DIA' : 'ND';
+        const scList = g.scenes.length > 1 ? ' [' + g.scenes.join(',') + ']' : ' [Sc' + g.scenes[0] + ']';
+        return '<span class="tx-map-tag ' + typeClass + ' ' + isConflict + '">' + esc(g.name) + ' <small>' + label + scList + '</small></span>';
+      }).join('');
+    }
+    return '<div class="tx-map-ch ' + (i%2===0?'even':'odd') + '">' + ch + '</div><div class="tx-map-scenes">' + cells + '</div>';
+  }).join('');
+
+  return `<div class="tx-map" id="txmap-${dayNum}">
+    <div class="tx-map-hdr">
+      <span class="tx-map-title">TX MAP — TODAY'S ASSIGNMENTS</span>
+      ${hasConflict ? '<span class="tx-map-warn">⚠ DOUBLE ASSIGNMENT DETECTED</span>' : ''}
+    </div>
+    <div class="tx-map-grid">${rows}</div>
+  </div>`;
+}
+
+function renderDay(dayNum) {
+  const d = data.days[dayNum];
+  const cfg = data.config;
+  let html = `
+  <div class="day-header">
+    <div class="day-header-row">
+      <div><label>DAY</label><br><input class="day-num" value="${dayNum}" readonly></div>
+      <div style="flex:1"><label>PRODUCTION</label><br><span style="font-size:14px;font-weight:700;color:var(--silver)">${esc(cfg.productionTitle)}${cfg.episode ? ' — '+esc(cfg.episode) : ''}</span></div>
+      <div class="no-print" style="display:flex;gap:6px;align-items:flex-end">
+        <button onclick="printDay(${dayNum})" style="padding:5px 12px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit">🖨 Print / PDF</button>
+        <button onclick="exportCrewView(${dayNum})" style="padding:5px 12px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit">📤 Crew View</button>
+      </div>
+    </div>
+    <div class="day-header-row">
+      <div><label>DATE</label><br><input class="day-field" type="date" value="${d.date}" oninput="data.days[${dayNum}].date=this.value"></div>
+      <div><label>DIRECTOR</label><br><span style="color:var(--silver);font-size:13px">${esc(cfg.director)}</span></div>
+      <div><label>1ST AD</label><br><input class="day-field" value="${esc(d.firstAD)}" oninput="data.days[${dayNum}].firstAD=this.value"></div>
+      <div><label>LOCATION</label><br><input class="day-field" value="${esc(d.location)}" oninput="data.days[${dayNum}].location=this.value"></div>
+    </div>
+  </div>
+
+  `;
+
+  html += renderTxMap(dayNum);
+
+  for (let slot = 0; slot < SCENES_PER_DAY; slot++) {
+    const scNum = d.sceneNums[slot];
+    const sc = scNum && data.scenes[parseInt(scNum)] ? data.scenes[parseInt(scNum)] : null;
+    html += renderDaySceneRow(dayNum, slot, scNum, sc);
+  }
+
+  html += `
+  <div class="day-extra">
+    <div class="day-extra-hdr nurton-h">NURTON / WILD TRACKS (additional)</div>
+    <textarea oninput="data.days[${dayNum}].nurtonExtra=this.value">${esc(d.nurtonExtra)}</textarea>
+  </div>
+  <div class="day-extra">
+    <div class="day-extra-hdr eod-h">ADDITIONAL NOTES / END OF DAY</div>
+    <textarea oninput="data.days[${dayNum}].eodNotes=this.value">${esc(d.eodNotes)}</textarea>
+  </div>`;
+
+  // Crew footer — production info (only visible in crew mode via CSS)
+  html += renderCrewFooter();
+
+  return html;
+}
+
+function renderCrewFooter() {
+  const c = data.config;
+  return `
+  <div class="crew-footer">
+    <div class="cf-section">
+      <div class="cf-hdr">PRODUCTION</div>
+      <div class="cf-grid">
+        <div class="cf-item"><span class="cf-label">Production</span><span class="cf-val">${esc(c.productionTitle)}${c.episode ? ' \u2014 '+esc(c.episode) : ''}</span></div>
+        <div class="cf-item"><span class="cf-label">Company</span><span class="cf-val">${esc(c.productionCompany)}</span></div>
+      </div>
+    </div>
+    <div class="cf-section">
+      <div class="cf-hdr">CREW</div>
+      <div class="cf-grid">
+        <div class="cf-item"><span class="cf-label">Director</span><span class="cf-val">${esc(c.director)}</span></div>
+        <div class="cf-item"><span class="cf-label">DOP</span><span class="cf-val">${esc(c.dop)}</span></div>
+        <div class="cf-item"><span class="cf-label">1st AD</span><span class="cf-val">${esc(c.firstAD)}</span></div>
+        <div class="cf-item"><span class="cf-label">Sound Mixer</span><span class="cf-val">${esc(c.soundMixer)}</span></div>
+        <div class="cf-item"><span class="cf-label">Boom Op</span><span class="cf-val">${esc(c.boomOp)}</span></div>
+        <div class="cf-item"><span class="cf-label">Utility</span><span class="cf-val">${esc(c.utility)}</span></div>
+      </div>
+    </div>
+    <div class="cf-section">
+      <div class="cf-hdr">KIT</div>
+      <div class="cf-grid">
+        <div class="cf-item"><span class="cf-label">Recorder</span><span class="cf-val">${esc(c.kitRecorder)}</span></div>
+        <div class="cf-item"><span class="cf-label">Microphones</span><span class="cf-val">${esc(c.kitMics)}</span></div>
+        <div class="cf-item"><span class="cf-label">TX / RX</span><span class="cf-val">${esc(c.kitTxRx)}</span></div>
+        <div class="cf-item"><span class="cf-label">Coms</span><span class="cf-val">${esc(c.kitComs)}</span></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderDaySceneRow(dayNum, slot, scNum, sc) {
+  const locLine = sc ? [sc.intExt, sc.place, sc.time].filter(Boolean).join(" — ") : "";
+  const preview = locLine || (sc ? sc.notes : "");
+  const n = parseInt(scNum);
+  return `
+  <div class="day-scene-row ${sc?'':'empty'}" id="dayrow-${dayNum}-${slot}">
+    <div class="scene-header" onclick="this.closest('.day-scene-row').classList.toggle('open')">
+      <div class="scene-num" style="min-width:48px;position:relative">
+        <input value="${esc(scNum)}" placeholder="#" style="width:44px;text-align:center;font-weight:700;font-size:15px;border:none;background:var(--yellow);font-family:inherit;outline:none;position:relative;z-index:2"
+          onclick="event.stopPropagation()"
+          oninput="handleDaySceneInput(${dayNum},${slot},this.value)"
+          onchange="handleDaySceneInput(${dayNum},${slot},this.value)">
+      </div>
+      <div class="scene-preview">${esc(preview) || 'Enter scene number...'}</div>
+      <div class="scene-expand-icon">▼</div>
+    </div>
+    <div class="scene-body">
+      ${sc ? renderDaySceneBody(n) : '<div style="padding:12px;color:#999;font-size:12px">Enter a scene number to see details</div>'}
+    </div>
+  </div>`;
+}
+
+function renderDaySceneBody(n) {
+  const s = data.scenes[n];
+  return `
+      <div class="scene-location-bar">
+        <div class="scene-loc-field">
+          <label>INT/EXT</label>
+          <select oninput="data.scenes[${n}].intExt=this.value">
+            <option value="">—</option>
+            <option value="INT." ${s.intExt==='INT.'?'selected':''}>INT.</option>
+            <option value="EXT." ${s.intExt==='EXT.'?'selected':''}>EXT.</option>
+            <option value="INT./EXT." ${s.intExt==='INT./EXT.'?'selected':''}>INT./EXT.</option>
+          </select>
+        </div>
+        <div class="scene-loc-field" style="flex:3">
+          <label>Place</label>
+          <input value="${esc(s.place)}" oninput="data.scenes[${n}].place=this.value" placeholder="e.g. Margaret's Apartment">
+        </div>
+        <div class="scene-loc-field">
+          <label>Time</label>
+          <input value="${esc(s.time)}" oninput="data.scenes[${n}].time=this.value" placeholder="e.g. Twilight">
+        </div>
+      </div>
+      <div class="scene-field">
+        <div class="scene-field-label notes-l">Scene Description</div>
+        <textarea class="desc-area" oninput="data.scenes[${n}].description=this.value">${esc(s.description)}</textarea>
+      </div>
+      <div class="scene-field">
+        <div class="scene-field-label notes-l">Notes</div>
+        <textarea oninput="data.scenes[${n}].notes=this.value">${esc(s.notes)}</textarea>
+      </div>
+      ${renderTxSection(n)}
+      <div class="scene-field">
+        <div class="scene-field-label prob-l">Potential Problems</div>
+        <textarea oninput="data.scenes[${n}].problems=this.value">${esc(s.problems)}</textarea>
+      </div>
+      <div class="scene-field">
+        <div class="scene-field-label nt-l">NurTon</div>
+        <textarea oninput="data.scenes[${n}].nurton=this.value">${esc(s.nurton)}</textarea>
+      </div>`;
+}
+
+function handleDaySceneInput(dayNum, slot, val) {
+  data.days[dayNum].sceneNums[slot] = val;
+  // Re-render just this row
+  const container = document.getElementById(`dayrow-${dayNum}-${slot}`);
+  if (!container) return;
+  const sc = val && data.scenes[parseInt(val)] ? data.scenes[parseInt(val)] : null;
+  const temp = document.createElement('div');
+  temp.innerHTML = renderDaySceneRow(dayNum, slot, val, sc);
+  const newRow = temp.firstElementChild;
+  container.replaceWith(newRow);
+  // Refocus the input
+  const inp = newRow.querySelector('.scene-num input');
+  if (inp) { inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length); }
+  // Refresh TX map
+  refreshTxMap(dayNum);
+}
+
+function refreshTxMap(dayNum) {
+  const mapEl = document.getElementById('txmap-' + dayNum);
+  if (!mapEl) return;
+  const temp = document.createElement('div');
+  temp.innerHTML = renderTxMap(dayNum);
+  if (temp.firstElementChild) {
+    mapEl.replaceWith(temp.firstElementChild);
+  } else {
+    mapEl.innerHTML = '';
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SCENE RENUMBERING
+// ═════════════════════════════════════════════════════════════════════════════
+let rnMappings = []; // [{oldNum, newNum}]
+
+function openRenumber() {
+  rnMappings = [];
+  document.getElementById('renumberModal').style.display = 'flex';
+  rnAutoDetect();
+}
+
+function closeRenumber() {
+  document.getElementById('renumberModal').style.display = 'none';
+}
+
+function rnAutoDetect() {
+  rnMappings = [];
+  const fresh = defaultData();
+  for (let i = 1; i <= NUM_SCENES; i++) {
+    const s = data.scenes[i];
+    const f = fresh.scenes[i];
+    // Check if scene has any data entered
+    const hasData = s.notes || s.description || s.place || s.intExt || s.time || s.problems || s.nurton ||
+      TX_LABELS.some(ch => s.tx[ch].name && s.tx[ch].name !== f.tx[ch].name);
+    if (hasData) rnMappings.push({oldNum: i, newNum: i});
+  }
+  rnRenderList();
+}
+
+function rnAddRow() {
+  rnMappings.push({oldNum: '', newNum: ''});
+  rnRenderList();
+}
+
+function rnRemoveRow(idx) {
+  rnMappings.splice(idx, 1);
+  rnRenderList();
+}
+
+function rnUpdateOld(idx, val) {
+  rnMappings[idx].oldNum = val ? parseInt(val) : '';
+  rnUpdatePreview();
+}
+
+function rnUpdateNew(idx, val) {
+  rnMappings[idx].newNum = val ? parseInt(val) : '';
+  rnUpdatePreview();
+}
+
+function rnRenderList() {
+  const list = document.getElementById('rnList');
+  list.innerHTML = rnMappings.map((m, i) => {
+    const sc = m.oldNum && data.scenes[m.oldNum] ? data.scenes[m.oldNum] : null;
+    const info = sc ? [sc.intExt, sc.place, sc.time].filter(Boolean).join(' — ') || sc.notes || 'Has data' : '';
+    // Check for conflicts: multiple mappings targeting same newNum
+    const dupes = rnMappings.filter(x => x.newNum && x.newNum === m.newNum);
+    const isConflict = dupes.length > 1;
+    return `<div class="rn-row">
+      <input value="${m.oldNum}" type="number" min="1" max="${NUM_SCENES}" placeholder="Old" oninput="rnUpdateOld(${i},this.value)">
+      <span class="rn-arrow">→</span>
+      <input value="${m.newNum}" type="number" min="1" max="${NUM_SCENES}" placeholder="New" class="${isConflict?'conflict':''}" oninput="rnUpdateNew(${i},this.value)">
+      <span class="rn-info">${esc(info)}</span>
+      <button class="rn-remove" onclick="rnRemoveRow(${i})">✕</button>
+    </div>`;
+  }).join('');
+  rnUpdatePreview();
+}
+
+function rnUpdatePreview() {
+  const prev = document.getElementById('rnPreview');
+  const valid = rnMappings.filter(m => m.oldNum && m.newNum && m.oldNum !== m.newNum);
+  const unchanged = rnMappings.filter(m => m.oldNum && m.newNum && m.oldNum === m.newNum);
+  // Check for conflicts
+  const targetCounts = {};
+  rnMappings.forEach(m => { if (m.newNum) targetCounts[m.newNum] = (targetCounts[m.newNum]||0)+1; });
+  const conflicts = Object.entries(targetCounts).filter(([k,v]) => v > 1);
+
+  let html = '';
+  if (valid.length) html += `<div>${valid.length} scene(s) will be moved.</div>`;
+  if (unchanged.length) html += `<div>${unchanged.length} scene(s) unchanged.</div>`;
+  if (conflicts.length) html += `<div class="rn-warn">⚠ Conflict: multiple scenes targeting ${conflicts.map(c => 'Scene '+c[0]).join(', ')}</div>`;
+  prev.innerHTML = html;
+}
+
+function rnApply() {
+  const moves = rnMappings.filter(m => m.oldNum && m.newNum && m.oldNum !== m.newNum);
+  if (moves.length === 0) { alert('No changes to apply.'); return; }
+
+  // Check for target conflicts
+  const targetCounts = {};
+  rnMappings.forEach(m => { if (m.newNum) targetCounts[m.newNum] = (targetCounts[m.newNum]||0)+1; });
+  const conflicts = Object.entries(targetCounts).filter(([k,v]) => v > 1);
+  if (conflicts.length) {
+    alert('Cannot apply: multiple scenes are targeting the same number (' + conflicts.map(c => 'Scene '+c[0]).join(', ') + '). Please resolve conflicts first.');
+    return;
+  }
+
+  const summary = moves.map(m => `Scene ${m.oldNum} → ${m.newNum}`).join('\n');
+  if (!confirm('Apply these changes?\n\n' + summary + '\n\nThis will also update all day sheet references.')) return;
+
+  // Step 1: Copy scene data to a temp buffer
+  const buffer = {};
+  const fresh = defaultData();
+  moves.forEach(m => {
+    buffer[m.newNum] = JSON.parse(JSON.stringify(data.scenes[m.oldNum]));
+  });
+
+  // Step 2: Clear old scene slots (only if they're not a target of another move)
+  const targets = new Set(moves.map(m => m.newNum));
+  moves.forEach(m => {
+    if (!targets.has(m.oldNum)) {
+      data.scenes[m.oldNum] = JSON.parse(JSON.stringify(fresh.scenes[m.oldNum]));
+    }
+  });
+
+  // Step 3: Write buffer to new positions
+  Object.entries(buffer).forEach(([num, scData]) => {
+    data.scenes[num] = scData;
+  });
+
+  // Step 4: Update day sheet scene number references
+  const moveMap = {};
+  moves.forEach(m => { moveMap[String(m.oldNum)] = String(m.newNum); });
+  for (let i = 1; i <= NUM_DAYS; i++) {
+    data.days[i].sceneNums = data.days[i].sceneNums.map(s => {
+      return (s && moveMap[s]) ? moveMap[s] : s;
+    });
+  }
+
+  closeRenumber();
+  renderPanel(activeTab);
+  showStatus(`${moves.length} scene(s) renumbered successfully!`);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SAVE / LOAD
+// ═════════════════════════════════════════════════════════════════════════════
+function mergeLoadedData(loaded) {
+  const fresh = defaultData();
+  data.config = {...fresh.config, ...loaded.config};
+  data.scenes = {...fresh.scenes};
+  for (const k of Object.keys(loaded.scenes || {})) {
+    const ls = loaded.scenes[k];
+    data.scenes[k] = {...fresh.scenes[k], ...ls};
+    if (ls.dia && !ls.tx) {
+      const tx = {};
+      TX_LABELS.forEach(ch => {
+        const dName = (ls.dia && ls.dia[ch]) || "";
+        const ndName = (ls.noDia && ls.noDia[ch]) || "";
+        tx[ch] = {name: dName || ndName, isDia: !!dName && !ndName};
+      });
+      data.scenes[k].tx = tx;
+    } else {
+      const freshTx = fresh.scenes[k] ? fresh.scenes[k].tx : {};
+      const loadedTx = ls.tx || {};
+      const merged = {};
+      TX_LABELS.forEach(ch => { merged[ch] = {...(freshTx[ch]||{}), ...(loadedTx[ch]||{})}; });
+      data.scenes[k].tx = merged;
+    }
+    delete data.scenes[k].dia;
+    delete data.scenes[k].noDia;
+  }
+  data.days = {...fresh.days};
+  for (const k of Object.keys(loaded.days || {})) {
+    data.days[k] = {...fresh.days[k], ...loaded.days[k],
+      txAlloc: {...fresh.days[k].txAlloc, ...(loaded.days[k].txAlloc||{})}
+    };
+  }
+}
+
+function getQuickSaveFilename() {
+  const name = (data.config.productionTitle || 'production').replace(/[^a-zA-Z0-9]/g,'_');
+  return name + '_sound_notes.json';
+}
+
+function quickSave() {
+  if (dbxIsConnected()) {
+    // Save directly to Dropbox — no download needed
+    dbxSaveProject(false);
+  } else {
+    // Fall back to file download
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = getQuickSaveFilename();
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showStatus("Quick-saved \u2014 save to your Dropbox folder \u2713");
+  }
+}
+
+function saveToFile() {
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], {type: 'application/json'});
+  const a = document.createElement('a');
+  const name = (data.config.productionTitle || 'production').replace(/[^a-zA-Z0-9]/g,'_');
+  const ts = new Date().toISOString().slice(0,10);
+  a.href = URL.createObjectURL(blob);
+  a.download = `${name}_sound_notes_${ts}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showStatus("Project saved!");
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// AUTO-SAVE (localStorage)
+// ═════════════════════════════════════════════════════════════════════════════
+const AUTOSAVE_KEY = 'xf_dailynotes_autosave';
+let autoSaveTimer = null;
+let autoSaveEnabled = false;
+
+function scheduleAutoSave() {
+  if (!autoSaveEnabled) return;
+  if (autoSaveTimer) clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data));
+      if (!dbxIsConnected()) showStatus("Auto-saved \u2713");
+    } catch(e) {}
+  }, 1500);
+  // Also schedule a Dropbox save (longer debounce)
+  scheduleDbxAutoSave();
+}
+
+function enableAutoSave() {
+  autoSaveEnabled = true;
+  // Listen for all input changes
+  document.addEventListener('input', scheduleAutoSave);
+  document.addEventListener('click', function(e) {
+    // Catch toggle clicks (DIA/NO DIA) and other button-driven data changes
+    if (e.target.classList.contains('tx-toggle')) scheduleAutoSave();
+  });
+  // Save on page close
+  window.addEventListener('beforeunload', function() {
+    if (autoSaveEnabled) {
+      try { localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data)); } catch(e) {}
+      // Fire-and-forget Dropbox save (browser may or may not complete it)
+      if (dbxIsConnected() && currentDbxPath) dbxSaveProject(true);
+    }
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// CREW DROPBOX FETCH
+// ═════════════════════════════════════════════════════════════════════════════
+function showCrewStatus(msg) {
+  const el = document.getElementById('crewStatusMsg');
+  el.textContent = msg;
+  setTimeout(() => el.textContent = "", 6000);
+}
+
+let crewPollInterval = null;
+
+function getDropboxDirectUrl(link) {
+  if (!link || !link.trim()) return null;
+  let url = link.trim();
+  url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
+  if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
+  return url;
+}
+
+function crewRefresh() {
+  const url = getDropboxDirectUrl(data.config.dropboxLink);
+  if (!url) {
+    document.getElementById('crewLoadInput').click();
+    return;
+  }
+  showCrewStatus("Fetching latest data...");
+  fetch(url)
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(loaded => {
+      const currentTab = activeTab;
+      mergeLoadedData(loaded);
+      buildCrewTabs();
+      // Stay on same tab if possible, otherwise go to first active day
+      if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
+        switchTab(currentTab);
+      } else {
+        const firstDay = getActiveDays()[0];
+        if (firstDay) switchTab('day-' + firstDay);
+      }
+      updateProdTitle();
+      showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
+    })
+    .catch(err => {
+      showCrewStatus("Fetch failed \u2014 try manual load");
+      setTimeout(() => document.getElementById('crewLoadInput').click(), 1500);
+    });
+}
+
+// Auto-fetch on crew load + poll every 60 seconds
+function crewAutoFetchAndPoll() {
+  const url = getDropboxDirectUrl(data.config.dropboxLink);
+  if (url) {
+    // Initial fetch to get latest data
+    fetch(url)
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(loaded => {
+        mergeLoadedData(loaded);
+        buildCrewTabs();
+        const firstDay = getActiveDays()[0];
+        if (firstDay) switchTab('day-' + firstDay);
+        updateProdTitle();
+        showCrewStatus("Live \u2014 auto-updating");
+      })
+      .catch(() => showCrewStatus("Using cached data"));
+
+    // Poll every 60 seconds
+    crewPollInterval = setInterval(() => {
+      const pollUrl = getDropboxDirectUrl(data.config.dropboxLink);
+      if (!pollUrl) return;
+      fetch(pollUrl)
+        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        .then(loaded => {
+          const currentTab = activeTab;
+          mergeLoadedData(loaded);
+          buildCrewTabs();
+          if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
+            switchTab(currentTab);
+          }
+          updateProdTitle();
+          showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
+        })
+        .catch(() => {});
+    }, 60000);
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// DROPBOX API INTEGRATION
+// ═════════════════════════════════════════════════════════════════════════════
+const DBX_TOKEN_KEY = 'xf_dbx_tokens';
+const DBX_VERIFIER_KEY = 'xf_dbx_verifier';
+let dbxAccessToken = null;
+let dbxRefreshToken = null;
+let currentDbxPath = null;
+let dbxSaveTimer = null;
+
+function dbxLoadTokens() {
+  try {
+    const saved = localStorage.getItem(DBX_TOKEN_KEY);
+    if (saved) {
+      const t = JSON.parse(saved);
+      dbxAccessToken = t.access;
+      dbxRefreshToken = t.refresh;
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+function dbxSaveTokens() {
+  try {
+    localStorage.setItem(DBX_TOKEN_KEY, JSON.stringify({
+      access: dbxAccessToken, refresh: dbxRefreshToken
+    }));
+  } catch(e) {}
+}
+
+function dbxIsConnected() {
+  return !!dbxAccessToken && !!dbxRefreshToken;
+}
+
+// PKCE helpers
+function dbxRandomString(len) {
+  const arr = new Uint8Array(len);
+  crypto.getRandomValues(arr);
+  return Array.from(arr, b => b.toString(36).padStart(2,'0')).join('').slice(0, len);
+}
+
+async function dbxCodeChallenge(verifier) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier));
+  return btoa(String.fromCharCode(...new Uint8Array(digest)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+// OAuth flow
+async function dbxStartAuth() {
+  const appKey = (data.config.dbxAppKey || '').trim();
+  if (!appKey) {
+    alert("Enter your Dropbox App Key first (see instructions below the field).");
+    return;
+  }
+  const verifier = dbxRandomString(64);
+  localStorage.setItem(DBX_VERIFIER_KEY, verifier);
+  const challenge = await dbxCodeChallenge(verifier);
+
+  const url = 'https://www.dropbox.com/oauth2/authorize?' +
+    'client_id=' + encodeURIComponent(appKey) +
+    '&response_type=code' +
+    '&code_challenge=' + encodeURIComponent(challenge) +
+    '&code_challenge_method=S256' +
+    '&token_access_type=offline';
+
+  window.open(url, '_blank');
+  document.getElementById('dbxCodeSection').style.display = 'block';
+  setTimeout(() => document.getElementById('dbxAuthCode').focus(), 200);
+}
+
+async function dbxFinishAuth() {
+  const code = (document.getElementById('dbxAuthCode').value || '').trim();
+  if (!code) { alert("Paste the authorization code from Dropbox."); return; }
+
+  const appKey = (data.config.dbxAppKey || '').trim();
+  const verifier = localStorage.getItem(DBX_VERIFIER_KEY);
+  if (!appKey || !verifier) { alert("Missing App Key or auth session expired. Try again."); return; }
+
+  try {
+    const resp = await fetch('https://api.dropboxapi.com/oauth2/token', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: 'code=' + encodeURIComponent(code) +
+            '&grant_type=authorization_code' +
+            '&client_id=' + encodeURIComponent(appKey) +
+            '&code_verifier=' + encodeURIComponent(verifier)
+    });
+    if (!resp.ok) { const t = await resp.text(); throw new Error(t); }
+    const result = await resp.json();
+
+    dbxAccessToken = result.access_token;
+    dbxRefreshToken = result.refresh_token;
+    dbxSaveTokens();
+    localStorage.removeItem(DBX_VERIFIER_KEY);
+
+    document.getElementById('dbxCodeSection').style.display = 'none';
+    document.getElementById('dbxAuthCode').value = '';
+    dbxUpdateStatus(true);
+    showStatus("Dropbox connected!");
+  } catch(err) {
+    alert("Connection failed. Check your App Key and try again.\n\n" + err.message);
+  }
+}
+
+async function dbxRefreshAccessToken() {
+  const appKey = (data.config.dbxAppKey || '').trim();
+  if (!dbxRefreshToken || !appKey) return false;
+  try {
+    const resp = await fetch('https://api.dropboxapi.com/oauth2/token', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: 'grant_type=refresh_token' +
+            '&refresh_token=' + encodeURIComponent(dbxRefreshToken) +
+            '&client_id=' + encodeURIComponent(appKey)
+    });
+    if (!resp.ok) return false;
+    const result = await resp.json();
+    dbxAccessToken = result.access_token;
+    dbxSaveTokens();
+    return true;
+  } catch(e) { return false; }
+}
+
+// Wrapper that auto-refreshes expired tokens
+async function dbxFetch(url, options) {
+  let resp = await fetch(url, options);
+  if (resp.status === 401) {
+    if (await dbxRefreshAccessToken()) {
+      // Rebuild headers with new token
+      if (options.headers) options.headers['Authorization'] = 'Bearer ' + dbxAccessToken;
+      resp = await fetch(url, options);
+    }
+  }
+  return resp;
+}
+
+// List projects in the app folder
+async function dbxListProjects() {
+  if (!dbxIsConnected()) return [];
+  try {
+    const resp = await dbxFetch('https://api.dropboxapi.com/2/files/list_folder', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + dbxAccessToken,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({path: '', recursive: false})
+    });
+    if (!resp.ok) throw new Error(resp.status);
+    const result = await resp.json();
+    return result.entries
+      .filter(e => e['.tag'] === 'file' && e.name.endsWith('.json'))
+      .map(e => ({name: e.name, path: e.path_lower, modified: e.server_modified}))
+      .sort((a,b) => new Date(b.modified) - new Date(a.modified));
+  } catch(err) {
+    showStatus("Couldn\u2019t list Dropbox files");
+    return [];
+  }
+}
+
+// Load a project from Dropbox
+async function dbxLoadProject(path) {
+  if (!dbxIsConnected()) return;
+  showStatus("Loading from Dropbox...");
+  try {
+    const resp = await dbxFetch('https://content.dropboxapi.com/2/files/download', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + dbxAccessToken,
+        'Dropbox-API-Arg': JSON.stringify({path: path})
+      }
+    });
+    if (!resp.ok) throw new Error(resp.status);
+    const loaded = await resp.json();
+    mergeLoadedData(loaded);
+    currentDbxPath = path;
+    buildTabs();
+    renderPanel(activeTab);
+    updateProdTitle();
+    showStatus("Loaded from Dropbox \u2713");
+  } catch(err) {
+    alert("Error loading from Dropbox: " + err.message);
+  }
+}
+
+// Save project to Dropbox (overwrites)
+async function dbxSaveProject(silent) {
+  if (!dbxIsConnected()) return false;
+  const path = currentDbxPath || ('/' + getQuickSaveFilename());
+  const json = JSON.stringify(data, null, 2);
+
+  if (!silent) showStatus("Saving to Dropbox...");
+  try {
+    const resp = await dbxFetch('https://content.dropboxapi.com/2/files/upload', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + dbxAccessToken,
+        'Content-Type': 'application/octet-stream',
+        'Dropbox-API-Arg': JSON.stringify({
+          path: path, mode: 'overwrite', autorename: false, mute: true
+        })
+      },
+      body: json
+    });
+    if (!resp.ok) throw new Error(resp.status);
+    const result = await resp.json();
+    currentDbxPath = result.path_lower;
+
+    if (!silent) showStatus("Saved to Dropbox \u2713");
+
+    // Auto-generate crew sharing link if not already set
+    if (!data.config.dropboxLink) dbxCreateShareLink(currentDbxPath);
+
+    return true;
+  } catch(err) {
+    if (!silent) showStatus("Dropbox save failed");
+    return false;
+  }
+}
+
+// Create a shared link for crew
+async function dbxCreateShareLink(path) {
+  if (!dbxIsConnected()) return;
+  try {
+    // Try to create a new shared link
+    let resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + dbxAccessToken,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({path: path, settings: {requested_visibility: 'public', audience: 'public'}})
+    });
+
+    let result;
+    if (resp.status === 409) {
+      // Link already exists — fetch it
+      resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/list_shared_links', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + dbxAccessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({path: path, direct_only: true})
+      });
+      if (!resp.ok) return;
+      result = await resp.json();
+      if (result.links && result.links.length > 0) {
+        data.config.dropboxLink = result.links[0].url;
+      }
+    } else if (resp.ok) {
+      result = await resp.json();
+      data.config.dropboxLink = result.url;
+    }
+  } catch(e) {}
+}
+
+// Debounced Dropbox auto-save (longer interval than localStorage)
+function scheduleDbxAutoSave() {
+  if (!dbxIsConnected() || !currentDbxPath) return;
+  if (dbxSaveTimer) clearTimeout(dbxSaveTimer);
+  dbxSaveTimer = setTimeout(() => dbxSaveProject(true), 15000); // 15 seconds
+}
+
+// UI helpers
+function dbxUpdateStatus(connected) {
+  const el = document.getElementById('dbxStatus');
+  if (!el) return;
+  if (connected) {
+    el.innerHTML = '<span style="color:#1b5e20">\u25CF Connected</span> <button onclick="dbxDisconnect()" style="font-size:10px;padding:2px 6px;border:1px solid #ccc;border-radius:3px;cursor:pointer;background:#fff">Disconnect</button>';
+    // Hide setup fields since we're connected
+    const fields = document.getElementById('dbxSetupFields');
+    if (fields) fields.style.display = 'none';
+  } else {
+    el.innerHTML = '<span style="color:#888">\u25CB Not connected</span>';
+    const fields = document.getElementById('dbxSetupFields');
+    if (fields) fields.style.display = 'block';
+  }
+}
+
+function dbxDisconnect() {
+  dbxAccessToken = null;
+  dbxRefreshToken = null;
+  currentDbxPath = null;
+  localStorage.removeItem(DBX_TOKEN_KEY);
+  localStorage.removeItem(DBX_VERIFIER_KEY);
+  dbxUpdateStatus(false);
+  showStatus("Dropbox disconnected");
+}
+
+function renderPickerList(projects) {
+  const el = document.getElementById('dbxPickerList');
+  if (!el) return;
+  if (projects.length === 0) {
+    el.innerHTML = '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects yet. Start a new one!</div>';
+    return;
+  }
+  el.innerHTML = projects.map(p => {
+    const name = p.name.replace('.json','').replace(/_/g,' ');
+    const date = new Date(p.modified).toLocaleDateString();
+    return '<div class="dbx-project" onclick="dbxPickProject(\'' + p.path.replace(/'/g, "\\'") + '\')">' +
+      '<span class="dbx-name">' + name + '</span>' +
+      '<span class="dbx-date">' + date + '</span></div>';
+  }).join('');
+}
+
+let pickerMode = 'edit'; // 'edit' or 'crew'
+
+async function dbxShowPicker() {
+  pickerMode = 'edit';
+  document.getElementById('dbxPickerTitle').textContent = '\u{1F4C2} Open Project';
+  document.getElementById('dbxPickerActions').innerHTML =
+    '<button onclick="dbxNewProject()">+ New Project</button><button onclick="dbxClosePicker()">Skip</button>';
+  document.getElementById('dbxPickerModal').style.display = 'flex';
+  const projects = await dbxListProjects();
+  renderPickerList(projects);
+}
+
+async function dbxShowCrewPicker() {
+  pickerMode = 'crew';
+  document.getElementById('dbxPickerTitle').textContent = '\u{1F4C2} Select Project (Crew View)';
+  document.getElementById('dbxPickerActions').innerHTML =
+    '<button onclick="dbxClosePicker()">Cancel</button>';
+  document.getElementById('dbxPickerModal').style.display = 'flex';
+  const projects = await dbxListProjects();
+  renderPickerList(projects);
+}
+
+async function dbxPickProject(path) {
+  document.getElementById('dbxPickerModal').style.display = 'none';
+  if (pickerMode === 'crew') {
+    // Load project then enter crew mode with auto-refresh
+    await dbxLoadProject(path);
+    enterCrewMode();
+    startCrewDbxPolling(path);
+  } else {
+    await dbxLoadProject(path);
+  }
+}
+
+function dbxNewProject() {
+  document.getElementById('dbxPickerModal').style.display = 'none';
+  // Just proceed with fresh/current data
+  buildTabs();
+  renderPanel("config");
+  updateProdTitle();
+}
+
+function dbxClosePicker() {
+  document.getElementById('dbxPickerModal').style.display = 'none';
+  if (pickerMode === 'crew') {
+    // Cancelled crew picker — go back to landing
+    document.getElementById('landingScreen').style.display = 'flex';
+  } else {
+    buildTabs();
+    renderPanel("config");
+    updateProdTitle();
+  }
+}
+
+// Crew auto-refresh using Dropbox API (not shared links)
+function startCrewDbxPolling(path) {
+  if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
+  showCrewStatus("Live \u2014 auto-updating");
+  crewPollInterval = setInterval(async () => {
+    if (!dbxIsConnected()) return;
+    try {
+      const resp = await dbxFetch('https://content.dropboxapi.com/2/files/download', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + dbxAccessToken,
+          'Dropbox-API-Arg': JSON.stringify({path: path})
+        }
+      });
+      if (!resp.ok) return;
+      const loaded = await resp.json();
+      const currentTab = activeTab;
+      mergeLoadedData(loaded);
+      buildCrewTabs();
+      if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
+        switchTab(currentTab);
+      }
+      updateProdTitle();
+      showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
+    } catch(e) {}
+  }, 60000);
+}
+
+function loadFromFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const loaded = JSON.parse(e.target.result);
+      mergeLoadedData(loaded);
+      renderPanel(activeTab);
+      showStatus("Project loaded!");
+    } catch(err) { alert("Error loading file: " + err.message); }
+  };
+  reader.readAsText(file);
+  event.target.value = "";
+}
+
+function printDay(dayNum) {
+  // Switch to the day tab first so it's the visible panel
+  switchTab('day-' + dayNum);
+  // Expand all scene rows so they print fully
+  document.querySelectorAll('.day-scene-row:not(.empty)').forEach(r => r.classList.add('open'));
+  setTimeout(() => window.print(), 200);
+}
+
+function exportAllCrewViews() {
+  // Find days that have at least one scene entered
+  const activeDays = [];
+  for (let i = 1; i <= NUM_DAYS; i++) {
+    if (data.days[i].sceneNums.some(s => s && s.trim())) activeDays.push(i);
+  }
+  if (activeDays.length === 0) { alert("No day sheets have scenes entered yet."); return; }
+  exportCrewView(activeDays);
+}
+
+function exportCrewView(dayNums) {
+  if (!Array.isArray(dayNums)) dayNums = [dayNums];
+  const cfg = data.config;
+  const title = cfg.productionTitle || "Production";
+  const txLabels = ["A","B","C","D","E","F","G"];
+
+  let daysHtml = "";
+  for (const dayNum of dayNums) {
+    const d = data.days[dayNum];
+    const filledScenes = d.sceneNums.filter(s => s && s.trim()).map(s => parseInt(s)).filter(n => data.scenes[n]);
+
+    let scenesHtml = "";
+    for (const scNum of filledScenes) {
+      const sc = data.scenes[scNum];
+      const cvLocLine = [sc.intExt, sc.place, sc.time].filter(Boolean).join(" — ");
+      scenesHtml += `
+      <div class="cv-scene">
+        <div class="cv-scene-hdr">
+          <div class="cv-scene-num">${scNum}</div>
+          <div class="cv-scene-notes">${esc(cvLocLine) || esc(sc.notes) || '—'}</div>
+        </div>
+        ${sc.description ? '<div style="padding:4px 12px;font-size:11px;color:#666;background:#f5f5f5;border-top:1px solid #eee;white-space:pre-wrap"><b style="font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:#888">Scene Description:</b> '+esc(sc.description)+'</div>' : ''}
+        ${sc.notes ? '<div style="padding:4px 12px;font-size:11px;color:#666;background:#f5f5f5;border-top:1px solid #eee"><b style="font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:#888">Notes:</b> '+esc(sc.notes)+'</div>' : ''}
+        <div class="cv-tx-section">
+          <div class="cv-tx-sec-hdr">TX ASSIGNMENTS</div>
+          ${txLabels.map((tx,i) => {
+            const ch = sc.tx[tx];
+            return `<div class="cv-tx-row"><div class="cv-tx-label ${i%2===0?'even':'odd'}">${tx}</div><div class="cv-tx-type ${ch.isDia?'cv-dia-tag':'cv-nodia-tag'}">${ch.isDia?'DIA':'NO DIA'}</div><div class="cv-tx-val">${esc(ch.name) || '—'}</div></div>`;
+          }).join("")}
+        </div>
+        <div class="cv-footer">
+          <div class="cv-footer-cell cv-prob"><div class="cv-flabel">Potential Problems</div><div>${esc(sc.problems) || '—'}</div></div>
+          <div class="cv-footer-cell cv-nt"><div class="cv-flabel">NurTon</div><div>${esc(sc.nurton) || '—'}</div></div>
+        </div>
+      </div>`;
+    }
+
+    daysHtml += `
+    <div class="cv-day ${dayNums.length > 1 ? 'cv-page-break' : ''}">
+      <div class="cv-day-header">
+        <div class="cv-day-title">
+          <span class="cv-day-num">DAY ${String(dayNum).padStart(2,'0')}</span>
+          <span class="cv-prod">${esc(title)}${cfg.episode ? ' — '+esc(cfg.episode) : ''}</span>
+        </div>
+        <div class="cv-day-info">
+          ${d.date ? '<span>Date: '+d.date+'</span>' : ''}
+          ${cfg.director ? '<span>Director: '+esc(cfg.director)+'</span>' : ''}
+          ${d.firstAD ? '<span>1st AD: '+esc(d.firstAD)+'</span>' : ''}
+          ${d.location ? '<span>Location: '+esc(d.location)+'</span>' : ''}
+        </div>
+      </div>
+      ${scenesHtml}
+      ${d.nurtonExtra ? `<div class="cv-extra"><div class="cv-extra-hdr cv-nurton">NURTON / WILD TRACKS</div><div class="cv-extra-body">${esc(d.nurtonExtra)}</div></div>` : ''}
+      ${d.eodNotes ? `<div class="cv-extra"><div class="cv-extra-hdr cv-eod">ADDITIONAL NOTES</div><div class="cv-extra-body">${esc(d.eodNotes)}</div></div>` : ''}
+    </div>`;
+  }
+
+  const html = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${esc(title)} — Daily Notes (Crew View)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f5f5;color:#0a0a0a;padding:12px}
+.cv-banner{background:#0a0a0a;color:#c0c0c0;padding:10px 16px;border-radius:6px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.cv-banner h1{font-size:16px;font-weight:700}
+.cv-banner .cv-ro{font-size:10px;padding:3px 8px;border:1px solid #c0c0c0;border-radius:3px;opacity:.7}
+.cv-day{margin-bottom:24px}
+.cv-day-header{background:#0a0a0a;color:#c0c0c0;padding:12px;border-radius:6px 6px 0 0}
+.cv-day-title{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.cv-day-num{font-size:20px;font-weight:700}
+.cv-prod{font-size:14px;opacity:.7}
+.cv-day-info{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;opacity:.8}
+.cv-tx-bar{background:#1a1a1a;padding:8px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-radius:0 0 6px 6px;margin-bottom:10px}
+.cv-tx-title{font-size:10px;font-weight:700;color:#c0c0c0;letter-spacing:.5px}
+.cv-tx-badge{background:#0a0a0a;color:#c0c0c0;font-size:11px;font-weight:600;padding:3px 8px;border-radius:3px}
+.cv-scene{background:#fff;border:1px solid #ddd;border-radius:6px;margin-bottom:6px;overflow:hidden}
+.cv-scene-hdr{display:flex;align-items:stretch}
+.cv-scene-num{background:#0a0a0a;color:#c0c0c0;min-width:48px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.cv-scene-notes{flex:1;padding:8px 12px;font-size:12px;color:#555;background:#f5f5f5;white-space:pre-wrap}
+.cv-tx-section{border-top:1px solid #eee}
+.cv-tx-sec-hdr{padding:6px 10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:#e8e8e8}
+.cv-tx-row{display:flex;border-top:1px solid #f0f0f0}
+.cv-tx-label{width:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:#fff}
+.cv-tx-label.even{background:#0a0a0a}
+.cv-tx-label.odd{background:#2d2d2d}
+.cv-tx-type{width:52px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:.3px}
+.cv-dia-tag{background:#e8eef7;color:#2a5a8a}
+.cv-nodia-tag{background:#f5f0ea;color:#8a6a3a}
+.cv-tx-val{flex:1;padding:4px 8px;font-size:12px;min-height:24px;display:flex;align-items:center}
+.cv-footer{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #ddd}
+.cv-footer-cell{padding:8px 10px;font-size:12px}
+.cv-prob{background:#fff3e0}
+.cv-nt{background:#eaf5ee}
+.cv-flabel{font-size:10px;font-weight:700;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px}
+.cv-extra{margin-top:8px}
+.cv-extra-hdr{padding:6px 12px;font-size:11px;font-weight:700;color:#fff;border-radius:4px 4px 0 0}
+.cv-nurton{background:#1b5e20}
+.cv-eod{background:#2d2d2d}
+.cv-extra-body{padding:10px 12px;border:1px solid #ddd;border-top:none;border-radius:0 0 4px 4px;font-size:13px;white-space:pre-wrap}
+@media(max-width:700px){
+  body{padding:6px}
+  .cv-day-info{flex-direction:column;gap:4px}
+  .cv-detail-grid{grid-template-columns:1fr}
+  .cv-footer{grid-template-columns:1fr}
+  .cv-tx-bar{flex-direction:column;align-items:flex-start}
+}
+@media print{
+  body{padding:0;background:#fff}
+  .cv-banner{border-radius:0}
+  .cv-scene{break-inside:avoid}
+  .cv-page-break{page-break-before:always}
+  .cv-page-break:first-child{page-break-before:auto}
+  .cv-scene-num,.cv-tx-label,.cv-tx-badge,.cv-day-header,.cv-extra-hdr,.cv-tx-sec-hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cv-dia-tag,.cv-nodia-tag,.cv-prob,.cv-nt{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head><body>
+<div class="cv-banner"><h1>XF Daily Notes</h1><span class="cv-ro">READ ONLY — CREW VIEW</span></div>
+${daysHtml}
+</body></html>`;
+
+  const blob = new Blob([html], {type:'text/html'});
+  const a = document.createElement('a');
+  const slug = (cfg.productionTitle || 'production').replace(/[^a-zA-Z0-9]/g,'_');
+  const suffix = dayNums.length === 1 ? `Day${String(dayNums[0]).padStart(2,'0')}` : 'AllDays';
+  a.href = URL.createObjectURL(blob);
+  a.download = `${slug}_CrewView_${suffix}.html`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showStatus("Crew view exported!");
+}
+
+function showStatus(msg) {
+  const el = document.getElementById("statusMsg");
+  el.textContent = msg;
+  setTimeout(() => el.textContent = "", 3000);
+}
+
+function esc(s) {
+  if (!s) return "";
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// CREW MODE
+// ═════════════════════════════════════════════════════════════════════════════
+let crewMode = false;
+
+function enterCrewMode() {
+  crewMode = true;
+  document.body.classList.add('crew-mode');
+  // Rebuild tabs to only show days with scenes
+  buildCrewTabs();
+  // Switch to first active day
+  const firstDay = getActiveDays()[0];
+  if (firstDay) switchTab('day-' + firstDay);
+  else switchTab('day-1');
+}
+
+function exitCrewMode() {
+  crewMode = false;
+  document.body.classList.remove('crew-mode');
+  if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
+  // Go back to landing screen
+  data = defaultData();
+  document.getElementById('landingScreen').style.display = 'flex';
+  document.getElementById('landingCrewLoad').classList.remove('show');
+  document.getElementById('landingPw').classList.remove('show');
+}
+
+function getActiveDays() {
+  const days = [];
+  for (let i = 1; i <= NUM_DAYS; i++) {
+    if (data.days[i].sceneNums.some(s => s && s.trim())) days.push(i);
+  }
+  return days;
+}
+
+function buildCrewTabs() {
+  const t = document.getElementById("tabs");
+  const activeDays = getActiveDays();
+  // If no days have data, show all 30
+  const daysToShow = activeDays.length > 0 ? activeDays : Array.from({length: NUM_DAYS}, (_, i) => i + 1);
+  let html = '';
+  for (const i of daysToShow) {
+    html += `<div class="tab day-tab" data-tab="day-${i}" onclick="switchTab('day-${i}')">DAY ${String(i).padStart(2,'0')}</div>`;
+  }
+  t.innerHTML = html;
+}
+
+function crewLoadFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const loaded = JSON.parse(e.target.result);
+      mergeLoadedData(loaded);
+      buildCrewTabs();
+      const firstDay = getActiveDays()[0];
+      if (firstDay) switchTab('day-' + firstDay);
+      updateProdTitle();
+      showCrewStatus("Data loaded \u2014 " + new Date().toLocaleTimeString());
+    } catch(err) { alert("Error loading file: " + err.message); }
+  };
+  reader.readAsText(file);
+  event.target.value = "";
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// LANDING SCREEN
+// ═════════════════════════════════════════════════════════════════════════════
+const APP_PW = "roigard";
+
+function showEditLogin() {
+  document.getElementById('landingCrewLoad').classList.remove('show');
+  document.getElementById('landingPw').classList.add('show');
+  document.getElementById('pwHint').classList.remove('show');
+  document.getElementById('pwInput').value = '';
+  setTimeout(() => document.getElementById('pwInput').focus(), 100);
+}
+
+function showCrewPicker() {
+  document.getElementById('landingPw').classList.remove('show');
+  // If Dropbox API is connected (tokens in localStorage), show project picker
+  dbxLoadTokens();
+  if (dbxIsConnected()) {
+    document.getElementById('landingScreen').style.display = 'none';
+    dbxShowCrewPicker();
+    return;
+  }
+  // Otherwise show the file picker
+  document.getElementById('landingCrewLoad').classList.add('show');
+}
+
+function checkPw() {
+  const input = document.getElementById('pwInput');
+  if (input.value === APP_PW) {
+    // Correct — enter edit mode
+    document.getElementById('landingScreen').style.display = 'none';
+    // Restore auto-saved data from localStorage if available
+    try {
+      const saved = localStorage.getItem(AUTOSAVE_KEY);
+      if (saved) mergeLoadedData(JSON.parse(saved));
+    } catch(e) {}
+    enableAutoSave();
+    // Check if Dropbox is connected
+    dbxLoadTokens();
+    if (dbxIsConnected()) {
+      // Show project picker instead of going straight to editing
+      dbxShowPicker();
+    } else {
+      buildTabs();
+      renderPanel("config");
+      updateProdTitle();
+    }
+  } else {
+    input.classList.add('wrong');
+    document.getElementById('pwHint').classList.add('show');
+    setTimeout(() => input.classList.remove('wrong'), 300);
+    input.select();
+  }
+}
+
+function crewLandingLoad(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const loaded = JSON.parse(e.target.result);
+      mergeLoadedData(loaded);
+      document.getElementById('landingScreen').style.display = 'none';
+      buildTabs();
+      renderPanel("config");
+      updateProdTitle();
+      enterCrewMode();
+    } catch(err) { alert("Error loading file: " + err.message); }
+  };
+  reader.readAsText(file);
+  event.target.value = "";
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SHARE TO CREW (self-contained HTML)
+// ═════════════════════════════════════════════════════════════════════════════
+function buildCrewHTML() {
+  // Get the raw HTML source and inject embedded crew data
+  let html = document.documentElement.outerHTML;
+  html = '<!DOCTYPE html>\n<html' + html.substring(html.indexOf('<html') + 5);
+
+  // Reset landing screen to visible (outerHTML captures it as display:none)
+  html = html.replace(/id="landingScreen"[^>]*style="[^"]*display:\s*none[^"]*"/g, 'id="landingScreen"');
+
+  // Encode data as base64 to avoid ANY escaping issues
+  const jsonStr = JSON.stringify(data);
+  const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+  // Inject a script block BEFORE the main script that sets the global variable
+  // This way EMBEDDED_CREW_DATA exists when the main INIT code checks for it
+  const embedTag = '<' + 'script>var EMBEDDED_CREW_DATA=JSON.parse(decodeURIComponent(escape(atob("' + b64 + '"))));</' + 'script>\n<script>';
+  // Replace the first <script> with our embed + <script>
+  html = html.replace(/<script>/, embedTag);
+
+  return html;
+}
+
+function copyCrewLink() {
+  const link = data.config.dropboxLink;
+  if (!link || !link.trim()) {
+    showStatus("Set a Dropbox shared link in CONFIG first");
+    return;
+  }
+  // Build crew URL: current page base + #crew=ENCODED_LINK
+  const base = window.location.href.split('#')[0].split('?')[0];
+  const crewUrl = base + '#crew=' + encodeURIComponent(link.trim());
+
+  navigator.clipboard.writeText(crewUrl).then(() => {
+    showStatus("Crew link copied! Share it with your team");
+  }).catch(() => {
+    // Fallback: show it in a prompt
+    prompt("Copy this crew link:", crewUrl);
+  });
+}
+
+async function shareApp() {
+  showStatus("Preparing app for sharing...");
+  const output = buildCrewHTML();
+  const slug = (data.config.productionTitle || 'XF_DailyNotes').replace(/[^a-zA-Z0-9]/g, '_');
+  const filename = slug + '_CrewView.html';
+  const file = new File([output], filename, {type: 'text/html'});
+
+  // Use native share sheet if available (Safari on macOS/iOS)
+  if (navigator.share && navigator.canShare && navigator.canShare({files: [file]})) {
+    try {
+      await navigator.share({
+        title: (data.config.productionTitle || 'XF Daily Notes') + ' — Crew View',
+        files: [file]
+      });
+      showStatus("Shared!");
+    } catch(err) {
+      if (err.name !== 'AbortError') showStatus("Share cancelled");
+    }
+  } else {
+    // Fallback: download the file
+    const blob = new Blob([output], {type: 'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showStatus("Downloaded — share via Finder");
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INIT
+// ═════════════════════════════════════════════════════════════════════════════
+// Register service worker for PWA / offline support
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+// INIT_MARKER_FOR_EMBED
+if (typeof EMBEDDED_CREW_DATA !== 'undefined') {
+  // This is a crew export — load data and go straight to crew mode
+  document.getElementById('landingScreen').style.display = 'none';
+  data = EMBEDDED_CREW_DATA;
+  buildTabs();
+  renderPanel("config");
+  updateProdTitle();
+  enterCrewMode();
+  crewAutoFetchAndPoll();
+}
+// Check URL hash for crew auto-load: #crew=DROPBOX_SHARED_LINK
+else if (window.location.hash.startsWith('#crew=')) {
+  const crewLink = decodeURIComponent(window.location.hash.slice(6));
+  if (crewLink) {
+    data.config.dropboxLink = crewLink;
+    document.getElementById('landingScreen').style.display = 'none';
+    buildTabs();
+    renderPanel("config");
+    updateProdTitle();
+    enterCrewMode();
+    crewAutoFetchAndPoll();
+  }
+}
+// Otherwise landing screen is visible — user picks Edit or Crew mode
+</script>
+</body>
+</html>
