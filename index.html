@@ -583,7 +583,7 @@ function renderConfig() {
       <div id="dbxSetupFields">
         <div style="margin-bottom:6px">
           <label style="font-size:11px;font-weight:700;color:#666">Dropbox App Key</label>
-          <input id="dbxAppKeyInput" value="${esc(c.dbxAppKey)}" oninput="data.config.dbxAppKey=this.value" placeholder="e.g. abc123xyz...">
+          <input id="dbxAppKeyInput" value="${esc(c.dbxAppKey)}" oninput="data.config.dbxAppKey=this.value;try{localStorage.setItem('xf_dbx_appkey',this.value)}catch(e){}" placeholder="e.g. abc123xyz...">
         </div>
         <div style="display:flex;gap:8px;margin-bottom:8px">
           <button class="primary" onclick="dbxStartAuth()">Connect to Dropbox</button>
@@ -1294,6 +1294,7 @@ function crewAutoFetchAndPoll() {
 // DROPBOX API INTEGRATION
 // ═════════════════════════════════════════════════════════════════════════════
 const DBX_TOKEN_KEY = 'xf_dbx_tokens';
+const DBX_APPKEY_KEY = 'xf_dbx_appkey';
 const DBX_VERIFIER_KEY = 'xf_dbx_verifier';
 let dbxAccessToken = null;
 let dbxRefreshToken = null;
@@ -1302,6 +1303,10 @@ let dbxSaveTimer = null;
 
 function dbxLoadTokens() {
   try {
+    // Restore app key from localStorage (device-level, not project-level)
+    const savedKey = localStorage.getItem(DBX_APPKEY_KEY);
+    if (savedKey) data.config.dbxAppKey = savedKey;
+
     const saved = localStorage.getItem(DBX_TOKEN_KEY);
     if (saved) {
       const t = JSON.parse(saved);
@@ -1318,6 +1323,10 @@ function dbxSaveTokens() {
     localStorage.setItem(DBX_TOKEN_KEY, JSON.stringify({
       access: dbxAccessToken, refresh: dbxRefreshToken
     }));
+    // Also persist app key separately
+    if (data.config.dbxAppKey) {
+      localStorage.setItem(DBX_APPKEY_KEY, data.config.dbxAppKey);
+    }
   } catch(e) {}
 }
 
