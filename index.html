@@ -229,6 +229,7 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .modal-actions button:hover{background:var(--lt-silver)}
 .dbx-project{padding:10px 14px;cursor:pointer;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;transition:background .1s}
 .dbx-project:hover{background:var(--yellow)}
+.crew-proj-btn:hover{background:var(--gunmetal) !important;border-color:var(--silver) !important;transform:translateY(-1px)}
 .dbx-project .dbx-name{font-weight:600;font-size:13px}
 .dbx-project .dbx-date{font-size:11px;color:#888}
 .dbx-setup{padding:8px 12px;font-size:12px;line-height:1.6;border:1px solid #ddd;border-top:none}
@@ -345,9 +346,16 @@ body.crew-mode .crew-footer{display:block}
       <div class="pw-hint" id="pwHint">Incorrect password</div>
     </div>
     <div class="landing-crew-load" id="landingCrewLoad">
-      <button onclick="document.getElementById('crewLandingInput').click()">📂 Load Project File</button>
+      <div id="crewProjectList" style="width:100%;max-width:320px">
+        <div style="color:#888;font-size:12px;text-align:center;padding:12px">Loading projects...</div>
+      </div>
+      <div id="crewPwSection" style="display:none;width:100%;max-width:320px;margin-top:12px">
+        <input type="password" id="crewPwInput" placeholder="Project password" style="width:100%;padding:8px 12px;border:1px solid var(--gunmetal);border-radius:6px;background:var(--graphite);color:var(--white);font-size:14px;text-align:center" onkeydown="if(event.key==='Enter')crewCheckPw()">
+        <button onclick="crewCheckPw()" style="width:100%;margin-top:8px;padding:8px;border:1px solid var(--gunmetal);border-radius:6px;background:var(--graphite);color:var(--silver);font-size:13px;font-weight:600;cursor:pointer">Enter</button>
+        <div class="pw-hint" id="crewPwHint" style="display:none;color:#ff6b6b;font-size:11px;text-align:center;margin-top:6px">Incorrect password</div>
+      </div>
+      <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
-      <span class="lcl-or">Ask your sound mixer for the crew file</span>
     </div>
   </div>
 </div>
@@ -373,7 +381,7 @@ body.crew-mode .crew-footer{display:block}
   <input type="file" id="loadInput" accept=".json" style="display:none" onchange="loadFromFile(event)">
   <button onclick="openRenumber()">🔄 Renumber Scenes</button>
   <div class="spacer"></div>
-  <button onclick="copyCrewLink()" title="Copy crew link to clipboard">🔗 Crew Link</button>
+  <button onclick="updateCrewRegistry()" title="Download updated projects.json for GitHub">📋 Update Crew List</button>
   <button onclick="shareApp()" style="background:var(--fern);border-color:var(--fern);color:#fff">📤 Share App</button>
   <span class="status" id="statusMsg"></span>
 </div>
@@ -451,7 +459,8 @@ function defaultData() {
       director: "", dop: "", firstAD: "", soundMixer: "", boomOp: "", utility: "",
       kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
       dropboxLink: "",
-      dbxAppKey: ""
+      dbxAppKey: "",
+      crewPassword: ""
     },
     scenes: {},
     days: {}
@@ -594,8 +603,10 @@ function renderConfig() {
     </div>
     <div class="section-hdr">CREW SHARING</div>
     ${cfgField("Crew Dropbox Link","dropboxLink",c.dropboxLink)}
+    ${cfgField("Crew Password","crewPassword",c.crewPassword)}
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
-      This link is baked into crew exports so they can tap "Load Latest Data" to fetch updates. If Dropbox is connected, this is auto-filled when you save.
+      <strong>Crew Password:</strong> Crew must enter this password to view this project. Set a different password per project to control access.<br>
+      <strong>Dropbox Link:</strong> Auto-filled when you save to Dropbox. Crew fetches latest data from this link.
     </div>
   `;
 }
@@ -1923,17 +1934,122 @@ function showEditLogin() {
   setTimeout(() => document.getElementById('pwInput').focus(), 100);
 }
 
+let crewSelectedProject = null; // {name, link} of the project crew selected
+
 function showCrewPicker() {
   document.getElementById('landingPw').classList.remove('show');
-  // If Dropbox API is connected (tokens in localStorage), show project picker
-  dbxLoadTokens();
-  if (dbxIsConnected()) {
-    document.getElementById('landingScreen').style.display = 'none';
-    dbxShowCrewPicker();
+  document.getElementById('landingCrewLoad').classList.add('show');
+  document.getElementById('crewPwSection').style.display = 'none';
+  crewSelectedProject = null;
+
+  const listEl = document.getElementById('crewProjectList');
+  listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Loading projects...</div>';
+
+  // Fetch the project registry from the same host
+  const base = window.location.href.split('/').slice(0, -1).join('/');
+  fetch(base + '/projects.json?' + Date.now())
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(projects => {
+      if (!projects || projects.length === 0) {
+        listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">No projects available yet.<br>Set up projects in Edit Mode first.</div>';
+        document.getElementById('crewLoadFallback').style.display = 'block';
+        return;
+      }
+      listEl.innerHTML = projects.map((p, i) =>
+        '<div class="crew-proj-btn" onclick="crewSelectProject(' + i + ')" style="padding:12px 16px;margin-bottom:6px;background:var(--graphite);border:1px solid var(--gunmetal);border-radius:8px;cursor:pointer;transition:all .15s">' +
+        '<div style="font-weight:700;color:var(--white);font-size:14px">' + esc(p.name) + '</div>' +
+        (p.episode ? '<div style="font-size:11px;color:var(--silver);opacity:.6;margin-top:2px">' + esc(p.episode) + '</div>' : '') +
+        '</div>'
+      ).join('');
+      // Store projects for selection
+      window._crewProjects = projects;
+    })
+    .catch(() => {
+      listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Could not load project list.</div>';
+      document.getElementById('crewLoadFallback').style.display = 'block';
+    });
+}
+
+function crewSelectProject(idx) {
+  const p = window._crewProjects[idx];
+  crewSelectedProject = p;
+  // Show password input
+  document.getElementById('crewProjectList').style.display = 'none';
+  document.getElementById('crewPwSection').style.display = 'block';
+  document.getElementById('crewPwHint').style.display = 'none';
+  document.getElementById('crewPwInput').value = '';
+  setTimeout(() => document.getElementById('crewPwInput').focus(), 100);
+}
+
+function crewCheckPw() {
+  if (!crewSelectedProject) return;
+  const pw = document.getElementById('crewPwInput').value;
+  const link = crewSelectedProject.link;
+
+  if (!link) {
+    document.getElementById('crewPwHint').textContent = 'Project not configured';
+    document.getElementById('crewPwHint').style.display = 'block';
     return;
   }
-  // Otherwise show the file picker
-  document.getElementById('landingCrewLoad').classList.add('show');
+
+  // Fetch project data from Dropbox shared link
+  let url = link.trim();
+  url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
+  if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
+
+  document.getElementById('crewPwHint').textContent = 'Loading...';
+  document.getElementById('crewPwHint').style.display = 'block';
+  document.getElementById('crewPwHint').style.color = '#888';
+
+  fetch(url)
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(loaded => {
+      // Check password against the project data
+      const projectPw = loaded.config && loaded.config.crewPassword;
+      if (projectPw && pw !== projectPw) {
+        document.getElementById('crewPwHint').textContent = 'Incorrect password';
+        document.getElementById('crewPwHint').style.color = '#ff6b6b';
+        document.getElementById('crewPwInput').select();
+        return;
+      }
+      // Password correct (or no password set) — enter crew mode
+      mergeLoadedData(loaded);
+      document.getElementById('landingScreen').style.display = 'none';
+      buildTabs();
+      renderPanel("config");
+      updateProdTitle();
+      enterCrewMode();
+      // Start auto-refresh polling via shared link
+      crewStartLinkPolling(link.trim());
+    })
+    .catch(err => {
+      document.getElementById('crewPwHint').textContent = 'Could not load project data';
+      document.getElementById('crewPwHint').style.color = '#ff6b6b';
+    });
+}
+
+function crewStartLinkPolling(link) {
+  if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
+  let url = link;
+  url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
+  if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
+
+  showCrewStatus("Live \u2014 auto-updating");
+  crewPollInterval = setInterval(() => {
+    fetch(url + '&_t=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(loaded => {
+        const currentTab = activeTab;
+        mergeLoadedData(loaded);
+        buildCrewTabs();
+        if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
+          switchTab(currentTab);
+        }
+        updateProdTitle();
+        showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
+      })
+      .catch(() => {});
+  }, 60000);
 }
 
 function checkPw() {
@@ -2008,6 +2124,49 @@ function buildCrewHTML() {
   return html;
 }
 
+async function updateCrewRegistry() {
+  const link = data.config.dropboxLink;
+  const title = data.config.productionTitle;
+  if (!link || !link.trim()) {
+    showStatus("Set a Dropbox shared link in CONFIG \u2192 CREW SHARING first");
+    return;
+  }
+  if (!title || !title.trim()) {
+    showStatus("Set a Production Title in CONFIG first");
+    return;
+  }
+
+  // Fetch existing projects.json from the same host (if hosted)
+  let existing = [];
+  try {
+    const base = window.location.href.split('/').slice(0, -1).join('/');
+    const resp = await fetch(base + '/projects.json?' + Date.now());
+    if (resp.ok) existing = await resp.json();
+  } catch(e) {}
+
+  // Build the entry for this project
+  const entry = {
+    name: title.trim(),
+    episode: (data.config.episode || '').trim(),
+    link: link.trim()
+  };
+
+  // Update or add: match by name
+  const idx = existing.findIndex(p => p.name === entry.name);
+  if (idx >= 0) existing[idx] = entry;
+  else existing.push(entry);
+
+  // Download updated projects.json
+  const json = JSON.stringify(existing, null, 2);
+  const blob = new Blob([json], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'projects.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showStatus("projects.json downloaded \u2014 upload to your GitHub repo to update the crew list");
+}
+
 function copyCrewLink() {
   const link = data.config.dropboxLink;
   if (!link || !link.trim()) {
@@ -2079,13 +2238,13 @@ if (typeof EMBEDDED_CREW_DATA !== 'undefined') {
 else if (window.location.hash.startsWith('#crew=')) {
   const crewLink = decodeURIComponent(window.location.hash.slice(6));
   if (crewLink) {
-    data.config.dropboxLink = crewLink;
-    document.getElementById('landingScreen').style.display = 'none';
-    buildTabs();
-    renderPanel("config");
-    updateProdTitle();
-    enterCrewMode();
-    crewAutoFetchAndPoll();
+    // Pre-select this project and show crew picker with password prompt
+    crewSelectedProject = {name: '', link: crewLink};
+    document.getElementById('landingPw').classList.remove('show');
+    document.getElementById('landingCrewLoad').classList.add('show');
+    document.getElementById('crewProjectList').style.display = 'none';
+    document.getElementById('crewPwSection').style.display = 'block';
+    setTimeout(() => document.getElementById('crewPwInput').focus(), 200);
   }
 }
 // Otherwise landing screen is visible — user picks Edit or Crew mode
