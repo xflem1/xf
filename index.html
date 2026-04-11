@@ -381,8 +381,7 @@ body.crew-mode .crew-footer{display:block}
   <input type="file" id="loadInput" accept=".json" style="display:none" onchange="loadFromFile(event)">
   <button onclick="openRenumber()">🔄 Renumber Scenes</button>
   <div class="spacer"></div>
-  <button onclick="copyCrewLink()" title="Copy crew link to clipboard">🔗 Crew Link</button>
-  <button onclick="shareApp()" style="background:var(--fern);border-color:var(--fern);color:#fff">📤 Share App</button>
+  <button onclick="copyCrewLink()" style="background:var(--fern);border-color:var(--fern);color:#fff" title="Share crew link via text, WhatsApp, etc.">📤 Share with Crew</button>
   <span class="status" id="statusMsg"></span>
 </div>
 
@@ -460,9 +459,7 @@ function defaultData() {
       kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
       dropboxLink: "",
       dbxAppKey: "",
-      crewPassword: "",
-      ghRepo: "",
-      ghToken: ""
+      crewPassword: ""
     },
     scenes: {},
     days: {}
@@ -608,20 +605,8 @@ function renderConfig() {
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
       Crew must enter this password to view this project. Set a different password for each production.
     </div>
-    <div class="section-hdr">GITHUB (auto-update crew list)</div>
-    <div class="dbx-setup">
-      <div style="margin-bottom:6px">
-        <label style="font-size:11px;font-weight:700;color:#666">GitHub Repo</label>
-        <input value="${esc(c.ghRepo)}" oninput="data.config.ghRepo=this.value;try{localStorage.setItem('xf_gh_repo',this.value)}catch(e){}" placeholder="e.g. xflem1/xf">
-      </div>
-      <div style="margin-bottom:6px">
-        <label style="font-size:11px;font-weight:700;color:#666">GitHub Token</label>
-        <input type="password" value="${esc(c.ghToken)}" oninput="data.config.ghToken=this.value;try{localStorage.setItem('xf_gh_token',this.value)}catch(e){}" placeholder="ghp_xxxx...">
-      </div>
-      <div style="font-size:10px;color:#aaa;line-height:1.5">
-        <strong>One-time setup:</strong> Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:#4a90d9">github.com/settings/tokens</a> → Fine-grained tokens → Generate new token → select your <strong>xf</strong> repo → Permissions: Contents → Read and Write → Generate. Paste above.<br>
-        The crew project list will auto-update on GitHub whenever you save.
-      </div>
+    <div id="crewLinkBox" style="padding:8px 12px;border:1px solid #ddd;border-top:none;background:#f9f9f9">
+      ${c.dropboxLink ? '<div style="font-size:11px;color:#1b5e20;font-weight:700;margin-bottom:4px">Crew link ready!</div><div style="font-size:11px;color:#666;margin-bottom:6px">Use the <strong>Crew Link</strong> button in the toolbar to copy and share with your team.</div>' : '<div style="font-size:11px;color:#888">Save to Dropbox first to generate your crew link.</div>'}
     </div>
   `;
 }
@@ -1321,10 +1306,6 @@ function dbxLoadTokens() {
     // Restore device-level settings from localStorage
     const savedKey = localStorage.getItem(DBX_APPKEY_KEY);
     if (savedKey) data.config.dbxAppKey = savedKey;
-    const savedRepo = localStorage.getItem('xf_gh_repo');
-    if (savedRepo) data.config.ghRepo = savedRepo;
-    const savedGhToken = localStorage.getItem('xf_gh_token');
-    if (savedGhToken) data.config.ghToken = savedGhToken;
 
     const saved = localStorage.getItem(DBX_TOKEN_KEY);
     if (saved) {
@@ -1531,9 +1512,6 @@ async function dbxSaveProject(silent) {
 
     // Auto-generate crew sharing link if not already set
     if (!data.config.dropboxLink) await dbxCreateShareLink(currentDbxPath);
-
-    // Auto-update crew project list on GitHub
-    updateCrewRegistry();
 
     return true;
   } catch(err) {
@@ -1974,37 +1952,30 @@ function showCrewPicker() {
   crewSelectedProject = null;
 
   const listEl = document.getElementById('crewProjectList');
-  listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Loading projects...</div>';
-
-  // Fetch the project registry from the same host
-  const base = window.location.href.split('/').slice(0, -1).join('/');
-  fetch(base + '/projects.json?' + Date.now())
-    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-    .then(projects => {
-      if (!projects || projects.length === 0) {
-        listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">No projects available yet.<br>Set up projects in Edit Mode first.</div>';
-        document.getElementById('crewLoadFallback').style.display = 'block';
-        return;
-      }
-      listEl.innerHTML = projects.map((p, i) =>
-        '<div class="crew-proj-btn" onclick="crewSelectProject(' + i + ')" style="padding:12px 16px;margin-bottom:6px;background:var(--graphite);border:1px solid var(--gunmetal);border-radius:8px;cursor:pointer;transition:all .15s">' +
-        '<div style="font-weight:700;color:var(--white);font-size:14px">' + esc(p.name) + '</div>' +
-        (p.episode ? '<div style="font-size:11px;color:var(--silver);opacity:.6;margin-top:2px">' + esc(p.episode) + '</div>' : '') +
-        '</div>'
-      ).join('');
-      // Store projects for selection
-      window._crewProjects = projects;
-    })
-    .catch(() => {
-      listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Could not load project list.</div>';
-      document.getElementById('crewLoadFallback').style.display = 'block';
-    });
+  listEl.innerHTML =
+    '<div style="text-align:center;padding:16px">' +
+      '<div style="color:var(--silver);font-size:13px;margin-bottom:16px;line-height:1.6">Paste the crew link from your sound mixer</div>' +
+      '<input type="text" id="crewLinkInput" placeholder="Paste crew link here..." style="width:100%;padding:10px 12px;border:1px solid var(--gunmetal);border-radius:6px;background:var(--graphite);color:var(--white);font-size:13px;text-align:center;font-family:inherit;outline:none" onkeydown="if(event.key===\'Enter\')crewGoFromLink()">' +
+      '<button onclick="crewGoFromLink()" style="width:100%;margin-top:8px;padding:10px;border:1px solid var(--fern);border-radius:6px;background:var(--fern);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Go</button>' +
+      '<div style="color:var(--silver);opacity:.4;font-size:10px;margin-top:16px;letter-spacing:.5px">— or —</div>' +
+    '</div>';
+  document.getElementById('crewLoadFallback').style.display = 'block';
+  setTimeout(() => { const inp = document.getElementById('crewLinkInput'); if (inp) inp.focus(); }, 100);
 }
 
-function crewSelectProject(idx) {
-  const p = window._crewProjects[idx];
-  crewSelectedProject = p;
-  // Show password input
+function crewGoFromLink() {
+  const inp = document.getElementById('crewLinkInput');
+  if (!inp) return;
+  let link = inp.value.trim();
+  if (!link) return;
+
+  // If they pasted the full crew URL (xflem1.github.io/xf/#crew=...), extract the Dropbox link
+  if (link.includes('#crew=')) {
+    link = decodeURIComponent(link.split('#crew=')[1]);
+  }
+
+  // Set as selected project and show password prompt
+  crewSelectedProject = {name: '', link: link};
   document.getElementById('crewProjectList').style.display = 'none';
   document.getElementById('crewPwSection').style.display = 'block';
   document.getElementById('crewPwHint').style.display = 'none';
@@ -2131,142 +2102,39 @@ function crewLandingLoad(event) {
   event.target.value = "";
 }
 
-// ═════════════════════════════════════════════════════════════════════════════
-// SHARE TO CREW (self-contained HTML)
-// ═════════════════════════════════════════════════════════════════════════════
-function buildCrewHTML() {
-  // Get the raw HTML source and inject embedded crew data
-  let html = document.documentElement.outerHTML;
-  html = '<!DOCTYPE html>\n<html' + html.substring(html.indexOf('<html') + 5);
-
-  // Reset landing screen to visible (outerHTML captures it as display:none)
-  html = html.replace(/id="landingScreen"[^>]*style="[^"]*display:\s*none[^"]*"/g, 'id="landingScreen"');
-
-  // Encode data as base64 to avoid ANY escaping issues
-  const jsonStr = JSON.stringify(data);
-  const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
-
-  // Inject a script block BEFORE the main script that sets the global variable
-  // This way EMBEDDED_CREW_DATA exists when the main INIT code checks for it
-  const embedTag = '<' + 'script>var EMBEDDED_CREW_DATA=JSON.parse(decodeURIComponent(escape(atob("' + b64 + '"))));</' + 'script>\n<script>';
-  // Replace the first <script> with our embed + <script>
-  html = html.replace(/<script>/, embedTag);
-
-  return html;
-}
-
-async function updateCrewRegistry() {
-  const link = data.config.dropboxLink;
-  const title = data.config.productionTitle;
-  const repo = (data.config.ghRepo || '').trim();
-  const token = (data.config.ghToken || '').trim();
-
-  if (!link || !link.trim() || !title || !title.trim()) return; // silently skip if not configured
-  if (!repo || !token) return; // silently skip if GitHub not configured
-
-  // Fetch existing projects.json from GitHub
-  let existing = [];
-  let sha = null; // needed to update an existing file
-  try {
-    const getResp = await fetch('https://api.github.com/repos/' + repo + '/contents/projects.json', {
-      headers: {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json'}
-    });
-    if (getResp.ok) {
-      const fileData = await getResp.json();
-      sha = fileData.sha;
-      existing = JSON.parse(atob(fileData.content));
-    }
-  } catch(e) {}
-
-  // Build the entry for this project
-  const entry = {
-    name: title.trim(),
-    episode: (data.config.episode || '').trim(),
-    link: link.trim()
-  };
-
-  // Update or add: match by name
-  const idx = existing.findIndex(p => p.name === entry.name);
-  if (idx >= 0) existing[idx] = entry;
-  else existing.push(entry);
-
-  // Push updated projects.json to GitHub
-  const json = JSON.stringify(existing, null, 2);
-  const content = btoa(unescape(encodeURIComponent(json)));
-  try {
-    const body = {
-      message: 'Update crew project list',
-      content: content
-    };
-    if (sha) body.sha = sha; // required for updates (not creates)
-
-    const putResp = await fetch('https://api.github.com/repos/' + repo + '/contents/projects.json', {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-    if (putResp.ok) {
-      showStatus("Crew list updated on GitHub \u2713");
-    } else {
-      const err = await putResp.text();
-      console.log('GitHub update failed:', err);
-    }
-  } catch(e) {
-    console.log('GitHub push error:', e);
-  }
-}
-
 function copyCrewLink() {
   const link = data.config.dropboxLink;
   if (!link || !link.trim()) {
-    showStatus("Set a Dropbox shared link in CONFIG first");
+    alert("Save to Dropbox first!\n\nOnce connected, your crew link will be auto-generated after the first save.");
     return;
   }
   // Build crew URL: current page base + #crew=ENCODED_LINK
   const base = window.location.href.split('#')[0].split('?')[0];
   const crewUrl = base + '#crew=' + encodeURIComponent(link.trim());
 
-  navigator.clipboard.writeText(crewUrl).then(() => {
+  // Try native share first (mobile), then clipboard
+  if (navigator.share) {
+    navigator.share({
+      title: (data.config.productionTitle || 'XF Daily Notes') + ' — Crew Access',
+      text: 'Open this link to view the daily notes:',
+      url: crewUrl
+    }).catch(() => {
+      // Fallback to clipboard
+      copyToClipboard(crewUrl);
+    });
+  } else {
+    copyToClipboard(crewUrl);
+  }
+}
+
+function copyToClipboard(url) {
+  navigator.clipboard.writeText(url).then(() => {
     showStatus("Crew link copied! Share it with your team");
   }).catch(() => {
-    // Fallback: show it in a prompt
-    prompt("Copy this crew link:", crewUrl);
+    prompt("Copy this crew link:", url);
   });
 }
 
-async function shareApp() {
-  showStatus("Preparing app for sharing...");
-  const output = buildCrewHTML();
-  const slug = (data.config.productionTitle || 'XF_DailyNotes').replace(/[^a-zA-Z0-9]/g, '_');
-  const filename = slug + '_CrewView.html';
-  const file = new File([output], filename, {type: 'text/html'});
-
-  // Use native share sheet if available (Safari on macOS/iOS)
-  if (navigator.share && navigator.canShare && navigator.canShare({files: [file]})) {
-    try {
-      await navigator.share({
-        title: (data.config.productionTitle || 'XF Daily Notes') + ' — Crew View',
-        files: [file]
-      });
-      showStatus("Shared!");
-    } catch(err) {
-      if (err.name !== 'AbortError') showStatus("Share cancelled");
-    }
-  } else {
-    // Fallback: download the file
-    const blob = new Blob([output], {type: 'text/html'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(a.href);
-    showStatus("Downloaded — share via Finder");
-  }
-}
 
 // ═════════════════════════════════════════════════════════════════════════════
 // INIT
