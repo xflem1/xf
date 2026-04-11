@@ -605,8 +605,18 @@ function renderConfig() {
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
       Crew must enter this password to view this project. Set a different password for each production.
     </div>
-    <div id="crewLinkBox" style="padding:8px 12px;border:1px solid #ddd;border-top:none;background:#f9f9f9">
-      ${c.dropboxLink ? '<div style="font-size:11px;color:#1b5e20;font-weight:700;margin-bottom:4px">Crew link ready!</div><div style="font-size:11px;color:#666;margin-bottom:6px">Use the <strong>Crew Link</strong> button in the toolbar to copy and share with your team.</div>' : '<div style="font-size:11px;color:#888">Save to Dropbox first to generate your crew link.</div>'}
+    <div class="dbx-setup" style="border-top:none">
+      <div style="margin-bottom:6px">
+        <label style="font-size:11px;font-weight:700;color:#666">GitHub Token (one-time setup)</label>
+        <input type="password" id="ghTokenInput" value="${esc(ghToken || '')}" oninput="ghToken=this.value.trim();try{localStorage.setItem(GH_TOKEN_KEY,ghToken)}catch(e){}" placeholder="ghp_xxxx...">
+      </div>
+      <div id="ghStatus" style="font-size:11px;margin-bottom:6px">
+        ${ghToken ? '<span style="color:#1b5e20;font-weight:700">\u25CF Connected</span> — crew project list auto-updates on save' : '<span style="color:#888">\u25CB Not set up</span>'}
+      </div>
+      <div style="font-size:10px;color:#aaa;line-height:1.5">
+        <strong>One-time setup (2 min):</strong> Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:#4a90d9">github.com/settings/tokens</a> → Fine-grained tokens → Generate → select your <strong>xf</strong> repo → Permissions: Contents (Read and Write) → Generate. Paste above.<br>
+        After this, crew can go straight to <strong>xflem1.github.io/xf</strong> and see your projects.
+      </div>
     </div>
   `;
 }
@@ -1306,6 +1316,8 @@ function dbxLoadTokens() {
     // Restore device-level settings from localStorage
     const savedKey = localStorage.getItem(DBX_APPKEY_KEY);
     if (savedKey) data.config.dbxAppKey = savedKey;
+    const savedGhToken = localStorage.getItem(GH_TOKEN_KEY);
+    if (savedGhToken) ghToken = savedGhToken;
 
     const saved = localStorage.getItem(DBX_TOKEN_KEY);
     if (saved) {
@@ -1513,6 +1525,10 @@ async function dbxSaveProject(silent) {
     // Auto-generate crew sharing link if not already set
     if (!data.config.dropboxLink) await dbxCreateShareLink(currentDbxPath);
 
+    // Auto-update crew project registry in Dropbox + GitHub Pages
+    updateDropboxRegistry();
+    autoPublishRegistry();
+
     return true;
   } catch(err) {
     if (!silent) showStatus("Dropbox save failed");
@@ -1555,6 +1571,159 @@ async function dbxCreateShareLink(path) {
       data.config.dropboxLink = result.url;
     }
   } catch(e) {}
+}
+
+// ─── Crew Registry (auto-maintained in Dropbox) ─────────────────────────────
+const REGISTRY_PATH = '/_registry.json';
+const REGISTRY_LINK_KEY = 'xf_registry_link';
+let registryLink = null; // Dropbox shared link to _registry.json
+
+async function updateDropboxRegistry() {
+  if (!dbxIsConnected()) return;
+  const link = data.config.dropboxLink;
+  const title = data.config.productionTitle;
+  if (!link || !link.trim() || !title || !title.trim()) return;
+
+  try {
+    // Read existing registry
+    let existing = [];
+    try {
+      const dlResp = await dbxFetch('https://content.dropboxapi.com/2/files/download', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + dbxAccessToken,
+          'Dropbox-API-Arg': JSON.stringify({path: REGISTRY_PATH})
+        }
+      });
+      if (dlResp.ok) existing = await dlResp.json();
+    } catch(e) {} // file may not exist yet, that's fine
+
+    // Build entry for this project
+    const entry = {
+      name: title.trim(),
+      episode: (data.config.episode || '').trim(),
+      link: link.trim()
+    };
+
+    // Update or add (match by name)
+    const idx = existing.findIndex(p => p.name === entry.name);
+    if (idx >= 0) existing[idx] = entry;
+    else existing.push(entry);
+
+    // Write registry back to Dropbox
+    await dbxFetch('https://content.dropboxapi.com/2/files/upload', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + dbxAccessToken,
+        'Content-Type': 'application/octet-stream',
+        'Dropbox-API-Arg': JSON.stringify({
+          path: REGISTRY_PATH, mode: 'overwrite', autorename: false, mute: true
+        })
+      },
+      body: JSON.stringify(existing, null, 2)
+    });
+
+    // Create shared link for registry if we don't have one yet
+    if (!registryLink) {
+      registryLink = await dbxGetOrCreateShareLink(REGISTRY_PATH);
+      if (registryLink) {
+        try { localStorage.setItem(REGISTRY_LINK_KEY, registryLink); } catch(e) {}
+      }
+    }
+  } catch(e) {
+    console.log('Registry update error:', e);
+  }
+}
+
+async function dbxGetOrCreateShareLink(path) {
+  if (!dbxIsConnected()) return null;
+  try {
+    let resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + dbxAccessToken,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({path: path, settings: {requested_visibility: 'public', audience: 'public'}})
+    });
+    if (resp.ok) {
+      const result = await resp.json();
+      return result.url;
+    }
+    if (resp.status === 409) {
+      // Already exists — fetch it
+      resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/list_shared_links', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + dbxAccessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({path: path, direct_only: true})
+      });
+      if (resp.ok) {
+        const result = await resp.json();
+        if (result.links && result.links.length > 0) return result.links[0].url;
+      }
+    }
+  } catch(e) {}
+  return null;
+}
+
+// ─── GitHub Auto-Publish (registry.json on GitHub Pages) ─────────────────────
+const GH_REPO = 'xflem1/xf'; // hardcoded — no config needed
+const GH_TOKEN_KEY = 'xf_gh_token';
+let ghToken = null;
+
+async function autoPublishRegistry() {
+  if (!ghToken) return;
+  const link = data.config.dropboxLink;
+  const title = data.config.productionTitle;
+  if (!link || !link.trim() || !title || !title.trim()) return;
+
+  try {
+    // GET existing registry.json to get its SHA (needed for updates)
+    let existing = [];
+    let sha = null;
+    const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
+      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (getResp.ok) {
+      const fileData = await getResp.json();
+      sha = fileData.sha;
+      try { existing = JSON.parse(atob(fileData.content)); } catch(e) { existing = []; }
+    }
+
+    // Build entry
+    const entry = {
+      name: title.trim(),
+      episode: (data.config.episode || '').trim(),
+      link: link.trim()
+    };
+    const idx = existing.findIndex(p => p.name === entry.name);
+    if (idx >= 0) existing[idx] = entry;
+    else existing.push(entry);
+
+    // Push to GitHub
+    const body = {
+      message: 'Update crew registry',
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(existing, null, 2))))
+    };
+    if (sha) body.sha = sha;
+
+    const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + ghToken,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!putResp.ok) console.log('GitHub registry push failed:', putResp.status);
+  } catch(e) {
+    console.log('GitHub push error:', e);
+  }
 }
 
 // Debounced Dropbox auto-save (longer interval than localStorage)
@@ -1944,6 +2113,7 @@ function showEditLogin() {
 }
 
 let crewSelectedProject = null; // {name, link} of the project crew selected
+const CREW_REGISTRY_CACHE = 'xf_crew_registry'; // localStorage key for crew devices
 
 function showCrewPicker() {
   document.getElementById('landingPw').classList.remove('show');
@@ -1952,15 +2122,70 @@ function showCrewPicker() {
   crewSelectedProject = null;
 
   const listEl = document.getElementById('crewProjectList');
+  listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Loading projects...</div>';
+
+  // Strategy: try GitHub Pages registry first (works for everyone, no setup needed on crew side),
+  // then fall back to Dropbox shared link if a #reg= hash or cached link exists
+  const base = window.location.href.split('/').slice(0, -1).join('/');
+  fetch(base + '/registry.json?' + Date.now())
+    .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+    .then(projects => renderCrewProjectList(projects))
+    .catch(() => {
+      // GitHub registry not available — try Dropbox shared link fallback
+      let regLink = null;
+      if (window.location.hash.startsWith('#reg=')) {
+        regLink = decodeURIComponent(window.location.hash.slice(5));
+        try { localStorage.setItem(CREW_REGISTRY_CACHE, regLink); } catch(e) {}
+      }
+      if (!regLink) { try { regLink = localStorage.getItem(CREW_REGISTRY_CACHE); } catch(e) {} }
+
+      if (regLink) {
+        let url = regLink.trim();
+        url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
+        if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
+        fetch(url + '&_t=' + Date.now())
+          .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+          .then(projects => renderCrewProjectList(projects))
+          .catch(() => showCrewFallback());
+      } else {
+        showCrewFallback();
+      }
+    });
+}
+
+function renderCrewProjectList(projects) {
+  const listEl = document.getElementById('crewProjectList');
+  if (!projects || projects.length === 0) {
+    listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">No projects available yet.</div>';
+    document.getElementById('crewLoadFallback').style.display = 'block';
+    return;
+  }
+  listEl.innerHTML = projects.map((p, i) =>
+    '<div class="crew-proj-btn" onclick="crewSelectProject(' + i + ')" style="padding:12px 16px;margin-bottom:6px;background:var(--graphite);border:1px solid var(--gunmetal);border-radius:8px;cursor:pointer;transition:all .15s">' +
+    '<div style="font-weight:700;color:var(--white);font-size:14px">' + esc(p.name) + '</div>' +
+    (p.episode ? '<div style="font-size:11px;color:var(--silver);opacity:.6;margin-top:2px">' + esc(p.episode) + '</div>' : '') +
+    '</div>'
+  ).join('');
+  window._crewProjects = projects;
+}
+
+function showCrewFallback() {
+  const listEl = document.getElementById('crewProjectList');
   listEl.innerHTML =
     '<div style="text-align:center;padding:16px">' +
-      '<div style="color:var(--silver);font-size:13px;margin-bottom:16px;line-height:1.6">Paste the crew link from your sound mixer</div>' +
-      '<input type="text" id="crewLinkInput" placeholder="Paste crew link here..." style="width:100%;padding:10px 12px;border:1px solid var(--gunmetal);border-radius:6px;background:var(--graphite);color:var(--white);font-size:13px;text-align:center;font-family:inherit;outline:none" onkeydown="if(event.key===\'Enter\')crewGoFromLink()">' +
-      '<button onclick="crewGoFromLink()" style="width:100%;margin-top:8px;padding:10px;border:1px solid var(--fern);border-radius:6px;background:var(--fern);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Go</button>' +
-      '<div style="color:var(--silver);opacity:.4;font-size:10px;margin-top:16px;letter-spacing:.5px">— or —</div>' +
+      '<div style="color:var(--silver);font-size:13px;margin-bottom:12px;line-height:1.6">No projects found.<br>The sound mixer hasn\'t published any yet.</div>' +
     '</div>';
   document.getElementById('crewLoadFallback').style.display = 'block';
-  setTimeout(() => { const inp = document.getElementById('crewLinkInput'); if (inp) inp.focus(); }, 100);
+}
+
+function crewSelectProject(idx) {
+  const p = window._crewProjects[idx];
+  crewSelectedProject = p;
+  document.getElementById('crewProjectList').style.display = 'none';
+  document.getElementById('crewPwSection').style.display = 'block';
+  document.getElementById('crewPwHint').style.display = 'none';
+  document.getElementById('crewPwInput').value = '';
+  setTimeout(() => document.getElementById('crewPwInput').focus(), 100);
 }
 
 function crewGoFromLink() {
@@ -1969,12 +2194,17 @@ function crewGoFromLink() {
   let link = inp.value.trim();
   if (!link) return;
 
-  // If they pasted the full crew URL (xflem1.github.io/xf/#crew=...), extract the Dropbox link
+  // If they pasted a full crew URL, extract the relevant part
   if (link.includes('#crew=')) {
     link = decodeURIComponent(link.split('#crew=')[1]);
+  } else if (link.includes('#reg=')) {
+    // They pasted a registry link — save it and reload picker
+    const regLink = decodeURIComponent(link.split('#reg=')[1]);
+    try { localStorage.setItem(CREW_REGISTRY_CACHE, regLink); } catch(e) {}
+    showCrewPicker();
+    return;
   }
 
-  // Set as selected project and show password prompt
   crewSelectedProject = {name: '', link: link};
   document.getElementById('crewProjectList').style.display = 'none';
   document.getElementById('crewPwSection').style.display = 'block';
@@ -2103,23 +2333,33 @@ function crewLandingLoad(event) {
 }
 
 function copyCrewLink() {
-  const link = data.config.dropboxLink;
-  if (!link || !link.trim()) {
-    alert("Save to Dropbox first!\n\nOnce connected, your crew link will be auto-generated after the first save.");
-    return;
-  }
-  // Build crew URL: current page base + #crew=ENCODED_LINK
+  // If GitHub token is set, crew can just go to the bare URL
+  // If not, fall back to Dropbox registry link or direct project link
   const base = window.location.href.split('#')[0].split('?')[0];
-  const crewUrl = base + '#crew=' + encodeURIComponent(link.trim());
+  let crewUrl;
+
+  if (ghToken) {
+    // GitHub auto-publishes registry.json — crew just needs the bare URL
+    crewUrl = base;
+  } else {
+    // Fallback: use Dropbox registry link or direct project link
+    const regLnk = registryLink || (function(){ try { return localStorage.getItem(REGISTRY_LINK_KEY); } catch(e){} return null; })();
+    const projLink = data.config.dropboxLink;
+    if (!regLnk && !projLink) {
+      alert("Set up your GitHub token in CONFIG first!\n\nThis lets the app auto-publish your project list so crew can find it.");
+      return;
+    }
+    if (regLnk) crewUrl = base + '#reg=' + encodeURIComponent(regLnk);
+    else crewUrl = base + '#crew=' + encodeURIComponent(projLink.trim());
+  }
 
   // Try native share first (mobile), then clipboard
   if (navigator.share) {
     navigator.share({
-      title: (data.config.productionTitle || 'XF Daily Notes') + ' — Crew Access',
-      text: 'Open this link to view the daily notes:',
+      title: 'XF Daily Notes — Crew Access',
+      text: 'Open this link to view daily notes:',
       url: crewUrl
     }).catch(() => {
-      // Fallback to clipboard
       copyToClipboard(crewUrl);
     });
   } else {
@@ -2144,9 +2384,11 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
-// INIT_MARKER_FOR_EMBED
+// Restore registry link for Edit mode (so "Share with Crew" works)
+try { registryLink = localStorage.getItem(REGISTRY_LINK_KEY) || null; } catch(e) {}
+
 if (typeof EMBEDDED_CREW_DATA !== 'undefined') {
-  // This is a crew export — load data and go straight to crew mode
+  // Legacy crew export — load data and go straight to crew mode
   document.getElementById('landingScreen').style.display = 'none';
   data = EMBEDDED_CREW_DATA;
   buildTabs();
@@ -2155,11 +2397,21 @@ if (typeof EMBEDDED_CREW_DATA !== 'undefined') {
   enterCrewMode();
   crewAutoFetchAndPoll();
 }
-// Check URL hash for crew auto-load: #crew=DROPBOX_SHARED_LINK
+// Check URL hash for registry link: #reg=REGISTRY_SHARED_LINK
+// Crew opens this → sees project list → picks one → password → in
+else if (window.location.hash.startsWith('#reg=')) {
+  // Save the registry link to localStorage so it persists
+  const regLink = decodeURIComponent(window.location.hash.slice(5));
+  if (regLink) {
+    try { localStorage.setItem(CREW_REGISTRY_CACHE, regLink); } catch(e) {}
+    // Auto-open the crew picker
+    showCrewPicker();
+  }
+}
+// Check URL hash for direct project link: #crew=DROPBOX_SHARED_LINK
 else if (window.location.hash.startsWith('#crew=')) {
   const crewLink = decodeURIComponent(window.location.hash.slice(6));
   if (crewLink) {
-    // Pre-select this project and show crew picker with password prompt
     crewSelectedProject = {name: '', link: crewLink};
     document.getElementById('landingPw').classList.remove('show');
     document.getElementById('landingCrewLoad').classList.add('show');
@@ -2167,6 +2419,12 @@ else if (window.location.hash.startsWith('#crew=')) {
     document.getElementById('crewPwSection').style.display = 'block';
     setTimeout(() => document.getElementById('crewPwInput').focus(), 200);
   }
+}
+// If crew has a cached registry link, auto-show Crew Mode option
+// (they've visited before with a #reg= link)
+else if (localStorage.getItem(CREW_REGISTRY_CACHE)) {
+  // Landing screen stays visible — but when they click Crew Mode,
+  // showCrewPicker() will find the cached registry link automatically
 }
 // Otherwise landing screen is visible — user picks Edit or Crew mode
 </script>
