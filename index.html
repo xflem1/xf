@@ -357,7 +357,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.2</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.3</div>
   </div>
 </div>
 
@@ -437,8 +437,10 @@ body.crew-mode .crew-footer{display:block}
     <div class="modal-footer">
       <div class="modal-actions">
         <button onclick="newProject()">+ New Project</button>
+        <button onclick="pickerLoadFromFile()">📂 Load from File</button>
         <button onclick="closeProjectPicker()">Skip</button>
       </div>
+      <input type="file" id="pickerFileInput" accept=".json" style="display:none" onchange="pickerFileLoaded(event)">
     </div>
   </div>
 </div>
@@ -1210,8 +1212,10 @@ function ghSafeFilename(title) {
 
 async function ghPushFile(path, content, message) {
   // Helper: push a single file to GitHub (create or update)
-  // Retries once on 409 (SHA conflict) by re-fetching the latest SHA
-  for (let attempt = 0; attempt < 2; attempt++) {
+  // Retries up to 3 times on 409 (SHA conflict) with escalating delays
+  const MAX_ATTEMPTS = 3;
+  const DELAYS = [1500, 3000, 5000]; // escalating backoff
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     let sha = null;
     try {
       const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
@@ -1224,28 +1228,40 @@ async function ghPushFile(path, content, message) {
         return {ok: false, status: getResp.status};
       }
       // 404 = file doesn't exist yet, that's fine — sha stays null (creates new file)
-    } catch(e) {}
+    } catch(e) {
+      console.warn('[ghPush] GET error for ' + path, e);
+    }
 
     const body = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
     if (sha) body.sha = sha;
 
-    const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + ghToken,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
+    try {
+      const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + ghToken,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
 
-    if (putResp.ok) return {ok: true, status: putResp.status};
-    if (putResp.status === 409 && attempt === 0) {
-      // SHA conflict — wait a moment then retry with fresh SHA
-      await new Promise(r => setTimeout(r, 1000));
-      continue;
+      if (putResp.ok) return {ok: true, status: putResp.status};
+      if (putResp.status === 409 && attempt < MAX_ATTEMPTS - 1) {
+        // SHA conflict — wait then retry with fresh SHA
+        console.warn('[ghPush] 409 conflict on ' + path + ', retry ' + (attempt + 1));
+        await new Promise(r => setTimeout(r, DELAYS[attempt]));
+        continue;
+      }
+      return {ok: false, status: putResp.status};
+    } catch(e) {
+      console.warn('[ghPush] PUT error for ' + path, e);
+      if (attempt < MAX_ATTEMPTS - 1) {
+        await new Promise(r => setTimeout(r, DELAYS[attempt]));
+        continue;
+      }
+      return {ok: false, status: 0};
     }
-    return {ok: false, status: putResp.status};
   }
   return {ok: false, status: 409};
 }
@@ -1285,6 +1301,9 @@ async function autoPublishRegistry(showFeedback) {
       ghPublishing = false;
       return false;
     }
+
+    // Small delay between pushes to let GitHub process the first commit
+    await new Promise(r => setTimeout(r, 1500));
 
     // 2. Update the registry with a reference to the GitHub-hosted file
     let existing = [];
@@ -1393,7 +1412,14 @@ async function loadProjectFromPages(filename) {
     updateProdTitle();
     showStatus("Project loaded \u2713");
   } catch(err) {
-    alert("Could not load project. It may not be published yet.\n\n" + err.message);
+    // File not on GitHub Pages yet — that's OK if we have local data
+    currentGhFile = filename; // Still set this so Save knows the target filename
+    const hasData = data.config && data.config.productionTitle;
+    if (hasData) {
+      showStatus("Project not on server yet \u2014 using local data. Hit Save to publish.");
+    } else {
+      showStatus("Project not published yet \u2014 load from file or start fresh.");
+    }
   }
 }
 
@@ -1436,6 +1462,32 @@ function newProject() {
   updateProdTitle();
 }
 
+function pickerLoadFromFile() {
+  document.getElementById('pickerFileInput').click();
+}
+
+function pickerFileLoaded(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const loaded = JSON.parse(e.target.result);
+      mergeLoadedData(loaded);
+      // Set the currentGhFile from production title so Save knows where to push
+      const title = loaded.config && loaded.config.productionTitle;
+      if (title) currentGhFile = 'crew_' + ghSafeFilename(title) + '.json';
+      buildTabs();
+      renderPanel(activeTab || 'config');
+      updateProdTitle();
+      document.getElementById('projectPickerModal').style.display = 'none';
+      showStatus("Project loaded from file ✓");
+    } catch(err) { alert("Error loading file: " + err.message); }
+  };
+  reader.readAsText(file);
+  event.target.value = "";
+}
+
 function closeProjectPicker() {
   document.getElementById('projectPickerModal').style.display = 'none';
   buildTabs();
@@ -1451,7 +1503,12 @@ function loadFromFile(event) {
     try {
       const loaded = JSON.parse(e.target.result);
       mergeLoadedData(loaded);
-      renderPanel(activeTab);
+      // Set the currentGhFile from production title so Save knows where to push
+      const title = loaded.config && loaded.config.productionTitle;
+      if (title) currentGhFile = 'crew_' + ghSafeFilename(title) + '.json';
+      buildTabs();
+      renderPanel(activeTab || 'config');
+      updateProdTitle();
       showStatus("Project loaded!");
     } catch(err) { alert("Error loading file: " + err.message); }
   };
@@ -1832,10 +1889,17 @@ function checkPw() {
       if (savedGhToken) ghToken = savedGhToken;
     } catch(e) {}
     // Restore auto-saved data from localStorage if available
+    let hasLocalData = false;
     try {
       const saved = localStorage.getItem(AUTOSAVE_KEY);
-      if (saved) mergeLoadedData(JSON.parse(saved));
+      if (saved) { mergeLoadedData(JSON.parse(saved)); hasLocalData = true; }
     } catch(e) {}
+    // Build UI immediately so user sees tabs even if picker load fails
+    if (hasLocalData) {
+      buildTabs();
+      renderPanel(activeTab || 'config');
+      updateProdTitle();
+    }
     enableAutoSave();
     // Always show project picker (loads from GitHub Pages — works on any device, no token needed)
     showProjectPicker();
