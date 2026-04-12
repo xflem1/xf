@@ -89,9 +89,11 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .scene-field-label.nt-l{background:var(--nt)}
 
 .scene-field textarea,.scene-field input{flex:1;padding:8px 10px;border:none;font-size:13px;font-family:inherit;outline:none;resize:vertical}
-.scene-field textarea{min-height:80px}
+.scene-field textarea{min-height:80px;overflow-y:auto}
 .scene-field textarea.desc-area{min-height:210px}
 .scene-field textarea:focus{background:#fffde7}
+/* Crew mode: auto-height textareas that show all content */
+body.crew-mode .scene-field textarea{resize:none;overflow:hidden;min-height:0}
 
 /* TX Grid - unified DIA / NO DIA */
 .tx-section-hdr{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--lt-silver);border-top:1px solid #eee}
@@ -357,7 +359,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.6</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.7</div>
   </div>
 </div>
 
@@ -384,6 +386,7 @@ body.crew-mode .crew-footer{display:block}
   <button onclick="openRenumber()">🔄 Renumber</button>
   <div class="spacer"></div>
   <button onclick="copyCrewLink()" style="background:var(--fern);border-color:var(--fern);color:#fff" title="Share crew link via text, WhatsApp, etc.">📤 Share with Crew</button>
+  <button onclick="openSettings()" title="App settings">⚙️</button>
   <span class="status" id="statusMsg"></span>
 </div>
 
@@ -443,6 +446,17 @@ body.crew-mode .crew-footer{display:block}
       </div>
       <input type="file" id="pickerFileInput" accept=".json" style="display:none" onchange="pickerFileLoaded(event)">
     </div>
+  </div>
+</div>
+
+<!-- ─── Settings Modal ─────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="settingsModal" style="display:none">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h2>Settings</h2>
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="modal-body" id="settingsBody"></div>
   </div>
 </div>
 
@@ -531,6 +545,8 @@ function switchTab(id) {
   activeTab = id;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
   renderPanel(id);
+  // Auto-resize textareas in crew mode so all content is visible
+  if (crewMode) setTimeout(autoResizeAllTextareas, 50);
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -575,26 +591,6 @@ function renderConfig() {
     ${cfgField("Crew Password","crewPassword",c.crewPassword)}
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
       Crew must enter this password to view this project. Set a different password for each production.
-    </div>
-    <div class="dbx-setup" style="border-top:none">
-      <div style="margin-bottom:6px">
-        <label style="font-size:11px;font-weight:700;color:#666">GitHub Token (one-time setup)</label>
-        <input type="password" id="ghTokenInput" value="${esc(ghToken || '')}" oninput="ghToken=this.value.trim();try{localStorage.setItem(GH_TOKEN_KEY,ghToken)}catch(e){}" placeholder="ghp_xxxx...">
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        <div id="ghStatus" style="font-size:11px;flex:1">
-          ${ghToken ? '<span style="color:#1b5e20;font-weight:700">● Token saved' + (_GT ? ' (embedded)' : ' (this device)') + '</span>' : '<span style="color:#888">○ Not set up</span>'}
-        </div>
-        <button onclick="testGitHubConnection()" style="padding:4px 12px;border:1px solid #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:#fff;font-family:inherit">Test Connection</button>
-      </div>
-      <div id="bakeTokenSection" style="margin-bottom:6px">
-        <button onclick="bakeToken()" style="padding:4px 12px;border:1px solid #4a90d9;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:#e8f0fe;color:#1a56db;font-family:inherit" title="Generate an embed code so the app works on any device without re-entering the token">🔒 Bake Token for All Devices</button>
-        <div id="bakeResult" style="display:none;margin-top:6px;padding:8px;background:#f5f5f5;border:1px solid #ddd;border-radius:4px;font-size:10px;line-height:1.6"></div>
-      </div>
-      <div style="font-size:10px;color:#aaa;line-height:1.5">
-        <strong>One-time setup (2 min):</strong> Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:#4a90d9">github.com/settings/tokens</a> → Fine-grained tokens → Generate → select your <strong>xf</strong> repo → Permissions: Contents (Read and Write) → Generate. Paste above.<br>
-        <strong>Cross-device:</strong> After pasting your token, click "Bake Token" to generate an embed code. Then edit index.html on GitHub and replace the empty <code>_GT</code> line — the app will work on any device with just the link.
-      </div>
     </div>
   `;
 }
@@ -1473,6 +1469,41 @@ async function testGitHubConnection() {
   }
 }
 
+function openSettings() {
+  const body = document.getElementById('settingsBody');
+  body.innerHTML = `
+    <div style="margin-bottom:16px">
+      <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">GitHub Connection</div>
+      <div style="margin-bottom:6px">
+        <label style="font-size:11px;font-weight:700;color:#666">GitHub Token</label>
+        <input type="password" id="ghTokenInput" value="${esc(ghToken || '')}" oninput="ghToken=this.value.trim();try{localStorage.setItem(GH_TOKEN_KEY,ghToken)}catch(e){}" placeholder="ghp_xxxx..." style="width:100%;padding:6px 10px;border:1px solid #ccc;border-radius:4px;font-size:13px;font-family:inherit;margin-top:2px">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div id="ghStatus" style="font-size:11px;flex:1">
+          ${ghToken ? '<span style="color:#1b5e20;font-weight:700">● Connected' + (_GT ? ' (embedded)' : '') + '</span>' : '<span style="color:#888">○ Not set up</span>'}
+        </div>
+        <button onclick="testGitHubConnection()" style="padding:4px 12px;border:1px solid #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:#fff;font-family:inherit">Test</button>
+      </div>
+      <div style="font-size:10px;color:#aaa;line-height:1.5">
+        <strong>Setup:</strong> <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:#4a90d9">github.com/settings/tokens</a> → Fine-grained → Generate → select <strong>xf</strong> repo → Permissions: Contents (Read and Write) → Generate → paste above.
+      </div>
+    </div>
+    <div style="border-top:1px solid #eee;padding-top:12px">
+      <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
+      <div style="font-size:11px;color:#888;line-height:1.8">
+        Version: v2.7<br>
+        Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
+        Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
+      </div>
+    </div>
+  `;
+  document.getElementById('settingsModal').style.display = 'flex';
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').style.display = 'none';
+}
+
 function bakeToken() {
   const resultEl = document.getElementById('bakeResult');
   if (!ghToken) {
@@ -1604,6 +1635,23 @@ async function showProjectPicker() {
   const listEl = document.getElementById('pickerList');
   listEl.innerHTML = '<div style="padding:12px;color:#888;font-size:12px;text-align:center">Loading projects...</div>';
 
+  // Check if there's auto-saved data to offer
+  let autosaveHtml = '';
+  try {
+    const saved = localStorage.getItem(AUTOSAVE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      const title = parsed.config && parsed.config.productionTitle;
+      if (title) {
+        autosaveHtml = '<div class="dbx-project" style="display:flex;align-items:center;gap:8px;border-left:3px solid #1b5e20">' +
+          '<div style="flex:1;cursor:pointer" onclick="loadAutoSaved()">' +
+          '<span class="dbx-name">' + esc(title) + '</span>' +
+          '<span class="dbx-date" style="color:#1b5e20">↩ Continue editing (auto-saved)</span>' +
+          '</div></div>';
+      }
+    }
+  } catch(e) {}
+
   // Load from GitHub Pages registry (public, works on any device, no token needed)
   try {
     const base = window.location.href.split('/').slice(0, -1).join('/');
@@ -1622,8 +1670,10 @@ async function showProjectPicker() {
         (ghToken ? '<button onclick="event.stopPropagation();deleteProject(\'' + esc(file) + '\',\'' + esc(p.name).replace(/'/g,"\\'") + '\')" style="background:none;border:none;color:#ff6b6b;cursor:pointer;font-size:14px;padding:4px 8px;opacity:.5;flex-shrink:0" title="Delete project">✕</button>' : '') +
         '</div>';
     }).join('');
+    // Prepend auto-save option if available
+    if (autosaveHtml) listEl.innerHTML = autosaveHtml + listEl.innerHTML;
   } catch(e) {
-    listEl.innerHTML = '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects found on GitHub Pages.<br><small>Save a project first, then wait 1-3 min for GitHub Pages to update.</small></div>';
+    listEl.innerHTML = autosaveHtml || '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects found on GitHub Pages.<br><small>Save a project first, then wait 1-3 min for GitHub Pages to update.</small></div>';
   }
 }
 
@@ -1634,10 +1684,27 @@ async function pickProject(filename) {
 
 function newProject() {
   document.getElementById('projectPickerModal').style.display = 'none';
+  data = defaultData();
   currentGhFile = null;
   buildTabs();
   renderPanel("config");
   updateProdTitle();
+}
+
+function loadAutoSaved() {
+  document.getElementById('projectPickerModal').style.display = 'none';
+  try {
+    const saved = localStorage.getItem(AUTOSAVE_KEY);
+    if (saved) {
+      mergeLoadedData(JSON.parse(saved));
+      const title = data.config.productionTitle;
+      if (title) currentGhFile = 'crew_' + ghSafeFilename(title) + '.json';
+      buildTabs();
+      renderPanel(activeTab || 'config');
+      updateProdTitle();
+      showStatus("Restored auto-saved data ✓");
+    }
+  } catch(e) { showStatus("Could not restore auto-save"); }
 }
 
 function pickerLoadFromFile() {
@@ -1868,6 +1935,17 @@ function enterCrewMode() {
   const firstDay = getActiveDays()[0];
   if (firstDay) switchTab('day-' + firstDay);
   else switchTab('day-1');
+  // Auto-resize all textareas to fit content
+  setTimeout(autoResizeAllTextareas, 100);
+}
+
+// Auto-resize textareas to fit their content (crew mode + mobile)
+function autoResizeTextarea(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.max(el.scrollHeight, 32) + 'px';
+}
+function autoResizeAllTextareas() {
+  document.querySelectorAll('.scene-field textarea').forEach(autoResizeTextarea);
 }
 
 function exitCrewMode() {
@@ -2066,20 +2144,13 @@ function checkPw() {
       const savedGhToken = localStorage.getItem(GH_TOKEN_KEY);
       if (savedGhToken) ghToken = savedGhToken;
     } catch(e) {}
-    // Restore auto-saved data from localStorage if available
-    let hasLocalData = false;
-    try {
-      const saved = localStorage.getItem(AUTOSAVE_KEY);
-      if (saved) { mergeLoadedData(JSON.parse(saved)); hasLocalData = true; }
-    } catch(e) {}
-    // Build UI immediately so user sees tabs even if picker load fails
-    if (hasLocalData) {
-      buildTabs();
-      renderPanel(activeTab || 'config');
-      updateProdTitle();
-    }
+    // Start with blank template — build UI
+    data = defaultData();
+    buildTabs();
+    renderPanel('config');
+    updateProdTitle();
     enableAutoSave();
-    // Always show project picker (loads from GitHub Pages — works on any device, no token needed)
+    // Show project picker so user can choose a project (or start fresh)
     showProjectPicker();
   } else {
     input.classList.add('wrong');
