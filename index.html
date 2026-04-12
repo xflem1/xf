@@ -1119,6 +1119,8 @@ function getQuickSaveFilename() {
 function quickSave() {
   // Save to localStorage immediately
   try { localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data)); } catch(e) {}
+  // Cancel any pending debounced publish (we're doing it now)
+  if (ghPublishTimer) { clearTimeout(ghPublishTimer); ghPublishTimer = null; }
   // Push to GitHub right away
   if (ghToken) {
     autoPublishRegistry(true);
@@ -1207,33 +1209,48 @@ function ghSafeFilename(title) {
 
 async function ghPushFile(path, content, message) {
   // Helper: push a single file to GitHub (create or update)
-  let sha = null;
-  try {
-    const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
-      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+  // Retries once on 409 (SHA conflict) by re-fetching the latest SHA
+  for (let attempt = 0; attempt < 2; attempt++) {
+    let sha = null;
+    try {
+      const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+        headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+      });
+      if (getResp.ok) {
+        const fileData = await getResp.json();
+        sha = fileData.sha;
+      } else if (getResp.status === 401 || getResp.status === 403) {
+        return {ok: false, status: getResp.status};
+      }
+      // 404 = file doesn't exist yet, that's fine — sha stays null (creates new file)
+    } catch(e) {}
+
+    const body = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
+    if (sha) body.sha = sha;
+
+    const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + ghToken,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
     });
-    if (getResp.ok) {
-      const fileData = await getResp.json();
-      sha = fileData.sha;
-    } else if (getResp.status === 401 || getResp.status === 403) {
-      return {ok: false, status: getResp.status};
+
+    if (putResp.ok) return {ok: true, status: putResp.status};
+    if (putResp.status === 409 && attempt === 0) {
+      // SHA conflict — wait a moment then retry with fresh SHA
+      await new Promise(r => setTimeout(r, 1000));
+      continue;
     }
-  } catch(e) {}
-
-  const body = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
-  if (sha) body.sha = sha;
-
-  const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
-    method: 'PUT',
-    headers: {
-      'Authorization': 'Bearer ' + ghToken,
-      'Accept': 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-  return {ok: putResp.ok, status: putResp.status};
+    return {ok: false, status: putResp.status};
+  }
+  return {ok: false, status: 409};
 }
+
+// Publish lock — prevents overlapping pushes that cause 409 conflicts
+let ghPublishing = false;
 
 async function autoPublishRegistry(showFeedback) {
   if (!ghToken) {
@@ -1246,6 +1263,14 @@ async function autoPublishRegistry(showFeedback) {
     return false;
   }
 
+  // If already publishing, queue a retry after current one finishes
+  if (ghPublishing) {
+    if (showFeedback) showStatus("Save in progress...");
+    scheduleGhPublish();
+    return false;
+  }
+  ghPublishing = true;
+
   try {
     // 1. Push the full project data file to GitHub
     const dataFile = 'crew_' + ghSafeFilename(title) + '.json';
@@ -1256,6 +1281,7 @@ async function autoPublishRegistry(showFeedback) {
       } else {
         showStatus("GitHub push failed (" + dataResult.status + ")");
       }
+      ghPublishing = false;
       return false;
     }
 
@@ -1267,8 +1293,7 @@ async function autoPublishRegistry(showFeedback) {
       });
       if (getResp.ok) {
         const fileData = await getResp.json();
-        existing = JSON.parse(atob(fileData.content));
-        existing._sha = fileData.sha; // stash SHA for update
+        existing = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
       }
     } catch(e) {}
 
@@ -1281,16 +1306,17 @@ async function autoPublishRegistry(showFeedback) {
     if (idx >= 0) existing[idx] = entry;
     else existing.push(entry);
 
-    const sha = existing._sha;
-    delete existing._sha;
     const regResult = await ghPushFile('registry.json', JSON.stringify(existing, null, 2), 'Update crew registry');
 
+    ghPublishing = false;
     if (regResult.ok) {
       if (showFeedback) showStatus("Published to crew \u2713");
       return true;
     }
+    if (showFeedback) showStatus("Registry update failed — project data saved");
     return false;
   } catch(e) {
+    ghPublishing = false;
     showStatus("GitHub error — check your connection");
     return false;
   }
