@@ -92,8 +92,8 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .scene-field textarea{min-height:80px;overflow-y:auto}
 .scene-field textarea.desc-area{min-height:210px}
 .scene-field textarea:focus{background:#fffde7}
-/* Crew mode: auto-height textareas that show all content */
-body.crew-mode .scene-field textarea{resize:none;overflow:hidden;min-height:0}
+/* Crew mode: show full text as styled divs instead of truncated textareas */
+.crew-text-display{flex:1;padding:8px 10px;font-size:13px;font-family:inherit;white-space:pre-wrap;word-wrap:break-word;line-height:1.5;min-height:32px;background:#fff}
 
 /* TX Grid - unified DIA / NO DIA */
 .tx-section-hdr{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--lt-silver);border-top:1px solid #eee}
@@ -173,13 +173,17 @@ body.crew-mode .scene-field textarea{resize:none;overflow:hidden;min-height:0}
 .day-extra textarea:focus{background:#fffde7}
 
 /* ─── Toolbar (save/load) ──────────────────────────────────────────────────── */
-.toolbar{background:var(--charcoal);padding:6px 12px;display:flex;gap:8px;align-items:center;flex-shrink:0;position:sticky;bottom:0;z-index:100}
-.toolbar button{padding:6px 14px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.toolbar{background:var(--charcoal);padding:6px 8px;display:flex;gap:4px;align-items:center;flex-shrink:0;position:sticky;bottom:0;z-index:100;flex-wrap:nowrap;overflow-x:auto}
+.toolbar button{padding:6px 10px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
 .toolbar button:hover{background:var(--gunmetal);color:var(--white)}
 .toolbar button.save-btn{background:var(--fern);border-color:var(--fern);color:var(--white)}
 .toolbar button.save-btn:hover{background:#2e7d32}
-.toolbar .spacer{flex:1}
-.toolbar .status{font-size:11px;color:var(--silver);opacity:.6}
+.toolbar .spacer{flex:1;min-width:4px}
+.toolbar .status{font-size:11px;color:var(--silver);opacity:.6;white-space:nowrap}
+@media(max-width:700px){
+  .toolbar{padding:4px 6px;gap:3px}
+  .toolbar button{padding:5px 8px;font-size:10px}
+}
 
 /* ─── Mobile ───────────────────────────────────────────────────────────────── */
 @media(max-width:700px){
@@ -283,7 +287,7 @@ body.crew-mode .crew-toolbar{display:flex}
 .crew-toolbar .crew-status{font-size:11px;color:var(--silver);opacity:.6}
 .crew-badge{display:none;padding:3px 8px;border:1px solid var(--silver);border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--silver);opacity:.7}
 body.crew-mode .crew-badge{display:inline-block}
-body.crew-mode input,body.crew-mode textarea,body.crew-mode select{pointer-events:none !important;opacity:.85}
+body.crew-mode input,body.crew-mode select{pointer-events:none !important;opacity:.85}
 body.crew-mode .tx-toggle{pointer-events:none !important}
 body.crew-mode .tx-section-hdr button{display:none}
 body.crew-mode .no-print{display:none !important}
@@ -359,7 +363,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.7</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.8</div>
   </div>
 </div>
 
@@ -545,8 +549,6 @@ function switchTab(id) {
   activeTab = id;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
   renderPanel(id);
-  // Auto-resize textareas in crew mode so all content is visible
-  if (crewMode) setTimeout(autoResizeAllTextareas, 50);
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -877,6 +879,20 @@ function renderDaySceneRow(dayNum, slot, scNum, sc) {
 
 function renderDaySceneBody(n) {
   const s = data.scenes[n];
+  // In crew mode, use plain divs for text fields so all content is visible
+  if (crewMode) {
+    return `
+      <div class="scene-location-bar">
+        <div class="scene-loc-field"><label>INT/EXT</label><div style="padding:6px 10px;font-size:13px">${esc(s.intExt) || '—'}</div></div>
+        <div class="scene-loc-field" style="flex:3"><label>Place</label><div style="padding:6px 10px;font-size:13px">${esc(s.place) || '—'}</div></div>
+        <div class="scene-loc-field"><label>Time</label><div style="padding:6px 10px;font-size:13px">${esc(s.time) || '—'}</div></div>
+      </div>
+      ${s.description ? '<div class="scene-field"><div class="scene-field-label notes-l">Scene Description</div><div class="crew-text-display">' + esc(s.description) + '</div></div>' : ''}
+      ${s.notes ? '<div class="scene-field"><div class="scene-field-label notes-l">Notes</div><div class="crew-text-display">' + esc(s.notes) + '</div></div>' : ''}
+      ${renderTxSection(n)}
+      ${s.problems ? '<div class="scene-field"><div class="scene-field-label prob-l">Potential Problems</div><div class="crew-text-display" style="background:var(--prob)">' + esc(s.problems) + '</div></div>' : ''}
+      ${s.nurton ? '<div class="scene-field"><div class="scene-field-label nt-l">NurTon</div><div class="crew-text-display" style="background:var(--nt)">' + esc(s.nurton) + '</div></div>' : ''}`;
+  }
   return `
       <div class="scene-location-bar">
         <div class="scene-loc-field">
@@ -1491,7 +1507,7 @@ function openSettings() {
     <div style="border-top:1px solid #eee;padding-top:12px">
       <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
       <div style="font-size:11px;color:#888;line-height:1.8">
-        Version: v2.7<br>
+        Version: v2.8<br>
         Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
         Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
       </div>
@@ -1935,17 +1951,6 @@ function enterCrewMode() {
   const firstDay = getActiveDays()[0];
   if (firstDay) switchTab('day-' + firstDay);
   else switchTab('day-1');
-  // Auto-resize all textareas to fit content
-  setTimeout(autoResizeAllTextareas, 100);
-}
-
-// Auto-resize textareas to fit their content (crew mode + mobile)
-function autoResizeTextarea(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.max(el.scrollHeight, 32) + 'px';
-}
-function autoResizeAllTextareas() {
-  document.querySelectorAll('.scene-field textarea').forEach(autoResizeTextarea);
 }
 
 function exitCrewMode() {
@@ -2238,20 +2243,19 @@ function crewRefresh() {
 // ═════════════════════════════════════════════════════════════════════════════
 // INIT
 // ═════════════════════════════════════════════════════════════════════════════
-// Register service worker for PWA / offline support — force update on each load
+// Service worker: force-clear ALL old caches on every load to prevent stale data
+if (window.caches) {
+  caches.keys().then(names => {
+    names.forEach(name => caches.delete(name));
+  });
+}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(reg => {
-    // Force the SW to check for updates immediately
-    reg.update().catch(() => {});
+  // Unregister any old service workers, then re-register fresh
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(r => r.unregister());
+  }).then(() => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
   }).catch(() => {});
-  // Clear old caches that might serve stale JSON data
-  if (window.caches) {
-    caches.keys().then(names => {
-      names.forEach(name => {
-        if (name.includes('xf-notes-v1')) caches.delete(name);
-      });
-    });
-  }
 }
 
 // Restore GitHub token: localStorage first, then hardcoded fallback
