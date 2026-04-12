@@ -357,7 +357,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.1</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.2</div>
   </div>
 </div>
 
@@ -1365,42 +1365,35 @@ async function testGitHubConnection() {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// GITHUB PROJECT PICKER (Edit mode)
+// PROJECT PICKER (Edit mode — loads from GitHub Pages, no token needed)
 // ═════════════════════════════════════════════════════════════════════════════
 let currentGhFile = null; // tracks which file we're editing on GitHub
 
-async function ghListProjects() {
-  if (!ghToken) return [];
-  try {
-    const resp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/', {
-      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
-    });
-    if (!resp.ok) return [];
-    const files = await resp.json();
-    return files
-      .filter(f => f.name.startsWith('crew_') && f.name.endsWith('.json'))
-      .map(f => ({name: f.name.replace('crew_','').replace('.json','').replace(/_/g,' '), file: f.name, path: f.path}));
-  } catch(e) { return []; }
+// Helper: get the file reference for a project entry (handles old + new registry formats)
+function getProjectFile(project) {
+  if (project.file) return project.file;
+  // Old registry entries may have 'link' (Dropbox) but no 'file' — construct filename from name
+  if (project.name) return 'crew_' + ghSafeFilename(project.name) + '.json';
+  return null;
 }
 
-async function ghLoadProject(filename) {
-  if (!ghToken) return;
-  showStatus("Loading from GitHub...");
+// Load project data from GitHub Pages (public URL, no token required)
+async function loadProjectFromPages(filename) {
+  showStatus("Loading project...");
   try {
-    const resp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + filename, {
-      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
-    });
-    if (!resp.ok) throw new Error(resp.status);
-    const fileData = await resp.json();
-    const loaded = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
+    const base = window.location.href.split('/').slice(0, -1).join('/');
+    const url = base + '/' + filename + '?' + Date.now();
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const loaded = await resp.json();
     mergeLoadedData(loaded);
     currentGhFile = filename;
     buildTabs();
     renderPanel(activeTab);
     updateProdTitle();
-    showStatus("Loaded from GitHub \u2713");
+    showStatus("Project loaded \u2713");
   } catch(err) {
-    alert("Error loading from GitHub: " + err.message);
+    alert("Could not load project. It may not be published yet.\n\n" + err.message);
   }
 }
 
@@ -1410,20 +1403,29 @@ async function showProjectPicker() {
   const listEl = document.getElementById('pickerList');
   listEl.innerHTML = '<div style="padding:12px;color:#888;font-size:12px;text-align:center">Loading projects...</div>';
 
-  const projects = await ghListProjects();
-  if (projects.length === 0) {
-    listEl.innerHTML = '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects yet. Start a new one!</div>';
-    return;
+  // Load from GitHub Pages registry (public, works on any device, no token needed)
+  try {
+    const base = window.location.href.split('/').slice(0, -1).join('/');
+    const resp = await fetch(base + '/registry.json?' + Date.now());
+    if (!resp.ok) throw new Error('not found');
+    const projects = await resp.json();
+    if (!projects || projects.length === 0) throw new Error('empty');
+
+    listEl.innerHTML = projects.map((p, i) => {
+      const file = getProjectFile(p);
+      return '<div class="dbx-project" onclick="pickProject(\'' + esc(file) + '\')">' +
+        '<span class="dbx-name">' + esc(p.name) + '</span>' +
+        (p.episode ? '<span class="dbx-date">' + esc(p.episode) + '</span>' : '') +
+        '</div>';
+    }).join('');
+  } catch(e) {
+    listEl.innerHTML = '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects found on GitHub Pages.<br><small>Save a project first, then wait 1-3 min for GitHub Pages to update.</small></div>';
   }
-  listEl.innerHTML = projects.map(p =>
-    '<div class="dbx-project" onclick="pickProject(\'' + esc(p.file) + '\')">' +
-    '<span class="dbx-name">' + esc(p.name) + '</span></div>'
-  ).join('');
 }
 
 async function pickProject(filename) {
   document.getElementById('projectPickerModal').style.display = 'none';
-  await ghLoadProject(filename);
+  await loadProjectFromPages(filename);
 }
 
 function newProject() {
@@ -1754,7 +1756,7 @@ function crewSelectProject(idx) {
 function crewCheckPw() {
   if (!crewSelectedProject) return;
   const pw = document.getElementById('crewPwInput').value;
-  const fileRef = crewSelectedProject.file;
+  const fileRef = getProjectFile(crewSelectedProject);
 
   if (!fileRef) {
     document.getElementById('crewPwHint').textContent = 'Project not configured';
@@ -1835,14 +1837,8 @@ function checkPw() {
       if (saved) mergeLoadedData(JSON.parse(saved));
     } catch(e) {}
     enableAutoSave();
-    // If GitHub token is set, show project picker
-    if (ghToken) {
-      showProjectPicker();
-    } else {
-      buildTabs();
-      renderPanel("config");
-      updateProdTitle();
-    }
+    // Always show project picker (loads from GitHub Pages — works on any device, no token needed)
+    showProjectPicker();
   } else {
     input.classList.add('wrong');
     document.getElementById('pwHint').classList.add('show');
