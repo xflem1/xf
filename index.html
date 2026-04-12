@@ -375,7 +375,7 @@ body.crew-mode .crew-footer{display:block}
 
 <!-- ─── Bottom Toolbar ─────────────────────────────────────────────────────── -->
 <div class="toolbar">
-  <button onclick="quickSave()" style="background:#1b5e20;border-color:#1b5e20;color:#fff" title="Save to Dropbox (or download if not connected)">⚡ Save</button>
+  <button onclick="quickSave()" style="background:#1b5e20;border-color:#1b5e20;color:#fff" title="Save to GitHub and localStorage">⚡ Save</button>
   <button class="save-btn" onclick="saveToFile()">💾 Save Copy</button>
   <button onclick="document.getElementById('loadInput').click()">📂 Load Project</button>
   <input type="file" id="loadInput" accept=".json" style="display:none" onchange="loadFromFile(event)">
@@ -421,22 +421,22 @@ body.crew-mode .crew-footer{display:block}
   </div>
 </div>
 
-<!-- ─── Dropbox Project Picker Modal ─────────────────────────────────────── -->
-<div class="modal-overlay" id="dbxPickerModal" style="display:none">
+<!-- ─── Project Picker Modal ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="projectPickerModal" style="display:none">
   <div class="modal">
     <div class="modal-hdr">
-      <h2 id="dbxPickerTitle">📂 Open Project</h2>
-      <button class="modal-close" onclick="dbxClosePicker()">✕</button>
+      <h2 id="pickerTitle">📂 Open Project</h2>
+      <button class="modal-close" onclick="closeProjectPicker()">✕</button>
     </div>
     <div class="modal-body">
-      <div id="dbxPickerList" style="max-height:300px;overflow-y:auto;border:1px solid #eee;border-radius:4px">
+      <div id="pickerList" style="max-height:300px;overflow-y:auto;border:1px solid #eee;border-radius:4px">
         <div style="padding:12px;color:#888;font-size:12px;text-align:center">Loading projects...</div>
       </div>
     </div>
     <div class="modal-footer">
-      <div class="modal-actions" id="dbxPickerActions">
-        <button onclick="dbxNewProject()">+ New Project</button>
-        <button onclick="dbxClosePicker()">Skip</button>
+      <div class="modal-actions">
+        <button onclick="newProject()">+ New Project</button>
+        <button onclick="closeProjectPicker()">Skip</button>
       </div>
     </div>
   </div>
@@ -457,8 +457,6 @@ function defaultData() {
       productionTitle: "", episode: "", productionCompany: "",
       director: "", dop: "", firstAD: "", soundMixer: "", boomOp: "", utility: "",
       kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
-      dropboxLink: "",
-      dbxAppKey: "",
       crewPassword: ""
     },
     scenes: {},
@@ -536,11 +534,7 @@ function switchTab(id) {
 // ═════════════════════════════════════════════════════════════════════════════
 function renderPanel(id) {
   const c = document.getElementById("content");
-  if (id === "config") {
-    c.innerHTML = renderConfig();
-    // Update Dropbox connection status after DOM is ready
-    setTimeout(() => dbxUpdateStatus(dbxIsConnected()), 0);
-  }
+  if (id === "config") c.innerHTML = renderConfig();
   else if (id === "ref") c.innerHTML = renderReference();
   else if (id.startsWith("day-")) c.innerHTML = renderDay(parseInt(id.split("-")[1]));
   updateProdTitle();
@@ -573,33 +567,6 @@ function renderConfig() {
     ${cfgArea("Microphones","kitMics",c.kitMics)}
     ${cfgArea("TX / RX","kitTxRx",c.kitTxRx)}
     ${cfgArea("Crew Coms","kitComs",c.kitComs)}
-    <div class="section-hdr">DROPBOX</div>
-    <div class="dbx-setup" id="dbxSetupPanel">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <span style="font-weight:700">Status:</span>
-        <span id="dbxStatus"><span style="color:#888">Checking...</span></span>
-      </div>
-      <div id="dbxSetupFields">
-        <div style="margin-bottom:6px">
-          <label style="font-size:11px;font-weight:700;color:#666">Dropbox App Key</label>
-          <input id="dbxAppKeyInput" value="${esc(c.dbxAppKey)}" oninput="data.config.dbxAppKey=this.value;try{localStorage.setItem('xf_dbx_appkey',this.value)}catch(e){}" placeholder="e.g. abc123xyz...">
-        </div>
-        <div style="display:flex;gap:8px;margin-bottom:8px">
-          <button class="primary" onclick="dbxStartAuth()">Connect to Dropbox</button>
-        </div>
-        <div id="dbxCodeSection" style="display:none;margin-bottom:8px;padding:8px;background:#fffacd;border-radius:4px">
-          <div style="font-size:11px;margin-bottom:6px"><strong>Step 2:</strong> Paste the code from Dropbox below:</div>
-          <div style="display:flex;gap:6px">
-            <input id="dbxAuthCode" placeholder="Authorization code..." style="flex:1">
-            <button class="primary" onclick="dbxFinishAuth()">Connect</button>
-          </div>
-        </div>
-      </div>
-      <div id="dbxProjectListConfig" style="margin-top:8px"></div>
-      <div style="font-size:10px;color:#aaa;margin-top:8px;line-height:1.5">
-        <strong>First time?</strong> Go to <a href="https://www.dropbox.com/developers/apps" target="_blank" style="color:#4a90d9">dropbox.com/developers/apps</a> → Create App → Scoped access → App folder → name it "XF Daily Notes" → copy the App Key above. Under Permissions, enable files.content.write, files.content.read, files.metadata.read, sharing.write → Submit.
-      </div>
-    </div>
     <div class="section-hdr">CREW SHARING</div>
     ${cfgField("Crew Password","crewPassword",c.crewPassword)}
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
@@ -1150,11 +1117,13 @@ function getQuickSaveFilename() {
 }
 
 function quickSave() {
-  if (dbxIsConnected()) {
-    // Save directly to Dropbox — no download needed
-    dbxSaveProject(false);
+  // Save to localStorage immediately
+  try { localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data)); } catch(e) {}
+  // Push to GitHub right away
+  if (ghToken) {
+    autoPublishRegistry(true);
   } else {
-    // Fall back to file download
+    // No GitHub token — fall back to file download
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], {type: 'application/json'});
     const a = document.createElement('a');
@@ -1162,7 +1131,7 @@ function quickSave() {
     a.download = getQuickSaveFilename();
     a.click();
     URL.revokeObjectURL(a.href);
-    showStatus("Quick-saved \u2014 save to your Dropbox folder \u2713");
+    showStatus("Saved locally — set up GitHub token in CONFIG to auto-publish");
   }
 }
 
@@ -1192,11 +1161,10 @@ function scheduleAutoSave() {
   autoSaveTimer = setTimeout(() => {
     try {
       localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data));
-      if (!dbxIsConnected()) showStatus("Auto-saved \u2713");
     } catch(e) {}
   }, 1500);
-  // Also schedule a Dropbox save (longer debounce)
-  scheduleDbxAutoSave();
+  // Also schedule a GitHub publish (longer debounce)
+  scheduleGhPublish();
 }
 
 function enableAutoSave() {
@@ -1211,14 +1179,12 @@ function enableAutoSave() {
   window.addEventListener('beforeunload', function() {
     if (autoSaveEnabled) {
       try { localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data)); } catch(e) {}
-      // Fire-and-forget Dropbox save (browser may or may not complete it)
-      if (dbxIsConnected() && currentDbxPath) dbxSaveProject(true);
     }
   });
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// CREW DROPBOX FETCH
+// CREW STATUS
 // ═════════════════════════════════════════════════════════════════════════════
 function showCrewStatus(msg) {
   const el = document.getElementById('crewStatusMsg');
@@ -1228,453 +1194,9 @@ function showCrewStatus(msg) {
 
 let crewPollInterval = null;
 
-function getDropboxDirectUrl(link) {
-  if (!link || !link.trim()) return null;
-  let url = link.trim();
-  url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
-  if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
-  return url;
-}
-
-function crewRefresh() {
-  const url = getDropboxDirectUrl(data.config.dropboxLink);
-  if (!url) {
-    document.getElementById('crewLoadInput').click();
-    return;
-  }
-  showCrewStatus("Fetching latest data...");
-  fetch(url)
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(loaded => {
-      const currentTab = activeTab;
-      mergeLoadedData(loaded);
-      buildCrewTabs();
-      // Stay on same tab if possible, otherwise go to first active day
-      if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
-        switchTab(currentTab);
-      } else {
-        const firstDay = getActiveDays()[0];
-        if (firstDay) switchTab('day-' + firstDay);
-      }
-      updateProdTitle();
-      showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
-    })
-    .catch(err => {
-      showCrewStatus("Fetch failed \u2014 try manual load");
-      setTimeout(() => document.getElementById('crewLoadInput').click(), 1500);
-    });
-}
-
-// Auto-fetch on crew load + poll every 60 seconds
-function crewAutoFetchAndPoll() {
-  const url = getDropboxDirectUrl(data.config.dropboxLink);
-  if (url) {
-    // Initial fetch to get latest data
-    fetch(url)
-      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(loaded => {
-        mergeLoadedData(loaded);
-        buildCrewTabs();
-        const firstDay = getActiveDays()[0];
-        if (firstDay) switchTab('day-' + firstDay);
-        updateProdTitle();
-        showCrewStatus("Live \u2014 auto-updating");
-      })
-      .catch(() => showCrewStatus("Using cached data"));
-
-    // Poll every 60 seconds
-    crewPollInterval = setInterval(() => {
-      const pollUrl = getDropboxDirectUrl(data.config.dropboxLink);
-      if (!pollUrl) return;
-      fetch(pollUrl)
-        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-        .then(loaded => {
-          const currentTab = activeTab;
-          mergeLoadedData(loaded);
-          buildCrewTabs();
-          if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
-            switchTab(currentTab);
-          }
-          updateProdTitle();
-          showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
-        })
-        .catch(() => {});
-    }, 60000);
-  }
-}
-
 // ═════════════════════════════════════════════════════════════════════════════
-// DROPBOX API INTEGRATION
+// GITHUB INTEGRATION (primary storage)
 // ═════════════════════════════════════════════════════════════════════════════
-const DBX_TOKEN_KEY = 'xf_dbx_tokens';
-const DBX_APPKEY_KEY = 'xf_dbx_appkey';
-const DBX_VERIFIER_KEY = 'xf_dbx_verifier';
-let dbxAccessToken = null;
-let dbxRefreshToken = null;
-let currentDbxPath = null;
-let dbxSaveTimer = null;
-
-function dbxLoadTokens() {
-  try {
-    // Restore device-level settings from localStorage
-    const savedKey = localStorage.getItem(DBX_APPKEY_KEY);
-    if (savedKey) data.config.dbxAppKey = savedKey;
-    const savedGhToken = localStorage.getItem(GH_TOKEN_KEY);
-    if (savedGhToken) ghToken = savedGhToken;
-
-    const saved = localStorage.getItem(DBX_TOKEN_KEY);
-    if (saved) {
-      const t = JSON.parse(saved);
-      dbxAccessToken = t.access;
-      dbxRefreshToken = t.refresh;
-      return true;
-    }
-  } catch(e) {}
-  return false;
-}
-
-function dbxSaveTokens() {
-  try {
-    localStorage.setItem(DBX_TOKEN_KEY, JSON.stringify({
-      access: dbxAccessToken, refresh: dbxRefreshToken
-    }));
-    // Also persist app key separately
-    if (data.config.dbxAppKey) {
-      localStorage.setItem(DBX_APPKEY_KEY, data.config.dbxAppKey);
-    }
-  } catch(e) {}
-}
-
-function dbxIsConnected() {
-  return !!dbxAccessToken && !!dbxRefreshToken;
-}
-
-// PKCE helpers
-function dbxRandomString(len) {
-  const arr = new Uint8Array(len);
-  crypto.getRandomValues(arr);
-  return Array.from(arr, b => b.toString(36).padStart(2,'0')).join('').slice(0, len);
-}
-
-async function dbxCodeChallenge(verifier) {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier));
-  return btoa(String.fromCharCode(...new Uint8Array(digest)))
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-
-// OAuth flow
-async function dbxStartAuth() {
-  const appKey = (data.config.dbxAppKey || '').trim();
-  if (!appKey) {
-    alert("Enter your Dropbox App Key first (see instructions below the field).");
-    return;
-  }
-  const verifier = dbxRandomString(64);
-  localStorage.setItem(DBX_VERIFIER_KEY, verifier);
-  const challenge = await dbxCodeChallenge(verifier);
-
-  const url = 'https://www.dropbox.com/oauth2/authorize?' +
-    'client_id=' + encodeURIComponent(appKey) +
-    '&response_type=code' +
-    '&code_challenge=' + encodeURIComponent(challenge) +
-    '&code_challenge_method=S256' +
-    '&token_access_type=offline';
-
-  window.open(url, '_blank');
-  document.getElementById('dbxCodeSection').style.display = 'block';
-  setTimeout(() => document.getElementById('dbxAuthCode').focus(), 200);
-}
-
-async function dbxFinishAuth() {
-  const code = (document.getElementById('dbxAuthCode').value || '').trim();
-  if (!code) { alert("Paste the authorization code from Dropbox."); return; }
-
-  const appKey = (data.config.dbxAppKey || '').trim();
-  const verifier = localStorage.getItem(DBX_VERIFIER_KEY);
-  if (!appKey || !verifier) { alert("Missing App Key or auth session expired. Try again."); return; }
-
-  try {
-    const resp = await fetch('https://api.dropboxapi.com/oauth2/token', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: 'code=' + encodeURIComponent(code) +
-            '&grant_type=authorization_code' +
-            '&client_id=' + encodeURIComponent(appKey) +
-            '&code_verifier=' + encodeURIComponent(verifier)
-    });
-    if (!resp.ok) { const t = await resp.text(); throw new Error(t); }
-    const result = await resp.json();
-
-    dbxAccessToken = result.access_token;
-    dbxRefreshToken = result.refresh_token;
-    dbxSaveTokens();
-    localStorage.removeItem(DBX_VERIFIER_KEY);
-
-    document.getElementById('dbxCodeSection').style.display = 'none';
-    document.getElementById('dbxAuthCode').value = '';
-    dbxUpdateStatus(true);
-    showStatus("Dropbox connected!");
-  } catch(err) {
-    alert("Connection failed. Check your App Key and try again.\n\n" + err.message);
-  }
-}
-
-async function dbxRefreshAccessToken() {
-  const appKey = (data.config.dbxAppKey || '').trim();
-  if (!dbxRefreshToken || !appKey) return false;
-  try {
-    const resp = await fetch('https://api.dropboxapi.com/oauth2/token', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: 'grant_type=refresh_token' +
-            '&refresh_token=' + encodeURIComponent(dbxRefreshToken) +
-            '&client_id=' + encodeURIComponent(appKey)
-    });
-    if (!resp.ok) return false;
-    const result = await resp.json();
-    dbxAccessToken = result.access_token;
-    dbxSaveTokens();
-    return true;
-  } catch(e) { return false; }
-}
-
-// Wrapper that auto-refreshes expired tokens
-async function dbxFetch(url, options) {
-  let resp = await fetch(url, options);
-  if (resp.status === 401) {
-    if (await dbxRefreshAccessToken()) {
-      // Rebuild headers with new token
-      if (options.headers) options.headers['Authorization'] = 'Bearer ' + dbxAccessToken;
-      resp = await fetch(url, options);
-    }
-  }
-  return resp;
-}
-
-// List projects in the app folder
-async function dbxListProjects() {
-  if (!dbxIsConnected()) return [];
-  try {
-    const resp = await dbxFetch('https://api.dropboxapi.com/2/files/list_folder', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + dbxAccessToken,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({path: '', recursive: false})
-    });
-    if (!resp.ok) throw new Error(resp.status);
-    const result = await resp.json();
-    return result.entries
-      .filter(e => e['.tag'] === 'file' && e.name.endsWith('.json'))
-      .map(e => ({name: e.name, path: e.path_lower, modified: e.server_modified}))
-      .sort((a,b) => new Date(b.modified) - new Date(a.modified));
-  } catch(err) {
-    showStatus("Couldn\u2019t list Dropbox files");
-    return [];
-  }
-}
-
-// Load a project from Dropbox
-async function dbxLoadProject(path) {
-  if (!dbxIsConnected()) return;
-  showStatus("Loading from Dropbox...");
-  try {
-    const resp = await dbxFetch('https://content.dropboxapi.com/2/files/download', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + dbxAccessToken,
-        'Dropbox-API-Arg': JSON.stringify({path: path})
-      }
-    });
-    if (!resp.ok) throw new Error(resp.status);
-    const loaded = await resp.json();
-    mergeLoadedData(loaded);
-    currentDbxPath = path;
-    buildTabs();
-    renderPanel(activeTab);
-    updateProdTitle();
-    showStatus("Loaded from Dropbox \u2713");
-  } catch(err) {
-    alert("Error loading from Dropbox: " + err.message);
-  }
-}
-
-// Save project to Dropbox (overwrites)
-async function dbxSaveProject(silent) {
-  if (!dbxIsConnected()) return false;
-  const path = currentDbxPath || ('/' + getQuickSaveFilename());
-  const json = JSON.stringify(data, null, 2);
-
-  if (!silent) showStatus("Saving to Dropbox...");
-  try {
-    const resp = await dbxFetch('https://content.dropboxapi.com/2/files/upload', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + dbxAccessToken,
-        'Content-Type': 'application/octet-stream',
-        'Dropbox-API-Arg': JSON.stringify({
-          path: path, mode: 'overwrite', autorename: false, mute: true
-        })
-      },
-      body: json
-    });
-    if (!resp.ok) throw new Error(resp.status);
-    const result = await resp.json();
-    currentDbxPath = result.path_lower;
-
-    if (!silent) showStatus("Saved to Dropbox \u2713");
-
-    // Auto-generate crew sharing link if not already set
-    if (!data.config.dropboxLink) await dbxCreateShareLink(currentDbxPath);
-
-    // Auto-update crew project registry in Dropbox
-    updateDropboxRegistry();
-    // Publish to GitHub: immediate on manual save, debounced on auto-save
-    if (!silent) autoPublishRegistry(true);
-    else scheduleGhPublish();
-
-    return true;
-  } catch(err) {
-    if (!silent) showStatus("Dropbox save failed");
-    return false;
-  }
-}
-
-// Create a shared link for crew
-async function dbxCreateShareLink(path) {
-  if (!dbxIsConnected()) return;
-  try {
-    // Try to create a new shared link
-    let resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + dbxAccessToken,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({path: path, settings: {requested_visibility: 'public', audience: 'public'}})
-    });
-
-    let result;
-    if (resp.status === 409) {
-      // Link already exists — fetch it
-      resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/list_shared_links', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + dbxAccessToken,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({path: path, direct_only: true})
-      });
-      if (!resp.ok) return;
-      result = await resp.json();
-      if (result.links && result.links.length > 0) {
-        data.config.dropboxLink = result.links[0].url;
-      }
-    } else if (resp.ok) {
-      result = await resp.json();
-      data.config.dropboxLink = result.url;
-    }
-  } catch(e) {}
-}
-
-// ─── Crew Registry (auto-maintained in Dropbox) ─────────────────────────────
-const REGISTRY_PATH = '/_registry.json';
-const REGISTRY_LINK_KEY = 'xf_registry_link';
-let registryLink = null; // Dropbox shared link to _registry.json
-
-async function updateDropboxRegistry() {
-  if (!dbxIsConnected()) return;
-  const link = data.config.dropboxLink;
-  const title = data.config.productionTitle;
-  if (!link || !link.trim() || !title || !title.trim()) return;
-
-  try {
-    // Read existing registry
-    let existing = [];
-    try {
-      const dlResp = await dbxFetch('https://content.dropboxapi.com/2/files/download', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + dbxAccessToken,
-          'Dropbox-API-Arg': JSON.stringify({path: REGISTRY_PATH})
-        }
-      });
-      if (dlResp.ok) existing = await dlResp.json();
-    } catch(e) {} // file may not exist yet, that's fine
-
-    // Build entry for this project
-    const entry = {
-      name: title.trim(),
-      episode: (data.config.episode || '').trim(),
-      link: link.trim()
-    };
-
-    // Update or add (match by name)
-    const idx = existing.findIndex(p => p.name === entry.name);
-    if (idx >= 0) existing[idx] = entry;
-    else existing.push(entry);
-
-    // Write registry back to Dropbox
-    await dbxFetch('https://content.dropboxapi.com/2/files/upload', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + dbxAccessToken,
-        'Content-Type': 'application/octet-stream',
-        'Dropbox-API-Arg': JSON.stringify({
-          path: REGISTRY_PATH, mode: 'overwrite', autorename: false, mute: true
-        })
-      },
-      body: JSON.stringify(existing, null, 2)
-    });
-
-    // Create shared link for registry if we don't have one yet
-    if (!registryLink) {
-      registryLink = await dbxGetOrCreateShareLink(REGISTRY_PATH);
-      if (registryLink) {
-        try { localStorage.setItem(REGISTRY_LINK_KEY, registryLink); } catch(e) {}
-      }
-    }
-  } catch(e) {
-    console.log('Registry update error:', e);
-  }
-}
-
-async function dbxGetOrCreateShareLink(path) {
-  if (!dbxIsConnected()) return null;
-  try {
-    let resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + dbxAccessToken,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({path: path, settings: {requested_visibility: 'public', audience: 'public'}})
-    });
-    if (resp.ok) {
-      const result = await resp.json();
-      return result.url;
-    }
-    if (resp.status === 409) {
-      // Already exists — fetch it
-      resp = await dbxFetch('https://api.dropboxapi.com/2/sharing/list_shared_links', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + dbxAccessToken,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({path: path, direct_only: true})
-      });
-      if (resp.ok) {
-        const result = await resp.json();
-        if (result.links && result.links.length > 0) return result.links[0].url;
-      }
-    }
-  } catch(e) {}
-  return null;
-}
-
-// ─── GitHub Auto-Publish (registry.json on GitHub Pages) ─────────────────────
 const GH_REPO = 'xflem1/xf'; // hardcoded — no config needed
 const GH_TOKEN_KEY = 'xf_gh_token';
 let ghToken = null;
@@ -1737,7 +1259,7 @@ async function autoPublishRegistry(showFeedback) {
       return false;
     }
 
-    // 2. Update the registry with a reference to the GitHub-hosted file (not Dropbox link)
+    // 2. Update the registry with a reference to the GitHub-hosted file
     let existing = [];
     try {
       const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
@@ -1779,7 +1301,7 @@ let ghPublishTimer = null;
 function scheduleGhPublish() {
   if (!ghToken) return;
   if (ghPublishTimer) clearTimeout(ghPublishTimer);
-  ghPublishTimer = setTimeout(() => autoPublishRegistry(false), 90000); // 90 seconds
+  ghPublishTimer = setTimeout(() => autoPublishRegistry(false), 30000); // 30 seconds
 }
 
 async function testGitHubConnection() {
@@ -1796,8 +1318,8 @@ async function testGitHubConnection() {
     });
     if (resp.ok) {
       statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Connected</span> — token is valid';
-      // If we also have a Dropbox link, try publishing now
-      if (data.config.dropboxLink && data.config.productionTitle) {
+      // Try publishing project data now
+      if (data.config.productionTitle) {
         const ok = await autoPublishRegistry(true);
         if (ok) statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Connected & published</span>';
       }
@@ -1815,135 +1337,81 @@ async function testGitHubConnection() {
   }
 }
 
-// Debounced Dropbox auto-save (longer interval than localStorage)
-function scheduleDbxAutoSave() {
-  if (!dbxIsConnected() || !currentDbxPath) return;
-  if (dbxSaveTimer) clearTimeout(dbxSaveTimer);
-  dbxSaveTimer = setTimeout(() => dbxSaveProject(true), 15000); // 15 seconds
+// ═════════════════════════════════════════════════════════════════════════════
+// GITHUB PROJECT PICKER (Edit mode)
+// ═════════════════════════════════════════════════════════════════════════════
+let currentGhFile = null; // tracks which file we're editing on GitHub
+
+async function ghListProjects() {
+  if (!ghToken) return [];
+  try {
+    const resp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/', {
+      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (!resp.ok) return [];
+    const files = await resp.json();
+    return files
+      .filter(f => f.name.startsWith('crew_') && f.name.endsWith('.json'))
+      .map(f => ({name: f.name.replace('crew_','').replace('.json','').replace(/_/g,' '), file: f.name, path: f.path}));
+  } catch(e) { return []; }
 }
 
-// UI helpers
-function dbxUpdateStatus(connected) {
-  const el = document.getElementById('dbxStatus');
-  if (!el) return;
-  if (connected) {
-    el.innerHTML = '<span style="color:#1b5e20">\u25CF Connected</span> <button onclick="dbxDisconnect()" style="font-size:10px;padding:2px 6px;border:1px solid #ccc;border-radius:3px;cursor:pointer;background:#fff">Disconnect</button>';
-    // Hide setup fields since we're connected
-    const fields = document.getElementById('dbxSetupFields');
-    if (fields) fields.style.display = 'none';
-  } else {
-    el.innerHTML = '<span style="color:#888">\u25CB Not connected</span>';
-    const fields = document.getElementById('dbxSetupFields');
-    if (fields) fields.style.display = 'block';
+async function ghLoadProject(filename) {
+  if (!ghToken) return;
+  showStatus("Loading from GitHub...");
+  try {
+    const resp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + filename, {
+      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (!resp.ok) throw new Error(resp.status);
+    const fileData = await resp.json();
+    const loaded = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
+    mergeLoadedData(loaded);
+    currentGhFile = filename;
+    buildTabs();
+    renderPanel(activeTab);
+    updateProdTitle();
+    showStatus("Loaded from GitHub \u2713");
+  } catch(err) {
+    alert("Error loading from GitHub: " + err.message);
   }
 }
 
-function dbxDisconnect() {
-  dbxAccessToken = null;
-  dbxRefreshToken = null;
-  currentDbxPath = null;
-  localStorage.removeItem(DBX_TOKEN_KEY);
-  localStorage.removeItem(DBX_VERIFIER_KEY);
-  dbxUpdateStatus(false);
-  showStatus("Dropbox disconnected");
-}
+async function showProjectPicker() {
+  document.getElementById('pickerTitle').textContent = '\u{1F4C2} Open Project';
+  document.getElementById('projectPickerModal').style.display = 'flex';
+  const listEl = document.getElementById('pickerList');
+  listEl.innerHTML = '<div style="padding:12px;color:#888;font-size:12px;text-align:center">Loading projects...</div>';
 
-function renderPickerList(projects) {
-  const el = document.getElementById('dbxPickerList');
-  if (!el) return;
+  const projects = await ghListProjects();
   if (projects.length === 0) {
-    el.innerHTML = '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects yet. Start a new one!</div>';
+    listEl.innerHTML = '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects yet. Start a new one!</div>';
     return;
   }
-  el.innerHTML = projects.map(p => {
-    const name = p.name.replace('.json','').replace(/_/g,' ');
-    const date = new Date(p.modified).toLocaleDateString();
-    return '<div class="dbx-project" onclick="dbxPickProject(\'' + p.path.replace(/'/g, "\\'") + '\')">' +
-      '<span class="dbx-name">' + name + '</span>' +
-      '<span class="dbx-date">' + date + '</span></div>';
-  }).join('');
+  listEl.innerHTML = projects.map(p =>
+    '<div class="dbx-project" onclick="pickProject(\'' + esc(p.file) + '\')">' +
+    '<span class="dbx-name">' + esc(p.name) + '</span></div>'
+  ).join('');
 }
 
-let pickerMode = 'edit'; // 'edit' or 'crew'
-
-async function dbxShowPicker() {
-  pickerMode = 'edit';
-  document.getElementById('dbxPickerTitle').textContent = '\u{1F4C2} Open Project';
-  document.getElementById('dbxPickerActions').innerHTML =
-    '<button onclick="dbxNewProject()">+ New Project</button><button onclick="dbxClosePicker()">Skip</button>';
-  document.getElementById('dbxPickerModal').style.display = 'flex';
-  const projects = await dbxListProjects();
-  renderPickerList(projects);
+async function pickProject(filename) {
+  document.getElementById('projectPickerModal').style.display = 'none';
+  await ghLoadProject(filename);
 }
 
-async function dbxShowCrewPicker() {
-  pickerMode = 'crew';
-  document.getElementById('dbxPickerTitle').textContent = '\u{1F4C2} Select Project (Crew View)';
-  document.getElementById('dbxPickerActions').innerHTML =
-    '<button onclick="dbxClosePicker()">Cancel</button>';
-  document.getElementById('dbxPickerModal').style.display = 'flex';
-  const projects = await dbxListProjects();
-  renderPickerList(projects);
-}
-
-async function dbxPickProject(path) {
-  document.getElementById('dbxPickerModal').style.display = 'none';
-  if (pickerMode === 'crew') {
-    // Load project then enter crew mode with auto-refresh
-    await dbxLoadProject(path);
-    enterCrewMode();
-    startCrewDbxPolling(path);
-  } else {
-    await dbxLoadProject(path);
-  }
-}
-
-function dbxNewProject() {
-  document.getElementById('dbxPickerModal').style.display = 'none';
-  // Just proceed with fresh/current data
+function newProject() {
+  document.getElementById('projectPickerModal').style.display = 'none';
+  currentGhFile = null;
   buildTabs();
   renderPanel("config");
   updateProdTitle();
 }
 
-function dbxClosePicker() {
-  document.getElementById('dbxPickerModal').style.display = 'none';
-  if (pickerMode === 'crew') {
-    // Cancelled crew picker — go back to landing
-    document.getElementById('landingScreen').style.display = 'flex';
-  } else {
-    buildTabs();
-    renderPanel("config");
-    updateProdTitle();
-  }
-}
-
-// Crew auto-refresh using Dropbox API (not shared links)
-function startCrewDbxPolling(path) {
-  if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
-  showCrewStatus("Live \u2014 auto-updating");
-  crewPollInterval = setInterval(async () => {
-    if (!dbxIsConnected()) return;
-    try {
-      const resp = await dbxFetch('https://content.dropboxapi.com/2/files/download', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + dbxAccessToken,
-          'Dropbox-API-Arg': JSON.stringify({path: path})
-        }
-      });
-      if (!resp.ok) return;
-      const loaded = await resp.json();
-      const currentTab = activeTab;
-      mergeLoadedData(loaded);
-      buildCrewTabs();
-      if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
-        switchTab(currentTab);
-      }
-      updateProdTitle();
-      showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
-    } catch(e) {}
-  }, 60000);
+function closeProjectPicker() {
+  document.getElementById('projectPickerModal').style.display = 'none';
+  buildTabs();
+  renderPanel("config");
+  updateProdTitle();
 }
 
 function loadFromFile(event) {
@@ -2142,6 +1610,7 @@ function exitCrewMode() {
   crewMode = false;
   document.body.classList.remove('crew-mode');
   if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
+  crewCurrentUrl = null;
   // Go back to landing screen
   data = defaultData();
   document.getElementById('landingScreen').style.display = 'flex';
@@ -2201,8 +1670,7 @@ function showEditLogin() {
   setTimeout(() => document.getElementById('pwInput').focus(), 100);
 }
 
-let crewSelectedProject = null; // {name, link} of the project crew selected
-const CREW_REGISTRY_CACHE = 'xf_crew_registry'; // localStorage key for crew devices
+let crewSelectedProject = null; // {name, file} of the project crew selected
 
 function showCrewPicker() {
   document.getElementById('landingPw').classList.remove('show');
@@ -2213,33 +1681,12 @@ function showCrewPicker() {
   const listEl = document.getElementById('crewProjectList');
   listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Loading projects...</div>';
 
-  // Strategy: try GitHub Pages registry first (works for everyone, no setup needed on crew side),
-  // then fall back to Dropbox shared link if a #reg= hash or cached link exists
+  // Fetch project list from GitHub Pages registry
   const base = window.location.href.split('/').slice(0, -1).join('/');
   fetch(base + '/registry.json?' + Date.now())
     .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
     .then(projects => renderCrewProjectList(projects))
-    .catch(() => {
-      // GitHub registry not available — try Dropbox shared link fallback
-      let regLink = null;
-      if (window.location.hash.startsWith('#reg=')) {
-        regLink = decodeURIComponent(window.location.hash.slice(5));
-        try { localStorage.setItem(CREW_REGISTRY_CACHE, regLink); } catch(e) {}
-      }
-      if (!regLink) { try { regLink = localStorage.getItem(CREW_REGISTRY_CACHE); } catch(e) {} }
-
-      if (regLink) {
-        let url = regLink.trim();
-        url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
-        if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
-        fetch(url + '&_t=' + Date.now())
-          .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-          .then(projects => renderCrewProjectList(projects))
-          .catch(() => showCrewFallback());
-      } else {
-        showCrewFallback();
-      }
-    });
+    .catch(() => showCrewFallback());
 }
 
 function renderCrewProjectList(projects) {
@@ -2262,7 +1709,7 @@ function showCrewFallback() {
   const listEl = document.getElementById('crewProjectList');
   listEl.innerHTML =
     '<div style="text-align:center;padding:16px">' +
-      '<div style="color:var(--silver);font-size:13px;margin-bottom:12px;line-height:1.6">No projects found.<br>The sound mixer hasn\'t published any yet.</div>' +
+      '<div style="color:var(--silver);font-size:13px;margin-bottom:12px;line-height:1.6">No projects found.<br>The sound mixer hasn\'t published any yet.<br><small style="opacity:.5">It may take 1-3 min after first save.</small></div>' +
     '</div>';
   document.getElementById('crewLoadFallback').style.display = 'block';
 }
@@ -2270,31 +1717,6 @@ function showCrewFallback() {
 function crewSelectProject(idx) {
   const p = window._crewProjects[idx];
   crewSelectedProject = p;
-  document.getElementById('crewProjectList').style.display = 'none';
-  document.getElementById('crewPwSection').style.display = 'block';
-  document.getElementById('crewPwHint').style.display = 'none';
-  document.getElementById('crewPwInput').value = '';
-  setTimeout(() => document.getElementById('crewPwInput').focus(), 100);
-}
-
-function crewGoFromLink() {
-  const inp = document.getElementById('crewLinkInput');
-  if (!inp) return;
-  let link = inp.value.trim();
-  if (!link) return;
-
-  // If they pasted a full crew URL, extract the relevant part
-  if (link.includes('#crew=')) {
-    link = decodeURIComponent(link.split('#crew=')[1]);
-  } else if (link.includes('#reg=')) {
-    // They pasted a registry link — save it and reload picker
-    const regLink = decodeURIComponent(link.split('#reg=')[1]);
-    try { localStorage.setItem(CREW_REGISTRY_CACHE, regLink); } catch(e) {}
-    showCrewPicker();
-    return;
-  }
-
-  crewSelectedProject = {name: '', link: link};
   document.getElementById('crewProjectList').style.display = 'none';
   document.getElementById('crewPwSection').style.display = 'block';
   document.getElementById('crewPwHint').style.display = 'none';
@@ -2340,6 +1762,7 @@ function crewCheckPw() {
       updateProdTitle();
       enterCrewMode();
       // Start auto-refresh polling from GitHub Pages
+      crewCurrentUrl = url;
       crewStartGhPolling(url);
     })
     .catch(err => {
@@ -2374,17 +1797,20 @@ function checkPw() {
   if (input.value === APP_PW) {
     // Correct — enter edit mode
     document.getElementById('landingScreen').style.display = 'none';
+    // Restore GitHub token from localStorage
+    try {
+      const savedGhToken = localStorage.getItem(GH_TOKEN_KEY);
+      if (savedGhToken) ghToken = savedGhToken;
+    } catch(e) {}
     // Restore auto-saved data from localStorage if available
     try {
       const saved = localStorage.getItem(AUTOSAVE_KEY);
       if (saved) mergeLoadedData(JSON.parse(saved));
     } catch(e) {}
     enableAutoSave();
-    // Check if Dropbox is connected
-    dbxLoadTokens();
-    if (dbxIsConnected()) {
-      // Show project picker instead of going straight to editing
-      dbxShowPicker();
+    // If GitHub token is set, show project picker
+    if (ghToken) {
+      showProjectPicker();
     } else {
       buildTabs();
       renderPanel("config");
@@ -2418,25 +1844,11 @@ function crewLandingLoad(event) {
 }
 
 function copyCrewLink() {
-  // If GitHub token is set, crew can just go to the bare URL
-  // If not, fall back to Dropbox registry link or direct project link
-  const base = window.location.href.split('#')[0].split('?')[0];
-  let crewUrl;
-
-  if (ghToken) {
-    // GitHub auto-publishes registry.json — crew just needs the bare URL
-    crewUrl = base;
-  } else {
-    // Fallback: use Dropbox registry link or direct project link
-    const regLnk = registryLink || (function(){ try { return localStorage.getItem(REGISTRY_LINK_KEY); } catch(e){} return null; })();
-    const projLink = data.config.dropboxLink;
-    if (!regLnk && !projLink) {
-      alert("Set up your GitHub token in CONFIG first!\n\nThis lets the app auto-publish your project list so crew can find it.");
-      return;
-    }
-    if (regLnk) crewUrl = base + '#reg=' + encodeURIComponent(regLnk);
-    else crewUrl = base + '#crew=' + encodeURIComponent(projLink.trim());
+  if (!ghToken) {
+    alert("Set up your GitHub token in CONFIG first!\n\nThis lets the app auto-publish your project list so crew can find it.");
+    return;
   }
+  const crewUrl = window.location.href.split('#')[0].split('?')[0];
 
   // Try native share first (mobile), then clipboard
   if (navigator.share) {
@@ -2462,6 +1874,32 @@ function copyToClipboard(url) {
 
 
 // ═════════════════════════════════════════════════════════════════════════════
+// CREW REFRESH (uses GitHub Pages)
+// ═════════════════════════════════════════════════════════════════════════════
+let crewCurrentUrl = null; // URL of the crew project JSON on GitHub Pages
+
+function crewRefresh() {
+  if (!crewCurrentUrl) return;
+  showCrewStatus("Fetching latest data...");
+  fetch(crewCurrentUrl + '?' + Date.now())
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(loaded => {
+      const currentTab = activeTab;
+      mergeLoadedData(loaded);
+      buildCrewTabs();
+      if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
+        switchTab(currentTab);
+      } else {
+        const firstDay = getActiveDays()[0];
+        if (firstDay) switchTab('day-' + firstDay);
+      }
+      updateProdTitle();
+      showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
+    })
+    .catch(() => showCrewStatus("Update failed \u2014 will retry"));
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
 // INIT
 // ═════════════════════════════════════════════════════════════════════════════
 // Register service worker for PWA / offline support
@@ -2469,49 +1907,10 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
-// Restore registry link for Edit mode (so "Share with Crew" works)
-try { registryLink = localStorage.getItem(REGISTRY_LINK_KEY) || null; } catch(e) {}
+// Restore GitHub token from localStorage
+try { const t = localStorage.getItem(GH_TOKEN_KEY); if (t) ghToken = t; } catch(e) {}
 
-if (typeof EMBEDDED_CREW_DATA !== 'undefined') {
-  // Legacy crew export — load data and go straight to crew mode
-  document.getElementById('landingScreen').style.display = 'none';
-  data = EMBEDDED_CREW_DATA;
-  buildTabs();
-  renderPanel("config");
-  updateProdTitle();
-  enterCrewMode();
-  crewAutoFetchAndPoll();
-}
-// Check URL hash for registry link: #reg=REGISTRY_SHARED_LINK
-// Crew opens this → sees project list → picks one → password → in
-else if (window.location.hash.startsWith('#reg=')) {
-  // Save the registry link to localStorage so it persists
-  const regLink = decodeURIComponent(window.location.hash.slice(5));
-  if (regLink) {
-    try { localStorage.setItem(CREW_REGISTRY_CACHE, regLink); } catch(e) {}
-    // Auto-open the crew picker
-    showCrewPicker();
-  }
-}
-// Check URL hash for direct project link: #crew=DROPBOX_SHARED_LINK
-else if (window.location.hash.startsWith('#crew=')) {
-  const crewLink = decodeURIComponent(window.location.hash.slice(6));
-  if (crewLink) {
-    crewSelectedProject = {name: '', link: crewLink};
-    document.getElementById('landingPw').classList.remove('show');
-    document.getElementById('landingCrewLoad').classList.add('show');
-    document.getElementById('crewProjectList').style.display = 'none';
-    document.getElementById('crewPwSection').style.display = 'block';
-    setTimeout(() => document.getElementById('crewPwInput').focus(), 200);
-  }
-}
-// If crew has a cached registry link, auto-show Crew Mode option
-// (they've visited before with a #reg= link)
-else if (localStorage.getItem(CREW_REGISTRY_CACHE)) {
-  // Landing screen stays visible — but when they click Crew Mode,
-  // showCrewPicker() will find the cached registry link automatically
-}
-// Otherwise landing screen is visible — user picks Edit or Crew mode
+// Landing screen is visible — user picks Edit or Crew mode
 </script>
 </body>
 </html>
