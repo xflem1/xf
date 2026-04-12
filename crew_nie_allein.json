@@ -1,0 +1,5182 @@
+{
+  "config": {
+    "productionTitle": "Nie Allein",
+    "episode": "",
+    "productionCompany": "HFF München",
+    "director": "",
+    "dop": "",
+    "firstAD": "",
+    "soundMixer": "Xavier Fleming",
+    "boomOp": "",
+    "utility": "",
+    "kitRecorder": "Sound Devices 833",
+    "kitMics": "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061",
+    "kitTxRx": "Wisycom MCR54, MTP61 x4, MTP41 x4",
+    "kitComs": "Sennheiser G4",
+    "crewPassword": "NAPW"
+  },
+  "scenes": {
+    "1": {
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Twilight",
+      "notes": "- No Dia - mostly movements and breaths will be important. Plant mics where possible for movements. \n- Multi room scene, may need more plant mics if camera transitions rooms in single shot",
+      "description": "Dozens of canvases lean against the walls of the small living room. In the distance, one can glimpse endless fields, colorful bouquets of flowers, and radiant\nsunrises. A brush is applied. Pale colors spread across the canvas, forming abstract structures. Margaret (78) stands before this almost black-and-white painting on the easel. Now we realize how gloomy the whole room is. Everything looks gray and lifeless. Hardly any sunlight penetrates the apartment; instead, there is the screaming of angry children, aggressive barking of dogs, and thunder and rumbling from the backyard. Eerie shadows are cast behind the thin curtains. Startled, Margret looks up from her picture, wraps her cardigan tighter around her thin body, and steps forward to close the heavy, dark velvet curtains. Relieved, she returns to the canvas, looks at the withered bouquet of flowers in front of her, and picks up her brush - but it doesn't seem to be working out quite right today. Frustrated, she sets her teacup down. With such force that a pigment container at the other end of the table is set in motion. Then it falls over. As they fall, the pigments detach from the glass, swirl around, and seem to take shape. Margret doesn't notice. She's just switching on the table lamp next to her, and the small light slowly tries to fight against the darkness of her apartment. Something flits through Margret's field of vision, past the wall. What was that? Margret is jolted out of her trance. But there's nothing to see. She shakes her head. Back at the screen, there it is again, a rustling sound. Margret hesitates. She clutches the brush and tries to make out something in the dark corner. No chance, the light doesn't reach that far. Just as she's about to turn away, a brightly colored tube of paint rolls towards her and stops at her slipper. Margret stares. She slowly backs away, grabbing an umbrella leaning against the wall with one hand. She stumbles towards the bedroom, her eyes never leaving the dark corner. Then very quickly: door open, Margret in, door closed. Tonight she'll sleep upright, armed with an umbrella. ",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": false
+        },
+        "B": {
+          "name": "Margret 6060",
+          "isDia": false
+        },
+        "C": {
+          "name": "Plant: Near 6061",
+          "isDia": false
+        },
+        "D": {
+          "name": "Plant: Splash 6060",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "Specific lighting through window mentioned many times (careful with shadows). ",
+      "nurton": "Room tone"
+    },
+    "2": {
+      "intExt": "INT.",
+      "place": "Margrets Apartment",
+      "time": "Morning",
+      "notes": "- Margret mutters to herself - not \"dialog\" but unscripted vocal expression expected. Margret later says \"get out of here\".\n- Multi room scene, may need more plant mics if camera transitions rooms in single shot",
+      "description": "When Margret wakes up, she's still clutching the umbrella tightly. Cautiously, she ventures out of the bedroom again. Surely it was all just a dream. Just to be sure, she checks in the corner, but there's only chaos. She mutters to herself as she does so. But she immediately notices that someone has opened the curtains. The unfamiliar sunlight dazzles her. She reaches out her hand to shield herself and tiptoes to the window. As she resolutely draws the curtains closed, her gaze falls upon a few green splashes of paint on the fabric. The traces of paint continue on the floor and lead directly to the canvas. And, oh dear, a small shadow made of colorful pigments is frolicking about on it, having just destroyed Margret's grey picture with its green handprints. Margret gasped in shock, the shadow froze. They glanced at each other briefly, then Margret darted towards him, waving her hands. \"Get out of here!\" The shadow fled. She has to save her picture! She paints over the colorful marks with white paint, but only smears everything even more. She sighs. First things first, breakfast. But as she opens the refrigerator door, an olive pit falls on her head. She looks up in disbelief. Surely that's not really the shadow sitting on top, with the half-empty jar of olives next to her. Completely annoyed, she slams the door shut and takes a pear from the fruit bowl instead. She strides purposefully towards the canvas. She'll just have to start over. She fetches a new canvas from the corner, but as she does, the shadow throws one brush after another onto the floor.",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": true
+        },
+        "B": {
+          "name": "Margret",
+          "isDia": true
+        },
+        "C": {
+          "name": "Plant: Near 6061",
+          "isDia": false
+        },
+        "D": {
+          "name": "Plant: Splash 6060",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "- Multi room, check camera movements and make sure to plan for any multi room takes",
+      "nurton": "/"
+    },
+    "3": {
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Morning",
+      "notes": "- Likely montage of seperate shots",
+      "description": "Motion Sequence:\nThe traces of chaos continue:\nA half-eaten pear in the fruit basket.\nMargret closes the open curtain.\nDirty brushes are standing in a teacup instead of in brush water.\nMargret closes the open curtain.\nBlack, white, and grey paint tubes were all thrown on the ground.\nMargret, annoyed, pulls the curtain closed.\nThe colorful paint tubes and pigment pots are scattered haphazardly all over the table; some have already\nleaked.\nMargret, very annoyed, pulls the curtain closed.",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": false
+        },
+        "B": {
+          "name": "Margret 6060",
+          "isDia": false
+        },
+        "C": {
+          "name": "Plant: Near 6061",
+          "isDia": false
+        },
+        "D": {
+          "name": "Plant: Splash 6060",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "/",
+      "nurton": "/"
+    },
+    "4": {
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Day",
+      "notes": "- Second half of scene utilises far more VFX, can record sound but will be very sound design heavy.",
+      "description": "Margret stands before a canvas. Completely empty, white, and full of possibilities. The curtains are finally closed. It's quiet around her. Everything as usual.\nDeliberately, she lifts the brush with her right hand and the palette with her left. Dip. Breathe. Then she guides the brush to the canvas, very gently and... YELLOW?\nSurprised, the paint palette slips from her hand. Before Margret can realize what's happening, the shadow darts out, lunges towards her, and catches the palette at the last moment. Margret looks at the suspended palette. Then at the shadow that slowly peeks out from behind it. She hesitates. Looks at the canvas, at the ghastly yellow, then back at the palette. An idea spreads within Margret, warm, gentle, and shy. Carefully, Margret reaches for the palette; the shade allows her to do so.\nMARGRET: (breathing) Thanks.\nThe shadow tilts its head as if surprised by the small word. Then he watches as Margret dips her brush into the yellow paint again, this time quite deliberately.\nAnd Margret paints. She reaches for bright colors: green, pink, red. The shadow steps onto an open tube of paint and squeezes a vibrant blue onto her palette.\nMargret's radiance returns, the paintbrush seems to develop a mind of its own. His work seems to be done, and so the shadow creeps, silently and stealthily, to the window. A jerk, and a ray of light breaks through the thick curtains. The sun shines over the chaos, the canvases, the splashes of paint, and finally over\nMargret's hands. She lets it happen. The shadow writhes in the light, glittering and shining and spinning. It whirls around, losing first one, then two, then three particles. It swirls directly over the pigment container from which it initially emerged. Slowly, it dissolves, and the pigments trickle back into the container.",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": true
+        },
+        "B": {
+          "name": "Margret 6060",
+          "isDia": true
+        },
+        "C": {
+          "name": "Plant: Near 6061",
+          "isDia": false
+        },
+        "D": {
+          "name": "Plant: Splash 6060",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "/",
+      "nurton": "Room tone"
+    },
+    "5": {
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Later",
+      "notes": "Silent mutterings - ensure good lav placement.",
+      "description": "Margret finishes her artwork, a colorful bouquet of flowers, and breathes a sigh of relief. In the light, her cheeks glow bright red.\nMARGRET: Just look!\nShe turns around, beaming with pride, but there's no sign of the shadow. There's no one there for Margret to show her picture to. She looks under the dresser. Nothing. In the refrigerator. Nothing. Then Margret shrugged. That's what she wanted all along, isn't it? Her peace and quiet. Now she has it again.\nMARGRET (CONT'D) (muttering): It was about time you disappeared.\nWas that it? Margret is very unsure. But what choice does she have but to return to her routine?",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": true
+        },
+        "B": {
+          "name": "Margret 6060",
+          "isDia": true
+        },
+        "C": {
+          "name": "Plant: Near 6061",
+          "isDia": false
+        },
+        "D": {
+          "name": "Plant: Splash 6060",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "clothing noise",
+      "nurton": "/"
+    },
+    "6": {
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "?",
+      "notes": "No dia - potential plant in Fridge if required on the day",
+      "description": "Margret gets up and walks into the kitchen. There's a half-eaten pear in the fruit bowl. Margret sighs.\nMargret looks in the refrigerator. There's one last olive in the jar. She doesn't touch it. Margret stands in front of the canvas. The flower painting radiates towards her, full of color, full of joy – but something is wrong with Margret. She looks around her studio, everything so gray, everything so still. Then her gaze falls on the glittering particles of color, dancing in the light. Light. Sunlight.\nMargret examines the gap in the curtain. Cautiously, she peers through it, outwards. For the first time, really looking at it properly.\nWe don't see everything that's going on, but we do see Margret's features. First thoughtful, then determined. She turns around with a jerk.",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": false
+        },
+        "B": {
+          "name": "Margret 6060",
+          "isDia": false
+        },
+        "C": {
+          "name": "Plant: Near 6061",
+          "isDia": false
+        },
+        "D": {
+          "name": "Plant: Splash 6060",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "/",
+      "nurton": "/"
+    },
+    "7": {
+      "intExt": "EXT.",
+      "place": "Courtyard",
+      "time": "?",
+      "notes": "Margret has no scripted dialog, but could improvise a response.\nLikely no plants needed. Can be prepped and added on set if required.",
+      "description": "Now we finally see everything Margret saw.\nMagnificent wildflowers are blooming, very close by. Then slowly we recognize more of the surroundings. We see a well-tended little garden, wrinkled hands diligently watering the flowers.\nAn older lady, Hilde, in the courtyard, she is smiling. And then, Margret. She steps through the front door into the courtyard. Very carefully, one foot after the other. As if she had to learn to walk again.\nThe canvas is tucked under her arm. The one with the bouquet of flowers. Hilde looks up, examines, recognizes, and marvels. A bouquet of flowers in her hands.\nHILDE: Margret?\nThe two women approach each other hesitantly. They meet amidst flowers, both painted and blooming.",
+      "tx": {
+        "A": {
+          "name": "Boom MK41",
+          "isDia": true
+        },
+        "B": {
+          "name": "Margret 6060",
+          "isDia": false
+        },
+        "C": {
+          "name": "Hilde 6060",
+          "isDia": true
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "EXT scene recorded outdoors. Do not use MK4 (limit room splash).",
+      "nurton": "/"
+    },
+    "8": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "9": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "10": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "11": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "12": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "13": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "14": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "15": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "16": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "17": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "18": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "19": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "20": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "21": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "22": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "23": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "24": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "25": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "26": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "27": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "28": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "29": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "30": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "31": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "32": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "33": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "34": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "35": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "36": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "37": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "38": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "39": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "40": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "41": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "42": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "43": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "44": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "45": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "46": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "47": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "48": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "49": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "50": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "51": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "52": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "53": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "54": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "55": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "56": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "57": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "58": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "59": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "60": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "61": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "62": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "63": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "64": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "65": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "66": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "67": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "68": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "69": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "70": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "71": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "72": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "73": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "74": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "75": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "76": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "77": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "78": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "79": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "80": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "81": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "82": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "83": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "84": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "85": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "86": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "87": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "88": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "89": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "90": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "91": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "92": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "93": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "94": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "95": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "96": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "97": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "98": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "99": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "100": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "101": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "102": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "103": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "104": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "105": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "106": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "107": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "108": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "109": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    },
+    "110": {
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
+      "tx": {
+        "A": {
+          "name": "",
+          "isDia": false
+        },
+        "B": {
+          "name": "",
+          "isDia": false
+        },
+        "C": {
+          "name": "",
+          "isDia": false
+        },
+        "D": {
+          "name": "",
+          "isDia": false
+        },
+        "E": {
+          "name": "",
+          "isDia": false
+        },
+        "F": {
+          "name": "",
+          "isDia": false
+        },
+        "G": {
+          "name": "",
+          "isDia": false
+        }
+      },
+      "problems": "",
+      "nurton": ""
+    }
+  },
+  "days": {
+    "1": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "1",
+        "2",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "2": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "3",
+        "4",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "3": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "5",
+        "6",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "4": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "5": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "6": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "7": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "8": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "9": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "10": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "11": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "12": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "13": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "14": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "15": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "16": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "17": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "18": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "19": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "20": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "21": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "22": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "23": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "24": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "25": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "26": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "27": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "28": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "29": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    },
+    "30": {
+      "date": "",
+      "firstAD": "",
+      "location": "",
+      "txAlloc": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": "",
+        "E": "",
+        "F": ""
+      },
+      "sceneNums": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "nurtonExtra": "",
+      "eodNotes": ""
+    }
+  }
+}
