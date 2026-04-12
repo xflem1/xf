@@ -1528,9 +1528,11 @@ async function dbxSaveProject(silent) {
     // Auto-generate crew sharing link if not already set
     if (!data.config.dropboxLink) await dbxCreateShareLink(currentDbxPath);
 
-    // Auto-update crew project registry in Dropbox + GitHub Pages
+    // Auto-update crew project registry in Dropbox
     updateDropboxRegistry();
-    autoPublishRegistry(!silent);
+    // Publish to GitHub: immediate on manual save, debounced on auto-save
+    if (!silent) autoPublishRegistry(true);
+    else scheduleGhPublish();
 
     return true;
   } catch(err) {
@@ -1677,78 +1679,107 @@ const GH_REPO = 'xflem1/xf'; // hardcoded — no config needed
 const GH_TOKEN_KEY = 'xf_gh_token';
 let ghToken = null;
 
+function ghSafeFilename(title) {
+  return (title || 'project').replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+}
+
+async function ghPushFile(path, content, message) {
+  // Helper: push a single file to GitHub (create or update)
+  let sha = null;
+  try {
+    const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (getResp.ok) {
+      const fileData = await getResp.json();
+      sha = fileData.sha;
+    } else if (getResp.status === 401 || getResp.status === 403) {
+      return {ok: false, status: getResp.status};
+    }
+  } catch(e) {}
+
+  const body = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
+  if (sha) body.sha = sha;
+
+  const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'Bearer ' + ghToken,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  return {ok: putResp.ok, status: putResp.status};
+}
+
 async function autoPublishRegistry(showFeedback) {
   if (!ghToken) {
     if (showFeedback) showStatus("No GitHub token set — add one in CONFIG");
     return false;
   }
-  const link = data.config.dropboxLink;
   const title = data.config.productionTitle;
-  if (!link || !link.trim()) {
-    if (showFeedback) showStatus("Save to Dropbox first — no shared link yet");
-    return false;
-  }
   if (!title || !title.trim()) {
     if (showFeedback) showStatus("Set a Production Title in CONFIG first");
     return false;
   }
 
   try {
-    // GET existing registry.json to get its SHA (needed for updates)
-    let existing = [];
-    let sha = null;
-    const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
-      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
-    });
-    if (getResp.ok) {
-      const fileData = await getResp.json();
-      sha = fileData.sha;
-      try { existing = JSON.parse(atob(fileData.content)); } catch(e) { existing = []; }
-    } else if (getResp.status === 401 || getResp.status === 403) {
-      showStatus("GitHub token invalid or missing permissions");
+    // 1. Push the full project data file to GitHub
+    const dataFile = 'crew_' + ghSafeFilename(title) + '.json';
+    const dataResult = await ghPushFile(dataFile, JSON.stringify(data, null, 2), 'Update ' + title.trim());
+    if (!dataResult.ok) {
+      if (dataResult.status === 401 || dataResult.status === 403) {
+        showStatus("GitHub token invalid or missing permissions");
+      } else {
+        showStatus("GitHub push failed (" + dataResult.status + ")");
+      }
       return false;
     }
-    // 404 is fine — file doesn't exist yet, we'll create it
 
-    // Build entry
+    // 2. Update the registry with a reference to the GitHub-hosted file (not Dropbox link)
+    let existing = [];
+    try {
+      const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
+        headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+      });
+      if (getResp.ok) {
+        const fileData = await getResp.json();
+        existing = JSON.parse(atob(fileData.content));
+        existing._sha = fileData.sha; // stash SHA for update
+      }
+    } catch(e) {}
+
     const entry = {
       name: title.trim(),
       episode: (data.config.episode || '').trim(),
-      link: link.trim()
+      file: dataFile
     };
     const idx = existing.findIndex(p => p.name === entry.name);
     if (idx >= 0) existing[idx] = entry;
     else existing.push(entry);
 
-    // Push to GitHub
-    const body = {
-      message: 'Update crew registry',
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(existing, null, 2))))
-    };
-    if (sha) body.sha = sha;
+    const sha = existing._sha;
+    delete existing._sha;
+    const regResult = await ghPushFile('registry.json', JSON.stringify(existing, null, 2), 'Update crew registry');
 
-    const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + ghToken,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (putResp.ok) {
-      if (showFeedback) showStatus("Crew list published to GitHub \u2713");
+    if (regResult.ok) {
+      if (showFeedback) showStatus("Published to crew \u2713");
       return true;
-    } else {
-      const errText = await putResp.text();
-      showStatus("GitHub push failed (" + putResp.status + ") — check token permissions");
-      return false;
     }
+    return false;
   } catch(e) {
     showStatus("GitHub error — check your connection");
     return false;
   }
+}
+
+// Debounced GitHub publish — avoids too many commits during active editing
+let ghPublishTimer = null;
+function scheduleGhPublish() {
+  if (!ghToken) return;
+  if (ghPublishTimer) clearTimeout(ghPublishTimer);
+  ghPublishTimer = setTimeout(() => autoPublishRegistry(false), 90000); // 90 seconds
 }
 
 async function testGitHubConnection() {
@@ -2274,24 +2305,23 @@ function crewGoFromLink() {
 function crewCheckPw() {
   if (!crewSelectedProject) return;
   const pw = document.getElementById('crewPwInput').value;
-  const link = crewSelectedProject.link;
+  const fileRef = crewSelectedProject.file;
 
-  if (!link) {
+  if (!fileRef) {
     document.getElementById('crewPwHint').textContent = 'Project not configured';
     document.getElementById('crewPwHint').style.display = 'block';
     return;
   }
 
-  // Fetch project data from Dropbox shared link
-  let url = link.trim();
-  url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
-  if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
+  // Fetch project data from GitHub Pages (same host — no CORS issues)
+  const base = window.location.href.split('/').slice(0, -1).join('/');
+  const url = base + '/' + fileRef;
 
   document.getElementById('crewPwHint').textContent = 'Loading...';
   document.getElementById('crewPwHint').style.display = 'block';
   document.getElementById('crewPwHint').style.color = '#888';
 
-  fetch(url)
+  fetch(url + '?' + Date.now())
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(loaded => {
       // Check password against the project data
@@ -2309,8 +2339,8 @@ function crewCheckPw() {
       renderPanel("config");
       updateProdTitle();
       enterCrewMode();
-      // Start auto-refresh polling via shared link
-      crewStartLinkPolling(link.trim());
+      // Start auto-refresh polling from GitHub Pages
+      crewStartGhPolling(url);
     })
     .catch(err => {
       document.getElementById('crewPwHint').textContent = 'Could not load project data';
@@ -2318,15 +2348,12 @@ function crewCheckPw() {
     });
 }
 
-function crewStartLinkPolling(link) {
+function crewStartGhPolling(url) {
   if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
-  let url = link;
-  url = url.replace(/[?&]dl=0/, function(m) { return m[0] + 'dl=1'; });
-  if (!/[?&]dl=1/.test(url)) url += (url.includes('?') ? '&' : '?') + 'dl=1';
 
   showCrewStatus("Live \u2014 auto-updating");
   crewPollInterval = setInterval(() => {
-    fetch(url + '&_t=' + Date.now())
+    fetch(url + '?' + Date.now())
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(loaded => {
         const currentTab = activeTab;
@@ -2339,7 +2366,7 @@ function crewStartLinkPolling(link) {
         showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
       })
       .catch(() => {});
-  }, 60000);
+  }, 120000); // Poll every 2 minutes (GitHub Pages has a short CDN cache)
 }
 
 function checkPw() {
