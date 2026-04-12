@@ -4,8 +4,8 @@
     "episode": "",
     "productionCompany": "HFF München",
     "director": "Mayra Ebensen",
-    "dop": "Alexander ",
-    "firstAD": "",
+    "dop": "Alexander Baumgartner",
+    "firstAD": "Louisa Wagener",
     "soundMixer": "Xavier Fleming",
     "boomOp": "",
     "utility": "",
@@ -13,7 +13,7 @@
     "kitMics": "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061",
     "kitTxRx": "Wisycom MCR54, MTP61 x4, MTP41 x4",
     "kitComs": "Sennheiser G4",
-    "crewPassword": "NAPW"
+    "crewPassword": "napw"
   },
   "scenes": {
     "1": {
