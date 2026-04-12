@@ -610,8 +610,11 @@ function renderConfig() {
         <label style="font-size:11px;font-weight:700;color:#666">GitHub Token (one-time setup)</label>
         <input type="password" id="ghTokenInput" value="${esc(ghToken || '')}" oninput="ghToken=this.value.trim();try{localStorage.setItem(GH_TOKEN_KEY,ghToken)}catch(e){}" placeholder="ghp_xxxx...">
       </div>
-      <div id="ghStatus" style="font-size:11px;margin-bottom:6px">
-        ${ghToken ? '<span style="color:#1b5e20;font-weight:700">\u25CF Connected</span> — crew project list auto-updates on save' : '<span style="color:#888">\u25CB Not set up</span>'}
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <div id="ghStatus" style="font-size:11px;flex:1">
+          ${ghToken ? '<span style="color:#1b5e20;font-weight:700">\u25CF Token saved</span>' : '<span style="color:#888">\u25CB Not set up</span>'}
+        </div>
+        <button onclick="testGitHubConnection()" style="padding:4px 12px;border:1px solid #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:#fff;font-family:inherit">Test Connection</button>
       </div>
       <div style="font-size:10px;color:#aaa;line-height:1.5">
         <strong>One-time setup (2 min):</strong> Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:#4a90d9">github.com/settings/tokens</a> → Fine-grained tokens → Generate → select your <strong>xf</strong> repo → Permissions: Contents (Read and Write) → Generate. Paste above.<br>
@@ -1527,7 +1530,7 @@ async function dbxSaveProject(silent) {
 
     // Auto-update crew project registry in Dropbox + GitHub Pages
     updateDropboxRegistry();
-    autoPublishRegistry();
+    autoPublishRegistry(!silent);
 
     return true;
   } catch(err) {
@@ -1674,11 +1677,21 @@ const GH_REPO = 'xflem1/xf'; // hardcoded — no config needed
 const GH_TOKEN_KEY = 'xf_gh_token';
 let ghToken = null;
 
-async function autoPublishRegistry() {
-  if (!ghToken) return;
+async function autoPublishRegistry(showFeedback) {
+  if (!ghToken) {
+    if (showFeedback) showStatus("No GitHub token set — add one in CONFIG");
+    return false;
+  }
   const link = data.config.dropboxLink;
   const title = data.config.productionTitle;
-  if (!link || !link.trim() || !title || !title.trim()) return;
+  if (!link || !link.trim()) {
+    if (showFeedback) showStatus("Save to Dropbox first — no shared link yet");
+    return false;
+  }
+  if (!title || !title.trim()) {
+    if (showFeedback) showStatus("Set a Production Title in CONFIG first");
+    return false;
+  }
 
   try {
     // GET existing registry.json to get its SHA (needed for updates)
@@ -1691,7 +1704,11 @@ async function autoPublishRegistry() {
       const fileData = await getResp.json();
       sha = fileData.sha;
       try { existing = JSON.parse(atob(fileData.content)); } catch(e) { existing = []; }
+    } else if (getResp.status === 401 || getResp.status === 403) {
+      showStatus("GitHub token invalid or missing permissions");
+      return false;
     }
+    // 404 is fine — file doesn't exist yet, we'll create it
 
     // Build entry
     const entry = {
@@ -1720,9 +1737,50 @@ async function autoPublishRegistry() {
       body: JSON.stringify(body)
     });
 
-    if (!putResp.ok) console.log('GitHub registry push failed:', putResp.status);
+    if (putResp.ok) {
+      if (showFeedback) showStatus("Crew list published to GitHub \u2713");
+      return true;
+    } else {
+      const errText = await putResp.text();
+      showStatus("GitHub push failed (" + putResp.status + ") — check token permissions");
+      return false;
+    }
   } catch(e) {
-    console.log('GitHub push error:', e);
+    showStatus("GitHub error — check your connection");
+    return false;
+  }
+}
+
+async function testGitHubConnection() {
+  const statusEl = document.getElementById('ghStatus');
+  if (!ghToken) {
+    statusEl.innerHTML = '<span style="color:#ff6b6b">Paste a GitHub token above first</span>';
+    return;
+  }
+  statusEl.innerHTML = '<span style="color:#888">Testing...</span>';
+
+  try {
+    const resp = await fetch('https://api.github.com/repos/' + GH_REPO, {
+      headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
+    });
+    if (resp.ok) {
+      statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Connected</span> — token is valid';
+      // If we also have a Dropbox link, try publishing now
+      if (data.config.dropboxLink && data.config.productionTitle) {
+        const ok = await autoPublishRegistry(true);
+        if (ok) statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Connected & published</span>';
+      }
+    } else if (resp.status === 401) {
+      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Token is invalid — generate a new one</span>';
+    } else if (resp.status === 403) {
+      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Token missing permissions — needs Contents: Read & Write</span>';
+    } else if (resp.status === 404) {
+      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Repo not found — check token has access to xflem1/xf</span>';
+    } else {
+      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Error ' + resp.status + '</span>';
+    }
+  } catch(e) {
+    statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Network error — check connection</span>';
   }
 }
 
