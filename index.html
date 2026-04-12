@@ -357,7 +357,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.3</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.4</div>
   </div>
 </div>
 
@@ -1204,6 +1204,7 @@ let crewPollInterval = null;
 // ═════════════════════════════════════════════════════════════════════════════
 const GH_REPO = 'xflem1/xf'; // hardcoded — no config needed
 const GH_TOKEN_KEY = 'xf_gh_token';
+const GH_TOKEN_DEFAULT = ''; // Will be set after diagnostic — paste your token here as fallback
 let ghToken = null;
 
 function ghSafeFilename(title) {
@@ -1214,9 +1215,13 @@ async function ghPushFile(path, content, message) {
   // Helper: push a single file to GitHub (create or update)
   // Retries up to 3 times on 409 (SHA conflict) with escalating delays
   const MAX_ATTEMPTS = 3;
-  const DELAYS = [1500, 3000, 5000]; // escalating backoff
+  const DELAYS = [2000, 4000, 6000]; // escalating backoff
+  let lastError = '';
+
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     let sha = null;
+
+    // Step 1: GET the file to find its current SHA (if it exists)
     try {
       const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
         headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
@@ -1224,16 +1229,25 @@ async function ghPushFile(path, content, message) {
       if (getResp.ok) {
         const fileData = await getResp.json();
         sha = fileData.sha;
-      } else if (getResp.status === 401 || getResp.status === 403) {
-        return {ok: false, status: getResp.status};
+        console.log('[ghPush] GET ' + path + ' → sha=' + sha);
+      } else if (getResp.status === 404) {
+        console.log('[ghPush] GET ' + path + ' → 404 (new file, no sha needed)');
+      } else {
+        const errText = await getResp.text().catch(() => '');
+        console.error('[ghPush] GET ' + path + ' → ' + getResp.status + ': ' + errText);
+        lastError = 'GET ' + path + ': HTTP ' + getResp.status + ' ' + errText;
+        if (getResp.status === 401 || getResp.status === 403) {
+          return {ok: false, status: getResp.status, error: lastError};
+        }
       }
-      // 404 = file doesn't exist yet, that's fine — sha stays null (creates new file)
     } catch(e) {
-      console.warn('[ghPush] GET error for ' + path, e);
+      console.error('[ghPush] GET network error for ' + path, e);
+      lastError = 'GET network error: ' + e.message;
     }
 
-    const body = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
-    if (sha) body.sha = sha;
+    // Step 2: PUT the file content
+    const putBody = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
+    if (sha) putBody.sha = sha;
 
     try {
       const putResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
@@ -1243,27 +1257,36 @@ async function ghPushFile(path, content, message) {
           'Accept': 'application/vnd.github.v3+json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(putBody)
       });
 
-      if (putResp.ok) return {ok: true, status: putResp.status};
+      if (putResp.ok) {
+        console.log('[ghPush] PUT ' + path + ' → SUCCESS (' + putResp.status + ')');
+        return {ok: true, status: putResp.status};
+      }
+
+      // Capture full error response
+      const errBody = await putResp.text().catch(() => '');
+      console.error('[ghPush] PUT ' + path + ' → ' + putResp.status + ': ' + errBody);
+      lastError = 'PUT ' + path + ': HTTP ' + putResp.status + ' ' + errBody.substring(0, 200);
+
       if (putResp.status === 409 && attempt < MAX_ATTEMPTS - 1) {
-        // SHA conflict — wait then retry with fresh SHA
-        console.warn('[ghPush] 409 conflict on ' + path + ', retry ' + (attempt + 1));
+        console.warn('[ghPush] Retry ' + (attempt + 1) + ' in ' + DELAYS[attempt] + 'ms...');
         await new Promise(r => setTimeout(r, DELAYS[attempt]));
         continue;
       }
-      return {ok: false, status: putResp.status};
+      return {ok: false, status: putResp.status, error: lastError};
     } catch(e) {
-      console.warn('[ghPush] PUT error for ' + path, e);
+      console.error('[ghPush] PUT network error for ' + path, e);
+      lastError = 'PUT network error: ' + e.message;
       if (attempt < MAX_ATTEMPTS - 1) {
         await new Promise(r => setTimeout(r, DELAYS[attempt]));
         continue;
       }
-      return {ok: false, status: 0};
+      return {ok: false, status: 0, error: lastError};
     }
   }
-  return {ok: false, status: 409};
+  return {ok: false, status: 409, error: lastError};
 }
 
 // Publish lock — prevents overlapping pushes that cause 409 conflicts
@@ -1293,10 +1316,12 @@ async function autoPublishRegistry(showFeedback) {
     const dataFile = 'crew_' + ghSafeFilename(title) + '.json';
     const dataResult = await ghPushFile(dataFile, JSON.stringify(data, null, 2), 'Update ' + title.trim());
     if (!dataResult.ok) {
+      const errDetail = dataResult.error || ('HTTP ' + dataResult.status);
+      console.error('[SAVE] Data push failed:', errDetail);
       if (dataResult.status === 401 || dataResult.status === 403) {
         showStatus("GitHub token invalid or missing permissions");
       } else {
-        showStatus("GitHub push failed (" + dataResult.status + ")");
+        showStatus("Save failed: " + errDetail.substring(0, 80));
       }
       ghPublishing = false;
       return false;
@@ -1356,30 +1381,71 @@ async function testGitHubConnection() {
     statusEl.innerHTML = '<span style="color:#ff6b6b">Paste a GitHub token above first</span>';
     return;
   }
-  statusEl.innerHTML = '<span style="color:#888">Testing...</span>';
+  statusEl.innerHTML = '<span style="color:#888">Testing token...</span>';
 
   try {
+    // Test 1: Can we read the repo?
     const resp = await fetch('https://api.github.com/repos/' + GH_REPO, {
       headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
     });
-    if (resp.ok) {
-      statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Connected</span> — token is valid';
-      // Try publishing project data now
+    const scopes = resp.headers.get('X-OAuth-Scopes') || 'none';
+    const rateRemaining = resp.headers.get('X-RateLimit-Remaining') || '?';
+
+    if (!resp.ok) {
+      const errText = await resp.text().catch(() => '');
+      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF HTTP ' + resp.status + ': ' + errText.substring(0, 100) + '</span>';
+      return;
+    }
+
+    statusEl.innerHTML = '<span style="color:#1b5e20">\u25CF Read OK</span> (scopes: ' + scopes + ', rate: ' + rateRemaining + ')';
+
+    // Test 2: Can we WRITE? Try creating a tiny test file, then delete it
+    statusEl.innerHTML += '<br><span style="color:#888">Testing write access...</span>';
+
+    const testPath = '_test_' + Date.now() + '.txt';
+    const testContent = btoa('test');
+    const writeResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + testPath, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + ghToken,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({message: 'Test write access', content: testContent})
+    });
+
+    if (writeResp.ok) {
+      // Clean up: delete the test file
+      const writeData = await writeResp.json();
+      await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + testPath, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Bearer ' + ghToken,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({message: 'Clean up test', sha: writeData.content.sha})
+      });
+      statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Read + Write OK!</span> Token works perfectly.';
+
+      // Now try the actual publish
       if (data.config.productionTitle) {
+        statusEl.innerHTML += '<br><span style="color:#888">Publishing project data...</span>';
         const ok = await autoPublishRegistry(true);
-        if (ok) statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Connected & published</span>';
+        if (ok) {
+          statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Published to crew!</span>';
+        } else {
+          statusEl.innerHTML += '<br><span style="color:#ff6b6b">Publish failed — check console (F12) for details</span>';
+        }
       }
-    } else if (resp.status === 401) {
-      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Token is invalid — generate a new one</span>';
-    } else if (resp.status === 403) {
-      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Token missing permissions — needs Contents: Read & Write</span>';
-    } else if (resp.status === 404) {
-      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Repo not found — check token has access to xflem1/xf</span>';
     } else {
-      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Error ' + resp.status + '</span>';
+      const errBody = await writeResp.text().catch(() => '');
+      statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Read OK but WRITE FAILED (HTTP ' + writeResp.status + ')</span>';
+      statusEl.innerHTML += '<br><span style="font-size:10px;color:#ff6b6b;word-break:break-all">' + errBody.substring(0, 200) + '</span>';
+      statusEl.innerHTML += '<br><span style="font-size:10px;color:#888">Your token needs <strong>Contents: Read and Write</strong> permission</span>';
     }
   } catch(e) {
-    statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Network error — check connection</span>';
+    statusEl.innerHTML = '<span style="color:#ff6b6b">\u25CF Network error: ' + e.message + '</span>';
   }
 }
 
@@ -1994,8 +2060,9 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
-// Restore GitHub token from localStorage
+// Restore GitHub token: localStorage first, then hardcoded fallback
 try { const t = localStorage.getItem(GH_TOKEN_KEY); if (t) ghToken = t; } catch(e) {}
+if (!ghToken && GH_TOKEN_DEFAULT) ghToken = GH_TOKEN_DEFAULT;
 
 // Landing screen is visible — user picks Edit or Crew mode
 </script>
