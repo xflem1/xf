@@ -363,7 +363,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.8</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.9</div>
   </div>
 </div>
 
@@ -397,6 +397,7 @@ body.crew-mode .crew-footer{display:block}
 <!-- ─── Crew Toolbar ──────────────────────────────────────────────────────── -->
 <div class="crew-toolbar" id="crewToolbar">
   <button class="crew-reload" onclick="crewRefresh()">🔄 Refresh</button>
+  <button onclick="crewSavePDF()" style="background:#2d4a7a;border-color:#2d4a7a;color:#fff">📄 Save PDF</button>
   <input type="file" id="crewLoadInput" accept=".json" style="display:none" onchange="crewLoadFile(event)">
   <span class="crew-status" id="crewStatusMsg"></span>
   <div class="spacer"></div>
@@ -801,19 +802,31 @@ function renderDay(dayNum) {
 
   for (let slot = 0; slot < SCENES_PER_DAY; slot++) {
     const scNum = d.sceneNums[slot];
+    // In crew mode, skip empty scene slots
+    if (crewMode && (!scNum || !scNum.trim())) continue;
     const sc = scNum && data.scenes[parseInt(scNum)] ? data.scenes[parseInt(scNum)] : null;
     html += renderDaySceneRow(dayNum, slot, scNum, sc);
   }
 
-  html += `
-  <div class="day-extra">
-    <div class="day-extra-hdr nurton-h">NURTON / WILD TRACKS (additional)</div>
-    <textarea oninput="data.days[${dayNum}].nurtonExtra=this.value">${esc(d.nurtonExtra)}</textarea>
-  </div>
-  <div class="day-extra">
-    <div class="day-extra-hdr eod-h">ADDITIONAL NOTES / END OF DAY</div>
-    <textarea oninput="data.days[${dayNum}].eodNotes=this.value">${esc(d.eodNotes)}</textarea>
-  </div>`;
+  if (crewMode) {
+    // In crew mode, only show these sections if they have content, and use divs
+    if (d.nurtonExtra && d.nurtonExtra.trim()) {
+      html += `<div class="day-extra"><div class="day-extra-hdr nurton-h">NURTON / WILD TRACKS (additional)</div><div class="crew-text-display">${esc(d.nurtonExtra)}</div></div>`;
+    }
+    if (d.eodNotes && d.eodNotes.trim()) {
+      html += `<div class="day-extra"><div class="day-extra-hdr eod-h">ADDITIONAL NOTES / END OF DAY</div><div class="crew-text-display">${esc(d.eodNotes)}</div></div>`;
+    }
+  } else {
+    html += `
+    <div class="day-extra">
+      <div class="day-extra-hdr nurton-h">NURTON / WILD TRACKS (additional)</div>
+      <textarea oninput="data.days[${dayNum}].nurtonExtra=this.value">${esc(d.nurtonExtra)}</textarea>
+    </div>
+    <div class="day-extra">
+      <div class="day-extra-hdr eod-h">ADDITIONAL NOTES / END OF DAY</div>
+      <textarea oninput="data.days[${dayNum}].eodNotes=this.value">${esc(d.eodNotes)}</textarea>
+    </div>`;
+  }
 
   // Crew footer — production info (only visible in crew mode via CSS)
   html += renderCrewFooter();
@@ -1507,7 +1520,7 @@ function openSettings() {
     <div style="border-top:1px solid #eee;padding-top:12px">
       <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
       <div style="font-size:11px;color:#888;line-height:1.8">
-        Version: v2.8<br>
+        Version: v2.9<br>
         Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
         Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
       </div>
@@ -2218,6 +2231,34 @@ function copyToClipboard(url) {
 // CREW REFRESH (uses GitHub Pages)
 // ═════════════════════════════════════════════════════════════════════════════
 let crewCurrentUrl = null; // URL of the crew project JSON on GitHub Pages
+
+function crewSavePDF() {
+  // Use the browser's print dialog to save as PDF
+  // Temporarily style the page for print
+  const style = document.createElement('style');
+  style.id = 'crew-print-style';
+  style.textContent = `
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .topbar, .tabs, .crew-toolbar { display: none !important; }
+      .content { max-width: 100% !important; padding: 0 !important; }
+      .crew-text-display { background: #f9f9f9 !important; border: 1px solid #ddd !important; }
+      .scene-card { break-inside: avoid; }
+      .day-scene-row { break-inside: avoid; }
+      .tx-map-wrap { break-inside: avoid; }
+    }
+  `;
+  document.head.appendChild(style);
+  showCrewStatus("Opening print dialog — choose 'Save as PDF'");
+  setTimeout(() => {
+    window.print();
+    // Clean up
+    setTimeout(() => {
+      const s = document.getElementById('crew-print-style');
+      if (s) s.remove();
+    }, 1000);
+  }, 300);
+}
 
 function crewRefresh() {
   if (!crewCurrentUrl) return;
