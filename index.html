@@ -915,6 +915,8 @@ function renderSceneCard(n) {
           <input value="${esc(s.time)}" oninput="data.scenes[${n}].time=this.value;updateScenePreview(${n})" placeholder="e.g. Twilight">
         </div>
       </div>
+      ${renderTxSection(n)}
+      ${renderShotList(n)}
       <div class="scene-field">
         <div class="scene-field-label notes-l">Scene Description</div>
         <textarea class="desc-area" oninput="data.scenes[${n}].description=this.value">${esc(s.description)}</textarea>
@@ -923,8 +925,6 @@ function renderSceneCard(n) {
         <div class="scene-field-label notes-l">Notes</div>
         <textarea oninput="data.scenes[${n}].notes=this.value;updateScenePreview(${n})">${esc(s.notes)}</textarea>
       </div>
-      ${renderTxSection(n)}
-      ${renderShotList(n)}
       <div class="scene-field">
         <div class="scene-field-label prob-l">Potential Problems</div>
         <textarea oninput="data.scenes[${n}].problems=this.value">${esc(s.problems)}</textarea>
@@ -1486,10 +1486,10 @@ function renderDaySceneBody(n) {
         <div class="scene-loc-field" style="flex:3"><label>Place</label><div style="padding:6px 10px;font-size:13px">${esc(s.place) || '—'}</div></div>
         <div class="scene-loc-field"><label>Time</label><div style="padding:6px 10px;font-size:13px">${esc(s.time) || '—'}</div></div>
       </div>
-      ${s.description ? '<div class="scene-field"><div class="scene-field-label notes-l">Scene Description</div><div class="crew-text-display">' + esc(s.description) + '</div></div>' : ''}
-      ${s.notes ? '<div class="scene-field"><div class="scene-field-label notes-l">Notes</div><div class="crew-text-display">' + esc(s.notes) + '</div></div>' : ''}
       ${renderTxSection(n)}
       ${renderShotList(n)}
+      ${s.description ? '<div class="scene-field"><div class="scene-field-label notes-l">Scene Description</div><div class="crew-text-display">' + esc(s.description) + '</div></div>' : ''}
+      ${s.notes ? '<div class="scene-field"><div class="scene-field-label notes-l">Notes</div><div class="crew-text-display">' + esc(s.notes) + '</div></div>' : ''}
       ${s.problems ? '<div class="scene-field"><div class="scene-field-label prob-l">Potential Problems</div><div class="crew-text-display" style="background:var(--prob)">' + esc(s.problems) + '</div></div>' : ''}
       ${s.nurton ? '<div class="scene-field"><div class="scene-field-label nt-l">NurTon</div><div class="crew-text-display" style="background:var(--nt)">' + esc(s.nurton) + '</div></div>' : ''}`;
   }
@@ -1513,6 +1513,8 @@ function renderDaySceneBody(n) {
           <input value="${esc(s.time)}" oninput="data.scenes[${n}].time=this.value" placeholder="e.g. Twilight">
         </div>
       </div>
+      ${renderTxSection(n)}
+      ${renderShotList(n)}
       <div class="scene-field">
         <div class="scene-field-label notes-l">Scene Description</div>
         <textarea class="desc-area" oninput="data.scenes[${n}].description=this.value">${esc(s.description)}</textarea>
@@ -1521,8 +1523,6 @@ function renderDaySceneBody(n) {
         <div class="scene-field-label notes-l">Notes</div>
         <textarea oninput="data.scenes[${n}].notes=this.value">${esc(s.notes)}</textarea>
       </div>
-      ${renderTxSection(n)}
-      ${renderShotList(n)}
       <div class="scene-field">
         <div class="scene-field-label prob-l">Potential Problems</div>
         <textarea oninput="data.scenes[${n}].problems=this.value">${esc(s.problems)}</textarea>
