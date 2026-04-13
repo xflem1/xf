@@ -1010,14 +1010,28 @@ function renderShotList(n) {
   }
 
   return `<div class="shot-list-wrap">
-    <div class="shot-list-hdr"><span class="sl-label">Shot List</span></div>
-    <div class="shot-list-grid">${shots.map((sh, i) => `
+    <div class="shot-list-hdr"><span class="sl-label">Shot List</span><button onclick="addShot(${n})" style="padding:2px 10px;border:1px dashed #ccc;border-radius:3px;font-size:10px;cursor:pointer;background:transparent;color:#888;font-family:inherit">+ Add Shot</button></div>
+    <div class="shot-list-grid" id="shotgrid-${n}">${shots.map((sh, i) => `
       <div class="shot-row">
         <div class="shot-num ${i%2?'odd':''}">${i+1}</div>
         <input value="${esc(sh)}" placeholder="Shot description..." oninput="data.scenes[${n}].shotList[${i}]=this.value">
       </div>`).join('')}
     </div>
   </div>`;
+}
+
+function addShot(n) {
+  if (!data.scenes[n].shotList) data.scenes[n].shotList = [];
+  data.scenes[n].shotList.push('');
+  const grid = document.getElementById('shotgrid-' + n);
+  if (grid) {
+    const i = data.scenes[n].shotList.length - 1;
+    const row = document.createElement('div');
+    row.className = 'shot-row';
+    row.innerHTML = '<div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><input value="" placeholder="Shot description..." oninput="data.scenes[' + n + '].shotList[' + i + ']=this.value">';
+    grid.appendChild(row);
+    row.querySelector('input').focus();
+  }
 }
 
 function toggleScene(n) {
@@ -2660,12 +2674,19 @@ let crewMode = false;
 function enterCrewMode() {
   crewMode = true;
   document.body.classList.add('crew-mode');
-  const scriptBtn = document.getElementById('crewScriptBtn');
-  if (scriptBtn) scriptBtn.style.display = (data.config.scriptPdfDe || data.config.scriptPdfEn) ? '' : 'none';
+  updateCrewScriptBtn();
   buildCrewTabs();
   const firstDay = getActiveDays()[0];
   if (firstDay) switchTab('day-' + firstDay);
   else switchTab('day-1');
+}
+
+function updateCrewScriptBtn() {
+  const scriptBtn = document.getElementById('crewScriptBtn');
+  if (scriptBtn) {
+    const hasScript = !!(data.config.scriptPdfDe || data.config.scriptPdfEn);
+    scriptBtn.style.display = hasScript ? 'inline-block' : 'none';
+  }
 }
 
 function exitCrewMode() {
