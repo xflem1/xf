@@ -146,31 +146,31 @@
       "nurton": ""
     },
     "3": {
-      "intExt": "INT.",
-      "place": "Margret's Apartment",
-      "time": "Morning",
-      "notes": "- Likely montage of seperate shots",
-      "description": "Motion Sequence:\nThe traces of chaos continue:\nA half-eaten pear in the fruit basket.\nMargret closes the open curtain.\nDirty brushes are standing in a teacup instead of in brush water.\nMargret closes the open curtain.\nBlack, white, and grey paint tubes were all thrown on the ground.\nMargret, annoyed, pulls the curtain closed.\nThe colorful paint tubes and pigment pots are scattered haphazardly all over the table; some have already\nleaked.\nMargret, very annoyed, pulls the curtain closed.",
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": ""
         },
         "B": {
-          "name": "Margret",
+          "name": "",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": ""
         },
         "C": {
-          "name": "Near",
-          "type": "plant",
-          "mic": "DPA 6061"
+          "name": "",
+          "type": "dia",
+          "mic": ""
         },
         "D": {
-          "name": "Splash",
-          "type": "plant",
-          "mic": "DPA 6060"
+          "name": "",
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
@@ -205,7 +205,7 @@
         "",
         ""
       ],
-      "problems": "/",
+      "problems": "",
       "nurton": ""
     },
     "4": {
@@ -398,31 +398,31 @@
       "nurton": ""
     },
     "7": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Morning",
+      "notes": "- Likely montage of seperate shots",
+      "description": "Motion Sequence:\nThe traces of chaos continue:\nA half-eaten pear in the fruit basket.\nMargret closes the open curtain.\nDirty brushes are standing in a teacup instead of in brush water.\nMargret closes the open curtain.\nBlack, white, and grey paint tubes were all thrown on the ground.\nMargret, annoyed, pulls the curtain closed.\nThe colorful paint tubes and pigment pots are scattered haphazardly all over the table; some have already\nleaked.\nMargret, very annoyed, pulls the curtain closed.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Margret",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -457,14 +457,14 @@
         "",
         ""
       ],
-      "problems": "",
+      "problems": "/",
       "nurton": ""
     },
     "8": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "- likely a lot of VFX",
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Day",
+      "notes": "- likely a lot of VFX\n- multi room",
       "description": "(breathing) Thanks.\nThe shadow tilts its head as if surprised by the small word.\nMargret dips her brush into the yellow paint again, this time quite deliberately. And Margret paints. She reaches for bright\ncolors: green, pink, red.\nThe shadow steps onto an open tube of paint and squeezes a bright blue onto her palette.\nMargret's radiance returns, the paintbrush seems to develop a mind of its own.\nHis work seems to be done, and so the shadow creeps, silently and stealthily, to the window. A jerk, and a ray of\nlight breaks through the thick curtains.\nThe sun shines over the chaos, the canvases, the splashes of paint, and finally over Margret's hands. She\nlets it happen.\nThe shadow writhes in the light, glittering and shining and spinning. It whirls around, losing first one, then two, then three\nparticles.\nIt swirls directly over the pigment container from which it initially emerged. Slowly, it dissolves, and the pigments trickle\nback into the container.\nMachine Translated by Google\n(Later)\nMargret finishes her artwork, a colorful bouquet of flowers, and breathes a sigh of relief. In the light, her cheeks glow\nbright red.\nMARGRET\nJust look!\nShe turns around, beaming with pride, but there's no sign of the shadow. There's no one there for Margret to show her\npicture to.\nShe looks under the dresser. Nothing. In the refrigerator. Nothing.\nThen Margret shrugs. That's what she wanted all along, isn't it?\nShe has her peace and quiet again.\nMARGRET (CONT'D)\n(murmuring)\nIt was about time you disappeared.\nWas that it? Margret is very unsure. But what choice does she have but to return to her routine?\nMargret gets up and walks into the kitchen. There's a half-eaten pear in the fruit bowl. Margret sighs.\nMargret looks in the refrigerator. There's one last olive in the jar. She doesn't touch it.\nMargret stands in front of the canvas. The flower painting radiates towards her, full of color, full of joy – but something\nis wrong with Margret.\nShe looks around her studio, everything so gray, everything so still. Then her gaze falls on the glittering particles of color,\ndancing in the light. Light. Sunlight.\nMargret examines the gap in the curtain. Cautiously, she peers through it, outwards. For the first time, really looking at it\nproperly.\nWe don't see everything that's going on, but we do see Margret's features. First thoughtful, then determined.\nShe turns around with a jerk.",
       "tx": {
         "A": {
@@ -520,13 +520,13 @@
         "",
         ""
       ],
-      "problems": "",
+      "problems": "- multi room / check camera movements\n- could be off camera direction",
       "nurton": ""
     },
     "9": {
-      "intExt": "EXT.",
+      "intExt": "INT./EXT.",
       "place": "Courtyard",
-      "time": "?",
+      "time": "Day",
       "notes": "Margret has no scripted dialog, but could improvise a response.\nLikely no plants needed. Can be prepped and added on set if required.",
       "description": "Now we finally see everything Margret saw.\nMagnificent wildflowers are blooming, very close by. Then slowly we recognize more of the surroundings. We see a well-tended little garden, wrinkled hands diligently watering the flowers.\nAn older lady, Hilde, in the courtyard, she is smiling. And then, Margret. She steps through the front door into the courtyard. Very carefully, one foot after the other. As if she had to learn to walk again.\nThe canvas is tucked under her arm. The one with the bouquet of flowers. Hilde looks up, examines, recognizes, and marvels. A bouquet of flowers in her hands.\nHILDE: Margret?\nThe two women approach each other hesitantly. They meet amidst flowers, both painted and blooming.",
       "tx": {
@@ -7021,7 +7021,7 @@
       "sceneNums": [
         "1",
         "2",
-        "3",
+        "7",
         "5",
         "",
         "",
