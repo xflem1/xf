@@ -199,6 +199,8 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .tx-map-tag.plant{background:rgba(243,229,245,.15);color:#ce93d8}
 .tx-map-tag.boom{background:rgba(252,228,236,.15);color:#ef9a9a}
 .tx-map-tag.conflict{outline:2px solid #ff6b6b;outline-offset:-1px}
+.tx-map-tag.mic-collision{outline:2px solid #ff9800;outline-offset:-1px;background:rgba(255,152,0,.2) !important}
+.tx-map-tag.boom-mic-change{outline:2px solid #64b5f6;outline-offset:-1px;background:rgba(100,181,246,.15) !important}
 .tx-map-empty{color:var(--gunmetal);font-style:italic;font-size:11px}
 
 .day-scene-row{background:var(--white);border:1px solid #ddd;border-radius:6px;margin-bottom:6px;overflow:hidden}
@@ -494,6 +496,7 @@ body.crew-mode .crew-footer{display:block}
 <div class="crew-toolbar" id="crewToolbar">
   <button class="crew-reload" onclick="crewRefresh()">🔄 Refresh</button>
   <button onclick="crewSavePDF()" style="background:#2d4a7a;border-color:#2d4a7a;color:#fff">📄 Save PDF</button>
+  <button id="crewScriptBtn" onclick="showScriptPicker()" style="background:#6a1b9a;border-color:#6a1b9a;color:#fff;display:none">📖 Script</button>
   <input type="file" id="crewLoadInput" accept=".json" style="display:none" onchange="crewLoadFile(event)">
   <span class="crew-status" id="crewStatusMsg"></span>
   <div class="spacer"></div>
@@ -578,7 +581,7 @@ body.crew-mode .crew-footer{display:block}
 // ═════════════════════════════════════════════════════════════════════════════
 const TX_LABELS = ["A","B","C","D","E","F","G","H"];
 let NUM_SCENES = 110;
-const NUM_DAYS = 30;
+let NUM_DAYS = 30;
 let SCENES_PER_DAY = 12;
 
 function defaultData() {
@@ -588,7 +591,8 @@ function defaultData() {
       director: "", dop: "", firstAD: "", soundMixer: "", boomOp: "", utility: "",
       kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4, Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
       crewPassword: "",
-      cast: {}
+      cast: {},
+      scriptPdfDe: "", scriptPdfEn: ""
     },
     scenes: {},
     days: {}
@@ -723,12 +727,33 @@ let activeTab = "config";
 
 function buildTabs() {
   const t = document.getElementById("tabs");
+  const maxDay = Math.max(NUM_DAYS, ...Object.keys(data.days).map(Number));
   let html = `<div class="tab config-tab active" data-tab="config" onclick="switchTab('config')">CONFIG</div>`;
   html += `<div class="tab ref-tab" data-tab="ref" onclick="switchTab('ref')">REFERENCE</div>`;
-  for (let i = 1; i <= NUM_DAYS; i++) {
+  for (let i = 1; i <= maxDay; i++) {
+    if (!data.days[i]) continue;
     html += `<div class="tab day-tab" data-tab="day-${i}" onclick="switchTab('day-${i}')">DAY ${String(i).padStart(2,'0')}</div>`;
   }
+  html += `<div class="tab" style="color:var(--fern);font-weight:700;font-size:14px" onclick="addNewDay()">+</div>`;
   t.innerHTML = html;
+}
+
+function addNewDay() {
+  const dayKeys = Object.keys(data.days).map(Number);
+  const next = dayKeys.length > 0 ? Math.max(...dayKeys) + 1 : NUM_DAYS + 1;
+  data.days[next] = {
+    date: "", firstAD: "", location: "",
+    callTime: "", mapsLink: "",
+    dailyNotes: "",
+    dispoPdf: "",
+    txAlloc: {A:"",B:"",C:"",D:"",E:"",F:"",G:"",H:""},
+    sceneNums: Array(SCENES_PER_DAY).fill(""),
+    sceneLabels: Array(SCENES_PER_DAY).fill(""),
+    nurtonExtra: "", eodNotes: ""
+  };
+  if (next > NUM_DAYS) NUM_DAYS = next;
+  buildTabs();
+  switchTab('day-' + next);
 }
 
 function switchTab(id) {
@@ -793,6 +818,22 @@ function renderConfig() {
     ${cfgArea("Crew Coms","kitComs",c.kitComs)}
     <div class="section-hdr">CAST</div>
     ${castHtml}
+    <div class="section-hdr">SCRIPT</div>
+    <div style="padding:10px 12px;border:1px solid #ddd;border-top:none;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="font-size:11px;font-weight:700;color:#555;min-width:28px">DE</span>
+        <input type="file" accept="application/pdf" id="script-pdf-de" style="display:none" onchange="handleScriptUpload('de',this)">
+        <button class="dh-dispo-btn ${c.scriptPdfDe ? 'has-file' : ''}" onclick="document.getElementById('script-pdf-de').click()">${c.scriptPdfDe ? '\ud83d\udcc4 Drehbuch attached' : '\ud83d\udcc4 Attach Drehbuch (DE)'}</button>
+        ${c.scriptPdfDe ? '<button class="dh-dispo-btn has-file" onclick="viewScriptPdf(\'de\')">\ud83d\udc41 View</button><button class="dh-dispo-remove" onclick="removeScriptPdf(\'de\')">\u2715</button>' : ''}
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="font-size:11px;font-weight:700;color:#555;min-width:28px">EN</span>
+        <input type="file" accept="application/pdf" id="script-pdf-en" style="display:none" onchange="handleScriptUpload('en',this)">
+        <button class="dh-dispo-btn ${c.scriptPdfEn ? 'has-file' : ''}" onclick="document.getElementById('script-pdf-en').click()">${c.scriptPdfEn ? '\ud83d\udcc4 Script attached' : '\ud83d\udcc4 Attach Script (EN)'}</button>
+        ${c.scriptPdfEn ? '<button class="dh-dispo-btn has-file" onclick="viewScriptPdf(\'en\')">\ud83d\udc41 View</button><button class="dh-dispo-remove" onclick="removeScriptPdf(\'en\')">\u2715</button>' : ''}
+      </div>
+      <span style="font-size:11px;color:#888">${c.scriptPdfDe || c.scriptPdfEn ? 'Crew can view via \ud83d\udcd6 Script button' : 'Upload one or both script versions for crew to view'}</span>
+    </div>
     <div class="section-hdr">CREW SHARING</div>
     ${cfgField("Crew Password","crewPassword",c.crewPassword)}
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
@@ -1028,6 +1069,31 @@ function renderTxMap(dayNum) {
     if (conflicts[ch]) hasConflict = true;
   });
 
+  // Detect mic collisions: same actor uses different mics across scenes/channels
+  // For actors (DIA/NODIA): group by normalized name, check if multiple mics used
+  // For boom: group by type, check if multiple mics used (highlight blue — often intentional)
+  const actorMics = {}; // normName -> Set of mics
+  const boomMics = new Set();
+  let hasMicCollision = false;
+  let hasBoomMicChange = false;
+  for (const ch of TX_LABELS) {
+    for (const e of map[ch]) {
+      if (!e.mic) continue;
+      if (e.type === 'boom') {
+        boomMics.add(e.mic);
+      } else if (e.type === 'dia' || e.type === 'nodia') {
+        const norm = txNormName(e.name);
+        if (!actorMics[norm]) actorMics[norm] = new Set();
+        actorMics[norm].add(e.mic);
+      }
+    }
+  }
+  const micCollisionActors = new Set();
+  for (const [norm, mics] of Object.entries(actorMics)) {
+    if (mics.size > 1) { hasMicCollision = true; micCollisionActors.add(norm); }
+  }
+  if (boomMics.size > 1) hasBoomMicChange = true;
+
   // In crew mode, skip channels with no assignments
   const displayLabels = crewMode ? TX_LABELS.filter(ch => map[ch].length > 0) : TX_LABELS;
   if (crewMode && displayLabels.length === 0) return `<div class="tx-map" id="txmap-${dayNum}" style="display:none"></div>`;
@@ -1038,29 +1104,37 @@ function renderTxMap(dayNum) {
     if (entries.length === 0) {
       cells = '<span class="tx-map-empty">\u2014</span>';
     } else {
-      // Deduplicate: show unique name+type combos with scene numbers
+      // Deduplicate: show unique name+type+mic combos with scene numbers
       const seen = {};
       entries.forEach(e => {
-        const key = e.name.toLowerCase().trim() + '|' + e.type;
+        const key = e.name.toLowerCase().trim() + '|' + e.type + '|' + (e.mic || '');
         if (!seen[key]) seen[key] = {name: e.name, type: e.type, mic: e.mic, scenes: []};
         seen[key].scenes.push(e.scNum);
       });
       cells = Object.values(seen).map(g => {
         const isConflict = conflicts[ch] ? 'conflict' : '';
+        const norm = txNormName(g.name);
+        const isMicCollision = (g.type === 'dia' || g.type === 'nodia') && micCollisionActors.has(norm) ? 'mic-collision' : '';
+        const isBoomChange = g.type === 'boom' && hasBoomMicChange && g.mic ? 'boom-mic-change' : '';
         const typeClass = g.type === 'plant' ? 'plant' : g.type === 'boom' ? 'boom' : g.type === 'nodia' ? 'nodia' : 'dia';
         const label = g.type === 'dia' ? 'DIA' : g.type === 'nodia' ? 'ND' : g.type === 'plant' ? 'PLT' : 'BM';
         const scList = g.scenes.length > 1 ? ' [' + g.scenes.join(',') + ']' : ' [Sc' + g.scenes[0] + ']';
         const micInfo = g.mic ? ' <small style="opacity:.6">(' + esc(g.mic) + ')</small>' : '';
-        return '<span class="tx-map-tag ' + typeClass + ' ' + isConflict + '">' + esc(g.name) + micInfo + ' <small>' + label + scList + '</small></span>';
+        return '<span class="tx-map-tag ' + typeClass + ' ' + isConflict + ' ' + isMicCollision + ' ' + isBoomChange + '">' + esc(g.name) + micInfo + ' <small>' + label + scList + '</small></span>';
       }).join('');
     }
     return '<div class="tx-map-ch ' + (i%2===0?'even':'odd') + '">' + ch + '</div><div class="tx-map-scenes">' + cells + '</div>';
   }).join('');
 
+  let warnings = '';
+  if (hasConflict) warnings += '<span class="tx-map-warn">\u26a0 DOUBLE ASSIGNMENT</span>';
+  if (hasMicCollision) warnings += '<span class="tx-map-warn">\u26a0 MIC COLLISION</span>';
+  if (hasBoomMicChange) warnings += '<span class="tx-map-warn" style="color:#64b5f6">\u2139 BOOM MIC CHANGE</span>';
+
   return `<div class="tx-map" id="txmap-${dayNum}">
     <div class="tx-map-hdr">
-      <span class="tx-map-title">TX MAP — TODAY'S ASSIGNMENTS</span>
-      ${hasConflict ? '<span class="tx-map-warn">⚠ DOUBLE ASSIGNMENT DETECTED</span>' : ''}
+      <span class="tx-map-title">TX MAP \u2014 TODAY'S ASSIGNMENTS</span>
+      ${warnings}
     </div>
     <div class="tx-map-grid">${rows}</div>
   </div>`;
@@ -1084,11 +1158,16 @@ function renderDay(dayNum) {
   const firstADval = d.firstAD;
   const firstADplaceholder = cfg.firstAD || '1st AD name...';
 
+  // Count shots for today
+  const dayShotCount = getDayShotCount(dayNum);
+  const sceneCount = d.sceneNums.filter(s => s && s.trim()).length;
+
   let html = `
   <div class="day-header">
     <div class="day-header-top">
       <span class="dh-day-num">DAY ${String(dayNum).padStart(2,'0')}</span>
-      <span class="dh-prod">${esc(cfg.productionTitle)}${cfg.episode ? ' — '+esc(cfg.episode) : ''}</span>
+      <span class="dh-prod">${esc(cfg.productionTitle)}${cfg.episode ? ' \u2014 '+esc(cfg.episode) : ''}</span>
+      <span style="font-size:10px;color:var(--silver);opacity:.7;white-space:nowrap">${sceneCount} scene${sceneCount!==1?'s':''} \u00b7 ${dayShotCount} shot${dayShotCount!==1?'s':''}</span>
       <div class="no-print" style="display:flex;gap:4px;flex-shrink:0">
         <button onclick="printDay(${dayNum})" style="padding:4px 10px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:10px;font-weight:600;cursor:pointer;font-family:inherit">🖨 Print</button>
         <button onclick="exportCrewView(${dayNum})" style="padding:4px 10px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:10px;font-weight:600;cursor:pointer;font-family:inherit">📤 Crew</button>
@@ -1213,6 +1292,61 @@ function removeDispoPdf(dayNum) {
   renderPanel(activeTab);
 }
 
+function handleScriptUpload(lang, input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) {
+    alert('Script PDF too large (max 10MB). Try compressing it first.');
+    input.value = '';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    if (lang === 'de') data.config.scriptPdfDe = e.target.result;
+    else data.config.scriptPdfEn = e.target.result;
+    renderPanel(activeTab);
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+}
+
+function viewScriptPdf(lang) {
+  const pdf = lang === 'de' ? data.config.scriptPdfDe : data.config.scriptPdfEn;
+  if (!pdf) return;
+  const title = lang === 'de' ? 'Drehbuch (DE)' : 'Script (EN)';
+  const win = window.open('', '_blank');
+  win.document.write('<html><head><title>' + title + '</title></head><body style="margin:0"><embed src="' + pdf + '" type="application/pdf" width="100%" height="100%" style="position:fixed;inset:0"></body></html>');
+  win.document.close();
+}
+
+function showScriptPicker() {
+  const hasDe = data.config.scriptPdfDe;
+  const hasEn = data.config.scriptPdfEn;
+  if (hasDe && hasEn) {
+    // Show a small picker
+    const existing = document.getElementById('script-picker-popup');
+    if (existing) { existing.remove(); return; }
+    const popup = document.createElement('div');
+    popup.id = 'script-picker-popup';
+    popup.style.cssText = 'position:fixed;bottom:52px;left:50%;transform:translateX(-50%);background:var(--charcoal);border:1px solid var(--gunmetal);border-radius:8px;padding:8px;display:flex;gap:6px;z-index:300;box-shadow:0 4px 16px rgba(0,0,0,.5)';
+    popup.innerHTML = '<button onclick="viewScriptPdf(\'de\');document.getElementById(\'script-picker-popup\').remove()" style="padding:8px 16px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">\ud83c\udde9\ud83c\uddea Drehbuch</button><button onclick="viewScriptPdf(\'en\');document.getElementById(\'script-picker-popup\').remove()" style="padding:8px 16px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--white);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">\ud83c\uddec\ud83c\udde7 Script</button>';
+    document.body.appendChild(popup);
+    setTimeout(() => { document.addEventListener('click', function closePicker(e) { if (!popup.contains(e.target)) { popup.remove(); document.removeEventListener('click', closePicker); } }, {once: false}); }, 10);
+  } else if (hasDe) {
+    viewScriptPdf('de');
+  } else if (hasEn) {
+    viewScriptPdf('en');
+  }
+}
+
+function removeScriptPdf(lang) {
+  const label = lang === 'de' ? 'Drehbuch (DE)' : 'Script (EN)';
+  if (!confirm('Remove attached ' + label + '?')) return;
+  if (lang === 'de') data.config.scriptPdfDe = '';
+  else data.config.scriptPdfEn = '';
+  renderPanel(activeTab);
+}
+
 function renderCrewFooter() {
   const c = data.config;
   return `
@@ -1290,6 +1424,18 @@ function renderDaySceneRow(dayNum, slot, scNum, sc) {
 function setSceneLabel(dayNum, slot, val) {
   if (!data.days[dayNum].sceneLabels) data.days[dayNum].sceneLabels = Array(SCENES_PER_DAY).fill('');
   data.days[dayNum].sceneLabels[slot] = val;
+}
+
+function getDayShotCount(dayNum) {
+  const d = data.days[dayNum];
+  let count = 0;
+  for (const scNum of d.sceneNums) {
+    if (!scNum || !scNum.trim()) continue;
+    const sc = data.scenes[parseInt(scNum)];
+    if (!sc || !sc.shotList) continue;
+    count += sc.shotList.filter(s => s && s.trim()).length;
+  }
+  return count;
 }
 
 function addDaySceneSlot(dayNum) {
@@ -1542,8 +1688,15 @@ function rnApply() {
 function mergeLoadedData(loaded) {
   const fresh = defaultData();
   data.config = {...fresh.config, ...loaded.config};
-  // Ensure cast object exists
+  // Ensure cast object and script field exist
   if (!data.config.cast) data.config.cast = {};
+  // Migrate single scriptPdf to dual DE/EN
+  if (data.config.scriptPdf && !data.config.scriptPdfDe) {
+    data.config.scriptPdfDe = data.config.scriptPdf;
+  }
+  delete data.config.scriptPdf;
+  if (!data.config.scriptPdfDe) data.config.scriptPdfDe = '';
+  if (!data.config.scriptPdfEn) data.config.scriptPdfEn = '';
   // Strip legacy secrets
   delete data.config.ghToken;
   delete data.config.dbxAppKey;
@@ -2507,6 +2660,8 @@ let crewMode = false;
 function enterCrewMode() {
   crewMode = true;
   document.body.classList.add('crew-mode');
+  const scriptBtn = document.getElementById('crewScriptBtn');
+  if (scriptBtn) scriptBtn.style.display = (data.config.scriptPdfDe || data.config.scriptPdfEn) ? '' : 'none';
   buildCrewTabs();
   const firstDay = getActiveDays()[0];
   if (firstDay) switchTab('day-' + firstDay);
