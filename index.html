@@ -144,6 +144,36 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .daily-notes-area{width:100%;min-height:40px;padding:6px 10px;border:none;border-radius:4px;font-size:12px;font-family:inherit;resize:vertical;outline:none;background:rgba(255,255,255,.1);color:var(--silver)}
 .daily-notes-area:focus{background:rgba(255,255,255,.15)}
 .daily-notes-area::placeholder{color:rgba(255,255,255,.3)}
+/* Call time & Maps */
+.dh-call-row{display:flex;gap:12px;margin-bottom:8px;align-items:center}
+.dh-call-field{display:flex;flex-direction:column;gap:2px}
+.dh-call-field label{font-size:10px;font-weight:600;opacity:.6;letter-spacing:.3px;text-transform:uppercase}
+.dh-call-field input{background:var(--yellow);border:none;padding:4px 8px;border-radius:3px;font-size:13px;font-family:inherit;color:var(--blk)}
+.dh-call-field input::placeholder{color:#999;font-style:italic}
+.dh-maps-link{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:var(--graphite);border-radius:4px;color:#8ab4f8;font-size:12px;text-decoration:none;font-weight:600}
+.dh-maps-link:hover{background:var(--gunmetal)}
+/* Dispo PDF */
+.dh-dispo-row{margin-top:6px;display:flex;align-items:center;gap:8px}
+.dh-dispo-btn{padding:4px 10px;border:1px dashed var(--gunmetal);border-radius:4px;background:transparent;color:var(--silver);font-size:11px;cursor:pointer;font-family:inherit}
+.dh-dispo-btn:hover{border-color:var(--silver)}
+.dh-dispo-btn.has-file{border-style:solid;background:var(--graphite);color:#8ab4f8}
+.dh-dispo-remove{background:none;border:none;color:#ff6b6b;font-size:14px;cursor:pointer;padding:2px 6px}
+/* Shot List */
+.shot-list-wrap{border-top:1px solid #eee}
+.shot-list-hdr{display:flex;align-items:center;padding:6px 10px;background:var(--lt-silver)}
+.shot-list-hdr .sl-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;flex:1}
+.shot-list-grid{display:flex;flex-direction:column}
+.shot-row{display:flex;align-items:stretch;border-top:1px solid #eee}
+.shot-row:first-child{border-top:none}
+.shot-num{width:32px;min-width:32px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:var(--white);background:var(--blk)}
+.shot-num.odd{background:var(--graphite)}
+.shot-row input{flex:1;padding:5px 8px;border:none;font-size:13px;outline:none;font-family:inherit}
+.shot-row input:focus{background:#fffde7}
+/* Scene label (inline suffix) */
+.scene-label-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;background:var(--graphite);color:var(--silver);margin-left:4px;vertical-align:middle}
+.scene-label-input{width:50px;padding:2px 4px;border:1px solid #ccc;border-radius:3px;font-size:11px;font-family:inherit;text-align:center;outline:none;background:var(--yellow);font-weight:600}
+.scene-label-input:focus{border-color:#666}
+.scene-label-input::placeholder{color:#bbb;font-weight:400}
 
 /* ─── Day Cast Section ────────────────────────────────────────────────────── */
 .day-cast{background:var(--charcoal);border-radius:6px;margin-bottom:12px;overflow:hidden}
@@ -426,7 +456,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px;cursor:pointer" onclick="showVersionHistory()">v3.5</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px;cursor:pointer" onclick="showVersionHistory()">v3.6</div>
   </div>
 </div>
 
@@ -547,9 +577,9 @@ body.crew-mode .crew-footer{display:block}
 // DATA MODEL
 // ═════════════════════════════════════════════════════════════════════════════
 const TX_LABELS = ["A","B","C","D","E","F","G","H"];
-const NUM_SCENES = 110;
+let NUM_SCENES = 110;
 const NUM_DAYS = 30;
-const SCENES_PER_DAY = 12;
+let SCENES_PER_DAY = 12;
 
 function defaultData() {
   const d = {
@@ -568,15 +598,19 @@ function defaultData() {
       intExt: "", place: "", time: "",
       notes: "", description: "",
       tx: {A:{name:"Boom",type:"boom",mic:""},B:{name:"",type:"dia",mic:""},C:{name:"",type:"dia",mic:""},D:{name:"",type:"dia",mic:""},E:{name:"",type:"dia",mic:""},F:{name:"",type:"dia",mic:""},G:{name:"",type:"dia",mic:""},H:{name:"",type:"dia",mic:""}},
+      shotList: Array(10).fill(""),
       problems: "", nurton: ""
     };
   }
   for (let i = 1; i <= NUM_DAYS; i++) {
     d.days[i] = {
       date: "", firstAD: "", location: "",
+      callTime: "", mapsLink: "",
       dailyNotes: "",
+      dispoPdf: "",
       txAlloc: {A:"",B:"",C:"",D:"",E:"",F:"",G:"",H:""},
       sceneNums: Array(SCENES_PER_DAY).fill(""),
+      sceneLabels: Array(SCENES_PER_DAY).fill(""),
       nurtonExtra: "", eodNotes: ""
     };
   }
@@ -775,15 +809,37 @@ function cfgArea(label, key, val) {
 
 // ─── REFERENCE ────────────────────────────────────────────────────────────────
 function renderReference() {
+  const sceneKeys = Object.keys(data.scenes).map(Number).sort((a,b) => a-b);
+  const maxScene = sceneKeys.length > 0 ? Math.max(...sceneKeys) : NUM_SCENES;
   let html = `<div class="ref-controls">
     <input type="text" id="refSearch" placeholder="Search scenes..." oninput="filterScenes(this.value)">
-    <span style="font-size:12px;color:#888">${NUM_SCENES} scenes</span>
+    <span style="font-size:12px;color:#888">${maxScene} scenes</span>
+    <button onclick="addNewScene()" style="padding:4px 10px;border:1px solid #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:var(--fern);color:#fff;font-family:inherit;margin-left:auto">+ Add Scene</button>
   </div><div class="scene-grid" id="sceneGrid">`;
-  for (let i = 1; i <= NUM_SCENES; i++) {
+  for (let i = 1; i <= maxScene; i++) {
+    if (!data.scenes[i]) continue;
     html += renderSceneCard(i);
   }
   html += `</div>`;
   return html;
+}
+
+function addNewScene() {
+  const sceneKeys = Object.keys(data.scenes).map(Number);
+  const next = sceneKeys.length > 0 ? Math.max(...sceneKeys) + 1 : NUM_SCENES + 1;
+  data.scenes[next] = {
+    intExt: "", place: "", time: "", notes: "", description: "",
+    tx: {A:{name:"",type:"dia",mic:""},B:{name:"",type:"dia",mic:""},C:{name:"",type:"dia",mic:""},D:{name:"",type:"dia",mic:""},E:{name:"",type:"dia",mic:""},F:{name:"",type:"dia",mic:""},G:{name:"",type:"dia",mic:""},H:{name:"",type:"dia",mic:""}},
+    shotList: Array(10).fill(""),
+    problems: "", nurton: ""
+  };
+  if (next > NUM_SCENES) NUM_SCENES = next;
+  renderPanel('ref');
+  // Scroll to new scene and open it
+  setTimeout(() => {
+    const el = document.getElementById('scene-' + next);
+    if (el) { el.scrollIntoView({behavior:'smooth'}); el.classList.add('open'); }
+  }, 100);
 }
 
 function renderSceneCard(n) {
@@ -827,6 +883,7 @@ function renderSceneCard(n) {
         <textarea oninput="data.scenes[${n}].notes=this.value;updateScenePreview(${n})">${esc(s.notes)}</textarea>
       </div>
       ${renderTxSection(n)}
+      ${renderShotList(n)}
       <div class="scene-field">
         <div class="scene-field-label prob-l">Potential Problems</div>
         <textarea oninput="data.scenes[${n}].problems=this.value">${esc(s.problems)}</textarea>
@@ -893,6 +950,33 @@ function renderTxSection(n) {
     }).join("")}
     </div>
     </div>`;
+}
+
+function renderShotList(n) {
+  const s = data.scenes[n];
+  const shots = s.shotList || Array(10).fill('');
+  const filledShots = shots.filter(s => s && s.trim());
+
+  if (crewMode) {
+    if (filledShots.length === 0) return '';
+    return `<div class="shot-list-wrap">
+      <div class="shot-list-hdr"><span class="sl-label">Shot List</span></div>
+      <div class="shot-list-grid">${shots.map((sh, i) => {
+        if (!sh || !sh.trim()) return '';
+        return '<div class="shot-row"><div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><div style="flex:1;padding:5px 8px;font-size:13px">' + esc(sh) + '</div></div>';
+      }).join('')}</div>
+    </div>`;
+  }
+
+  return `<div class="shot-list-wrap">
+    <div class="shot-list-hdr"><span class="sl-label">Shot List</span></div>
+    <div class="shot-list-grid">${shots.map((sh, i) => `
+      <div class="shot-row">
+        <div class="shot-num ${i%2?'odd':''}">${i+1}</div>
+        <input value="${esc(sh)}" placeholder="Shot description..." oninput="data.scenes[${n}].shotList[${i}]=this.value">
+      </div>`).join('')}
+    </div>
+  </div>`;
 }
 
 function toggleScene(n) {
@@ -1012,14 +1096,13 @@ function renderDay(dayNum) {
     </div>
     <div class="day-header-grid">
       <div><label>DATE</label><div class="dh-date-wrap"><input type="date" value="${d.date}" oninput="data.days[${dayNum}].date=this.value;updateDayOfWeek(${dayNum})"><span class="day-of-week" id="dow-${dayNum}">${dow}</span></div></div>
-      <div><label>DIRECTOR</label><div class="dh-static">${esc(cfg.director) || '—'}</div></div>
+      <div><label>DIRECTOR</label><div class="dh-static">${esc(cfg.director) || '\u2014'}</div></div>
       <div><label>1ST AD</label><input value="${esc(firstADval)}" placeholder="${esc(firstADplaceholder)}" oninput="data.days[${dayNum}].firstAD=this.value"></div>
       <div><label>LOCATION</label><input value="${esc(d.location)}" placeholder="Location..." oninput="data.days[${dayNum}].location=this.value"></div>
     </div>
-    <div class="daily-notes-wrap">
-      <label>DAILY NOTES</label>
-      <textarea class="daily-notes-area" placeholder="General notes for the crew today..." oninput="data.days[${dayNum}].dailyNotes=this.value">${esc(d.dailyNotes)}</textarea>
-    </div>
+    ${crewMode ? renderCrewCallRow(dayNum, d) : renderEditCallRow(dayNum, d)}
+    ${crewMode && d.dailyNotes ? '<div class="daily-notes-wrap"><label>DAILY NOTES</label><div style="padding:6px 10px;font-size:12px;color:var(--silver);white-space:pre-wrap;background:rgba(255,255,255,.08);border-radius:4px">' + esc(d.dailyNotes) + '</div></div>' : !crewMode ? '<div class="daily-notes-wrap"><label>DAILY NOTES</label><textarea class="daily-notes-area" placeholder="General notes for the crew today..." oninput="data.days[' + dayNum + '].dailyNotes=this.value">' + esc(d.dailyNotes) + '</textarea></div>' : ''}
+    ${crewMode ? (d.dispoPdf ? '<div class="dh-dispo-row"><button class="dh-dispo-btn has-file" onclick="viewDispoPdf(' + dayNum + ')">\ud83d\udcc4 View Dispo PDF</button></div>' : '') : '<div class="dh-dispo-row"><input type="file" accept="application/pdf" id="dispo-input-' + dayNum + '" style="display:none" onchange="handleDispoUpload(' + dayNum + ',this)"><button class="dh-dispo-btn ' + (d.dispoPdf ? 'has-file' : '') + '" onclick="document.getElementById(\'dispo-input-' + dayNum + '\').click()">' + (d.dispoPdf ? '\ud83d\udcc4 Dispo PDF attached' : '\ud83d\udcc4 Attach Dispo PDF') + '</button>' + (d.dispoPdf ? '<button class="dh-dispo-btn has-file" onclick="viewDispoPdf(' + dayNum + ')">\ud83d\udc41 View</button><button class="dh-dispo-remove" onclick="removeDispoPdf(' + dayNum + ')">\u2715</button>' : '') + '</div>'}
   </div>
 
   `;
@@ -1029,13 +1112,21 @@ function renderDay(dayNum) {
 
   html += renderTxMap(dayNum);
 
-  for (let slot = 0; slot < SCENES_PER_DAY; slot++) {
+  const slotCount = d.sceneNums.length;
+  for (let slot = 0; slot < slotCount; slot++) {
     const scNum = d.sceneNums[slot];
     // In crew mode, skip empty scene slots
     if (crewMode && (!scNum || !scNum.trim())) continue;
     const sc = scNum && data.scenes[parseInt(scNum)] ? data.scenes[parseInt(scNum)] : null;
     html += renderDaySceneRow(dayNum, slot, scNum, sc);
   }
+
+  if (!crewMode) {
+    html += `<div style="padding:8px 0"><button onclick="addDaySceneSlot(${dayNum})" style="padding:6px 14px;border:1px dashed #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:transparent;color:#888;font-family:inherit;width:100%">+ Add Scene Slot</button></div>`;
+  }
+
+  // NurTon aggregation from scenes
+  html += renderDayNurtons(dayNum);
 
   if (crewMode) {
     // In crew mode, only show these sections if they have content, and use divs
@@ -1066,6 +1157,60 @@ function renderDay(dayNum) {
 function updateDayOfWeek(dayNum) {
   const el = document.getElementById('dow-' + dayNum);
   if (el) el.textContent = getDayOfWeek(data.days[dayNum].date);
+}
+
+function renderEditCallRow(dayNum, d) {
+  return `<div class="dh-call-row">
+    <div class="dh-call-field"><label>CALL TIME</label><input type="time" value="${d.callTime || ''}" oninput="data.days[${dayNum}].callTime=this.value" style="width:110px"></div>
+    <div class="dh-call-field" style="flex:1"><label>MAPS / LOCATION LINK</label><input value="${esc(d.mapsLink || '')}" placeholder="Paste Google Maps link or address..." oninput="data.days[${dayNum}].mapsLink=this.value"></div>
+  </div>`;
+}
+
+function renderCrewCallRow(dayNum, d) {
+  const hasCall = d.callTime && d.callTime.trim();
+  const hasMaps = d.mapsLink && d.mapsLink.trim();
+  if (!hasCall && !hasMaps) return '';
+  const mapsUrl = hasMaps ? (d.mapsLink.startsWith('http') ? d.mapsLink : 'https://maps.google.com/?q=' + encodeURIComponent(d.mapsLink)) : '';
+  return `<div class="dh-call-row">
+    ${hasCall ? '<div class="dh-call-field"><label>CALL TIME</label><div style="font-size:18px;font-weight:700;color:var(--white);padding:2px 0">' + esc(d.callTime) + '</div></div>' : ''}
+    ${hasMaps ? '<div class="dh-call-field"><label>LOCATION</label><a href="' + esc(mapsUrl) + '" target="_blank" rel="noopener" class="dh-maps-link">\ud83d\udccd Open in Maps</a></div>' : ''}
+  </div>`;
+}
+
+function getMapsUrl(link) {
+  if (!link || !link.trim()) return '';
+  return link.startsWith('http') ? link : 'https://maps.google.com/?q=' + encodeURIComponent(link);
+}
+
+function handleDispoUpload(dayNum, input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) {
+    alert('PDF too large (max 5MB). Try compressing it first.');
+    input.value = '';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    data.days[dayNum].dispoPdf = e.target.result; // base64 data URL
+    renderPanel(activeTab);
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+}
+
+function viewDispoPdf(dayNum) {
+  const pdf = data.days[dayNum].dispoPdf;
+  if (!pdf) return;
+  const win = window.open('', '_blank');
+  win.document.write('<html><head><title>Dispo \u2014 Day ' + dayNum + '</title></head><body style="margin:0"><embed src="' + pdf + '" type="application/pdf" width="100%" height="100%" style="position:fixed;inset:0"></body></html>');
+  win.document.close();
+}
+
+function removeDispoPdf(dayNum) {
+  if (!confirm('Remove attached Dispo PDF?')) return;
+  data.days[dayNum].dispoPdf = '';
+  renderPanel(activeTab);
 }
 
 function renderCrewFooter() {
@@ -1103,23 +1248,70 @@ function renderCrewFooter() {
 }
 
 function renderDaySceneRow(dayNum, slot, scNum, sc) {
-  const locLine = sc ? [sc.intExt, sc.place, sc.time].filter(Boolean).join(" — ") : "";
+  const locLine = sc ? [sc.intExt, sc.place, sc.time].filter(Boolean).join(" \u2014 ") : "";
   const preview = locLine || (sc ? sc.notes : "");
   const n = parseInt(scNum);
+  const label = (data.days[dayNum].sceneLabels && data.days[dayNum].sceneLabels[slot]) || '';
+
+  if (crewMode) {
+    const labelTag = label ? '<span class="scene-label-tag">' + esc(label) + '</span>' : '';
+    return `
+    <div class="day-scene-row ${sc?'':'empty'}" id="dayrow-${dayNum}-${slot}">
+      <div class="scene-header" onclick="this.closest('.day-scene-row').classList.toggle('open')">
+        <div class="scene-num" style="min-width:48px"><span style="font-weight:700;font-size:15px">${esc(scNum)}</span>${labelTag}</div>
+        <div class="scene-preview">${esc(preview) || ''}</div>
+        <div class="scene-expand-icon">\u25bc</div>
+      </div>
+      <div class="scene-body">
+        ${sc ? renderDaySceneBody(n) : ''}
+      </div>
+    </div>`;
+  }
+
   return `
   <div class="day-scene-row ${sc?'':'empty'}" id="dayrow-${dayNum}-${slot}">
     <div class="scene-header" onclick="this.closest('.day-scene-row').classList.toggle('open')">
-      <div class="scene-num" style="min-width:48px;position:relative">
+      <div class="scene-num" style="min-width:48px;position:relative;display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:center">
         <input value="${esc(scNum)}" placeholder="#" style="width:44px;text-align:center;font-weight:700;font-size:15px;border:none;background:var(--yellow);font-family:inherit;outline:none;position:relative;z-index:2"
           onclick="event.stopPropagation()"
           oninput="handleDaySceneInput(${dayNum},${slot},this.value)"
           onchange="handleDaySceneInput(${dayNum},${slot},this.value)">
+        <input class="scene-label-input" value="${esc(label)}" placeholder="..." onclick="event.stopPropagation()" oninput="setSceneLabel(${dayNum},${slot},this.value)" title="Part label (T1, T2, Pickup...)" style="${label ? '' : 'opacity:.4'}">
       </div>
       <div class="scene-preview">${esc(preview) || 'Enter scene number...'}</div>
-      <div class="scene-expand-icon">▼</div>
+      <div class="scene-expand-icon">\u25bc</div>
     </div>
     <div class="scene-body">
       ${sc ? renderDaySceneBody(n) : '<div style="padding:12px;color:#999;font-size:12px">Enter a scene number to see details</div>'}
+    </div>
+  </div>`;
+}
+
+function setSceneLabel(dayNum, slot, val) {
+  if (!data.days[dayNum].sceneLabels) data.days[dayNum].sceneLabels = Array(SCENES_PER_DAY).fill('');
+  data.days[dayNum].sceneLabels[slot] = val;
+}
+
+function addDaySceneSlot(dayNum) {
+  const d = data.days[dayNum];
+  d.sceneNums.push('');
+  if (!d.sceneLabels) d.sceneLabels = [];
+  while (d.sceneLabels.length < d.sceneNums.length) d.sceneLabels.push('');
+  renderPanel('day-' + dayNum);
+}
+
+function renderDayNurtons(dayNum) {
+  const d = data.days[dayNum];
+  const filledScenes = d.sceneNums.filter(s => s && s.trim()).map(s => parseInt(s)).filter(n => data.scenes[n]);
+  const nurtons = filledScenes.filter(n => data.scenes[n].nurton && data.scenes[n].nurton.trim()).map(n => ({num: n, text: data.scenes[n].nurton}));
+  if (nurtons.length === 0) return '';
+  return `<div class="day-extra">
+    <div class="day-extra-hdr nurton-h">NURTON / WILD TRACKS (from scenes)</div>
+    <div style="border:1px solid #ddd;border-top:none;border-radius:0 0 4px 4px;overflow:hidden">${nurtons.map(nt => `
+      <div style="display:flex;border-top:1px solid #eee">
+        <div style="min-width:48px;padding:8px;text-align:center;font-weight:700;font-size:13px;background:var(--nt);color:var(--fern)">Sc ${nt.num}</div>
+        <div style="flex:1;padding:8px 12px;font-size:13px;white-space:pre-wrap;line-height:1.5">${esc(nt.text)}</div>
+      </div>`).join('')}
     </div>
   </div>`;
 }
@@ -1137,6 +1329,7 @@ function renderDaySceneBody(n) {
       ${s.description ? '<div class="scene-field"><div class="scene-field-label notes-l">Scene Description</div><div class="crew-text-display">' + esc(s.description) + '</div></div>' : ''}
       ${s.notes ? '<div class="scene-field"><div class="scene-field-label notes-l">Notes</div><div class="crew-text-display">' + esc(s.notes) + '</div></div>' : ''}
       ${renderTxSection(n)}
+      ${renderShotList(n)}
       ${s.problems ? '<div class="scene-field"><div class="scene-field-label prob-l">Potential Problems</div><div class="crew-text-display" style="background:var(--prob)">' + esc(s.problems) + '</div></div>' : ''}
       ${s.nurton ? '<div class="scene-field"><div class="scene-field-label nt-l">NurTon</div><div class="crew-text-display" style="background:var(--nt)">' + esc(s.nurton) + '</div></div>' : ''}`;
   }
@@ -1145,7 +1338,7 @@ function renderDaySceneBody(n) {
         <div class="scene-loc-field">
           <label>INT/EXT</label>
           <select oninput="data.scenes[${n}].intExt=this.value">
-            <option value="">—</option>
+            <option value="">\u2014</option>
             <option value="INT." ${s.intExt==='INT.'?'selected':''}>INT.</option>
             <option value="EXT." ${s.intExt==='EXT.'?'selected':''}>EXT.</option>
             <option value="INT./EXT." ${s.intExt==='INT./EXT.'?'selected':''}>INT./EXT.</option>
@@ -1169,6 +1362,7 @@ function renderDaySceneBody(n) {
         <textarea oninput="data.scenes[${n}].notes=this.value">${esc(s.notes)}</textarea>
       </div>
       ${renderTxSection(n)}
+      ${renderShotList(n)}
       <div class="scene-field">
         <div class="scene-field-label prob-l">Potential Problems</div>
         <textarea oninput="data.scenes[${n}].problems=this.value">${esc(s.problems)}</textarea>
@@ -1389,14 +1583,20 @@ function mergeLoadedData(loaded) {
     }
     delete data.scenes[k].dia;
     delete data.scenes[k].noDia;
+    // Ensure shot list exists
+    if (!data.scenes[k].shotList) data.scenes[k].shotList = Array(10).fill('');
   }
   data.days = {...fresh.days};
   for (const k of Object.keys(loaded.days || {})) {
     data.days[k] = {...fresh.days[k], ...loaded.days[k],
       txAlloc: {...fresh.days[k].txAlloc, ...(loaded.days[k].txAlloc||{})}
     };
-    // Ensure dailyNotes exists
+    // Ensure new fields exist
     if (!data.days[k].dailyNotes) data.days[k].dailyNotes = '';
+    if (!data.days[k].callTime) data.days[k].callTime = '';
+    if (!data.days[k].mapsLink) data.days[k].mapsLink = '';
+    if (!data.days[k].dispoPdf) data.days[k].dispoPdf = '';
+    if (!data.days[k].sceneLabels) data.days[k].sceneLabels = Array(SCENES_PER_DAY).fill('');
   }
 }
 
@@ -1746,7 +1946,7 @@ function openSettings() {
     <div style="border-top:1px solid #eee;padding-top:12px">
       <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
       <div style="font-size:11px;color:#888;line-height:1.8">
-        Version: v3.5<br>
+        Version: v3.6<br>
         Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
         Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
       </div>
@@ -1764,9 +1964,21 @@ function closeSettings() {
 // ═════════════════════════════════════════════════════════════════════════════
 const VERSION_HISTORY = [
   {
-    ver: 'v3.5', current: true,
+    ver: 'v3.6', current: true,
     items: [
-      'Crew offline cache — auto-saves project data to browser; works through reception dropouts',
+      'Call time & maps link per day \u2014 crew sees prominent call time and tappable Maps link',
+      'Scene part labels (T1, T2, Pickup...) \u2014 per day-slot, shown as tag in crew mode',
+      'Shot list per scene (10 slots) \u2014 hidden in crew when empty',
+      'Dispo PDF attachment per day \u2014 embedded in data, viewable by crew offline',
+      'Smart polling \u2014 conditional fetch saves crew mobile data when nothing changed',
+      'Expandable scenes & day slots \u2014 add beyond the initial 110/12 limits',
+      'NurTon aggregation \u2014 scene NurTons auto-listed on day pages with scene numbers',
+    ]
+  },
+  {
+    ver: 'v3.5',
+    items: [
+      'Crew offline cache \u2014 auto-saves project data to browser; works through reception dropouts',
       'TX map in crew view now hides unused channels (cleaner daily overview)',
       'Cache updates on every successful poll and manual refresh',
     ]
@@ -2435,7 +2647,7 @@ function crewCheckPw() {
   document.getElementById('crewPwHint').style.color = '#888';
 
   fetch(url + '?' + Date.now())
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); const lm = r.headers.get('Last-Modified'); if (lm) crewLastModified = lm; return r.json(); })
     .then(loaded => {
       const projectPw = loaded.config && loaded.config.crewPassword;
       if (projectPw && pw !== projectPw) {
@@ -2488,9 +2700,18 @@ function crewStartGhPolling(url) {
 
   showCrewStatus("Live \u2014 auto-updating");
   crewPollInterval = setInterval(() => {
-    fetch(url + '?' + Date.now())
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    const fetchOpts = {};
+    if (crewLastModified) fetchOpts.headers = {'If-Modified-Since': crewLastModified};
+    fetch(url + '?' + Date.now(), fetchOpts)
+      .then(r => {
+        if (r.status === 304) { showCrewStatus("Up to date \u2014 " + new Date().toLocaleTimeString()); return null; }
+        if (!r.ok) throw new Error();
+        const lm = r.headers.get('Last-Modified');
+        if (lm) crewLastModified = lm;
+        return r.json();
+      })
       .then(loaded => {
+        if (!loaded) return; // 304 — no change
         if (crewCurrentFileRef) crewCacheSave(crewCurrentFileRef, loaded, crewCurrentPw);
         const currentTab = activeTab;
         mergeLoadedData(loaded);
@@ -2581,6 +2802,7 @@ function copyToClipboard(url) {
 let crewCurrentUrl = null;
 let crewCurrentPw = null;
 let crewCurrentFileRef = null;
+let crewLastModified = null; // For conditional fetch (saves mobile data)
 
 function crewSavePDF() {
   const style = document.createElement('style');
@@ -2610,8 +2832,9 @@ function crewSavePDF() {
 function crewRefresh() {
   if (!crewCurrentUrl) return;
   showCrewStatus("Fetching latest data...");
+  crewLastModified = null; // Force full fetch on manual refresh
   fetch(crewCurrentUrl + '?' + Date.now())
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); const lm = r.headers.get('Last-Modified'); if (lm) crewLastModified = lm; return r.json(); })
     .then(loaded => {
       if (crewCurrentFileRef) crewCacheSave(crewCurrentFileRef, loaded, crewCurrentPw);
       const currentTab = activeTab;
