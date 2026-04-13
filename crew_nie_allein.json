@@ -337,27 +337,27 @@
     "6": {
       "intExt": "INT.",
       "place": "Margaret's Apartment",
-      "time": "",
+      "time": "?",
       "notes": "",
       "description": "Pencils roll down, Magrid can't believe it.",
       "tx": {
         "A": {
-          "name": "",
+          "name": "Boom",
           "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": "DPA 6060"
+          "name": "Margret",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Near",
           "type": "plant",
           "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
+          "name": "Splash",
           "type": "plant",
           "mic": "DPA 6060"
         },
@@ -572,8 +572,8 @@
         }
       },
       "shotList": [
-        "",
-        "",
+        "9.1 ONE TAKE: Magrid kommt in die Schärfe gelaufe und verlässt behutsam die Wohnung WIDE SHOT auf die Stadt (VFX 12) (Dolly, Gimbal,Kran)",
+        "9.2 Gegenschuss auf Hilde (Gimbal) HAZE",
         "",
         "",
         "",
@@ -583,7 +583,7 @@
         "",
         ""
       ],
-      "problems": "EXT scene recorded outdoors. Do not use MK4 (limit room splash).",
+      "problems": "EXT scene recorded outdoors. Do not use MK4 (limit room splash).\n- haze mentioned / could be noisy if nrunning in take",
       "nurton": ""
     },
     "10": {
