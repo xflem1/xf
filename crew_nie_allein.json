@@ -86,8 +86,8 @@
       "intExt": "INT.",
       "place": "Margrets Apartment",
       "time": "Morning",
-      "notes": "- Margret mutters to herself - not \"dialog\" but unscripted vocal expression expected. Margret later says \"get out of here\".\n- Multi room scene, may need more plant mics if camera transitions rooms in single shot",
-      "description": "When Margret wakes up, she's still clutching the umbrella tightly. Cautiously, she ventures out of the bedroom again. Surely it was all just a dream. Just to be sure, she checks in the corner, but there's only chaos. She mutters to herself as she does so. But she immediately notices that someone has opened the curtains. The unfamiliar sunlight dazzles her. She reaches out her hand to shield herself and tiptoes to the window. As she resolutely draws the curtains closed, her gaze falls upon a few green splashes of paint on the fabric. The traces of paint continue on the floor and lead directly to the canvas. And, oh dear, a small shadow made of colorful pigments is frolicking about on it, having just destroyed Margret's grey picture with its green handprints. Margret gasped in shock, the shadow froze. They glanced at each other briefly, then Margret darted towards him, waving her hands. \"Get out of here!\" The shadow fled. She has to save her picture! She paints over the colorful marks with white paint, but only smears everything even more. She sighs. First things first, breakfast. But as she opens the refrigerator door, an olive pit falls on her head. She looks up in disbelief. Surely that's not really the shadow sitting on top, with the half-empty jar of olives next to her. Completely annoyed, she slams the door shut and takes a pear from the fruit bowl instead. She strides purposefully towards the canvas. She'll just have to start over. She fetches a new canvas from the corner, but as she does, the shadow throws one brush after another onto the floor.",
+      "notes": "- lots of action, likely a lot of audible direction\n- breaths very likely",
+      "description": "Relieved, she returns to the canvas, looks at the withered bouquet of flowers in front of her, and picks up her brush - but it doesn't seem to be working out quite right today.\nFrustrated, she sets her teacup down. With such force that a pigment container at the other end of the table is set in motion. Then it falls over.\nAs they fall, the pigments detach from the glass, swirl around, and seem to form something. Margret doesn't notice.\nShe switches on the table lamp next to her, and the small light slowly tries to fight against the darkness of her apartment. Something flits through Margret's field of vision, past the wall. What was that? Margret is jolted out of her trance.\nBut there's nothing to see. She shakes her head. Back at the screen, there it scurries again. And rustles.\nMargret hesitates. She clutches the brush and tries to make out something in the dark corner. No chance, the light doesn't reach that\nfar.\nJust as she's about to turn away, a brightly colored tube of paint rolls towards her and stops at her slipper. Margret stares.\nFirst to color, then into darkness.\nShe slowly backs away, grabbing an umbrella leaning against the wall with one hand. She stumbles towards the bedroom, her\neyes never leaving the dark corner.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -96,8 +96,8 @@
         },
         "B": {
           "name": "Margret",
-          "type": "dia",
-          "mic": "DPA 6060"
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
           "name": "Near",
@@ -146,74 +146,11 @@
       "nurton": ""
     },
     "3": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
-      "tx": {
-        "A": {
-          "name": "Boom",
-          "type": "boom",
-          "mic": ""
-        },
-        "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        },
-        "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        },
-        "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        },
-        "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        },
-        "F": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        },
-        "G": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        },
-        "H": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
-        }
-      },
-      "shotList": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      "problems": "",
-      "nurton": ""
-    },
-    "4": {
       "intExt": "INT.",
-      "place": "Margret's Apartment",
-      "time": "Day",
-      "notes": "- Second half of scene utilises far more VFX, can record sound but will be very sound design heavy.",
-      "description": "When Margret wakes up, she is still holding the umbrella tightly in her arms.\nArmed with caution, she ventured out of the bedroom again. Surely it was all just a dream.\nJust to be sure, she checks in the corner, but there's only chaos. She mutters to herself as she does so.\nBut she immediately notices that someone has opened the curtains. The unfamiliar sunlight dazzles her. She\nreaches out her hand to shield herself and tiptoes to the window.\nAs she resolutely draws the curtains shut, her gaze falls upon a few green paint splatters on the fabric.\nThe traces of paint continue on the floor and lead directly to the canvas.\nAnd, oh dear, a small shadow made of colorful pigments is frolicking about on it, having just destroyed Margret's grey picture\nwith its green handprints.\nMargret gasped in shock, the shadow froze. They glanced at each other briefly, then Margret darted towards him, waving her\nhands. \"Get out of here!\" The shadow fled.\nShe has to save her picture! She paints over the colorful marks with white paint, but only smeares everything even more.\nShe sighs.",
+      "place": "Margaret's Bedroom",
+      "time": "Night",
+      "notes": "-blanket use? check with AD",
+      "description": "Then very quickly: door open, Margret in, door closed. Tonight she'll sleep upright, armed with an umbrella.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -222,7 +159,7 @@
         },
         "B": {
           "name": "Margret",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "C": {
@@ -268,8 +205,71 @@
         "",
         ""
       ],
+      "problems": "",
+      "nurton": ""
+    },
+    "4": {
+      "intExt": "INT.",
+      "place": "Margret's Apartment",
+      "time": "Day",
+      "notes": "- Second half of scene utilises far more VFX, can record sound but will be very sound design heavy.\n- lots of movements and breaths in first half, one dialog line in sceond half when chasing shadow",
+      "description": "When Margret wakes up, she is still holding the umbrella tightly in her arms.\nArmed with caution, she ventured out of the bedroom again. Surely it was all just a dream.\nJust to be sure, she checks in the corner, but there's only chaos. She mutters to herself as she does so.\nBut she immediately notices that someone has opened the curtains. The unfamiliar sunlight dazzles her. She\nreaches out her hand to shield herself and tiptoes to the window.\nAs she resolutely draws the curtains shut, her gaze falls upon a few green paint splatters on the fabric.\nThe traces of paint continue on the floor and lead directly to the canvas.\nAnd, oh dear, a small shadow made of colorful pigments is frolicking about on it, having just destroyed Margret's grey picture\nwith its green handprints.\nMargret gasped in shock, the shadow froze. They glanced at each other briefly, then Margret darted towards him, waving her\nhands. \"Get out of here!\" The shadow fled.\nShe has to save her picture! She paints over the colorful marks with white paint, but only smeares everything even more.\nShe sighs.",
+      "tx": {
+        "A": {
+          "name": "Boom",
+          "type": "boom",
+          "mic": "Schoeps MK41"
+        },
+        "B": {
+          "name": "Margret",
+          "type": "dia",
+          "mic": "DPA 6061"
+        },
+        "C": {
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
+        },
+        "D": {
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
+        },
+        "E": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
+        },
+        "F": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
+        },
+        "G": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
+        }
+      },
+      "shotList": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
       "problems": "/",
-      "nurton": "Room tone"
+      "nurton": ""
     },
     "5": {
       "intExt": "INT.",
