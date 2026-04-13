@@ -28,7 +28,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -79,7 +79,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -130,7 +130,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -181,7 +181,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -232,7 +232,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -283,7 +283,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -334,7 +334,7 @@
       "tx": {
         "A": {
           "name": "Boom MK41",
-          "type": "plant",
+          "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
