@@ -19,7 +19,7 @@
   --blk:#0a0a0a;--charcoal:#1a1a1a;--graphite:#2d2d2d;--gunmetal:#3a3a3a;
   --silver:#c0c0c0;--lt-silver:#e8e8e8;--off-white:#f5f5f5;--white:#fff;
   --yellow:#fffacd;--fern:#1b5e20;--fern-light:#e8f5e9;
-  --dia:#e8eef7;--nodia:#f5f0ea;--prob:#fff3e0;--nt:#eaf5ee;
+  --dia:#e8eef7;--nodia:#f5f0ea;--plant:#f3e5f5;--prob:#fff3e0;--nt:#eaf5ee;
   --accent:#c0c0c0;
 }
 body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk);min-height:100vh;display:flex;flex-direction:column}
@@ -54,6 +54,14 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .field-row input:focus,.field-row textarea:focus{background:#fff8c4}
 .field-row textarea{min-height:60px;resize:vertical}
 
+/* ─── Cast Section ────────────────────────────────────────────────────────── */
+.cast-grid{border:1px solid #ddd;border-top:none}
+.cast-row{display:flex;border-bottom:1px solid #eee;align-items:stretch}
+.cast-char{width:180px;min-width:180px;padding:6px 12px;background:var(--lt-silver);font-weight:600;font-size:12px;display:flex;align-items:center}
+.cast-actor{flex:1;padding:6px 12px;font-size:13px;border:none;outline:none;background:var(--yellow);font-family:inherit}
+.cast-actor:focus{background:#fff8c4}
+.cast-hint{padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5}
+
 /* ─── Reference Panel ──────────────────────────────────────────────────────── */
 .ref-controls{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
 .ref-controls input[type=text]{padding:6px 10px;border:1px solid #ccc;border-radius:4px;font-size:13px;width:200px}
@@ -85,6 +93,7 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .scene-field-label.notes-l{background:var(--lt-silver)}
 .scene-field-label.dia-l{background:var(--dia)}
 .scene-field-label.nodia-l{background:var(--nodia)}
+.scene-field-label.plant-l{background:var(--plant)}
 .scene-field-label.prob-l{background:var(--prob)}
 .scene-field-label.nt-l{background:var(--nt)}
 
@@ -95,7 +104,7 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 /* Crew mode: show full text as styled divs instead of truncated textareas */
 .crew-text-display{flex:1;padding:8px 10px;font-size:13px;font-family:inherit;white-space:pre-wrap;word-wrap:break-word;line-height:1.5;min-height:32px;background:#fff}
 
-/* TX Grid - unified DIA / NO DIA */
+/* TX Grid - unified DIA / NO DIA / PLANT */
 .tx-section-hdr{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--lt-silver);border-top:1px solid #eee}
 .tx-section-hdr .tx-sec-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;flex:1}
 .tx-section-hdr button{padding:3px 10px;border:1px solid #ccc;border-radius:3px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;background:var(--white);color:var(--blk);transition:all .15s}
@@ -110,8 +119,11 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .tx-toggle{width:60px;min-width:60px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:10px;font-weight:700;letter-spacing:.3px;user-select:none;transition:all .15s}
 .tx-toggle.dia{background:var(--dia);color:#2a5a8a}
 .tx-toggle.nodia{background:var(--nodia);color:#8a6a3a}
+.tx-toggle.plant{background:var(--plant);color:#6a1b9a}
 .tx-row input{flex:1;padding:5px 8px;border:none;font-size:13px;outline:none;font-family:inherit}
 .tx-row input:focus{background:#fffde7}
+.tx-row select.mic-sel{width:100px;min-width:80px;padding:5px 4px;border:none;border-left:1px solid #eee;font-size:11px;font-family:inherit;outline:none;background:transparent;cursor:pointer;color:#666}
+.tx-row select.mic-sel:focus{background:#fffde7}
 
 /* ─── Day Panel ────────────────────────────────────────────────────────────── */
 .day-header{background:var(--blk);color:var(--silver);padding:12px;border-radius:6px;margin-bottom:12px}
@@ -121,6 +133,19 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .day-header input{background:var(--yellow);border:none;padding:4px 8px;border-radius:3px;font-size:13px;font-family:inherit;color:var(--blk)}
 .day-header input.day-num{width:50px;font-size:20px;font-weight:700;text-align:center}
 .day-header input.day-field{width:140px}
+.day-header input::placeholder{color:#999;font-style:italic}
+.day-of-week{font-size:12px;color:var(--silver);opacity:.7;font-weight:600;margin-left:2px}
+.daily-notes-area{width:100%;min-height:48px;padding:8px 10px;border:none;border-radius:4px;font-size:13px;font-family:inherit;resize:vertical;outline:none;background:rgba(255,255,255,.1);color:var(--silver)}
+.daily-notes-area:focus{background:rgba(255,255,255,.15)}
+.daily-notes-area::placeholder{color:rgba(255,255,255,.3)}
+
+/* ─── Day Cast Section ────────────────────────────────────────────────────── */
+.day-cast{background:var(--charcoal);border-radius:6px;margin-bottom:12px;overflow:hidden}
+.day-cast-hdr{padding:6px 12px;font-size:10px;font-weight:700;color:var(--silver);letter-spacing:.5px}
+.day-cast-grid{display:flex;flex-wrap:wrap;gap:0;padding:0 8px 8px}
+.day-cast-item{background:var(--graphite);border-radius:4px;padding:4px 10px;font-size:11px;color:var(--lt-silver);display:flex;gap:6px;align-items:center}
+.day-cast-item .dci-char{font-weight:700;color:var(--white)}
+.day-cast-item .dci-actor{opacity:.7}
 
 /* TX Map */
 .tx-map{background:var(--charcoal);border-radius:6px;margin-bottom:12px;overflow:hidden}
@@ -135,6 +160,7 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .tx-map-tag{padding:2px 6px;border-radius:3px;font-size:10px;font-weight:600;white-space:nowrap}
 .tx-map-tag.dia{background:rgba(232,238,247,.15);color:#8ab4f8}
 .tx-map-tag.nodia{background:rgba(245,240,234,.15);color:#d4a574}
+.tx-map-tag.plant{background:rgba(243,229,245,.15);color:#ce93d8}
 .tx-map-tag.conflict{outline:2px solid #ff6b6b;outline-offset:-1px}
 .tx-map-empty{color:var(--gunmetal);font-style:italic;font-size:11px}
 
@@ -197,6 +223,8 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
   .content{padding:8px}
   .field-row{flex-direction:column}
   .field-row label{width:100%;min-width:0;padding:6px 10px;font-size:12px}
+  .cast-row{flex-direction:column}
+  .cast-char{width:100%;min-width:0;padding:6px 10px}
   .scene-field{flex-direction:column}
   .scene-field-label{width:100%;min-width:0;padding:6px 10px}
   .detail-grid{grid-template-columns:1fr !important}
@@ -208,6 +236,7 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
   .day-scene-notes{font-size:11px}
   .scene-location-bar{flex-direction:column}
   .scene-loc-field{border-right:none;border-bottom:1px solid #ddd}
+  .tx-row select.mic-sel{width:70px;min-width:60px;font-size:10px}
 }
 
 /* ─── Renumber Modal ──────────────────────────────────────────────────────── */
@@ -298,6 +327,7 @@ body.crew-mode .tx-toggle{pointer-events:none !important}
 body.crew-mode .tx-section-hdr button{display:none}
 body.crew-mode .no-print{display:none !important}
 body.crew-mode .scene-num input{pointer-events:none !important}
+body.crew-mode textarea{pointer-events:none !important;opacity:.85}
 /* Crew footer — only visible in crew mode */
 .crew-footer{display:none;margin-top:24px;border-top:2px solid var(--blk)}
 body.crew-mode .crew-footer{display:block}
@@ -330,6 +360,8 @@ body.crew-mode .crew-footer{display:block}
   .detail-col-hdr,.day-extra-hdr,.section-hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .detail-footer-cell.prob,.detail-footer-cell.nt{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .day-header input.day-num{color:var(--silver) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .day-cast{-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}
+  .day-cast-item{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
@@ -369,7 +401,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v2.11</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px">v3.1</div>
   </div>
 </div>
 
@@ -478,7 +510,7 @@ body.crew-mode .crew-footer{display:block}
 // ═════════════════════════════════════════════════════════════════════════════
 // DATA MODEL
 // ═════════════════════════════════════════════════════════════════════════════
-const TX_LABELS = ["A","B","C","D","E","F","G"];
+const TX_LABELS = ["A","B","C","D","E","F","G","H"];
 const NUM_SCENES = 110;
 const NUM_DAYS = 30;
 const SCENES_PER_DAY = 12;
@@ -488,8 +520,9 @@ function defaultData() {
     config: {
       productionTitle: "", episode: "", productionCompany: "",
       director: "", dop: "", firstAD: "", soundMixer: "", boomOp: "", utility: "",
-      kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
-      crewPassword: ""
+      kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4, Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
+      crewPassword: "",
+      cast: {}
     },
     scenes: {},
     days: {}
@@ -498,14 +531,15 @@ function defaultData() {
     d.scenes[i] = {
       intExt: "", place: "", time: "",
       notes: "", description: "",
-      tx: {A:{name:"Boom",isDia:true},B:{name:"",isDia:true},C:{name:"",isDia:true},D:{name:"",isDia:true},E:{name:"",isDia:true},F:{name:"",isDia:true},G:{name:"",isDia:true}},
+      tx: {A:{name:"Boom",type:"dia",mic:""},B:{name:"",type:"dia",mic:""},C:{name:"",type:"dia",mic:""},D:{name:"",type:"dia",mic:""},E:{name:"",type:"dia",mic:""},F:{name:"",type:"dia",mic:""},G:{name:"",type:"dia",mic:""},H:{name:"",type:"dia",mic:""}},
       problems: "", nurton: ""
     };
   }
   for (let i = 1; i <= NUM_DAYS; i++) {
     d.days[i] = {
       date: "", firstAD: "", location: "",
-      txAlloc: {A:"",B:"",C:"",D:"",E:"",F:""},
+      dailyNotes: "",
+      txAlloc: {A:"",B:"",C:"",D:"",E:"",F:"",G:"",H:""},
       sceneNums: Array(SCENES_PER_DAY).fill(""),
       nurtonExtra: "", eodNotes: ""
     };
@@ -516,11 +550,19 @@ function defaultData() {
 let data = defaultData();
 let txClipboard = null; // for copy/paste TX assignments
 
-function toggleTxDia(sceneNum, ch, el) {
-  const isDia = !data.scenes[sceneNum].tx[ch].isDia;
-  data.scenes[sceneNum].tx[ch].isDia = isDia;
-  el.className = 'tx-toggle ' + (isDia ? 'dia' : 'nodia');
-  el.textContent = isDia ? 'DIA' : 'NO DIA';
+// Type cycling: dia → nodia → plant → dia
+function cycleTxType(sceneNum, ch, el) {
+  const current = data.scenes[sceneNum].tx[ch].type || 'dia';
+  const next = current === 'dia' ? 'nodia' : current === 'nodia' ? 'plant' : 'dia';
+  data.scenes[sceneNum].tx[ch].type = next;
+  el.className = 'tx-toggle ' + next;
+  el.textContent = next === 'dia' ? 'DIA' : next === 'nodia' ? 'NO DIA' : 'PLANT';
+  // Update placeholder for name input
+  const row = el.closest('.tx-row');
+  if (row) {
+    const inp = row.querySelector('input[type="text"], input:not([type])');
+    if (inp) inp.placeholder = next === 'plant' ? 'Location / plant mic...' : (ch === 'A' ? 'Boom' : 'Character name...');
+  }
 }
 
 function copyTx(sceneNum) {
@@ -538,6 +580,68 @@ function pasteTx(sceneNum) {
     grid.closest('.tx-section-wrap').replaceWith(temp.firstElementChild);
   });
   showStatus("TX pasted to Scene " + sceneNum);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// HELPERS
+// ═════════════════════════════════════════════════════════════════════════════
+function getDayOfWeek(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T12:00:00');
+  if (isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('en-US', {weekday: 'long'});
+}
+
+function getMicOptions() {
+  return (data.config.kitMics || '').split(',').map(s => s.trim()).filter(Boolean);
+}
+
+function txNormName(name) {
+  return name.toLowerCase().trim()
+    .replace(/\s*\d{3,}.*$/, '')   // strip trailing mic numbers like "6060", "6061"
+    .replace(/\s*(mk\d+|mtp\d+|dpa|cmit|kmit|mcr).*$/i, '') // strip mic model refs
+    .trim();
+}
+
+function getUniqueCharacters() {
+  // Returns Map of normalizedName → displayName (first occurrence)
+  const chars = new Map();
+  for (let i = 1; i <= NUM_SCENES; i++) {
+    const s = data.scenes[i];
+    TX_LABELS.forEach(ch => {
+      const t = s.tx[ch];
+      if (t.name && (t.type === 'dia' || t.type === 'nodia')) {
+        const norm = txNormName(t.name);
+        if (norm && norm !== 'boom' && !chars.has(norm)) {
+          chars.set(norm, t.name);
+        }
+      }
+    });
+  }
+  return chars;
+}
+
+function getDayCast(dayNum) {
+  // Returns array of {character, actor} for scenes in this day
+  const d = data.days[dayNum];
+  const cast = data.config.cast || {};
+  const seen = new Set();
+  const result = [];
+  const filledScenes = d.sceneNums.filter(s => s && s.trim()).map(s => parseInt(s)).filter(n => data.scenes[n]);
+  for (const scNum of filledScenes) {
+    const sc = data.scenes[scNum];
+    TX_LABELS.forEach(ch => {
+      const t = sc.tx[ch];
+      if (t.name && (t.type === 'dia' || t.type === 'nodia')) {
+        const norm = txNormName(t.name);
+        if (norm && norm !== 'boom' && !seen.has(norm)) {
+          seen.add(norm);
+          result.push({character: t.name, actor: cast[norm] || cast[t.name] || ''});
+        }
+      }
+    });
+  }
+  return result;
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -582,6 +686,22 @@ function updateProdTitle() {
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 function renderConfig() {
   const c = data.config;
+  // Build cast section
+  const chars = getUniqueCharacters();
+  let castHtml = '';
+  if (chars.size > 0) {
+    const cast = c.cast || {};
+    castHtml = '<div class="cast-grid">';
+    for (const [norm, display] of chars) {
+      const actor = cast[norm] || '';
+      castHtml += `<div class="cast-row"><div class="cast-char">${esc(display)}</div><input class="cast-actor" value="${esc(actor)}" placeholder="Actor name..." oninput="if(!data.config.cast)data.config.cast={};data.config.cast['${esc(norm)}']=this.value"></div>`;
+    }
+    castHtml += '</div>';
+    castHtml += '<div class="cast-hint">Characters auto-detected from TX assignments (DIA &amp; NO DIA). Enter the actor\'s real name for each character. These appear on day sheets.</div>';
+  } else {
+    castHtml = '<div class="cast-hint">No characters detected yet. Add TX assignments with character names in the Reference or Day sheets, then return here to assign actor names.</div>';
+  }
+
   return `
     <div class="section-hdr">PRODUCTION</div>
     ${cfgField("Production Title","productionTitle",c.productionTitle)}
@@ -599,6 +719,8 @@ function renderConfig() {
     ${cfgArea("Microphones","kitMics",c.kitMics)}
     ${cfgArea("TX / RX","kitTxRx",c.kitTxRx)}
     ${cfgArea("Crew Coms","kitComs",c.kitComs)}
+    <div class="section-hdr">CAST</div>
+    ${castHtml}
     <div class="section-hdr">CREW SHARING</div>
     ${cfgField("Crew Password","crewPassword",c.crewPassword)}
     <div style="padding:6px 12px;font-size:11px;color:#888;border:1px solid #ddd;border-top:none;line-height:1.5">
@@ -681,6 +803,8 @@ function renderSceneCard(n) {
 
 function renderTxSection(n) {
   const s = data.scenes[n];
+  const mics = getMicOptions();
+  const hasMics = mics.length > 0;
   return `
     <div class="tx-section-wrap">
     <div class="tx-section-hdr">
@@ -690,11 +814,16 @@ function renderTxSection(n) {
     </div>
     <div class="tx-grid" data-tx-scene="${n}">${TX_LABELS.map((tx,i) => {
       const ch = s.tx[tx];
+      const txType = ch.type || 'dia';
+      const toggleLabel = txType === 'dia' ? 'DIA' : txType === 'nodia' ? 'NO DIA' : 'PLANT';
+      const placeholder = txType === 'plant' ? 'Location / plant mic...' : (tx === 'A' ? 'Boom' : 'Character name...');
+      const micSel = hasMics ? `<select class="mic-sel" onchange="data.scenes[${n}].tx['${tx}'].mic=this.value"><option value="">Mic...</option>${mics.map(m => `<option value="${esc(m)}" ${ch.mic===m?'selected':''}>${esc(m)}</option>`).join('')}</select>` : '';
       return `
       <div class="tx-row">
         <div class="tx-label ${i%2===0?'even':'odd'}">${tx}</div>
-        <div class="tx-toggle ${ch.isDia?'dia':'nodia'}" onclick="toggleTxDia(${n},'${tx}',this)">${ch.isDia?'DIA':'NO DIA'}</div>
-        <input value="${esc(ch.name)}" oninput="data.scenes[${n}].tx['${tx}'].name=this.value" placeholder="${tx === 'A' ? 'Boom' : 'Actor name...'}">
+        <div class="tx-toggle ${txType}" onclick="cycleTxType(${n},'${tx}',this)">${toggleLabel}</div>
+        <input value="${esc(ch.name)}" oninput="data.scenes[${n}].tx['${tx}'].name=this.value" placeholder="${placeholder}">
+        ${micSel}
       </div>`;
     }).join("")}
     </div>
@@ -730,26 +859,18 @@ function renderTxMap(dayNum) {
   const filledScenes = d.sceneNums.filter(s => s && s.trim()).map(s => parseInt(s)).filter(n => data.scenes[n]);
   if (filledScenes.length === 0) return `<div class="tx-map" id="txmap-${dayNum}" style="display:none"></div>`;
 
-  // Build map: for each TX channel, collect {sceneNum, name, isDia}
+  // Build map: for each TX channel, collect {sceneNum, name, type}
   const map = {};
   TX_LABELS.forEach(ch => { map[ch] = []; });
   for (const scNum of filledScenes) {
     const sc = data.scenes[scNum];
     TX_LABELS.forEach(ch => {
       const t = sc.tx[ch];
-      if (t.name) map[ch].push({scNum, name: t.name, isDia: t.isDia});
+      if (t.name) map[ch].push({scNum, name: t.name, type: t.type || 'dia', mic: t.mic || ''});
     });
   }
 
   // Detect conflicts: same channel, different people = conflict
-  // Same person with DIA vs NO DIA or different mic numbers is NOT a conflict
-  // Normalize: strip trailing numbers, mic model numbers, and whitespace for comparison
-  function txNormName(name) {
-    return name.toLowerCase().trim()
-      .replace(/\s*\d{3,}.*$/, '')   // strip trailing mic numbers like "6060", "6061"
-      .replace(/\s*(mk\d+|mtp\d+|dpa|cmit|kmit|mcr).*$/i, '') // strip mic model refs
-      .trim();
-  }
   let hasConflict = false;
   const conflicts = {};
   TX_LABELS.forEach(ch => {
@@ -767,16 +888,17 @@ function renderTxMap(dayNum) {
       // Deduplicate: show unique name+type combos with scene numbers
       const seen = {};
       entries.forEach(e => {
-        const key = e.name.toLowerCase().trim() + '|' + e.isDia;
-        if (!seen[key]) seen[key] = {name: e.name, isDia: e.isDia, scenes: []};
+        const key = e.name.toLowerCase().trim() + '|' + e.type;
+        if (!seen[key]) seen[key] = {name: e.name, type: e.type, mic: e.mic, scenes: []};
         seen[key].scenes.push(e.scNum);
       });
       cells = Object.values(seen).map(g => {
         const isConflict = conflicts[ch] ? 'conflict' : '';
-        const typeClass = g.isDia ? 'dia' : 'nodia';
-        const label = g.isDia ? 'DIA' : 'ND';
+        const typeClass = g.type === 'plant' ? 'plant' : g.type === 'nodia' ? 'nodia' : 'dia';
+        const label = g.type === 'dia' ? 'DIA' : g.type === 'nodia' ? 'ND' : 'PLT';
         const scList = g.scenes.length > 1 ? ' [' + g.scenes.join(',') + ']' : ' [Sc' + g.scenes[0] + ']';
-        return '<span class="tx-map-tag ' + typeClass + ' ' + isConflict + '">' + esc(g.name) + ' <small>' + label + scList + '</small></span>';
+        const micInfo = g.mic ? ' <small style="opacity:.6">(' + esc(g.mic) + ')</small>' : '';
+        return '<span class="tx-map-tag ' + typeClass + ' ' + isConflict + '">' + esc(g.name) + micInfo + ' <small>' + label + scList + '</small></span>';
       }).join('');
     }
     return '<div class="tx-map-ch ' + (i%2===0?'even':'odd') + '">' + ch + '</div><div class="tx-map-scenes">' + cells + '</div>';
@@ -791,9 +913,24 @@ function renderTxMap(dayNum) {
   </div>`;
 }
 
+function renderDayCast(dayNum) {
+  const castItems = getDayCast(dayNum);
+  if (castItems.length === 0) return '';
+  return `<div class="day-cast">
+    <div class="day-cast-hdr">CAST — TODAY'S CHARACTERS</div>
+    <div class="day-cast-grid" style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px">
+      ${castItems.map(c => `<div class="day-cast-item"><span class="dci-char">${esc(c.character)}</span>${c.actor ? '<span class="dci-actor">(' + esc(c.actor) + ')</span>' : ''}</div>`).join('')}
+    </div>
+  </div>`;
+}
+
 function renderDay(dayNum) {
   const d = data.days[dayNum];
   const cfg = data.config;
+  const dow = getDayOfWeek(d.date);
+  const firstADval = d.firstAD;
+  const firstADplaceholder = cfg.firstAD || '1st AD name...';
+
   let html = `
   <div class="day-header">
     <div class="day-header-row">
@@ -805,14 +942,21 @@ function renderDay(dayNum) {
       </div>
     </div>
     <div class="day-header-row">
-      <div><label>DATE</label><br><input class="day-field" type="date" value="${d.date}" oninput="data.days[${dayNum}].date=this.value"></div>
+      <div><label>DATE</label><br><input class="day-field" type="date" value="${d.date}" oninput="data.days[${dayNum}].date=this.value;updateDayOfWeek(${dayNum})">${dow ? '<span class="day-of-week" id="dow-'+dayNum+'">'+dow+'</span>' : '<span class="day-of-week" id="dow-'+dayNum+'"></span>'}</div>
       <div><label>DIRECTOR</label><br><span style="color:var(--silver);font-size:13px">${esc(cfg.director)}</span></div>
-      <div><label>1ST AD</label><br><input class="day-field" value="${esc(d.firstAD)}" oninput="data.days[${dayNum}].firstAD=this.value"></div>
+      <div><label>1ST AD</label><br><input class="day-field" value="${esc(firstADval)}" placeholder="${esc(firstADplaceholder)}" oninput="data.days[${dayNum}].firstAD=this.value"></div>
       <div><label>LOCATION</label><br><input class="day-field" value="${esc(d.location)}" oninput="data.days[${dayNum}].location=this.value"></div>
+    </div>
+    <div class="day-header-row" style="flex-direction:column;align-items:stretch;gap:4px">
+      <label style="opacity:.7;font-size:10px;letter-spacing:.3px">DAILY NOTES</label>
+      <textarea class="daily-notes-area" placeholder="General notes for the crew today..." oninput="data.days[${dayNum}].dailyNotes=this.value">${esc(d.dailyNotes)}</textarea>
     </div>
   </div>
 
   `;
+
+  // Cast section
+  html += renderDayCast(dayNum);
 
   html += renderTxMap(dayNum);
 
@@ -848,6 +992,11 @@ function renderDay(dayNum) {
   html += renderCrewFooter();
 
   return html;
+}
+
+function updateDayOfWeek(dayNum) {
+  const el = document.getElementById('dow-' + dayNum);
+  if (el) el.textContent = getDayOfWeek(data.days[dayNum].date);
 }
 
 function renderCrewFooter() {
@@ -1130,8 +1279,9 @@ function rnApply() {
 function mergeLoadedData(loaded) {
   const fresh = defaultData();
   data.config = {...fresh.config, ...loaded.config};
-  // Strip legacy secrets that should never be in the data object
-  // (these cause GitHub push protection to block saves)
+  // Ensure cast object exists
+  if (!data.config.cast) data.config.cast = {};
+  // Strip legacy secrets
   delete data.config.ghToken;
   delete data.config.dbxAppKey;
   delete data.config.dropboxLink;
@@ -1145,14 +1295,23 @@ function mergeLoadedData(loaded) {
       TX_LABELS.forEach(ch => {
         const dName = (ls.dia && ls.dia[ch]) || "";
         const ndName = (ls.noDia && ls.noDia[ch]) || "";
-        tx[ch] = {name: dName || ndName, isDia: !!dName && !ndName};
+        tx[ch] = {name: dName || ndName, type: dName ? 'dia' : (ndName ? 'nodia' : 'dia'), mic: ""};
       });
       data.scenes[k].tx = tx;
     } else {
       const freshTx = fresh.scenes[k] ? fresh.scenes[k].tx : {};
       const loadedTx = ls.tx || {};
       const merged = {};
-      TX_LABELS.forEach(ch => { merged[ch] = {...(freshTx[ch]||{}), ...(loadedTx[ch]||{})}; });
+      TX_LABELS.forEach(ch => {
+        merged[ch] = {...(freshTx[ch]||{}), ...(loadedTx[ch]||{})};
+        // Migration: isDia boolean → type string
+        if (merged[ch].type === undefined) {
+          merged[ch].type = merged[ch].isDia !== false ? 'dia' : 'nodia';
+        }
+        delete merged[ch].isDia;
+        // Ensure mic field exists
+        if (!merged[ch].mic) merged[ch].mic = '';
+      });
       data.scenes[k].tx = merged;
     }
     delete data.scenes[k].dia;
@@ -1163,6 +1322,8 @@ function mergeLoadedData(loaded) {
     data.days[k] = {...fresh.days[k], ...loaded.days[k],
       txAlloc: {...fresh.days[k].txAlloc, ...(loaded.days[k].txAlloc||{})}
     };
+    // Ensure dailyNotes exists
+    if (!data.days[k].dailyNotes) data.days[k].dailyNotes = '';
   }
 }
 
@@ -1233,7 +1394,7 @@ function enableAutoSave() {
   // Listen for all input changes
   document.addEventListener('input', scheduleAutoSave);
   document.addEventListener('click', function(e) {
-    // Catch toggle clicks (DIA/NO DIA) and other button-driven data changes
+    // Catch toggle clicks (DIA/NO DIA/PLANT) and other button-driven data changes
     if (e.target.classList.contains('tx-toggle')) scheduleAutoSave();
   });
   // Save on page close
@@ -1261,7 +1422,6 @@ let crewPollInterval = null;
 const GH_REPO = 'xflem1/xf'; // hardcoded — no config needed
 const GH_TOKEN_KEY = 'xf_gh_token';
 // Embedded token (reversed to bypass GitHub secret scanning on push)
-// To set: use the "Bake Token" button in CONFIG, then paste the generated string below
 const _GT = 'zV0vMp1sNDEMK46ZjxuIfn4VpSHmmsYBiFzMwGO8deUbzTi9v2oMfv9USuY_JPhqbE6qVz6H0Y3N6NQA11_tap_buhtig';
 function _decTk(s){return s?s.split('').reverse().join(''):''}
 const GH_TOKEN_DEFAULT = _decTk(_GT);
@@ -1272,16 +1432,13 @@ function ghSafeFilename(title) {
 }
 
 async function ghPushFile(path, content, message) {
-  // Helper: push a single file to GitHub (create or update)
-  // Retries up to 3 times on 409 (SHA conflict) with escalating delays
   const MAX_ATTEMPTS = 3;
-  const DELAYS = [2000, 4000, 6000]; // escalating backoff
+  const DELAYS = [2000, 4000, 6000];
   let lastError = '';
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     let sha = null;
 
-    // Step 1: GET the file to find its current SHA (if it exists)
     try {
       const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
         headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
@@ -1289,23 +1446,17 @@ async function ghPushFile(path, content, message) {
       if (getResp.ok) {
         const fileData = await getResp.json();
         sha = fileData.sha;
-        console.log('[ghPush] GET ' + path + ' → sha=' + sha);
-      } else if (getResp.status === 404) {
-        console.log('[ghPush] GET ' + path + ' → 404 (new file, no sha needed)');
-      } else {
+      } else if (getResp.status !== 404) {
         const errText = await getResp.text().catch(() => '');
-        console.error('[ghPush] GET ' + path + ' → ' + getResp.status + ': ' + errText);
         lastError = 'GET ' + path + ': HTTP ' + getResp.status + ' ' + errText;
         if (getResp.status === 401 || getResp.status === 403) {
           return {ok: false, status: getResp.status, error: lastError};
         }
       }
     } catch(e) {
-      console.error('[ghPush] GET network error for ' + path, e);
       lastError = 'GET network error: ' + e.message;
     }
 
-    // Step 2: PUT the file content
     const putBody = {message: message, content: btoa(unescape(encodeURIComponent(content)))};
     if (sha) putBody.sha = sha;
 
@@ -1321,23 +1472,18 @@ async function ghPushFile(path, content, message) {
       });
 
       if (putResp.ok) {
-        console.log('[ghPush] PUT ' + path + ' → SUCCESS (' + putResp.status + ')');
         return {ok: true, status: putResp.status};
       }
 
-      // Capture full error response
       const errBody = await putResp.text().catch(() => '');
-      console.error('[ghPush] PUT ' + path + ' → ' + putResp.status + ': ' + errBody);
       lastError = 'PUT ' + path + ': HTTP ' + putResp.status + ' ' + errBody.substring(0, 200);
 
       if (putResp.status === 409 && attempt < MAX_ATTEMPTS - 1) {
-        console.warn('[ghPush] Retry ' + (attempt + 1) + ' in ' + DELAYS[attempt] + 'ms...');
         await new Promise(r => setTimeout(r, DELAYS[attempt]));
         continue;
       }
       return {ok: false, status: putResp.status, error: lastError};
     } catch(e) {
-      console.error('[ghPush] PUT network error for ' + path, e);
       lastError = 'PUT network error: ' + e.message;
       if (attempt < MAX_ATTEMPTS - 1) {
         await new Promise(r => setTimeout(r, DELAYS[attempt]));
@@ -1349,7 +1495,6 @@ async function ghPushFile(path, content, message) {
   return {ok: false, status: 409, error: lastError};
 }
 
-// Publish lock — prevents overlapping pushes that cause 409 conflicts
 let ghPublishing = false;
 
 async function autoPublishRegistry(showFeedback) {
@@ -1363,7 +1508,6 @@ async function autoPublishRegistry(showFeedback) {
     return false;
   }
 
-  // If already publishing, queue a retry after current one finishes
   if (ghPublishing) {
     if (showFeedback) showStatus("Save in progress...");
     scheduleGhPublish();
@@ -1372,10 +1516,7 @@ async function autoPublishRegistry(showFeedback) {
   ghPublishing = true;
 
   try {
-    // 1. Push the full project data file to GitHub
-    // IMPORTANT: Strip secrets from the data before pushing — GitHub's push protection
-    // will block commits that contain tokens, API keys, etc.
-    const pushData = JSON.parse(JSON.stringify(data)); // deep clone
+    const pushData = JSON.parse(JSON.stringify(data));
     if (pushData.config) {
       delete pushData.config.ghToken;
       delete pushData.config.dbxAppKey;
@@ -1386,22 +1527,17 @@ async function autoPublishRegistry(showFeedback) {
     const dataResult = await ghPushFile(dataFile, JSON.stringify(pushData, null, 2), 'Update ' + title.trim());
     if (!dataResult.ok) {
       const errDetail = dataResult.error || ('HTTP ' + dataResult.status);
-      console.error('[SAVE] Data push failed:', errDetail);
       if (dataResult.status === 401 || dataResult.status === 403) {
         showSaveToast('Save failed — token invalid or missing permissions', 'error');
-        showStatus("GitHub token invalid or missing permissions");
       } else {
         showSaveToast('Save failed — ' + errDetail.substring(0, 50), 'error');
-        showStatus("Save failed: " + errDetail.substring(0, 80));
       }
       ghPublishing = false;
       return false;
     }
 
-    // Small delay between pushes to let GitHub process the first commit
     await new Promise(r => setTimeout(r, 1500));
 
-    // 2. Update the registry with a reference to the GitHub-hosted file
     let existing = [];
     try {
       const getResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
@@ -1434,17 +1570,15 @@ async function autoPublishRegistry(showFeedback) {
   } catch(e) {
     ghPublishing = false;
     showSaveToast('Save failed — check connection', 'error');
-    showStatus("GitHub error — check your connection");
     return false;
   }
 }
 
-// Debounced GitHub publish — avoids too many commits during active editing
 let ghPublishTimer = null;
 function scheduleGhPublish() {
   if (!ghToken) return;
   if (ghPublishTimer) clearTimeout(ghPublishTimer);
-  ghPublishTimer = setTimeout(() => autoPublishRegistry(false), 30000); // 30 seconds
+  ghPublishTimer = setTimeout(() => autoPublishRegistry(false), 30000);
 }
 
 async function testGitHubConnection() {
@@ -1456,7 +1590,6 @@ async function testGitHubConnection() {
   statusEl.innerHTML = '<span style="color:#888">Testing token...</span>';
 
   try {
-    // Test 1: Can we read the repo?
     const resp = await fetch('https://api.github.com/repos/' + GH_REPO, {
       headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
     });
@@ -1471,7 +1604,6 @@ async function testGitHubConnection() {
 
     statusEl.innerHTML = '<span style="color:#1b5e20">\u25CF Read OK</span> (scopes: ' + scopes + ', rate: ' + rateRemaining + ')';
 
-    // Test 2: Can we WRITE? Try creating a tiny test file, then delete it
     statusEl.innerHTML += '<br><span style="color:#888">Testing write access...</span>';
 
     const testPath = '_test_' + Date.now() + '.txt';
@@ -1487,7 +1619,6 @@ async function testGitHubConnection() {
     });
 
     if (writeResp.ok) {
-      // Clean up: delete the test file
       const writeData = await writeResp.json();
       await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + testPath, {
         method: 'DELETE',
@@ -1500,7 +1631,6 @@ async function testGitHubConnection() {
       });
       statusEl.innerHTML = '<span style="color:#1b5e20;font-weight:700">\u25CF Read + Write OK!</span> Token works perfectly.';
 
-      // Now try the actual publish
       if (data.config.productionTitle) {
         statusEl.innerHTML += '<br><span style="color:#888">Publishing project data...</span>';
         const ok = await autoPublishRegistry(true);
@@ -1543,7 +1673,7 @@ function openSettings() {
     <div style="border-top:1px solid #eee;padding-top:12px">
       <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
       <div style="font-size:11px;color:#888;line-height:1.8">
-        Version: v2.11<br>
+        Version: v3.1<br>
         Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
         Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
       </div>
@@ -1592,7 +1722,6 @@ async function deleteProject(filename, projectName) {
   showStatus('Deleting project...');
 
   try {
-    // Step 1: Delete the project JSON file
     const fileResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + filename, {
       headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
     });
@@ -1605,7 +1734,6 @@ async function deleteProject(filename, projectName) {
       });
     }
 
-    // Step 2: Update registry.json to remove the entry
     const regResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/registry.json', {
       headers: {'Authorization': 'Bearer ' + ghToken, 'Accept': 'application/vnd.github.v3+json'}
     });
@@ -1620,7 +1748,6 @@ async function deleteProject(filename, projectName) {
       });
     }
 
-    // If the deleted project was the current one, reset
     if (currentGhFile === filename) {
       data = defaultData();
       currentGhFile = null;
@@ -1630,7 +1757,6 @@ async function deleteProject(filename, projectName) {
     }
 
     showStatus('Project deleted ✓');
-    // Refresh picker
     showProjectPicker();
   } catch(e) {
     showStatus('Delete failed: ' + e.message);
@@ -1642,19 +1768,16 @@ function switchProject() {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// PROJECT PICKER (Edit mode — loads from GitHub Pages, no token needed)
+// PROJECT PICKER
 // ═════════════════════════════════════════════════════════════════════════════
-let currentGhFile = null; // tracks which file we're editing on GitHub
+let currentGhFile = null;
 
-// Helper: get the file reference for a project entry (handles old + new registry formats)
 function getProjectFile(project) {
   if (project.file) return project.file;
-  // Old registry entries may have 'link' (Dropbox) but no 'file' — construct filename from name
   if (project.name) return 'crew_' + ghSafeFilename(project.name) + '.json';
   return null;
 }
 
-// Load project data from GitHub Pages (public URL, no token required)
 async function loadProjectFromPages(filename) {
   showStatus("Loading project...");
   try {
@@ -1670,8 +1793,7 @@ async function loadProjectFromPages(filename) {
     updateProdTitle();
     showStatus("Project loaded \u2713");
   } catch(err) {
-    // File not on GitHub Pages yet — that's OK if we have local data
-    currentGhFile = filename; // Still set this so Save knows the target filename
+    currentGhFile = filename;
     const hasData = data.config && data.config.productionTitle;
     if (hasData) {
       showStatus("Project not on server yet \u2014 using local data. Hit Save to publish.");
@@ -1687,7 +1809,6 @@ async function showProjectPicker() {
   const listEl = document.getElementById('pickerList');
   listEl.innerHTML = '<div style="padding:12px;color:#888;font-size:12px;text-align:center">Loading projects...</div>';
 
-  // Check if there's auto-saved data to offer
   let autosaveHtml = '';
   try {
     const saved = localStorage.getItem(AUTOSAVE_KEY);
@@ -1704,7 +1825,6 @@ async function showProjectPicker() {
     }
   } catch(e) {}
 
-  // Load from GitHub Pages registry (public, works on any device, no token needed)
   try {
     const base = window.location.href.split('/').slice(0, -1).join('/');
     const resp = await fetch(base + '/registry.json?' + Date.now());
@@ -1722,7 +1842,6 @@ async function showProjectPicker() {
         (ghToken ? '<button onclick="event.stopPropagation();deleteProject(\'' + esc(file) + '\',\'' + esc(p.name).replace(/'/g,"\\'") + '\')" style="background:none;border:none;color:#ff6b6b;cursor:pointer;font-size:14px;padding:4px 8px;opacity:.5;flex-shrink:0" title="Delete project">✕</button>' : '') +
         '</div>';
     }).join('');
-    // Prepend auto-save option if available
     if (autosaveHtml) listEl.innerHTML = autosaveHtml + listEl.innerHTML;
   } catch(e) {
     listEl.innerHTML = autosaveHtml || '<div style="padding:16px;color:#888;font-size:13px;text-align:center">No projects found on GitHub Pages.<br><small>Save a project first, then wait 1-3 min for GitHub Pages to update.</small></div>';
@@ -1771,7 +1890,6 @@ function pickerFileLoaded(event) {
     try {
       const loaded = JSON.parse(e.target.result);
       mergeLoadedData(loaded);
-      // Set the currentGhFile from production title so Save knows where to push
       const title = loaded.config && loaded.config.productionTitle;
       if (title) currentGhFile = 'crew_' + ghSafeFilename(title) + '.json';
       buildTabs();
@@ -1800,7 +1918,6 @@ function loadFromFile(event) {
     try {
       const loaded = JSON.parse(e.target.result);
       mergeLoadedData(loaded);
-      // Set the currentGhFile from production title so Save knows where to push
       const title = loaded.config && loaded.config.productionTitle;
       if (title) currentGhFile = 'crew_' + ghSafeFilename(title) + '.json';
       buildTabs();
@@ -1814,15 +1931,12 @@ function loadFromFile(event) {
 }
 
 function printDay(dayNum) {
-  // Switch to the day tab first so it's the visible panel
   switchTab('day-' + dayNum);
-  // Expand all scene rows so they print fully
   document.querySelectorAll('.day-scene-row:not(.empty)').forEach(r => r.classList.add('open'));
   setTimeout(() => window.print(), 200);
 }
 
 function exportAllCrewViews() {
-  // Find days that have at least one scene entered
   const activeDays = [];
   for (let i = 1; i <= NUM_DAYS; i++) {
     if (data.days[i].sceneNums.some(s => s && s.trim())) activeDays.push(i);
@@ -1835,12 +1949,22 @@ function exportCrewView(dayNums) {
   if (!Array.isArray(dayNums)) dayNums = [dayNums];
   const cfg = data.config;
   const title = cfg.productionTitle || "Production";
-  const txLabels = ["A","B","C","D","E","F","G"];
+  const txLabels = TX_LABELS;
 
   let daysHtml = "";
   for (const dayNum of dayNums) {
     const d = data.days[dayNum];
     const filledScenes = d.sceneNums.filter(s => s && s.trim()).map(s => parseInt(s)).filter(n => data.scenes[n]);
+    const dow = getDayOfWeek(d.date);
+
+    // Cast for this day
+    const castItems = getDayCast(dayNum);
+    let castHtml = '';
+    if (castItems.length > 0) {
+      castHtml = '<div style="background:#1a1a1a;padding:8px 12px;border-radius:6px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:#c0c0c0;letter-spacing:.5px;margin-bottom:6px">CAST</div><div style="display:flex;flex-wrap:wrap;gap:6px">' +
+        castItems.map(c => '<span style="background:#2d2d2d;color:#e8e8e8;padding:3px 8px;border-radius:4px;font-size:11px"><strong>' + esc(c.character) + '</strong>' + (c.actor ? ' <span style="opacity:.6">(' + esc(c.actor) + ')</span>' : '') + '</span>').join('') +
+        '</div></div>';
+    }
 
     let scenesHtml = "";
     for (const scNum of filledScenes) {
@@ -1858,7 +1982,10 @@ function exportCrewView(dayNums) {
           <div class="cv-tx-sec-hdr">TX ASSIGNMENTS</div>
           ${txLabels.map((tx,i) => {
             const ch = sc.tx[tx];
-            return `<div class="cv-tx-row"><div class="cv-tx-label ${i%2===0?'even':'odd'}">${tx}</div><div class="cv-tx-type ${ch.isDia?'cv-dia-tag':'cv-nodia-tag'}">${ch.isDia?'DIA':'NO DIA'}</div><div class="cv-tx-val">${esc(ch.name) || '—'}</div></div>`;
+            const txType = ch.type || 'dia';
+            const typeClass = txType === 'plant' ? 'cv-plant-tag' : txType === 'nodia' ? 'cv-nodia-tag' : 'cv-dia-tag';
+            const typeLabel = txType === 'dia' ? 'DIA' : txType === 'nodia' ? 'NO DIA' : 'PLANT';
+            return `<div class="cv-tx-row"><div class="cv-tx-label ${i%2===0?'even':'odd'}">${tx}</div><div class="cv-tx-type ${typeClass}">${typeLabel}</div><div class="cv-tx-val">${esc(ch.name) || '—'}${ch.mic ? ' <small style="color:#888">(' + esc(ch.mic) + ')</small>' : ''}</div></div>`;
           }).join("")}
         </div>
         <div class="cv-footer">
@@ -1876,12 +2003,14 @@ function exportCrewView(dayNums) {
           <span class="cv-prod">${esc(title)}${cfg.episode ? ' — '+esc(cfg.episode) : ''}</span>
         </div>
         <div class="cv-day-info">
-          ${d.date ? '<span>Date: '+d.date+'</span>' : ''}
+          ${d.date ? '<span>Date: '+d.date + (dow ? ' ('+dow+')' : '') +'</span>' : ''}
           ${cfg.director ? '<span>Director: '+esc(cfg.director)+'</span>' : ''}
-          ${d.firstAD ? '<span>1st AD: '+esc(d.firstAD)+'</span>' : ''}
+          ${(d.firstAD || cfg.firstAD) ? '<span>1st AD: '+esc(d.firstAD || cfg.firstAD)+'</span>' : ''}
           ${d.location ? '<span>Location: '+esc(d.location)+'</span>' : ''}
         </div>
+        ${d.dailyNotes ? '<div style="margin-top:8px;padding:8px 12px;background:rgba(255,255,255,.1);border-radius:4px;font-size:12px;color:#e8e8e8;white-space:pre-wrap">' + esc(d.dailyNotes) + '</div>' : ''}
       </div>
+      ${castHtml}
       ${scenesHtml}
       ${d.nurtonExtra ? `<div class="cv-extra"><div class="cv-extra-hdr cv-nurton">NURTON / WILD TRACKS</div><div class="cv-extra-body">${esc(d.nurtonExtra)}</div></div>` : ''}
       ${d.eodNotes ? `<div class="cv-extra"><div class="cv-extra-hdr cv-eod">ADDITIONAL NOTES</div><div class="cv-extra-body">${esc(d.eodNotes)}</div></div>` : ''}
@@ -1903,9 +2032,6 @@ body{font-family:Arial,sans-serif;background:#f5f5f5;color:#0a0a0a;padding:12px}
 .cv-day-num{font-size:20px;font-weight:700}
 .cv-prod{font-size:14px;opacity:.7}
 .cv-day-info{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;opacity:.8}
-.cv-tx-bar{background:#1a1a1a;padding:8px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-radius:0 0 6px 6px;margin-bottom:10px}
-.cv-tx-title{font-size:10px;font-weight:700;color:#c0c0c0;letter-spacing:.5px}
-.cv-tx-badge{background:#0a0a0a;color:#c0c0c0;font-size:11px;font-weight:600;padding:3px 8px;border-radius:3px}
 .cv-scene{background:#fff;border:1px solid #ddd;border-radius:6px;margin-bottom:6px;overflow:hidden}
 .cv-scene-hdr{display:flex;align-items:stretch}
 .cv-scene-num{background:#0a0a0a;color:#c0c0c0;min-width:48px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
@@ -1919,6 +2045,7 @@ body{font-family:Arial,sans-serif;background:#f5f5f5;color:#0a0a0a;padding:12px}
 .cv-tx-type{width:52px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:.3px}
 .cv-dia-tag{background:#e8eef7;color:#2a5a8a}
 .cv-nodia-tag{background:#f5f0ea;color:#8a6a3a}
+.cv-plant-tag{background:#f3e5f5;color:#6a1b9a}
 .cv-tx-val{flex:1;padding:4px 8px;font-size:12px;min-height:24px;display:flex;align-items:center}
 .cv-footer{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #ddd}
 .cv-footer-cell{padding:8px 10px;font-size:12px}
@@ -1933,9 +2060,7 @@ body{font-family:Arial,sans-serif;background:#f5f5f5;color:#0a0a0a;padding:12px}
 @media(max-width:700px){
   body{padding:6px}
   .cv-day-info{flex-direction:column;gap:4px}
-  .cv-detail-grid{grid-template-columns:1fr}
   .cv-footer{grid-template-columns:1fr}
-  .cv-tx-bar{flex-direction:column;align-items:flex-start}
 }
 @media print{
   body{padding:0;background:#fff}
@@ -1944,7 +2069,7 @@ body{font-family:Arial,sans-serif;background:#f5f5f5;color:#0a0a0a;padding:12px}
   .cv-page-break{page-break-before:always}
   .cv-page-break:first-child{page-break-before:auto}
   .cv-scene-num,.cv-tx-label,.cv-tx-badge,.cv-day-header,.cv-extra-hdr,.cv-tx-sec-hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .cv-dia-tag,.cv-nodia-tag,.cv-prob,.cv-nt{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cv-dia-tag,.cv-nodia-tag,.cv-plant-tag,.cv-prob,.cv-nt{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style></head><body>
 <div class="cv-banner"><h1>XF Daily Notes</h1><span class="cv-ro">READ ONLY — CREW VIEW</span></div>
@@ -1968,10 +2093,8 @@ function showStatus(msg) {
   setTimeout(() => el.textContent = "", 3000);
 }
 
-// Full-screen save toast for mobile visibility
 let saveToastTimer = null;
 function showSaveToast(msg, type) {
-  // type: 'saving', 'success', 'error'
   const el = document.getElementById('saveToast');
   el.textContent = msg;
   el.className = 'save-toast ' + type + ' show';
@@ -1994,9 +2117,7 @@ let crewMode = false;
 function enterCrewMode() {
   crewMode = true;
   document.body.classList.add('crew-mode');
-  // Rebuild tabs to only show days with scenes
   buildCrewTabs();
-  // Switch to first active day
   const firstDay = getActiveDays()[0];
   if (firstDay) switchTab('day-' + firstDay);
   else switchTab('day-1');
@@ -2007,7 +2128,6 @@ function exitCrewMode() {
   document.body.classList.remove('crew-mode');
   if (crewPollInterval) { clearInterval(crewPollInterval); crewPollInterval = null; }
   crewCurrentUrl = null;
-  // Go back to landing screen
   data = defaultData();
   document.getElementById('landingScreen').style.display = 'flex';
   document.getElementById('landingCrewLoad').classList.remove('show');
@@ -2025,7 +2145,6 @@ function getActiveDays() {
 function buildCrewTabs() {
   const t = document.getElementById("tabs");
   const activeDays = getActiveDays();
-  // If no days have data, show all 30
   const daysToShow = activeDays.length > 0 ? activeDays : Array.from({length: NUM_DAYS}, (_, i) => i + 1);
   let html = '';
   for (const i of daysToShow) {
@@ -2066,7 +2185,7 @@ function showEditLogin() {
   setTimeout(() => document.getElementById('pwInput').focus(), 100);
 }
 
-let crewSelectedProject = null; // {name, file} of the project crew selected
+let crewSelectedProject = null;
 
 function showCrewPicker() {
   document.getElementById('landingPw').classList.remove('show');
@@ -2077,7 +2196,6 @@ function showCrewPicker() {
   const listEl = document.getElementById('crewProjectList');
   listEl.innerHTML = '<div style="color:#888;font-size:12px;text-align:center;padding:12px">Loading projects...</div>';
 
-  // Fetch project list from GitHub Pages registry
   const base = window.location.href.split('/').slice(0, -1).join('/');
   fetch(base + '/registry.json?' + Date.now())
     .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
@@ -2131,7 +2249,6 @@ function crewCheckPw() {
     return;
   }
 
-  // Fetch project data from GitHub Pages (same host — no CORS issues)
   const base = window.location.href.split('/').slice(0, -1).join('/');
   const url = base + '/' + fileRef;
 
@@ -2142,7 +2259,6 @@ function crewCheckPw() {
   fetch(url + '?' + Date.now())
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(loaded => {
-      // Check password against the project data
       const projectPw = loaded.config && loaded.config.crewPassword;
       if (projectPw && pw !== projectPw) {
         document.getElementById('crewPwHint').textContent = 'Incorrect password';
@@ -2150,14 +2266,12 @@ function crewCheckPw() {
         document.getElementById('crewPwInput').select();
         return;
       }
-      // Password correct (or no password set) — enter crew mode
       mergeLoadedData(loaded);
       document.getElementById('landingScreen').style.display = 'none';
       buildTabs();
       renderPanel("config");
       updateProdTitle();
       enterCrewMode();
-      // Start auto-refresh polling from GitHub Pages
       crewCurrentUrl = url;
       crewStartGhPolling(url);
     })
@@ -2185,26 +2299,22 @@ function crewStartGhPolling(url) {
         showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
       })
       .catch(() => {});
-  }, 120000); // Poll every 2 minutes (GitHub Pages has a short CDN cache)
+  }, 120000);
 }
 
 function checkPw() {
   const input = document.getElementById('pwInput');
   if (input.value === APP_PW) {
-    // Correct — enter edit mode
     document.getElementById('landingScreen').style.display = 'none';
-    // Restore GitHub token from localStorage
     try {
       const savedGhToken = localStorage.getItem(GH_TOKEN_KEY);
       if (savedGhToken) ghToken = savedGhToken;
     } catch(e) {}
-    // Start with blank template — build UI
     data = defaultData();
     buildTabs();
     renderPanel('config');
     updateProdTitle();
     enableAutoSave();
-    // Show project picker so user can choose a project (or start fresh)
     showProjectPicker();
   } else {
     input.classList.add('wrong');
@@ -2240,7 +2350,6 @@ function copyCrewLink() {
   }
   const crewUrl = window.location.href.split('#')[0].split('?')[0];
 
-  // Try native share first (mobile), then clipboard
   if (navigator.share) {
     navigator.share({
       title: 'XF Daily Notes — Crew Access',
@@ -2266,11 +2375,9 @@ function copyToClipboard(url) {
 // ═════════════════════════════════════════════════════════════════════════════
 // CREW REFRESH (uses GitHub Pages)
 // ═════════════════════════════════════════════════════════════════════════════
-let crewCurrentUrl = null; // URL of the crew project JSON on GitHub Pages
+let crewCurrentUrl = null;
 
 function crewSavePDF() {
-  // Use the browser's print dialog to save as PDF
-  // Temporarily style the page for print
   const style = document.createElement('style');
   style.id = 'crew-print-style';
   style.textContent = `
@@ -2288,7 +2395,6 @@ function crewSavePDF() {
   showCrewStatus("Opening print dialog — choose 'Save as PDF'");
   setTimeout(() => {
     window.print();
-    // Clean up
     setTimeout(() => {
       const s = document.getElementById('crew-print-style');
       if (s) s.remove();
@@ -2327,7 +2433,6 @@ if (window.caches) {
   });
 }
 if ('serviceWorker' in navigator) {
-  // Unregister any old service workers, then re-register fresh
   navigator.serviceWorker.getRegistrations().then(regs => {
     regs.forEach(r => r.unregister());
   }).then(() => {
