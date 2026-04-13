@@ -14,7 +14,9 @@
     "kitTxRx": "Wisycom MCR54, MTP61 x4, MTP41 x4",
     "kitComs": "Sennheiser G4",
     "crewPassword": "napw",
-    "cast": {}
+    "cast": {
+      "margret": "Andrea Sihler"
+    }
   },
   "scenes": {
     "1": {
