@@ -401,7 +401,7 @@
       "intExt": "INT.",
       "place": "Margret's Apartment",
       "time": "Morning",
-      "notes": "- Likely montage of seperate shots",
+      "notes": "- no scripted dia, but breaths likely",
       "description": "Motion Sequence:\nThe traces of chaos continue:\nA half-eaten pear in the fruit basket.\nMargret closes the open curtain.\nDirty brushes are standing in a teacup instead of in brush water.\nMargret closes the open curtain.\nBlack, white, and grey paint tubes were all thrown on the ground.\nMargret, annoyed, pulls the curtain closed.\nThe colorful paint tubes and pigment pots are scattered haphazardly all over the table; some have already\nleaked.\nMargret, very annoyed, pulls the curtain closed.",
       "tx": {
         "A": {
@@ -411,7 +411,7 @@
         },
         "B": {
           "name": "Margret",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "C": {
@@ -457,7 +457,7 @@
         "",
         ""
       ],
-      "problems": "/",
+      "problems": "",
       "nurton": ""
     },
     "8": {
