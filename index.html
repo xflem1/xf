@@ -2676,9 +2676,19 @@ function enterCrewMode() {
   document.body.classList.add('crew-mode');
   updateCrewScriptBtn();
   buildCrewTabs();
+  const todayDay = getTodayDay();
   const firstDay = getActiveDays()[0];
-  if (firstDay) switchTab('day-' + firstDay);
+  if (todayDay) switchTab('day-' + todayDay);
+  else if (firstDay) switchTab('day-' + firstDay);
   else switchTab('day-1');
+}
+
+function getTodayDay() {
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  for (const k of Object.keys(data.days)) {
+    if (data.days[k].date === today) return parseInt(k);
+  }
+  return null;
 }
 
 function updateCrewScriptBtn() {
