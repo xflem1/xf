@@ -398,26 +398,26 @@
       "nurton": ""
     },
     "7": {
-      "intExt": "EXT.",
-      "place": "Courtyard",
-      "time": "?",
-      "notes": "Margret has no scripted dialog, but could improvise a response.\nLikely no plants needed. Can be prepped and added on set if required.",
-      "description": "Now we finally see everything Margret saw.\nMagnificent wildflowers are blooming, very close by. Then slowly we recognize more of the surroundings. We see a well-tended little garden, wrinkled hands diligently watering the flowers.\nAn older lady, Hilde, in the courtyard, she is smiling. And then, Margret. She steps through the front door into the courtyard. Very carefully, one foot after the other. As if she had to learn to walk again.\nThe canvas is tucked under her arm. The one with the bouquet of flowers. Hilde looks up, examines, recognizes, and marvels. A bouquet of flowers in her hands.\nHILDE: Margret?\nThe two women approach each other hesitantly. They meet amidst flowers, both painted and blooming.",
+      "intExt": "",
+      "place": "",
+      "time": "",
+      "notes": "",
+      "description": "",
       "tx": {
         "A": {
-          "name": "Boom MK41",
+          "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": ""
         },
         "B": {
-          "name": "Margret",
+          "name": "",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": ""
         },
         "C": {
-          "name": "Hilde",
+          "name": "",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": ""
         },
         "D": {
           "name": "",
@@ -457,7 +457,7 @@
         "",
         ""
       ],
-      "problems": "EXT scene recorded outdoors. Do not use MK4 (limit room splash).",
+      "problems": "",
       "nurton": ""
     },
     "8": {
@@ -524,26 +524,26 @@
       "nurton": ""
     },
     "9": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "EXT.",
+      "place": "Courtyard",
+      "time": "?",
+      "notes": "Margret has no scripted dialog, but could improvise a response.\nLikely no plants needed. Can be prepped and added on set if required.",
+      "description": "Now we finally see everything Margret saw.\nMagnificent wildflowers are blooming, very close by. Then slowly we recognize more of the surroundings. We see a well-tended little garden, wrinkled hands diligently watering the flowers.\nAn older lady, Hilde, in the courtyard, she is smiling. And then, Margret. She steps through the front door into the courtyard. Very carefully, one foot after the other. As if she had to learn to walk again.\nThe canvas is tucked under her arm. The one with the bouquet of flowers. Hilde looks up, examines, recognizes, and marvels. A bouquet of flowers in her hands.\nHILDE: Margret?\nThe two women approach each other hesitantly. They meet amidst flowers, both painted and blooming.",
       "tx": {
         "A": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Boom MK41",
+          "type": "boom",
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Margret",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "",
+          "name": "Hilde",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
           "name": "",
@@ -583,7 +583,7 @@
         "",
         ""
       ],
-      "problems": "",
+      "problems": "EXT scene recorded outdoors. Do not use MK4 (limit room splash).",
       "nurton": ""
     },
     "10": {
@@ -7071,7 +7071,7 @@
         "4",
         "6",
         "9",
-        "7",
+        "9",
         "",
         "",
         "",
