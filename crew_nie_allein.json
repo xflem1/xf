@@ -13,7 +13,8 @@
     "kitMics": "Schoeps MK41, Schoeps MK4. Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061",
     "kitTxRx": "Wisycom MCR54, MTP61 x4, MTP41 x4",
     "kitComs": "Sennheiser G4",
-    "crewPassword": "napw"
+    "crewPassword": "napw",
+    "cast": {}
   },
   "scenes": {
     "1": {
@@ -24,32 +25,44 @@
       "description": "Dozens of canvases lean against the walls of the small living room. In the distance, one can glimpse endless fields, colorful bouquets of flowers, and radiant\nsunrises. A brush is applied. Pale colors spread across the canvas, forming abstract structures. Margaret (78) stands before this almost black-and-white painting on the easel. Now we realize how gloomy the whole room is. Everything looks gray and lifeless. Hardly any sunlight penetrates the apartment; instead, there is the screaming of angry children, aggressive barking of dogs, and thunder and rumbling from the backyard. Eerie shadows are cast behind the thin curtains. Startled, Margret looks up from her picture, wraps her cardigan tighter around her thin body, and steps forward to close the heavy, dark velvet curtains. Relieved, she returns to the canvas, looks at the withered bouquet of flowers in front of her, and picks up her brush - but it doesn't seem to be working out quite right today. Frustrated, she sets her teacup down. With such force that a pigment container at the other end of the table is set in motion. Then it falls over. As they fall, the pigments detach from the glass, swirl around, and seem to take shape. Margret doesn't notice. She's just switching on the table lamp next to her, and the small light slowly tries to fight against the darkness of her apartment. Something flits through Margret's field of vision, past the wall. What was that? Margret is jolted out of her trance. But there's nothing to see. She shakes her head. Back at the screen, there it is again, a rustling sound. Margret hesitates. She clutches the brush and tries to make out something in the dark corner. No chance, the light doesn't reach that far. Just as she's about to turn away, a brightly colored tube of paint rolls towards her and stops at her slipper. Margret stares. She slowly backs away, grabbing an umbrella leaning against the wall with one hand. She stumbles towards the bedroom, her eyes never leaving the dark corner. Then very quickly: door open, Margret in, door closed. Tonight she'll sleep upright, armed with an umbrella. ",
       "tx": {
         "A": {
-          "name": "Boom MK41",
-          "isDia": false
+          "name": "Boom",
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "Margret 6060",
-          "isDia": false
+          "name": "Margret",
+          "type": "nodia",
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "Plant: Near 6061",
-          "isDia": false
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Plant: Splash 6060",
-          "isDia": false
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "Specific lighting through window mentioned many times (careful with shadows). ",
@@ -63,32 +76,44 @@
       "description": "When Margret wakes up, she's still clutching the umbrella tightly. Cautiously, she ventures out of the bedroom again. Surely it was all just a dream. Just to be sure, she checks in the corner, but there's only chaos. She mutters to herself as she does so. But she immediately notices that someone has opened the curtains. The unfamiliar sunlight dazzles her. She reaches out her hand to shield herself and tiptoes to the window. As she resolutely draws the curtains closed, her gaze falls upon a few green splashes of paint on the fabric. The traces of paint continue on the floor and lead directly to the canvas. And, oh dear, a small shadow made of colorful pigments is frolicking about on it, having just destroyed Margret's grey picture with its green handprints. Margret gasped in shock, the shadow froze. They glanced at each other briefly, then Margret darted towards him, waving her hands. \"Get out of here!\" The shadow fled. She has to save her picture! She paints over the colorful marks with white paint, but only smears everything even more. She sighs. First things first, breakfast. But as she opens the refrigerator door, an olive pit falls on her head. She looks up in disbelief. Surely that's not really the shadow sitting on top, with the half-empty jar of olives next to her. Completely annoyed, she slams the door shut and takes a pear from the fruit bowl instead. She strides purposefully towards the canvas. She'll just have to start over. She fetches a new canvas from the corner, but as she does, the shadow throws one brush after another onto the floor.",
       "tx": {
         "A": {
-          "name": "Boom MK41",
-          "isDia": true
+          "name": "Boom",
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
           "name": "Margret",
-          "isDia": true
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "Plant: Near 6061",
-          "isDia": false
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Plant: Splash 6060",
-          "isDia": false
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "- Multi room, check camera movements and make sure to plan for any multi room takes",
@@ -102,32 +127,44 @@
       "description": "Motion Sequence:\nThe traces of chaos continue:\nA half-eaten pear in the fruit basket.\nMargret closes the open curtain.\nDirty brushes are standing in a teacup instead of in brush water.\nMargret closes the open curtain.\nBlack, white, and grey paint tubes were all thrown on the ground.\nMargret, annoyed, pulls the curtain closed.\nThe colorful paint tubes and pigment pots are scattered haphazardly all over the table; some have already\nleaked.\nMargret, very annoyed, pulls the curtain closed.",
       "tx": {
         "A": {
-          "name": "Boom MK41",
-          "isDia": false
+          "name": "Boom",
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "Margret 6060",
-          "isDia": false
+          "name": "Margret",
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "Plant: Near 6061",
-          "isDia": false
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Plant: Splash 6060",
-          "isDia": false
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "/",
@@ -141,32 +178,44 @@
       "description": "Margret stands before a canvas. Completely empty, white, and full of possibilities. The curtains are finally closed. It's quiet around her. Everything as usual.\nDeliberately, she lifts the brush with her right hand and the palette with her left. Dip. Breathe. Then she guides the brush to the canvas, very gently and... YELLOW?\nSurprised, the paint palette slips from her hand. Before Margret can realize what's happening, the shadow darts out, lunges towards her, and catches the palette at the last moment. Margret looks at the suspended palette. Then at the shadow that slowly peeks out from behind it. She hesitates. Looks at the canvas, at the ghastly yellow, then back at the palette. An idea spreads within Margret, warm, gentle, and shy. Carefully, Margret reaches for the palette; the shade allows her to do so.\nMARGRET: (breathing) Thanks.\nThe shadow tilts its head as if surprised by the small word. Then he watches as Margret dips her brush into the yellow paint again, this time quite deliberately.\nAnd Margret paints. She reaches for bright colors: green, pink, red. The shadow steps onto an open tube of paint and squeezes a vibrant blue onto her palette.\nMargret's radiance returns, the paintbrush seems to develop a mind of its own. His work seems to be done, and so the shadow creeps, silently and stealthily, to the window. A jerk, and a ray of light breaks through the thick curtains. The sun shines over the chaos, the canvases, the splashes of paint, and finally over\nMargret's hands. She lets it happen. The shadow writhes in the light, glittering and shining and spinning. It whirls around, losing first one, then two, then three particles. It swirls directly over the pigment container from which it initially emerged. Slowly, it dissolves, and the pigments trickle back into the container.",
       "tx": {
         "A": {
-          "name": "Boom MK41",
-          "isDia": true
+          "name": "Boom",
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "Margret 6060",
-          "isDia": true
+          "name": "Margret",
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "Plant: Near 6061",
-          "isDia": false
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Plant: Splash 6060",
-          "isDia": false
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "/",
@@ -180,32 +229,44 @@
       "description": "Margret finishes her artwork, a colorful bouquet of flowers, and breathes a sigh of relief. In the light, her cheeks glow bright red.\nMARGRET: Just look!\nShe turns around, beaming with pride, but there's no sign of the shadow. There's no one there for Margret to show her picture to. She looks under the dresser. Nothing. In the refrigerator. Nothing. Then Margret shrugged. That's what she wanted all along, isn't it? Her peace and quiet. Now she has it again.\nMARGRET (CONT'D) (muttering): It was about time you disappeared.\nWas that it? Margret is very unsure. But what choice does she have but to return to her routine?",
       "tx": {
         "A": {
-          "name": "Boom MK41",
-          "isDia": true
+          "name": "Boom",
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "Margret 6060",
-          "isDia": true
+          "name": "Margret",
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "Plant: Near 6061",
-          "isDia": false
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Plant: Splash 6060",
-          "isDia": false
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "clothing noise",
@@ -219,32 +280,44 @@
       "description": "Margret gets up and walks into the kitchen. There's a half-eaten pear in the fruit bowl. Margret sighs.\nMargret looks in the refrigerator. There's one last olive in the jar. She doesn't touch it. Margret stands in front of the canvas. The flower painting radiates towards her, full of color, full of joy – but something is wrong with Margret. She looks around her studio, everything so gray, everything so still. Then her gaze falls on the glittering particles of color, dancing in the light. Light. Sunlight.\nMargret examines the gap in the curtain. Cautiously, she peers through it, outwards. For the first time, really looking at it properly.\nWe don't see everything that's going on, but we do see Margret's features. First thoughtful, then determined. She turns around with a jerk.",
       "tx": {
         "A": {
-          "name": "Boom MK41",
-          "isDia": false
+          "name": "Boom",
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "Margret 6060",
-          "isDia": false
+          "name": "Margret",
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "Plant: Near 6061",
-          "isDia": false
+          "name": "Near",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Plant: Splash 6060",
-          "isDia": false
+          "name": "Splash",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "/",
@@ -259,31 +332,43 @@
       "tx": {
         "A": {
           "name": "Boom MK41",
-          "isDia": true
+          "type": "plant",
+          "mic": "Schoeps MK41"
         },
         "B": {
           "name": "Margret 6060",
-          "isDia": false
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "C": {
           "name": "Hilde 6060",
-          "isDia": true
+          "type": "dia",
+          "mic": "DPA 6060"
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "EXT scene recorded outdoors. Do not use MK4 (limit room splash).",
@@ -298,31 +383,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -337,31 +434,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -376,31 +485,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -415,31 +536,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -454,31 +587,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -493,31 +638,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -532,31 +689,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -571,31 +740,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -610,31 +791,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -649,31 +842,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -688,31 +893,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -727,31 +944,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -766,31 +995,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -805,31 +1046,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -844,31 +1097,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -883,31 +1148,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -922,31 +1199,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -961,31 +1250,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1000,31 +1301,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1039,31 +1352,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1078,31 +1403,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1117,31 +1454,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1156,31 +1505,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1195,31 +1556,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1234,31 +1607,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1273,31 +1658,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1312,31 +1709,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1351,31 +1760,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1390,31 +1811,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1429,31 +1862,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1468,31 +1913,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1507,31 +1964,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1546,31 +2015,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1585,31 +2066,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1624,31 +2117,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1663,31 +2168,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1702,31 +2219,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1741,31 +2270,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1780,31 +2321,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1819,31 +2372,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1858,31 +2423,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1897,31 +2474,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1936,31 +2525,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -1975,31 +2576,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2014,31 +2627,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2053,31 +2678,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2092,31 +2729,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2131,31 +2780,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2170,31 +2831,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2209,31 +2882,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2248,31 +2933,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2287,31 +2984,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2326,31 +3035,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2365,31 +3086,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2404,31 +3137,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2443,31 +3188,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2482,31 +3239,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2521,31 +3290,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2560,31 +3341,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2599,31 +3392,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2638,31 +3443,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2677,31 +3494,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2716,31 +3545,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2755,31 +3596,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2794,31 +3647,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2833,31 +3698,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2872,31 +3749,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2911,31 +3800,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2950,31 +3851,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -2989,31 +3902,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3028,31 +3953,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3067,31 +4004,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3106,31 +4055,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3145,31 +4106,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3184,31 +4157,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3223,31 +4208,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3262,31 +4259,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3301,31 +4310,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3340,31 +4361,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3379,31 +4412,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3418,31 +4463,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3457,31 +4514,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3496,31 +4565,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3535,31 +4616,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3574,31 +4667,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3613,31 +4718,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3652,31 +4769,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3691,31 +4820,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3730,31 +4871,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3769,31 +4922,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3808,31 +4973,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3847,31 +5024,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3886,31 +5075,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3925,31 +5126,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -3964,31 +5177,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4003,31 +5228,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4042,31 +5279,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4081,31 +5330,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4120,31 +5381,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4159,31 +5432,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4198,31 +5483,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4237,31 +5534,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4276,31 +5585,43 @@
       "tx": {
         "A": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "B": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "C": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "D": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "E": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "F": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
         },
         "G": {
           "name": "",
-          "isDia": false
+          "type": "dia",
+          "mic": ""
+        },
+        "H": {
+          "name": "",
+          "type": "dia",
+          "mic": ""
         }
       },
       "problems": "",
@@ -4312,13 +5633,16 @@
       "date": "2026-04-13",
       "firstAD": "Louisa Wagener",
       "location": "HFF Studio",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "1",
@@ -4341,13 +5665,16 @@
       "date": "2026-04-14",
       "firstAD": "Louisa Wagener",
       "location": "HFF Studio",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "3",
@@ -4370,13 +5697,16 @@
       "date": "2026-04-15",
       "firstAD": "Louisa Wagener",
       "location": "HFF Studio",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "5",
@@ -4399,13 +5729,16 @@
       "date": "2026-04-16",
       "firstAD": "Louisa Wagener",
       "location": "HFF Studio",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4428,13 +5761,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4457,13 +5793,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4486,13 +5825,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4515,13 +5857,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4544,13 +5889,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4573,13 +5921,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4602,13 +5953,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4631,13 +5985,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4660,13 +6017,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4689,13 +6049,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4718,13 +6081,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4747,13 +6113,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4776,13 +6145,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4805,13 +6177,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4834,13 +6209,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4863,13 +6241,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4892,13 +6273,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4921,13 +6305,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4950,13 +6337,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -4979,13 +6369,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -5008,13 +6401,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -5037,13 +6433,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -5066,13 +6465,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -5095,13 +6497,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -5124,13 +6529,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
@@ -5153,13 +6561,16 @@
       "date": "",
       "firstAD": "",
       "location": "",
+      "dailyNotes": "",
       "txAlloc": {
         "A": "",
         "B": "",
         "C": "",
         "D": "",
         "E": "",
-        "F": ""
+        "F": "",
+        "G": "",
+        "H": ""
       },
       "sceneNums": [
         "",
