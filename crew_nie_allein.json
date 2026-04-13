@@ -274,9 +274,9 @@
     "5": {
       "intExt": "INT.",
       "place": "Margret's Apartment",
-      "time": "Later",
-      "notes": "Silent mutterings - ensure good lav placement.",
-      "description": "Margret finishes her artwork, a colorful bouquet of flowers, and breathes a sigh of relief. In the light, her cheeks glow bright red.\nMARGRET: Just look!\nShe turns around, beaming with pride, but there's no sign of the shadow. There's no one there for Margret to show her picture to. She looks under the dresser. Nothing. In the refrigerator. Nothing. Then Margret shrugged. That's what she wanted all along, isn't it? Her peace and quiet. Now she has it again.\nMARGRET (CONT'D) (muttering): It was about time you disappeared.\nWas that it? Margret is very unsure. But what choice does she have but to return to her routine?",
+      "time": "Morning",
+      "notes": "Silent mutterings - ensure good lav placement.\nlots of actions, prepare to plant for multi room shot",
+      "description": "First things first, breakfast.\nBut when she opens the refrigerator door, an olive pit falls on her head. She looks up in disbelief.\nThere isn't really a shadow sitting on top, with the half-empty olive jar next to it.\nCompletely annoyed, she slams the door shut again and takes a pear from the fruit basket instead.\nShe strides purposefully towards the canvas. She'll just have to start over. She fetches a new canvas from the corner, but as she does,\nthe shadow throws one brush after another onto the floor.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -285,7 +285,7 @@
         },
         "B": {
           "name": "Margret",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "C": {
@@ -338,26 +338,26 @@
       "intExt": "INT.",
       "place": "Margret's Apartment",
       "time": "?",
-      "notes": "No dia - potential plant in Fridge if required on the day",
-      "description": "Margret gets up and walks into the kitchen. There's a half-eaten pear in the fruit bowl. Margret sighs.\nMargret looks in the refrigerator. There's one last olive in the jar. She doesn't touch it. Margret stands in front of the canvas. The flower painting radiates towards her, full of color, full of joy – but something is wrong with Margret. She looks around her studio, everything so gray, everything so still. Then her gaze falls on the glittering particles of color, dancing in the light. Light. Sunlight.\nMargret examines the gap in the curtain. Cautiously, she peers through it, outwards. For the first time, really looking at it properly.\nWe don't see everything that's going on, but we do see Margret's features. First thoughtful, then determined. She turns around with a jerk.",
+      "notes": "",
+      "description": "",
       "tx": {
         "A": {
-          "name": "Boom",
+          "name": "",
           "type": "boom",
           "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "Margret",
+          "name": "",
           "type": "dia",
           "mic": "DPA 6060"
         },
         "C": {
-          "name": "Near",
+          "name": "",
           "type": "plant",
           "mic": "DPA 6061"
         },
         "D": {
-          "name": "Splash",
+          "name": "",
           "type": "plant",
           "mic": "DPA 6060"
         },
