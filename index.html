@@ -426,7 +426,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px;cursor:pointer" onclick="showVersionHistory()">v3.4</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px;cursor:pointer" onclick="showVersionHistory()">v3.5</div>
   </div>
 </div>
 
@@ -944,7 +944,11 @@ function renderTxMap(dayNum) {
     if (conflicts[ch]) hasConflict = true;
   });
 
-  let rows = TX_LABELS.map((ch, i) => {
+  // In crew mode, skip channels with no assignments
+  const displayLabels = crewMode ? TX_LABELS.filter(ch => map[ch].length > 0) : TX_LABELS;
+  if (crewMode && displayLabels.length === 0) return `<div class="tx-map" id="txmap-${dayNum}" style="display:none"></div>`;
+
+  let rows = displayLabels.map((ch, i) => {
     const entries = map[ch];
     let cells = '';
     if (entries.length === 0) {
@@ -1742,7 +1746,7 @@ function openSettings() {
     <div style="border-top:1px solid #eee;padding-top:12px">
       <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
       <div style="font-size:11px;color:#888;line-height:1.8">
-        Version: v3.4<br>
+        Version: v3.5<br>
         Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
         Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
       </div>
@@ -1760,7 +1764,15 @@ function closeSettings() {
 // ═════════════════════════════════════════════════════════════════════════════
 const VERSION_HISTORY = [
   {
-    ver: 'v3.4', current: true,
+    ver: 'v3.5', current: true,
+    items: [
+      'Crew offline cache — auto-saves project data to browser; works through reception dropouts',
+      'TX map in crew view now hides unused channels (cleaner daily overview)',
+      'Cache updates on every successful poll and manual refresh',
+    ]
+  },
+  {
+    ver: 'v3.4',
     items: [
       'Version history — tap version number to see what\'s new',
       'Compact day header layout — cleaner on mobile, no more stacking',
@@ -2264,6 +2276,20 @@ function esc(s) {
 // ═════════════════════════════════════════════════════════════════════════════
 // CREW MODE
 // ═════════════════════════════════════════════════════════════════════════════
+const CREW_CACHE_KEY = 'xf_crew_cache';
+function crewCacheSave(fileRef, jsonData, pw) {
+  try { localStorage.setItem(CREW_CACHE_KEY, JSON.stringify({file: fileRef, data: jsonData, pw: pw, ts: Date.now()})); } catch(e) {}
+}
+function crewCacheLoad(fileRef) {
+  try {
+    const raw = localStorage.getItem(CREW_CACHE_KEY);
+    if (!raw) return null;
+    const cached = JSON.parse(raw);
+    if (cached.file !== fileRef) return null;
+    return cached;
+  } catch(e) { return null; }
+}
+
 let crewMode = false;
 
 function enterCrewMode() {
@@ -2418,6 +2444,10 @@ function crewCheckPw() {
         document.getElementById('crewPwInput').select();
         return;
       }
+      // Cache for offline use
+      crewCacheSave(fileRef, loaded, pw);
+      crewCurrentPw = pw;
+      crewCurrentFileRef = fileRef;
       mergeLoadedData(loaded);
       document.getElementById('landingScreen').style.display = 'none';
       buildTabs();
@@ -2428,8 +2458,28 @@ function crewCheckPw() {
       crewStartGhPolling(url);
     })
     .catch(err => {
-      document.getElementById('crewPwHint').textContent = 'Could not load project data';
-      document.getElementById('crewPwHint').style.color = '#ff6b6b';
+      // Try offline cache
+      const cached = crewCacheLoad(fileRef);
+      if (cached && cached.pw === pw) {
+        crewCurrentPw = pw;
+        crewCurrentFileRef = fileRef;
+        mergeLoadedData(cached.data);
+        document.getElementById('landingScreen').style.display = 'none';
+        buildTabs();
+        renderPanel("config");
+        updateProdTitle();
+        enterCrewMode();
+        crewCurrentUrl = url;
+        const ago = Math.round((Date.now() - cached.ts) / 60000);
+        showCrewStatus("Offline — showing cached data (" + (ago < 1 ? 'just now' : ago + ' min ago') + ")");
+      } else if (cached && cached.pw !== pw) {
+        document.getElementById('crewPwHint').textContent = 'Incorrect password';
+        document.getElementById('crewPwHint').style.color = '#ff6b6b';
+        document.getElementById('crewPwInput').select();
+      } else {
+        document.getElementById('crewPwHint').textContent = 'No connection — no cached data available';
+        document.getElementById('crewPwHint').style.color = '#ff6b6b';
+      }
     });
 }
 
@@ -2441,6 +2491,7 @@ function crewStartGhPolling(url) {
     fetch(url + '?' + Date.now())
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(loaded => {
+        if (crewCurrentFileRef) crewCacheSave(crewCurrentFileRef, loaded, crewCurrentPw);
         const currentTab = activeTab;
         mergeLoadedData(loaded);
         buildCrewTabs();
@@ -2450,7 +2501,7 @@ function crewStartGhPolling(url) {
         updateProdTitle();
         showCrewStatus("Updated \u2014 " + new Date().toLocaleTimeString());
       })
-      .catch(() => {});
+      .catch(() => showCrewStatus("Connection lost \u2014 using cached data"));
   }, 120000);
 }
 
@@ -2528,6 +2579,8 @@ function copyToClipboard(url) {
 // CREW REFRESH (uses GitHub Pages)
 // ═════════════════════════════════════════════════════════════════════════════
 let crewCurrentUrl = null;
+let crewCurrentPw = null;
+let crewCurrentFileRef = null;
 
 function crewSavePDF() {
   const style = document.createElement('style');
@@ -2560,6 +2613,7 @@ function crewRefresh() {
   fetch(crewCurrentUrl + '?' + Date.now())
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(loaded => {
+      if (crewCurrentFileRef) crewCacheSave(crewCurrentFileRef, loaded, crewCurrentPw);
       const currentTab = activeTab;
       mergeLoadedData(loaded);
       buildCrewTabs();
