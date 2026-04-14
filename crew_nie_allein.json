@@ -415,7 +415,7 @@
         "B": {
           "name": "Margret",
           "type": "nodia",
-          "mic": "DPA 6060"
+          "mic": "DPA 6061"
         },
         "C": {
           "name": "PL 1",
@@ -554,7 +554,7 @@
         "B": {
           "name": "Margret",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "DPA 6061"
         },
         "C": {
           "name": "Hilde",
