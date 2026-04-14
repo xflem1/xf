@@ -229,12 +229,12 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Near",
+          "name": "PL 1",
           "type": "plant",
           "mic": "DPA 6061"
         },
         "D": {
-          "name": "Splash",
+          "name": "PL 2",
           "type": "plant",
           "mic": "DPA 6060"
         },
@@ -355,12 +355,12 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Near",
+          "name": "PL 1",
           "type": "plant",
           "mic": "DPA 6061"
         },
         "D": {
-          "name": "Splash",
+          "name": "PL 2",
           "type": "plant",
           "mic": "DPA 6060"
         },
@@ -418,12 +418,12 @@
           "mic": "DPA 6060"
         },
         "C": {
-          "name": "Near",
+          "name": "PL 1",
           "type": "plant",
           "mic": "DPA 6061"
         },
         "D": {
-          "name": "Splash",
+          "name": "PL 2",
           "type": "plant",
           "mic": "DPA 6060"
         },
@@ -562,7 +562,7 @@
           "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
+          "name": "PL 2",
           "type": "dia",
           "mic": ""
         },
