@@ -170,10 +170,12 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .shot-row input{flex:1;padding:5px 8px;border:none;font-size:13px;outline:none;font-family:inherit}
 .shot-row input:focus{background:#fffde7}
 .shot-status{width:28px;min-width:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;user-select:none;border-left:1px solid #eee}
-.shot-row.done{opacity:.5}
-.shot-row.done input{text-decoration:line-through;color:#888}
-.shot-row.cancelled{opacity:.35}
-.shot-row.cancelled input{text-decoration:line-through;color:#ccc}
+.shot-row.done{background:#e8f5e9}
+.shot-row.done input,.shot-row.done div{text-decoration:line-through;color:#666}
+.shot-row.done .shot-status{color:#2e7d32}
+.shot-row.cancelled{background:#ffebee}
+.shot-row.cancelled input,.shot-row.cancelled div{text-decoration:line-through;color:#bbb}
+.shot-row.cancelled .shot-status{color:#c62828}
 .shot-ticker{display:flex;gap:10px;font-size:10px;font-weight:600;letter-spacing:.3px;color:var(--silver);opacity:.8}
 .shot-ticker .st-done{color:#4caf50}
 .shot-ticker .st-rem{color:var(--white)}
@@ -1035,7 +1037,7 @@ function renderShotList(n) {
       <div class="shot-list-grid">${shots.map((sh, i) => {
         if (!sh.name || !sh.name.trim()) return '';
         const icon = SHOT_ICONS[sh.status] || '\u25cb';
-        return '<div class="shot-row ' + (sh.status||'upcoming') + '"><div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><div style="flex:1;padding:5px 8px;font-size:13px">' + esc(sh.name) + '</div><div class="shot-status">' + icon + '</div></div>';
+        return '<div class="shot-row ' + (sh.status||'upcoming') + '"><div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><div style="flex:1;padding:5px 8px;font-size:13px">' + esc(sh.name) + '</div><div class="shot-status" onclick="cycleShotStatus(' + n + ',' + i + ',this)">' + icon + '</div></div>';
       }).join('')}</div>
     </div>`;
   }
