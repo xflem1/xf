@@ -169,6 +169,24 @@ body{font-family:'Arial',sans-serif;background:var(--off-white);color:var(--blk)
 .shot-num.odd{background:var(--graphite)}
 .shot-row input{flex:1;padding:5px 8px;border:none;font-size:13px;outline:none;font-family:inherit}
 .shot-row input:focus{background:#fffde7}
+.shot-status{width:28px;min-width:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;user-select:none;border-left:1px solid #eee}
+.shot-row.done{opacity:.5}
+.shot-row.done input{text-decoration:line-through;color:#888}
+.shot-row.cancelled{opacity:.35}
+.shot-row.cancelled input{text-decoration:line-through;color:#ccc}
+.shot-ticker{display:flex;gap:10px;font-size:10px;font-weight:600;letter-spacing:.3px;color:var(--silver);opacity:.8}
+.shot-ticker .st-done{color:#4caf50}
+.shot-ticker .st-rem{color:var(--white)}
+.shot-ticker .st-cancel{color:#ff6b6b}
+/* Lunch / EOD break rows */
+.break-row{display:flex;align-items:center;gap:8px;padding:8px 12px;margin:4px 0;border-radius:6px;font-size:12px;font-weight:600}
+.break-row.lunch{background:#fff8e1;border:1px dashed #f9a825;color:#e65100}
+.break-row.eod{background:#e8eaf6;border:1px dashed #5c6bc0;color:#283593}
+.break-row .break-label{flex:1}
+.break-row input[type="time"]{padding:3px 6px;border:1px solid #ccc;border-radius:3px;font-size:12px;font-family:inherit}
+.break-row .break-arrows{display:flex;gap:2px}
+.break-row .break-arrows button{padding:2px 8px;border:1px solid #ccc;border-radius:3px;font-size:12px;cursor:pointer;background:#fff;font-family:inherit;line-height:1}
+.break-row .break-arrows button:hover{background:#eee}
 /* Scene label (inline suffix) */
 .scene-label-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;background:var(--graphite);color:var(--silver);margin-left:4px;vertical-align:middle}
 .scene-label-input{width:50px;padding:2px 4px;border:1px solid #ccc;border-radius:3px;font-size:11px;font-family:inherit;text-align:center;outline:none;background:var(--yellow);font-weight:600}
@@ -458,7 +476,7 @@ body.crew-mode .crew-footer{display:block}
       <span class="lcl-or" id="crewLoadFallback" style="display:none"><button onclick="document.getElementById('crewLandingInput').click()" style="background:none;border:none;color:var(--silver);opacity:.5;font-size:11px;cursor:pointer;text-decoration:underline">or load a file manually</button></span>
       <input type="file" id="crewLandingInput" accept=".json,.html" style="display:none" onchange="crewLandingLoad(event)">
     </div>
-    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px;cursor:pointer" onclick="showVersionHistory()">v3.6</div>
+    <div style="position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:9px;opacity:.25;letter-spacing:.5px;cursor:pointer" onclick="showVersionHistory()">v4.0</div>
   </div>
 </div>
 
@@ -488,6 +506,7 @@ body.crew-mode .crew-footer{display:block}
   <button onclick="openRenumber()">🔄 Renumber</button>
   <div class="spacer"></div>
   <button onclick="copyCrewLink()" style="background:var(--fern);border-color:var(--fern);color:#fff" title="Share crew link via text, WhatsApp, etc.">📤 Share with Crew</button>
+  <button onclick="location.reload()" title="Refresh app">🔄</button>
   <button onclick="openSettings()" title="App settings">⚙️</button>
   <span class="status" id="statusMsg"></span>
 </div>
@@ -499,6 +518,7 @@ body.crew-mode .crew-footer{display:block}
   <button id="crewScriptBtn" onclick="showScriptPicker()" style="background:#6a1b9a;border-color:#6a1b9a;color:#fff;display:none">📖 Script</button>
   <input type="file" id="crewLoadInput" accept=".json" style="display:none" onchange="crewLoadFile(event)">
   <span class="crew-status" id="crewStatusMsg"></span>
+  <span id="offlineBadge" style="display:none;font-size:9px;padding:2px 6px;border-radius:3px;background:#1b5e20;color:#fff;font-weight:700;letter-spacing:.3px">OFFLINE READY</span>
   <div class="spacer"></div>
   <button onclick="exitCrewMode()">✕ Exit</button>
 </div>
@@ -588,7 +608,7 @@ function defaultData() {
   const d = {
     config: {
       productionTitle: "", episode: "", productionCompany: "",
-      director: "", dop: "", firstAD: "", soundMixer: "", boomOp: "", utility: "",
+      director: "", dop: "", firstAD: "", continuity: "", firstAC: "", soundMixer: "", boomOp: "", utility: "",
       kitRecorder: "Sound Devices 833", kitMics: "Schoeps MK41, Schoeps MK4, Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061", kitTxRx: "Wisycom MCR54, MTP61 x4, MTP41 x4", kitComs: "Sennheiser G4",
       crewPassword: "",
       cast: {},
@@ -602,19 +622,21 @@ function defaultData() {
       intExt: "", place: "", time: "",
       notes: "", description: "",
       tx: {A:{name:"Boom",type:"boom",mic:""},B:{name:"",type:"dia",mic:""},C:{name:"",type:"dia",mic:""},D:{name:"",type:"dia",mic:""},E:{name:"",type:"dia",mic:""},F:{name:"",type:"dia",mic:""},G:{name:"",type:"dia",mic:""},H:{name:"",type:"dia",mic:""}},
-      shotList: Array(10).fill(""),
+      shotList: Array(10).fill("").map(() => ({name:"",status:"upcoming"})),
       problems: "", nurton: ""
     };
   }
   for (let i = 1; i <= NUM_DAYS; i++) {
     d.days[i] = {
-      date: "", firstAD: "", location: "",
+      date: "", firstAD: "", continuity: "", firstAC: "", location: "",
       callTime: "", mapsLink: "",
+      lunchTime: "", lunchAfterSlot: -1, eodTime: "",
       dailyNotes: "",
       dispoPdf: "",
       txAlloc: {A:"",B:"",C:"",D:"",E:"",F:"",G:"",H:""},
       sceneNums: Array(SCENES_PER_DAY).fill(""),
       sceneLabels: Array(SCENES_PER_DAY).fill(""),
+      cableTimes: {},
       nurtonExtra: "", eodNotes: ""
     };
   }
@@ -742,13 +764,15 @@ function addNewDay() {
   const dayKeys = Object.keys(data.days).map(Number);
   const next = dayKeys.length > 0 ? Math.max(...dayKeys) + 1 : NUM_DAYS + 1;
   data.days[next] = {
-    date: "", firstAD: "", location: "",
+    date: "", firstAD: "", continuity: "", firstAC: "", location: "",
     callTime: "", mapsLink: "",
+    lunchTime: "", lunchAfterSlot: -1, eodTime: "",
     dailyNotes: "",
     dispoPdf: "",
     txAlloc: {A:"",B:"",C:"",D:"",E:"",F:"",G:"",H:""},
     sceneNums: Array(SCENES_PER_DAY).fill(""),
     sceneLabels: Array(SCENES_PER_DAY).fill(""),
+    cableTimes: {},
     nurtonExtra: "", eodNotes: ""
   };
   if (next > NUM_DAYS) NUM_DAYS = next;
@@ -808,6 +832,8 @@ function renderConfig() {
     ${cfgField("Director","director",c.director)}
     ${cfgField("DOP","dop",c.dop)}
     ${cfgField("1st Assistant Director","firstAD",c.firstAD)}
+    ${cfgField("Continuity / Script Supervisor","continuity",c.continuity)}
+    ${cfgField("1st Assistant Camera","firstAC",c.firstAC)}
     ${cfgField("Production Sound Mixer","soundMixer",c.soundMixer)}
     ${cfgField("Boom Operator","boomOp",c.boomOp)}
     ${cfgField("3rd / Utility","utility",c.utility)}
@@ -871,7 +897,7 @@ function addNewScene() {
   data.scenes[next] = {
     intExt: "", place: "", time: "", notes: "", description: "",
     tx: {A:{name:"",type:"dia",mic:""},B:{name:"",type:"dia",mic:""},C:{name:"",type:"dia",mic:""},D:{name:"",type:"dia",mic:""},E:{name:"",type:"dia",mic:""},F:{name:"",type:"dia",mic:""},G:{name:"",type:"dia",mic:""},H:{name:"",type:"dia",mic:""}},
-    shotList: Array(10).fill(""),
+    shotList: Array(10).fill("").map(() => ({name:"",status:"upcoming"})),
     problems: "", nurton: ""
   };
   if (next > NUM_SCENES) NUM_SCENES = next;
@@ -995,16 +1021,21 @@ function renderTxSection(n) {
 
 function renderShotList(n) {
   const s = data.scenes[n];
-  const shots = s.shotList || Array(10).fill('');
-  const filledShots = shots.filter(s => s && s.trim());
+  const shots = s.shotList || [];
+  const filledShots = shots.filter(sh => sh.name && sh.name.trim());
+  const SHOT_ICONS = {upcoming: '\u25cb', done: '\u2713', cancelled: '\u2715'};
 
   if (crewMode) {
     if (filledShots.length === 0) return '';
+    const doneCount = filledShots.filter(s => s.status === 'done').length;
+    const cancelCount = filledShots.filter(s => s.status === 'cancelled').length;
+    const remCount = filledShots.length - doneCount - cancelCount;
     return `<div class="shot-list-wrap">
-      <div class="shot-list-hdr"><span class="sl-label">Shot List</span></div>
+      <div class="shot-list-hdr"><span class="sl-label">Shot List</span><div class="shot-ticker"><span class="st-done">\u2713 ${doneCount}</span><span class="st-rem">\u25cb ${remCount}</span>${cancelCount ? '<span class="st-cancel">\u2715 ' + cancelCount + '</span>' : ''}</div></div>
       <div class="shot-list-grid">${shots.map((sh, i) => {
-        if (!sh || !sh.trim()) return '';
-        return '<div class="shot-row"><div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><div style="flex:1;padding:5px 8px;font-size:13px">' + esc(sh) + '</div></div>';
+        if (!sh.name || !sh.name.trim()) return '';
+        const icon = SHOT_ICONS[sh.status] || '\u25cb';
+        return '<div class="shot-row ' + (sh.status||'upcoming') + '"><div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><div style="flex:1;padding:5px 8px;font-size:13px">' + esc(sh.name) + '</div><div class="shot-status">' + icon + '</div></div>';
       }).join('')}</div>
     </div>`;
   }
@@ -1012,9 +1043,10 @@ function renderShotList(n) {
   return `<div class="shot-list-wrap">
     <div class="shot-list-hdr"><span class="sl-label">Shot List</span><button onclick="addShot(${n})" style="padding:2px 10px;border:1px dashed #ccc;border-radius:3px;font-size:10px;cursor:pointer;background:transparent;color:#888;font-family:inherit">+ Add Shot</button></div>
     <div class="shot-list-grid" id="shotgrid-${n}">${shots.map((sh, i) => `
-      <div class="shot-row">
+      <div class="shot-row ${sh.status||'upcoming'}">
         <div class="shot-num ${i%2?'odd':''}">${i+1}</div>
-        <input value="${esc(sh)}" placeholder="Shot description..." oninput="data.scenes[${n}].shotList[${i}]=this.value">
+        <input value="${esc(sh.name)}" placeholder="Shot description..." oninput="data.scenes[${n}].shotList[${i}].name=this.value">
+        <div class="shot-status" onclick="cycleShotStatus(${n},${i},this)" title="Click to toggle: upcoming/done/cancelled">${SHOT_ICONS[sh.status] || '\u25cb'}</div>
       </div>`).join('')}
     </div>
   </div>`;
@@ -1022,16 +1054,27 @@ function renderShotList(n) {
 
 function addShot(n) {
   if (!data.scenes[n].shotList) data.scenes[n].shotList = [];
-  data.scenes[n].shotList.push('');
+  data.scenes[n].shotList.push({name:'', status:'upcoming'});
   const grid = document.getElementById('shotgrid-' + n);
   if (grid) {
     const i = data.scenes[n].shotList.length - 1;
     const row = document.createElement('div');
-    row.className = 'shot-row';
-    row.innerHTML = '<div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><input value="" placeholder="Shot description..." oninput="data.scenes[' + n + '].shotList[' + i + ']=this.value">';
+    row.className = 'shot-row upcoming';
+    row.innerHTML = '<div class="shot-num ' + (i%2?'odd':'') + '">' + (i+1) + '</div><input value="" placeholder="Shot description..." oninput="data.scenes[' + n + '].shotList[' + i + '].name=this.value"><div class="shot-status" onclick="cycleShotStatus(' + n + ',' + i + ',this)" title="Click to toggle">\u25cb</div>';
     grid.appendChild(row);
     row.querySelector('input').focus();
   }
+}
+
+const SHOT_STATUS_CYCLE = {upcoming:'done', done:'cancelled', cancelled:'upcoming'};
+const SHOT_STATUS_ICON = {upcoming:'\u25cb', done:'\u2713', cancelled:'\u2715'};
+function cycleShotStatus(sceneNum, shotIdx, el) {
+  const shot = data.scenes[sceneNum].shotList[shotIdx];
+  const next = SHOT_STATUS_CYCLE[shot.status] || 'upcoming';
+  shot.status = next;
+  el.textContent = SHOT_STATUS_ICON[next];
+  const row = el.closest('.shot-row');
+  if (row) { row.className = 'shot-row ' + next; }
 }
 
 function toggleScene(n) {
@@ -1157,10 +1200,34 @@ function renderTxMap(dayNum) {
 function renderDayCast(dayNum) {
   const castItems = getDayCast(dayNum);
   if (castItems.length === 0) return '';
+  const d = data.days[dayNum];
+  const ct = d.cableTimes || {};
+
+  if (crewMode) {
+    return `<div class="day-cast">
+      <div class="day-cast-hdr">CAST & CABLING</div>
+      <div style="padding:4px 12px 8px;display:flex;flex-direction:column;gap:4px">
+        ${castItems.map(c => {
+          const norm = txNormName(c.character);
+          const cableTime = ct[norm] || '';
+          return `<div class="day-cast-item" style="justify-content:flex-start;gap:8px;width:100%"><span class="dci-char">${esc(c.character)}</span>${c.actor ? '<span class="dci-actor">(' + esc(c.actor) + ')</span>' : ''}${cableTime ? '<span style="margin-left:auto;font-size:11px;color:#8ab4f8;font-weight:600">\ud83d\udd0c ' + esc(cableTime) + '</span>' : ''}</div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }
+
   return `<div class="day-cast">
-    <div class="day-cast-hdr">CAST — TODAY'S CHARACTERS</div>
-    <div class="day-cast-grid" style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px">
-      ${castItems.map(c => `<div class="day-cast-item"><span class="dci-char">${esc(c.character)}</span>${c.actor ? '<span class="dci-actor">(' + esc(c.actor) + ')</span>' : ''}</div>`).join('')}
+    <div class="day-cast-hdr">CAST & CABLING</div>
+    <div style="padding:4px 12px 8px;display:flex;flex-direction:column;gap:4px">
+      ${castItems.map(c => {
+        const norm = txNormName(c.character);
+        const cableTime = ct[norm] || '';
+        return `<div class="day-cast-item" style="justify-content:flex-start;gap:8px;width:100%">
+          <span class="dci-char">${esc(c.character)}</span>
+          ${c.actor ? '<span class="dci-actor">(' + esc(c.actor) + ')</span>' : ''}
+          <input type="time" value="${cableTime}" oninput="setCableTime(${dayNum},'${esc(norm)}',this.value)" style="margin-left:auto;padding:2px 4px;border:1px solid var(--gunmetal);border-radius:3px;background:var(--graphite);color:var(--silver);font-size:11px;font-family:inherit;width:85px" placeholder="Cable..." title="Cabling time">
+        </div>`;
+      }).join('')}
     </div>
   </div>`;
 }
@@ -1171,17 +1238,24 @@ function renderDay(dayNum) {
   const dow = getDayOfWeek(d.date);
   const firstADval = d.firstAD;
   const firstADplaceholder = cfg.firstAD || '1st AD name...';
+  const contVal = d.continuity;
+  const contPlaceholder = cfg.continuity || 'Continuity name...';
+  const acVal = d.firstAC;
+  const acPlaceholder = cfg.firstAC || '1st AC name...';
 
   // Count shots for today
-  const dayShotCount = getDayShotCount(dayNum);
+  const shotStats = getDayShotCount(dayNum);
   const sceneCount = d.sceneNums.filter(s => s && s.trim()).length;
+  const shotSummary = shotStats.total > 0
+    ? `${sceneCount} scene${sceneCount!==1?'s':''} \u00b7 <span class="st-done">\u2713${shotStats.done}</span> <span class="st-rem">\u25cb${shotStats.remaining}</span>${shotStats.cancelled ? ' <span class="st-cancel">\u2715' + shotStats.cancelled + '</span>' : ''}`
+    : `${sceneCount} scene${sceneCount!==1?'s':''}`;
 
   let html = `
   <div class="day-header">
     <div class="day-header-top">
       <span class="dh-day-num">DAY ${String(dayNum).padStart(2,'0')}</span>
       <span class="dh-prod">${esc(cfg.productionTitle)}${cfg.episode ? ' \u2014 '+esc(cfg.episode) : ''}</span>
-      <span style="font-size:10px;color:var(--silver);opacity:.7;white-space:nowrap">${sceneCount} scene${sceneCount!==1?'s':''} \u00b7 ${dayShotCount} shot${dayShotCount!==1?'s':''}</span>
+      <span class="shot-ticker" style="white-space:nowrap">${shotSummary}</span>
       <div class="no-print" style="display:flex;gap:4px;flex-shrink:0">
         <button onclick="printDay(${dayNum})" style="padding:4px 10px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:10px;font-weight:600;cursor:pointer;font-family:inherit">🖨 Print</button>
         <button onclick="exportCrewView(${dayNum})" style="padding:4px 10px;border:1px solid var(--gunmetal);border-radius:4px;background:var(--graphite);color:var(--silver);font-size:10px;font-weight:600;cursor:pointer;font-family:inherit">📤 Crew</button>
@@ -1192,6 +1266,10 @@ function renderDay(dayNum) {
       <div><label>DIRECTOR</label><div class="dh-static">${esc(cfg.director) || '\u2014'}</div></div>
       <div><label>1ST AD</label><input value="${esc(firstADval)}" placeholder="${esc(firstADplaceholder)}" oninput="data.days[${dayNum}].firstAD=this.value"></div>
       <div><label>LOCATION</label><input value="${esc(d.location)}" placeholder="Location..." oninput="data.days[${dayNum}].location=this.value"></div>
+      <div><label>CONTINUITY</label><input value="${esc(contVal)}" placeholder="${esc(contPlaceholder)}" oninput="data.days[${dayNum}].continuity=this.value"></div>
+      <div><label>1ST AC</label><input value="${esc(acVal)}" placeholder="${esc(acPlaceholder)}" oninput="data.days[${dayNum}].firstAC=this.value"></div>
+      <div><label>DOP</label><div class="dh-static">${esc(cfg.dop) || '\u2014'}</div></div>
+      <div><label>SOUND</label><div class="dh-static">${esc(cfg.soundMixer) || '\u2014'}</div></div>
     </div>
     ${crewMode ? renderCrewCallRow(dayNum, d) : renderEditCallRow(dayNum, d)}
     ${crewMode && d.dailyNotes ? '<div class="daily-notes-wrap"><label>DAILY NOTES</label><div style="padding:6px 10px;font-size:12px;color:var(--silver);white-space:pre-wrap;background:rgba(255,255,255,.08);border-radius:4px">' + esc(d.dailyNotes) + '</div></div>' : !crewMode ? '<div class="daily-notes-wrap"><label>DAILY NOTES</label><textarea class="daily-notes-area" placeholder="General notes for the crew today..." oninput="data.days[' + dayNum + '].dailyNotes=this.value">' + esc(d.dailyNotes) + '</textarea></div>' : ''}
@@ -1206,17 +1284,25 @@ function renderDay(dayNum) {
   html += renderTxMap(dayNum);
 
   const slotCount = d.sceneNums.length;
+  const lunchSlot = d.lunchAfterSlot !== undefined ? d.lunchAfterSlot : -1;
   for (let slot = 0; slot < slotCount; slot++) {
     const scNum = d.sceneNums[slot];
-    // In crew mode, skip empty scene slots
-    if (crewMode && (!scNum || !scNum.trim())) continue;
+    if (crewMode && (!scNum || !scNum.trim())) {
+      // Still check if lunch goes after this empty slot
+      if (slot === lunchSlot) html += renderLunchBreak(dayNum, crewMode);
+      continue;
+    }
     const sc = scNum && data.scenes[parseInt(scNum)] ? data.scenes[parseInt(scNum)] : null;
     html += renderDaySceneRow(dayNum, slot, scNum, sc);
+    if (slot === lunchSlot) html += renderLunchBreak(dayNum, crewMode);
   }
 
   if (!crewMode) {
-    html += `<div style="padding:8px 0"><button onclick="addDaySceneSlot(${dayNum})" style="padding:6px 14px;border:1px dashed #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:transparent;color:#888;font-family:inherit;width:100%">+ Add Scene Slot</button></div>`;
+    html += `<div style="padding:8px 0;display:flex;gap:6px"><button onclick="addDaySceneSlot(${dayNum})" style="flex:1;padding:6px 14px;border:1px dashed #ccc;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:transparent;color:#888;font-family:inherit">+ Add Scene Slot</button>${lunchSlot < 0 ? '<button onclick="insertLunch(' + dayNum + ')" style="padding:6px 14px;border:1px dashed #f9a825;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;background:#fff8e1;color:#e65100;font-family:inherit">\ud83c\udf5c Add Lunch</button>' : ''}</div>`;
   }
+
+  // EOD time
+  html += renderEodTime(dayNum, crewMode);
 
   // NurTon aggregation from scenes
   html += renderDayNurtons(dayNum);
@@ -1378,6 +1464,8 @@ function renderCrewFooter() {
         <div class="cf-item"><span class="cf-label">Director</span><span class="cf-val">${esc(c.director)}</span></div>
         <div class="cf-item"><span class="cf-label">DOP</span><span class="cf-val">${esc(c.dop)}</span></div>
         <div class="cf-item"><span class="cf-label">1st AD</span><span class="cf-val">${esc(c.firstAD)}</span></div>
+        <div class="cf-item"><span class="cf-label">Continuity</span><span class="cf-val">${esc(c.continuity)}</span></div>
+        <div class="cf-item"><span class="cf-label">1st AC</span><span class="cf-val">${esc(c.firstAC)}</span></div>
         <div class="cf-item"><span class="cf-label">Sound Mixer</span><span class="cf-val">${esc(c.soundMixer)}</span></div>
         <div class="cf-item"><span class="cf-label">Boom Op</span><span class="cf-val">${esc(c.boomOp)}</span></div>
         <div class="cf-item"><span class="cf-label">Utility</span><span class="cf-val">${esc(c.utility)}</span></div>
@@ -1395,9 +1483,16 @@ function renderCrewFooter() {
   </div>`;
 }
 
+function getSceneShotBadge(sc) {
+  if (!sc || !sc.shotList) return '';
+  const filled = sc.shotList.filter(sh => (typeof sh === 'string' ? sh : sh.name || '').trim());
+  return filled.length > 0 ? ' <span style="font-size:10px;opacity:.6;font-weight:600">\u00b7 ' + filled.length + ' shot' + (filled.length!==1?'s':'') + '</span>' : '';
+}
+
 function renderDaySceneRow(dayNum, slot, scNum, sc) {
   const locLine = sc ? [sc.intExt, sc.place, sc.time].filter(Boolean).join(" \u2014 ") : "";
   const preview = locLine || (sc ? sc.notes : "");
+  const shotBadge = getSceneShotBadge(sc);
   const n = parseInt(scNum);
   const label = (data.days[dayNum].sceneLabels && data.days[dayNum].sceneLabels[slot]) || '';
 
@@ -1407,7 +1502,7 @@ function renderDaySceneRow(dayNum, slot, scNum, sc) {
     <div class="day-scene-row ${sc?'':'empty'}" id="dayrow-${dayNum}-${slot}">
       <div class="scene-header" onclick="this.closest('.day-scene-row').classList.toggle('open')">
         <div class="scene-num" style="min-width:48px"><span style="font-weight:700;font-size:15px">${esc(scNum)}</span>${labelTag}</div>
-        <div class="scene-preview">${esc(preview) || ''}</div>
+        <div class="scene-preview">${esc(preview) || ''}${shotBadge}</div>
         <div class="scene-expand-icon">\u25bc</div>
       </div>
       <div class="scene-body">
@@ -1426,7 +1521,7 @@ function renderDaySceneRow(dayNum, slot, scNum, sc) {
           onchange="handleDaySceneInput(${dayNum},${slot},this.value)">
         <input class="scene-label-input" value="${esc(label)}" placeholder="..." onclick="event.stopPropagation()" oninput="setSceneLabel(${dayNum},${slot},this.value)" title="Part label (T1, T2, Pickup...)" style="${label ? '' : 'opacity:.4'}">
       </div>
-      <div class="scene-preview">${esc(preview) || 'Enter scene number...'}</div>
+      <div class="scene-preview">${esc(preview) || 'Enter scene number...'}${shotBadge}</div>
       <div class="scene-expand-icon">\u25bc</div>
     </div>
     <div class="scene-body">
@@ -1442,14 +1537,74 @@ function setSceneLabel(dayNum, slot, val) {
 
 function getDayShotCount(dayNum) {
   const d = data.days[dayNum];
-  let count = 0;
+  let total = 0, done = 0, cancelled = 0;
   for (const scNum of d.sceneNums) {
     if (!scNum || !scNum.trim()) continue;
     const sc = data.scenes[parseInt(scNum)];
     if (!sc || !sc.shotList) continue;
-    count += sc.shotList.filter(s => s && s.trim()).length;
+    for (const sh of sc.shotList) {
+      const name = typeof sh === 'string' ? sh : sh.name;
+      if (!name || !name.trim()) continue;
+      total++;
+      const status = typeof sh === 'string' ? 'upcoming' : (sh.status || 'upcoming');
+      if (status === 'done') done++;
+      else if (status === 'cancelled') cancelled++;
+    }
   }
-  return count;
+  return {total, done, cancelled, remaining: total - done - cancelled};
+}
+
+function setCableTime(dayNum, norm, val) {
+  if (!data.days[dayNum].cableTimes) data.days[dayNum].cableTimes = {};
+  data.days[dayNum].cableTimes[norm] = val;
+}
+
+function renderLunchBreak(dayNum, isCrew) {
+  const d = data.days[dayNum];
+  if (isCrew) {
+    return d.lunchTime ? `<div class="break-row lunch"><span class="break-label">\ud83c\udf5c LUNCH</span><span>${esc(d.lunchTime)}</span></div>` : '';
+  }
+  return `<div class="break-row lunch">
+    <span class="break-label">\ud83c\udf5c LUNCH</span>
+    <input type="time" value="${d.lunchTime || ''}" oninput="data.days[${dayNum}].lunchTime=this.value" onclick="event.stopPropagation()">
+    <div class="break-arrows">
+      <button onclick="moveLunch(${dayNum},-1)" title="Move up">\u25b2</button>
+      <button onclick="moveLunch(${dayNum},1)" title="Move down">\u25bc</button>
+    </div>
+    <button onclick="removeLunch(${dayNum})" style="background:none;border:none;color:#ff6b6b;cursor:pointer;font-size:14px">\u2715</button>
+  </div>`;
+}
+
+function renderEodTime(dayNum, isCrew) {
+  const d = data.days[dayNum];
+  if (isCrew) {
+    return d.eodTime ? `<div class="break-row eod"><span class="break-label">\ud83c\udfc1 END OF DAY</span><span>${esc(d.eodTime)}</span></div>` : '';
+  }
+  return `<div class="break-row eod">
+    <span class="break-label">\ud83c\udfc1 END OF DAY</span>
+    <input type="time" value="${d.eodTime || ''}" oninput="data.days[${dayNum}].eodTime=this.value">
+  </div>`;
+}
+
+function insertLunch(dayNum) {
+  const d = data.days[dayNum];
+  const filledSlots = d.sceneNums.map((s, i) => s && s.trim() ? i : -1).filter(i => i >= 0);
+  d.lunchAfterSlot = filledSlots.length > 1 ? filledSlots[Math.floor(filledSlots.length / 2) - 1] : 0;
+  renderPanel('day-' + dayNum);
+}
+
+function moveLunch(dayNum, dir) {
+  const d = data.days[dayNum];
+  const newSlot = d.lunchAfterSlot + dir;
+  if (newSlot < 0 || newSlot >= d.sceneNums.length) return;
+  d.lunchAfterSlot = newSlot;
+  renderPanel('day-' + dayNum);
+}
+
+function removeLunch(dayNum) {
+  data.days[dayNum].lunchAfterSlot = -1;
+  data.days[dayNum].lunchTime = '';
+  renderPanel('day-' + dayNum);
 }
 
 function addDaySceneSlot(dayNum) {
@@ -1750,8 +1905,14 @@ function mergeLoadedData(loaded) {
     }
     delete data.scenes[k].dia;
     delete data.scenes[k].noDia;
-    // Ensure shot list exists
-    if (!data.scenes[k].shotList) data.scenes[k].shotList = Array(10).fill('');
+    // Ensure shot list exists and migrate string[] → object[]
+    if (!data.scenes[k].shotList) data.scenes[k].shotList = Array(10).fill('').map(() => ({name:'',status:'upcoming'}));
+    else {
+      data.scenes[k].shotList = data.scenes[k].shotList.map(s => {
+        if (typeof s === 'string') return {name: s, status: 'upcoming'};
+        return {name: s.name || '', status: s.status || 'upcoming'};
+      });
+    }
   }
   data.days = {...fresh.days};
   for (const k of Object.keys(loaded.days || {})) {
@@ -1764,6 +1925,12 @@ function mergeLoadedData(loaded) {
     if (!data.days[k].mapsLink) data.days[k].mapsLink = '';
     if (!data.days[k].dispoPdf) data.days[k].dispoPdf = '';
     if (!data.days[k].sceneLabels) data.days[k].sceneLabels = Array(SCENES_PER_DAY).fill('');
+    if (!data.days[k].continuity) data.days[k].continuity = '';
+    if (!data.days[k].firstAC) data.days[k].firstAC = '';
+    if (!data.days[k].lunchTime) data.days[k].lunchTime = '';
+    if (data.days[k].lunchAfterSlot === undefined) data.days[k].lunchAfterSlot = -1;
+    if (!data.days[k].eodTime) data.days[k].eodTime = '';
+    if (!data.days[k].cableTimes) data.days[k].cableTimes = {};
   }
 }
 
@@ -2113,7 +2280,7 @@ function openSettings() {
     <div style="border-top:1px solid #eee;padding-top:12px">
       <div style="font-weight:700;font-size:13px;margin-bottom:8px;color:#333">App Info</div>
       <div style="font-size:11px;color:#888;line-height:1.8">
-        Version: v3.6<br>
+        Version: v4.0<br>
         Repo: <a href="https://github.com/xflem1/xf" target="_blank" style="color:#4a90d9">xflem1/xf</a><br>
         Token: ${_GT ? 'Embedded (works on all devices)' : (ghToken ? 'Saved locally (this device only)' : 'Not configured')}
       </div>
@@ -2131,15 +2298,28 @@ function closeSettings() {
 // ═════════════════════════════════════════════════════════════════════════════
 const VERSION_HISTORY = [
   {
-    ver: 'v3.6', current: true,
+    ver: 'v4.0', current: true,
+    items: [
+      'Shot ticker \u2014 track each shot as upcoming, done, or cancelled with live day counters',
+      'Lunch break & EOD time \u2014 insertable lunch slot with arrow controls, end-of-day time',
+      'Cabling times \u2014 set wire-up times per actor in the cast section',
+      'Continuity & 1st AC \u2014 new crew fields in CONFIG with per-day overrides',
+      'Scene shot count in preview banner',
+      'Offline ready \u2014 proper app caching, green badge when cached for offline use',
+      'Refresh button in toolbar \u2014 reload without leaving the app',
+      'Mic collision detection \u2014 orange for actor lav conflicts, blue for boom mic changes',
+      'Dual script upload \u2014 attach DE and EN scripts with crew language picker',
+    ]
+  },
+  {
+    ver: 'v3.6',
     items: [
       'Call time & maps link per day \u2014 crew sees prominent call time and tappable Maps link',
       'Scene part labels (T1, T2, Pickup...) \u2014 per day-slot, shown as tag in crew mode',
-      'Shot list per scene (10 slots) \u2014 hidden in crew when empty',
+      'Shot list per scene \u2014 hidden in crew when empty',
       'Dispo PDF attachment per day \u2014 embedded in data, viewable by crew offline',
       'Smart polling \u2014 conditional fetch saves crew mobile data when nothing changed',
       'Expandable scenes & day slots \u2014 add beyond the initial 110/12 limits',
-      'NurTon aggregation \u2014 scene NurTons auto-listed on day pages with scene numbers',
     ]
   },
   {
@@ -3041,17 +3221,20 @@ function crewRefresh() {
 // ═════════════════════════════════════════════════════════════════════════════
 // INIT
 // ═════════════════════════════════════════════════════════════════════════════
-// Service worker: force-clear ALL old caches on every load to prevent stale data
+// Service worker: cache app shell for offline use, clear old cache versions
 if (window.caches) {
   caches.keys().then(names => {
-    names.forEach(name => caches.delete(name));
+    names.forEach(name => { if (name !== 'xf-app-v4') caches.delete(name); });
   });
 }
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => {
-    regs.forEach(r => r.unregister());
-  }).then(() => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.register('sw.js').then(() => {
+    caches.open('xf-app-v4').then(cache => {
+      cache.addAll(['./', 'index.html']).then(() => {
+        const badge = document.getElementById('offlineBadge');
+        if (badge) badge.style.display = '';
+      }).catch(() => {});
+    });
   }).catch(() => {});
 }
 
