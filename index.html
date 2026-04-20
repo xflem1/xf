@@ -1077,6 +1077,7 @@ function cycleShotStatus(sceneNum, shotIdx, el) {
   el.textContent = SHOT_STATUS_ICON[next];
   const row = el.closest('.shot-row');
   if (row) { row.className = 'shot-row ' + next; }
+  crewShotStatusSave();
 }
 
 function toggleScene(n) {
@@ -2300,7 +2301,13 @@ function closeSettings() {
 // ═════════════════════════════════════════════════════════════════════════════
 const VERSION_HISTORY = [
   {
-    ver: 'v4.0', current: true,
+    ver: 'v4.1', current: true,
+    items: [
+      'Crew shot ticker persistence \u2014 crew ticks survive page refreshes and polling via localStorage',
+    ]
+  },
+  {
+    ver: 'v4.0',
     items: [
       'Shot ticker \u2014 track each shot as upcoming, done, or cancelled with live day counters',
       'Lunch break & EOD time \u2014 insertable lunch slot with arrow controls, end-of-day time',
@@ -2851,6 +2858,34 @@ function crewCacheLoad(fileRef) {
   } catch(e) { return null; }
 }
 
+const CREW_SHOT_KEY = 'xf_crew_shots';
+function crewShotStatusSave() {
+  if (!crewMode || !crewCurrentFileRef) return;
+  const map = {};
+  for (const k of Object.keys(data.scenes)) {
+    const sl = data.scenes[k].shotList;
+    if (!sl) continue;
+    const changed = {};
+    sl.forEach((s, i) => { if (s.status && s.status !== 'upcoming') changed[i] = s.status; });
+    if (Object.keys(changed).length) map[k] = changed;
+  }
+  try { localStorage.setItem(CREW_SHOT_KEY + '_' + crewCurrentFileRef, JSON.stringify(map)); } catch(e) {}
+}
+function crewShotStatusRestore() {
+  if (!crewMode || !crewCurrentFileRef) return;
+  try {
+    const raw = localStorage.getItem(CREW_SHOT_KEY + '_' + crewCurrentFileRef);
+    if (!raw) return;
+    const map = JSON.parse(raw);
+    for (const k of Object.keys(map)) {
+      if (!data.scenes[k] || !data.scenes[k].shotList) continue;
+      for (const i of Object.keys(map[k])) {
+        if (data.scenes[k].shotList[i]) data.scenes[k].shotList[i].status = map[k][i];
+      }
+    }
+  } catch(e) {}
+}
+
 let crewMode = false;
 
 function enterCrewMode() {
@@ -2919,6 +2954,7 @@ function crewLoadFile(event) {
     try {
       const loaded = JSON.parse(e.target.result);
       mergeLoadedData(loaded);
+      crewShotStatusRestore();
       buildCrewTabs();
       const firstDay = getActiveDays()[0];
       if (firstDay) switchTab('day-' + firstDay);
@@ -3029,6 +3065,7 @@ function crewCheckPw() {
       crewCurrentPw = pw;
       crewCurrentFileRef = fileRef;
       mergeLoadedData(loaded);
+      crewShotStatusRestore();
       document.getElementById('landingScreen').style.display = 'none';
       buildTabs();
       renderPanel("config");
@@ -3044,6 +3081,7 @@ function crewCheckPw() {
         crewCurrentPw = pw;
         crewCurrentFileRef = fileRef;
         mergeLoadedData(cached.data);
+        crewShotStatusRestore();
         document.getElementById('landingScreen').style.display = 'none';
         buildTabs();
         renderPanel("config");
@@ -3083,6 +3121,7 @@ function crewStartGhPolling(url) {
         if (crewCurrentFileRef) crewCacheSave(crewCurrentFileRef, loaded, crewCurrentPw);
         const currentTab = activeTab;
         mergeLoadedData(loaded);
+        crewShotStatusRestore();
         buildCrewTabs();
         if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
           switchTab(currentTab);
@@ -3207,6 +3246,7 @@ function crewRefresh() {
       if (crewCurrentFileRef) crewCacheSave(crewCurrentFileRef, loaded, crewCurrentPw);
       const currentTab = activeTab;
       mergeLoadedData(loaded);
+      crewShotStatusRestore();
       buildCrewTabs();
       if (currentTab && document.querySelector('[data-tab="' + currentTab + '"]')) {
         switchTab(currentTab);
