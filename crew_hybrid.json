@@ -22,36 +22,36 @@
   },
   "scenes": {
     "1": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "Laboratory ",
+      "time": "Night",
+      "notes": "Mina is only OS, who will say her Dia on set? Are we recording real or temp dialogue? ",
+      "description": "A kitschy, outdated porcelain dog gazes at us with wide eyes. Its paws rest on a metallic, shiny surface. We hear someone slurping and slurping a bowl of soup. Behind a structure of cables and illuminated plastic bags with an unidentifiable contents, another figure peeks out: a small kitten with sunglasses painted on its face. Through glass measuring cylinders and capacitors, we can see two more porcelain figures: two deer gazing lovingly at each other. When a toxic pink liquid flows through one of the capacitors, the cute animal faces are distorted for a brief moment. Bjarne is talking to Mina, who only appears off screen. They talk about food. We see a cylindrical metal container from which a viscous, foam-like mass slowly pours onto the ground. The woman's laughter echoes through the room, she's Laughing at Bjarne's meal plan. Bjarne (early 30s) places the bowl, with his mouth full, on a rather high pile of other used bowls, all of which\nlook the same. He is wearing a plastic lab coat and has small reading glasses in his hair. Bjarne stands up, grabs a pair of sterile, individually wrapped gloves, and puts them on. We can finally see where we are:\nA grotesque mixture of laboratory and living space extends ahead of us. We see shelves on which stand specimens of formless membranes and branching networks. A cooling unit and a microscope. A condenser steams, a valve hisses, a wheel counts – everything seems to be in motion.\nIn the dark corners of the room, an indefinable biomass pulsates. Amidst all this biochemical chaos stands half a pallet full of minimalist, branded instant soup packets: “SALT-FLAVOR”. There is no sign of the woman whose voice we hear. Bjarne looks in the direction from which the voice is coming. We now see its source: Although it sounds completely 'real', MINA is merely an AI; packaged in an inconspicuous metal box, fed with the memories of Bjarne's deceased partner.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Bjarne",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Mina",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Dia",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
@@ -111,8 +111,8 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "If DIA is temp, could have overlap / bleed.\nHow wide are our shots of Bjarne? ",
+      "nurton": "Bjarne DIA if possible."
     },
     "2": {
       "intExt": "",
