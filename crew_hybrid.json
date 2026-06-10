@@ -862,7 +862,7 @@
       "intExt": "INT.",
       "place": "Channel",
       "time": "Night",
-      "notes": "",
+      "notes": "Bjarne goes into a canal - remove lav before this happens.",
       "description": "Completely exhausted, Bjarne pushes his way through a dark system of pipes, supported only by his uninjured arm. Rusty, sharp metal edges come dangerously close; swirling dust obscures his vision.\nVOICE (OS)\nHere.\nThe voice makes Bjarne flinch briefly. He has apparently given up trying to find its source. Bjarne is breathing heavily. When he places his hand on his chest, he notices the hyphae beneath his shirt, which have apparently already spun their web much further. Carefully, he traces their path with his finger: across his chest, over his collarbone, up his neck, to his cheek. Bjarne pauses. The realization that even his face is already affected diminishes his hope. Suddenly, a flash of light appears in the distance in front of him.  Bjarne pushes himself towards him in excruciating pain. Meter by meter, until -\n\nASSISTANT OF THE KNOT MAN \nAh, yes! How wonderful that you succeeded.\n\nA strange young MAN (THE KNOT MAN'S ASSISTANT), about Bjarne's age, suddenly looks out at him from the open end of the metal tube. Bjarne jumps in shock. His injured hand slams against a sharp metal edge. The pain almost makes him faint. \n\nASSISTANT OF THE KNOT MAN (CONT'D)\nExcuse me! Wait, I'll help you!\n\nThe assistant extends both hands towards Bjarne. Bjarne doesn't move.\n\nASSISTANT OF THE KNOT MAN (CONT'D)\nOf course, you can turn around at any time.\n\nBjarne hesitates, then extends his uninjured arm towards the assistant. The man carefully pulls Bjarne out of the canal.",
       "tx": {
         "A": {
@@ -876,18 +876,18 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Voice (OS)",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "D": {
           "name": "Assistant of The Knot Man",
           "type": "dia",
           "mic": "DPA 6061"
         },
-        "E": {
+        "D": {
           "name": "Misc",
           "type": "plant",
+          "mic": "DPA 6060"
+        },
+        "E": {
+          "name": "Voice (OS)",
+          "type": "dia",
           "mic": "DPA 6060"
         },
         "F": {
@@ -952,31 +952,31 @@
       "nurton": ""
     },
     "11": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Knot Man's Cellar",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Bjarne blinks. Bright reflections of water glide across his face. It drips and rushes. Once his eyes have adjusted to the brightness, he looks around:\nBjarne is standing in a huge basement. Countless old coolers and water tanks are stacked against the walls. Fine mist rises from the equipment and collects in droplets under the ceiling.\nThe assistant smiles knowingly. His eyes briefly glance at Bjarne's injury, then he takes a drag from a metal vaporizer.\n\nASSISTANT TO THE KNOT MAN \nHe was sure that someone would come today.\n\nThe man exhales the steam.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Assistant of The Knot Man",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -1045,31 +1045,31 @@
       "nurton": ""
     },
     "12": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Knot Man's Workroom",
+      "time": "Night",
       "notes": "",
       "description": "",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Bjarne",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Assistant of The Knot Man",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
