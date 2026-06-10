@@ -403,7 +403,7 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
           "name": "Bjarne",
@@ -491,12 +491,12 @@
       "place": "Street",
       "time": "Night - Later",
       "notes": "",
-      "description": "",
+      "description": "Bjarne walks down a deserted street. A stripped-down car sits in front of a house. In the centimeters-thick dust that envelops the vehicle, people have left their mark: \nHearts filled with the initials of couples are a reminder of a long-gone, more life-affirming time. Bjarne stops in front of a shaft in the concrete. This is the right place. He is certain.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
           "name": "Bjarne",
@@ -580,21 +580,21 @@
       "nurton": ""
     },
     "7": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Building",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Moments later, as Bjarne descends into the shaft, a staircase leads directly below him into the depths. The outlines of the first three steps are visible, after which everything is swallowed by darkness.\nBjarne hesitates.\nHis bandaged hand begins to tremble almost imperceptibly. When he touches it, a sharp pain shoots through his body. He steps onto the first step.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
           "name": "",
@@ -602,9 +602,9 @@
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -673,31 +673,31 @@
       "nurton": ""
     },
     "8": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Gear / Hole",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Moments later, Bjarne walks down a dark corridor. Behind him, the stairs lead upwards. There's a dripping sound, a\nmuffled echo, and a faint whistling breeze somewhere.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Voice (OS)",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
