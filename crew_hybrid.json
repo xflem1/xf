@@ -859,31 +859,31 @@
       "nurton": "- crowd cheering / chanting charly\n- crowd going feral at end of scene where Bjarne tries to reach the old man."
     },
     "10": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Channel",
+      "time": "Night",
       "notes": "",
       "description": "",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Voice (OS)",
           "type": "dia",
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
