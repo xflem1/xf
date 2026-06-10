@@ -124,27 +124,27 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Bjarne",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Mina",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Dia",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
