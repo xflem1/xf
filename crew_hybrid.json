@@ -1138,31 +1138,31 @@
       "nurton": ""
     },
     "13": {
-      "intExt": "",
-      "place": "",
+      "intExt": "EXT.",
+      "place": "Field",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Bjarne, with his last ounce of strength, walks across a field full of purple blossoms. Reddish particles rise into the sky.\nBehind him, the sprawling metropolis disappears on the horizon in a dark, black cloud.\nBjarne looks at the container in his hand. He places it on the ground in front of him, then sits down among the plants. His movements are awkward, his injured hand now completely immobile.\nWhen he finally manages to open the valve, a fine mist of steam rises. His longed-for salvation, right in front\nof him.\nMINA (OS)\nIf that's your definition of salvation, you should\nreconsider your expectations of life.\nBjarne looks up. Although his vision is deteriorating, he's certain he recognizes Mina's silhouette. She's\nsmiling.\nMINA (CONT'D)\nAre you coming?\nMina offers Bjarne her hand. Bjarne looks down at the life-saving liquid beneath him. He pauses for a moment,\nthen takes Mina's hand.\nTogether they head towards a mountain, leaving the city behind.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Mina (OS)",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -1231,26 +1231,26 @@
       "nurton": ""
     },
     "14": {
-      "intExt": "",
-      "place": "",
+      "intExt": "EXT.",
+      "place": "Way to the Summit",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Bjarne moves through a completely desolate mountain landscape. Wind whips against him, toxic red particles swirl up in front of him.\nHis body is completely controlled by the cordyceps. His movements are stiff, his eyes closed—he no longer needs them. A smile plays on Bjarne's lips, which are covered by the muscle fibers.\n\nMINA (OS)\nHere.\n\nMina's voice sounds muffled and distant - exactly like the voice that Bjarne has already called out in the city.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Mina (OS)",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
           "name": "",
@@ -1324,21 +1324,21 @@
       "nurton": ""
     },
     "15": {
-      "intExt": "",
-      "place": "",
+      "intExt": "EXT.",
+      "place": "Summit",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Bjarne, completely engulfed by the mushroom, smiles.\nBjarne dissolves into countless spores. The wind carries them away.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
           "name": "",
