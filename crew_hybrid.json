@@ -488,8 +488,8 @@
     },
     "6": {
       "intExt": "EXT.",
-      "place": "",
-      "time": "",
+      "place": "Street",
+      "time": "Night - Later",
       "notes": "",
       "description": "",
       "tx": {
@@ -504,9 +504,9 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Voice (OS)",
+          "name": "",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": ""
         },
         "D": {
           "name": "Misc",
