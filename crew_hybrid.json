@@ -769,8 +769,8 @@
       "intExt": "INT.",
       "place": "INTERNATIONAL HELL OF DESIRES",
       "time": "",
-      "notes": "- Mina is on set / opportunity to record her dialogue if she's not going to speak her os on set during other scenes.\n- Recommend possible ADR for breaths / reactions.",
-      "description": "Countless feet shuffle across a dirty floor. Cold flashes of lightning occur, and booming music makes everything tremble. Bjarne lies unconscious on concrete. Thick mucus covers his face. In front of him is a puddle of the same unidentifiable substance. The mechanically dancing figures surrounding him seem completely unmoved by his condition. He is ignored; other people simply step over his motionless body.\nBut finally, a silhouette bends down towards him. She gently wipes the dirt from his cheek. As the person begins to wipe Bjarne's hair from his forehead,\nhe opens his eyes:\nMina looks directly at him. She smiles. Bjarne, still visibly disoriented, yields to Mina's touch. His eyelids grow heavier again, until—\nMina rams her fingers into Bjarne's throat with full force. Bjarne immediately gags, tears welling up in his eyes. He jumps up. Instead of his wife, a figure stands before him. Her clothes are completely covered in slime. She licks the fingers that were just moments ago stuck in Bjarne's throat. A malicious grin contorts her face into a grimace.\nBjarne flees in shock. A vast hall opens up before us. He bumps into bodies again and again. Sweat drips from the ceiling.\nIn the center of the room stands a gigantic, bizarre machine. A column rises from its center – the source of the cold flashes of lightning that roam the hall.\nHeavy fog seeps through the seams of the machine. It envelops the shadowy outlines of two NAKED PEOPLE like a steam sauna. Countless cables run along the column. They lead to beds arranged in a circle around a base. On them lie emaciated people, their bodies connected to the machine via tubes in their mouths and groins. Their white eyes twitch absently. The horrific sight makes Bjarne stagger backward. He seems to remind himself why he's there and looks\naround. His gaze meets that of a fit woman (Charly the Unstoppable). She seems alert and focused – quite unlike the people around her.\nBJARNE\nI'm looking for someone.\nThe woman remains silent and shoves him roughly aside. We notice that she isn't staring at Bjarne, but at the huge man behind him. The woman raises her fist; Bjarne barely manages to duck. The blow hits the man so hard and precisely that he immediately falls unconscious to the ground.\nHis head hits the concrete. Charly cheers and wipes blood from his face.\nThe crowd roars. Bjarne tries to create some distance and stumbles backward. Fear is etched on his\nface.",
+      "notes": "- Mina is on set / opportunity to record her dialogue if she's not going to speak her os on set during other scenes.\n- Recommend possible ADR for breaths / reactions.\n",
+      "description": "Countless feet shuffle across a dirty floor. Cold flashes of lightning occur, and booming music makes everything tremble. Bjarne lies unconscious on concrete. Thick mucus covers his face. In front of him is a puddle of the same unidentifiable substance. The mechanically dancing figures surrounding him seem completely unmoved by his condition. He is ignored; other people simply step over his motionless body.\nBut finally, a silhouette bends down towards him. She gently wipes the dirt from his cheek. As the person begins to wipe Bjarne's hair from his forehead,\nhe opens his eyes:\nMina looks directly at him. She smiles. Bjarne, still visibly disoriented, yields to Mina's touch. His eyelids grow heavier again, until—\nMina rams her fingers into Bjarne's throat with full force. Bjarne immediately gags, tears welling up in his eyes. He jumps up. Instead of his wife, a figure stands before him. Her clothes are completely covered in slime. She licks the fingers that were just moments ago stuck in Bjarne's throat. A malicious grin contorts her face into a grimace.\nBjarne flees in shock. A vast hall opens up before us. He bumps into bodies again and again. Sweat drips from the ceiling.\nIn the center of the room stands a gigantic, bizarre machine. A column rises from its center – the source of the cold flashes of lightning that roam the hall.\nHeavy fog seeps through the seams of the machine. It envelops the shadowy outlines of two NAKED PEOPLE like a steam sauna. Countless cables run along the column. They lead to beds arranged in a circle around a base. On them lie emaciated people, their bodies connected to the machine via tubes in their mouths and groins. Their white eyes twitch absently. The horrific sight makes Bjarne stagger backward. He seems to remind himself why he's there and looks\naround. His gaze meets that of a fit woman (Charly the Unstoppable). She seems alert and focused – quite unlike the people around her.\nBJARNE\nI'm looking for someone.\nThe woman remains silent and shoves him roughly aside. We notice that she isn't staring at Bjarne, but at the huge man behind him. The woman raises her fist; Bjarne barely manages to duck. The blow hits the man so hard and precisely that he immediately falls unconscious to the ground. His head hits the concrete. Charly cheers and wipes blood from his face. The crowd roars. Bjarne tries to create some distance and stumbles backward. Fear is etched on his face.\n\nBjarne turns around: Some distance away, a woman, the GUARDIAN OF DREAMS (around 60), sits perched on countless curved cables. Her long, straight hair looks strikingly clean in this gloomy place; her presence almost intimidating. Bjarne speaks with her. The guardian briefly attends to a cable beneath her, then straightens up. She walks towards the enormous machine. Completely overwhelmed, Bjarne follows her. As the guardian approaches the countless sweating figures, they clear the way for her; like magnets of like poles, always keeping the same distance from each other. Bjarne attempts to talk to her again. The guardian raises a finger and signals to Bjarne to be silent. Bjarne falls silent. She asks him what he last dreamed about. ",
       "tx": {
         "A": {
           "name": "Boom",
@@ -779,23 +779,23 @@
         },
         "B": {
           "name": "Bjarne",
-          "type": "nodia",
+          "type": "dia",
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Charly (Cheers)",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "Misc",
-          "type": "plant",
+          "name": "Guardian",
+          "type": "dia",
           "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
