@@ -39,7 +39,7 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Mina",
+          "name": "Mina (OS)",
           "type": "dia",
           "mic": "DPA 6060"
         },
@@ -132,7 +132,7 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Mina",
+          "name": "Mina (OS)",
           "type": "dia",
           "mic": "DPA 6060"
         },
@@ -225,7 +225,7 @@
           "mic": "DPA 6060"
         },
         "C": {
-          "name": "Mina",
+          "name": "Mina (OS)",
           "type": "dia",
           "mic": "DPA 6060"
         },
@@ -318,7 +318,7 @@
           "mic": "DPA 6061"
         },
         "C": {
-          "name": "Mina",
+          "name": "Mina (OS)",
           "type": "dia",
           "mic": "DPA 6060"
         },
@@ -394,11 +394,11 @@
       "nurton": ""
     },
     "5": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "EXT.",
+      "place": "Empty Streets",
+      "time": "Night",
+      "notes": "Voice recorded in post??",
+      "description": "Bjarne staggers through the cold, anonymous city. Defensive architecture spreads its sharp spikes. Dilapidated buildings obstruct any view of the horizon. Nothing good awaits behind the pitch-black windows. Bjarne checks his bandaged hand. The first fine hyphae are already visible beneath the bandage. The\ninfection appears to be spreading. Bjarne's gait slows, his steps become more uncertain. Suddenly he seems to hear a voice behind him.\nVOICE (OS)\nCome...\nBjarne turns around. Nobody is in sight. The wind carries the call away along with unidentifiable particles.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -406,19 +406,19 @@
           "mic": ""
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Voice (OS)",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -483,11 +483,11 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "Any reaction queue given on set. Would encourage to have Gio choose himself when to react.",
       "nurton": ""
     },
     "6": {
-      "intExt": "",
+      "intExt": "EXT.",
       "place": "",
       "time": "",
       "notes": "",
@@ -499,19 +499,19 @@
           "mic": ""
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Voice (OS)",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
