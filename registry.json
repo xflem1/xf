@@ -3,5 +3,10 @@
     "name": "Nie Allein",
     "episode": "",
     "file": "crew_nie_allein.json"
+  },
+  {
+    "name": "Hybrid",
+    "episode": "",
+    "file": "crew_hybrid.json"
   }
 ]
