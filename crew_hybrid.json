@@ -766,21 +766,21 @@
       "nurton": ""
     },
     "9": {
-      "intExt": "",
-      "place": "",
+      "intExt": "INT.",
+      "place": "INTERNATIONAL HELL OF DESIRES",
       "time": "",
-      "notes": "",
-      "description": "",
+      "notes": "- Mina is on set / opportunity to record her dialogue if she's not going to speak her os on set during other scenes.",
+      "description": "Countless feet shuffle across a dirty floor. Cold flashes of lightning occur, and booming music makes everything tremble. Bjarne lies unconscious on concrete. Thick mucus covers his face. In front of him is a puddle of the same unidentifiable substance. The mechanically dancing figures surrounding him seem completely unmoved by his condition. He is ignored; other people simply step over his motionless body.\nBut finally, a silhouette bends down towards him. She gently wipes the dirt from his cheek. As the person begins to wipe Bjarne's hair from his forehead,\nhe opens his eyes:\nMina looks directly at him. She smiles.\nBjarne, still visibly disoriented, yields to Mina's touch. His eyelids grow heavier again, until—\nMina rams her fingers into Bjarne's throat with full force. Bjarne immediately gags, tears welling up in his eyes. He jumps up. Instead of his wife, a figure stands before him. Her clothes are completely covered in slime. She licks the fingers that were just moments ago stuck in Bjarne's throat. A malicious grin contorts her face into a grimace.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bjarne",
+          "type": "nodia",
+          "mic": "DPA 6061"
         },
         "C": {
           "name": "",
@@ -788,9 +788,9 @@
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -855,7 +855,7 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": " - Music / play loud for wideshots and leave off for anythig Mid or tighter. \n",
       "nurton": ""
     },
     "10": {
