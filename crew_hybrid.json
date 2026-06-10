@@ -115,11 +115,11 @@
       "nurton": "Bjarne DIA if possible."
     },
     "2": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Laboratory",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Bjarne sits in front of his microscope. He seems to have great respect for the upcoming experiment. He asks Mina to record what he's doing. Bjarne looks at a network of Reishi mushrooms stretching towards him from a plastic bag. He picks up a narrow scalpel and disinfects it in a sterilizer. He and Mina continue to talk during the process. Bjarne begins to carefully take two very thin samples from the mushroom. They continue to work and talk. Bjarne places the two samples on two Petri dishes, then turns his attention to a furry substance which he places under his microscope. Bjarne stares at his reflection in a gleaming metal surface. Two fine strands of hair cling to his forehead, ending just above his left eyebrow. In the reflection, his face is grotesquely distorted. Bjarne wants to brush his hair out of his face. But when he touches his forehead, he suddenly stops. He has contaminated the sterile gloves. Bjarne sighs softly. After changing his gloves, Bjarne transfers the sample of the furry substance into a flask containing a toxic-pink liquid. He then draws up the liquid with a pipette. When the experimental setup finally seems to be ready, Bjarne takes a deep breath. Bjarne squeezes the pink liquid into the first petri dish. Before he could observe any reaction, he had to look away.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -208,36 +208,36 @@
       "nurton": ""
     },
     "3": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "Laboratory",
+      "time": "Day",
+      "notes": "Likely 1 shot insert",
+      "description": "A pleasant memory flashes back. Mina tells Bjarne about her day and strokes his hair. Mina says \"So what do you see?\".",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Bjarne",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "",
+          "name": "Mina",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
           "name": "",
-          "type": "dia",
+          "type": "plant",
           "mic": ""
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
@@ -301,36 +301,36 @@
       "nurton": ""
     },
     "4": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Laboratory",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Bjarne opens his eyes. He is back in the laboratory. Mina asks what happened. He finds it incredibly difficult to lower his gaze. When he finally manages to do so, the sample has not changed. A stab in Bjarnes Heart. Bjarne is trying hard to keep his composure. He tells Mina, and she tries to console him. Bjarne shudders. He knows what Mina wants to say, and he doesn't want to hear it. He prepares a new rehearsal. As Bjarne draws up the last milliliters of the pink liquid, a slurping sound is produced. Mina asks if there is enough fluid left and Bjarne lies and says there is. Bjarne's body tenses more and more. He squeezes the liquid onto the sample and is about to look away again when suddenly - the sample begins to pulsate as if by magic. Bjarne's voice stumbles. He apparently still can't believe his eyes. Years of work that now seem to be bearing fruit for the first time. Mina tries to ask what's happening and Bjarne tries to explain with few words. A tremendous weight seems to have fallen from Bjarne's shoulders. Mina's voice also conveys boundless enthusiasm. We see the unappetizing, pulsating mass. Bjarne takes one last deep breath, then puts on a protective mask. The filters in the mask make his breath crackle strangely. Bjarne asks to transfer the sample, Mina tells him to be careful. Bjarne presses a button on a metal box. A warning signal sounds, and in the blink of an eye, the entire\nlaboratory is bathed in red light. A glass tube slowly slides out of the box. On it sits a petri dish containing a sample of Ophiocordyceps unilateralis – a fungus that is as beautiful as it is deadly. Bjarne carefully places the sample in front of him.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Bjarne",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Mina",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Dia",
+          "type": "plant",
+          "mic": "DPA 6061"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Misc",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
