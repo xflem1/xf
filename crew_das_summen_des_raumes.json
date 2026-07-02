@@ -217,22 +217,22 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Mai",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "",
+          "name": "Elin",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
