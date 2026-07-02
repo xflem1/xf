@@ -31,7 +31,7 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
@@ -124,7 +124,7 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
@@ -217,22 +217,22 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Mai",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "C": {
           "name": "Elin",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
           "name": "PL 1",
           "type": "plant",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
         "E": {
           "name": "",
@@ -394,31 +394,31 @@
       "nurton": "Vocal exercises in background (record in while shooting either scene 3 or 4) Talking (2 mins), Do Re Mi + Tongue Twisters"
     },
     "5": {
-      "intExt": "",
-      "place": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
       "time": "",
       "notes": "",
-      "description": "Alex, a pregnant woman in her mid-thirties, tries to urinate without touching the toilet seat. We don't see her belly yet, only her upper body as she leans against the walls. Her friend Kira stands in front of her, her arms slightly outstretched, ready to rush to Alex's aid if needed.",
+      "description": "Alex, a pregnant woman in her mid-thirties, tries to urinate without touching the toilet seat. We don't see her belly yet, only her upper body as she leans against the walls. Her friend Kira stands in front of her, her arms slightly outstretched, ready to rush to Alex's aid if needed. Kira offers Alex help, Alex politely declines and they talk. Kira looks at Alex with a loving gaze. Alex straightens her clothes and freshens up. Now we see her pregnant belly for the first time. Alex just snorts softly, and the two of them squeeze out of the cabin one after the other, back intothe action. Muffled voices and laughter can be heard from outside.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Alex",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "C": {
           "name": "Kira",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
