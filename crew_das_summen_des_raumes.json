@@ -1135,34 +1135,34 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Children's voices, although likely done on a seperate occasion."
     },
     "13": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
+      "time": "Dream Sequence",
+      "notes": "change Alba Lav / 6061 required",
+      "description": "Warmly lit and in slow motion, we see Alba scream at the top of her lungs. Frieda kneels down beside her.\nAlba smiles proudly as she puffs herself up.\n\nCHILDREN'S VOICE (OS)\nSometimes, however, the hive becomes too cramped. Too many bees. Not enough space.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Alba",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Frida",
+          "type": "nodia",
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
@@ -1228,34 +1228,34 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Children's voices, although likely done on a seperate occasion."
     },
     "14": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
+      "time": "Dream Sequence",
       "notes": "",
-      "description": "",
+      "description": "Bathed in warm sunlight, Elin's face transforms from sadness to determination. She steps out of the cubicle and sees Mai, who is still washing her hands. In the anteroom, the two women are still practicing their speech exercises, each with a cork in their mouth and a text in their hand. Elin takes a step toward Mai. Mai sees Elin in the mirror and turns to face her.\n\nCHILDREN'S VOICE (OS)\nThen they all fly out at once. The air becomes so full of bees that everything is dark and there's a constant buzzing. Then they have to find a new place.\nThey stand there for a second. Elin takes another step towards Mai and kisses her, very gently.\nAs their heads move away from each other again, we see the two women with corks in their mouths looking over, one of them shrugs briefly, then they return to their writing.\n\nCHILDREN'S VOICE (OS)\nA place where they can build a new, larger floor, where there is room for everyone.\nWhen they set off, they don't yet know if they'll make it. Or if such a place even exists. But they set off anyway.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Mai",
+          "type": "nodia",
+          "mic": "6060"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Elin",
+          "type": "nodia",
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
@@ -1321,19 +1321,19 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Children's voices, although likely done on a seperate occasion."
     },
     "15": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
+      "time": "Dream Sequence",
       "notes": "",
-      "description": "",
+      "description": "An elderly woman with long white hair, silver jewelry, and wired headphones is rinsing the toilet when the music seems to grab her. She begins a few dance-like movements, which become increasingly confident. In slow motion, her wrinkled arms float through the air.\n\nCHILDREN'S VOICE (OS)\nJust like that. Perhaps bees know something that humans haven't yet understood.\n\nIn the next cubicle, a woman in her mid-twenties comes through the door; she has long blonde hair and is wearing a similar outfit.\nShe wears a simple top like the old woman; she too slowly begins to bob her head to the music in her AirPods.\nWe see the two cabins from above. Both women are dancing in their cabins to their music.\nWith every woman we see, a new humming sound is added.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
@@ -1346,9 +1346,9 @@
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
@@ -1414,34 +1414,34 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Children's voices, although likely done on a seperate occasion."
     },
     "16": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
+      "time": "Dream Sequence",
       "notes": "",
-      "description": "",
+      "description": "Mai and Elin look at each other and grin. Elin is now holding Mai's hand.\nEND OF SLOW MOTION.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Mai",
+          "type": "nodia",
+          "mic": "6060"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Elin",
+          "type": "nodia",
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
@@ -1510,20 +1510,20 @@
       "nurton": ""
     },
     "17": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
+      "time": "Dream Sequence",
       "notes": "",
-      "description": "",
+      "description": "The warm light remains. The toilet cubicle is now filled with all the women who were in it tonight. They stand side by side, looking directly at us, with Alba in the middle. We are getting closer and closer to Alba.\n\nCHILDREN'S VOICE (OS)\nIf I put my ear to the beehive, maybe the bees will whisper it to me.\n\nThe light slowly becomes colder again, and Alba now stands alone in the cabin; the other women have disappeared.\nShe smiles.\nThe screen goes black.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
+          "name": "Alba",
+          "type": "nodia",
           "mic": ""
         },
         "C": {
@@ -1532,9 +1532,9 @@
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
