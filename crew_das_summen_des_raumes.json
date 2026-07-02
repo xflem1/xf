@@ -398,22 +398,22 @@
       "place": "",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Alex, a pregnant woman in her mid-thirties, tries to urinate without touching the toilet seat. We don't see her belly yet, only her upper body as she leans against the walls. Her friend Kira stands in front of her, her arms slightly outstretched, ready to rush to Alex's aid if needed.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Alex",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "",
+          "name": "Kira",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
           "name": "",
