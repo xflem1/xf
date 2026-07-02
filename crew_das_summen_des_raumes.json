@@ -766,8 +766,8 @@
       "nurton": ""
     },
     "9": {
-      "intExt": "",
-      "place": "",
+      "intExt": "INT.",
+      "place": "Women's Bathroom ",
       "time": "",
       "notes": "- May need 2 booms, check staging. ",
       "description": "Six-year-old Alba and her mother Frieda are standing in line for the toilet cubicles. A small hand in a large one. Alba has a bicycle helmet on her head and is wearing a green princess dress; she shifts impatiently from one foot to the other. She looks up at her mother, who seems slightly tense as she types on her phone. Laughter and voices drift from the corridor into the toilets.\nThey talk while Frida stares at her phone. Frieda then holds her mobile phone to her ear and waits for someone to answer her call.\nAlba fell silent when she saw a group of three women enter the bathroom, all wearing the same garish pink glitter shirt. Sounds of laughter and a mix of voices drifted from outside as the door opened. Alba eyed the women with reserved curiosity. They were in good spirits, talking excitedly at once. One of them wore a cheap plastic crown and a sash that read \"Bride to be.\" \nThe group laughs loudly and talks all at once. The group talks with Alba. The Bride kneels down towards little Alba. The friends gaze at each other, completely enraptured. Alba looks up at the women skeptically. Her body seems tense. She glances at Frieda, who is now on the phone. The group continues to talk with Alba. We see little Alba, with the group of women in front of her. The women's voices are now only faintly audible.\nAlba's gaze is angry and confused. As she stares at the women, her small hands clench into fists in the tulle of her dress.",
@@ -863,20 +863,20 @@
       "place": "",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "ALEX is sitting on the toilet and peeing. KIRA is standing opposite her.\nShe is leaning against the toilet door. A tense silence hangs between them.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "Alba",
+          "name": "Alex",
           "type": "dia",
           "mic": "6060"
         },
         "C": {
-          "name": "Frida",
+          "name": "Kira",
           "type": "dia",
           "mic": "6060"
         },
@@ -886,19 +886,19 @@
           "mic": "6061"
         },
         "E": {
-          "name": "Bride",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "F": {
-          "name": "Friend 1",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "G": {
-          "name": "Friend 2",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "H": {
           "name": "",
