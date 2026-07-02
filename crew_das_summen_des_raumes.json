@@ -859,11 +859,11 @@
       "nurton": "- Frida OS phone call (if not recorded in scene)\n- Distant laughter and voices from Friends + Bride"
     },
     "10": {
-      "intExt": "",
-      "place": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
       "time": "",
       "notes": "",
-      "description": "ALEX is sitting on the toilet and peeing. KIRA is standing opposite her.\nShe is leaning against the toilet door. A tense silence hangs between them.",
+      "description": "ALEX is sitting on the toilet and peeing. KIRA is standing opposite her.\nShe is leaning against the toilet door. A tense silence hangs between them.\nThey talk.\nSilence. They both suddenly look very exhausted. Alex doesn't know what to say. She's about to unroll some toilet paper when she suddenly starts waving her hand wildly and making disgusted noises. Alex shudders. Kira sees the long strand of chewing gum stretching from Alex's hand to the toilet bowl.\nAlex stares at her fingers in pain and disgust. Kira pulls a pack of wet wipes from her enormous bag. She takes Alex's hand and cleans it with the wipe, one finger at a time. When she's finished, Alex shudders again.\nIt's quiet between them again, but this time it's not awkward. Alex, still sitting, looks up at Kira. They both grin briefly.\nAlex reaches out her hand to Kira, who holds it briefly. They look at each other. Alex begins to straighten her clothes, gets up. They talk as they leave.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -949,19 +949,19 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "- may need to record last two OS sentences if not recorded in take."
     },
     "11": {
-      "intExt": "",
-      "place": "",
+      "intExt": "EXT.",
+      "place": "Bienenstock",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "You see close-up shots of bees crawling around each other.\nIlluminated by the yellowish rays of the sun, sometimes only a bee's leg can be seen, sometimes just a wing.\nCHILDREN'S VOICE (OS)\nBees have always existed. Much longer than humans have.\nThey've been around since the time of the dinosaurs.\nIt is difficult to differentiate which body parts belong to which bee or how many are in these shared parts.\n\"Dance\" is involved",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
@@ -1042,19 +1042,19 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Children's voices, although likely done on a seperate occasion."
     },
     "12": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall ",
+      "time": "Dream Sequence",
       "notes": "",
-      "description": "",
+      "description": "The humming continues. The girl's voice keeps speaking.\n\nCHILDREN'S VOICE (OS)\nThey live together in a flock. Like one big family, but made up entirely of sisters.\nSome take care of the little bees. Some fly out and look for flowers. Some guard the entrance.\nWarm rays of sunlight now stream into the cubicle. We see the screen of a mobile phone, from which a photo has just been sent. As the phone lowers, we see the drawing. The ballpoint pen drawing of a penis has been covered over with a pink marker; in its place now stands an anatomically correct vulva. Lines indicate the names of different parts. The drawing on the cubicle wall is still wet. The woman who drew it quickly disappears from the cubicle.\nChrista's mouth corners, a sly smile.\n\nCHILDREN'S VOICE (OS)\nEveryone does their bit to make sure the flock is okay. When it gets cold or danger approaches, they huddle together very tightly. Then they become almost like a single body.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
