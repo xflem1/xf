@@ -406,14 +406,14 @@
           "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Alex",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Kira",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "PL 1",
@@ -421,14 +421,14 @@
           "mic": "6061"
         },
         "E": {
-          "name": "Alex",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "F": {
-          "name": "Kira",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "G": {
           "name": "",
