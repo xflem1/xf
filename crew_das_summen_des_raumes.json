@@ -22,11 +22,11 @@
   },
   "scenes": {
     "1": {
-      "intExt": "",
-      "place": "",
+      "intExt": "EXT.",
+      "place": "Black Screen",
       "time": "",
-      "notes": "",
-      "description": "",
+      "notes": "Likely Done in post",
+      "description": "The image is black. The melody of a child's humming sounds, the voice of a little girl. In the background, you can hear\nbees in the air, leaves rustling in the wind, and birds chirping.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -112,14 +112,14 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Humming"
     },
     "2": {
-      "intExt": "",
-      "place": "",
+      "intExt": "EXT.",
+      "place": "Bienenstock",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "The children's buzzing continues. A beehive stands in a green meadow; far and wide there is nothing to see\nexcept wild grass and a few trees.\nWarm rays of sunlight fall upon the opening of the beehive. Slowly, a bee appears inside\nand flies out. A buzzing sound follows it through the morning air. A second bee follows. The bees begin to dance\naround each other as more and more of them...\nThey join in. The children's humming slowly fades into the buzzing of the bees. The commotion of the insects\ngrows ever more lively. The buzzing of the individual bees merges into a unified melody.",
       "tx": {
         "A": {
           "name": "Boom",
