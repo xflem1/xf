@@ -406,14 +406,14 @@
           "mic": "MK41"
         },
         "B": {
-          "name": "Alex",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "C": {
-          "name": "Kira",
+          "name": "",
           "type": "dia",
-          "mic": "6060"
+          "mic": ""
         },
         "D": {
           "name": "PL 1",
@@ -421,14 +421,14 @@
           "mic": "6061"
         },
         "E": {
-          "name": "",
+          "name": "Alex",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
-          "name": "",
+          "name": "Kira",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "G": {
           "name": "",
@@ -490,13 +490,13 @@
       "intExt": "INT.",
       "place": "Bathroom Stall",
       "time": "",
-      "notes": "",
+      "notes": "Mostly details",
       "description": "Assembly.\nTwo women, dressed entirely in black, squeeze into the booth. Only fabric slicked along the wall is visible. The leather of the bag scrapes against the graffiti-covered wall.\nA quick hand, its fingernails painted red, sticks a sticker to the wall of the toilet cubicle. Another hand hastily scribbles its number on the wall.\nAmong the stickers and doodles, a penis drawn with a ballpoint pen can be seen.\nWe see the mouths of two teenage girls; one is wearing dark lipstick and lighting a cigarette. The other is chewing gum noisily and blowing a bubble.\nA tear-off slip is stuck to the wall. Apartment wanted.\nAnother hand slowly peels off a sticker. It only comes off partially, leaving traces of adhesive behind.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
@@ -509,9 +509,9 @@
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6060"
         },
         "E": {
           "name": "",
