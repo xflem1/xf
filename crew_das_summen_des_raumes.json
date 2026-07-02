@@ -775,37 +775,37 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Alba",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Frida",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
-          "name": "",
+          "name": "Bride",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
-          "name": "",
+          "name": "Friend 1",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "G": {
-          "name": "",
+          "name": "Friend 2",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "H": {
           "name": "",
