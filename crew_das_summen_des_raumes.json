@@ -209,7 +209,7 @@
     },
     "3": {
       "intExt": "INT.",
-      "place": "Womans Restroom",
+      "place": "Women's Restroom",
       "time": "",
       "notes": "",
       "description": "Two women run in slow motion into the anteroom of a Women's restrooms. Posters and stickers adorn the walls. The woman in front, Mai, practically charges forward.\nShe pulls her friend Elin along by the hand, talking at her. Elin lets herself be swept away by Mai. Elin's body seems much more sluggish than Mai's; her center of gravity is slightly shifted backward to slow Mai down. She's wearing an oversized denim jacket and holding a beer in her free hand. The sounds of the beehive can still be heard; Mai's voice, talking to Elin, is only faintly discernible.\nMai beams with a smile, her face framed by her afro.\nShe is wearing a purple glittery top that draws attention to her and a short skirt.\n\nWe see a woman with a severe short haircut, wearing a shirt and tie, repeatedly stretching her mouthwide as if she were making a \"ks\" sound. Another woman, with mottled pink hair and an oversized band t-\nshirt, is lip-syncing. The sounds they both make are muffled. Still in slow motion, we see Elin being pulledpast a 1940s-style poster that reads \"Poetry Slam every Friday\" as the two make their way through the room. We see the beer swaying in Elin's bottle and Mai turning to Elin every few seconds to make sure she's keeping up and doesn't have to slow down. \nThe slow motion transitions into real time. The sounds of the beehive slowly fade away; now you can hear the footsteps of the two women on the ground, the rustling of clothes, and their speech exercises in the background.\nWhile Mai continues talking, Elin takes her phone out of her pocket and looks at the screen. Mai pushes Elin into a toilet cubicle and then closes the door behind her.",
@@ -580,21 +580,21 @@
       "nurton": ""
     },
     "7": {
-      "intExt": "",
-      "place": "",
+      "intExt": "INT.",
+      "place": "Bathroom Stall",
       "time": "",
       "notes": "",
-      "description": "A woman of about 50, Christa, stands in front of a graffiti-covered wall, looking at something we can't see.\nShe gazes at it questioningly, yet also with interest. Christa wears her blondish-gray hair short, white orthopedic sneakers, and a pearl necklace over her white T-shirt. From outside, we can hear people talking amongst themselves and chairs being moved.\nWe now see the penis sketched with a ballpoint pen, which she is still staring at. Her phone rings. She answers it and after a short time breaks her fixed gaze.",
+      "description": "A woman of about 50, Christa, stands in front of a graffiti-covered wall, looking at something we can't see.\nShe gazes at it questioningly, yet also with interest. Christa wears her blondish-gray hair short, white orthopedic sneakers, and a pearl necklace over her white T-shirt. From outside, we can hear people talking amongst themselves and chairs being moved.\nWe now see the penis sketched with a ballpoint pen, which she is still staring at. Her phone rings. She answers it and after a short time breaks her fixed gaze. She has a conversation on the Phone.\nShe makes a few kissing noises into the phone, lowers it, and rummages mischievously in her bag.\nThe humming stops with the scene.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Christa",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
           "name": "",
@@ -602,9 +602,9 @@
           "mic": ""
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
@@ -673,31 +673,31 @@
       "nurton": ""
     },
     "8": {
-      "intExt": "",
-      "place": "",
+      "intExt": "INT.",
+      "place": "Women's Bathroom",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Alex stands in front of the bathroom sink, looking a little tired. Her gray Y2K rhinestone t-shirt no longer looks as glamorous as it did at the beginning of the evening; it's considerably more wrinkled and covered in small water stains. She takes some water and wipes the back of her neck. The door bursts open and Kira comes in. Laughter and applause can be heard from outside. Alex visibly pulls herself together and suddenly seems less flustered. She pretends to have just washed her hands. A soft humming begins.\n\nKira tries to ask Alex if everything is ok with her. Kira takes a step towards her and looks at her in the mirror. She tilts her head, her expression one of pity. Kira says they can leave whenever Alex wants to go. She gently strokes her shoulder. Alex flinches. The humming grows louder. Alex is annoyed that Kira is babying her. She strides out the door. Kira is briefly taken aback, but then follows Alex out of the room and tries to talk\nher through it. Kira calls out to her.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Alex",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Kira",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "PL 1",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
           "name": "",
