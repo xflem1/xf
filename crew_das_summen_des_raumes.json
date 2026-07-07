@@ -538,15 +538,15 @@
       },
       "shotList": [
         {
-          "name": "6.5",
+          "name": "6.1",
           "status": "upcoming"
         },
         {
-          "name": "",
+          "name": "6.6",
           "status": "upcoming"
         },
         {
-          "name": "",
+          "name": "6.7",
           "status": "upcoming"
         },
         {
@@ -817,11 +817,11 @@
       },
       "shotList": [
         {
-          "name": "",
+          "name": "9.5",
           "status": "upcoming"
         },
         {
-          "name": "",
+          "name": "9.8",
           "status": "upcoming"
         },
         {
@@ -10316,9 +10316,9 @@
       "continuity": "",
       "firstAC": "",
       "location": "Macromedia",
-      "callTime": "",
+      "callTime": "09:00",
       "mapsLink": "",
-      "lunchTime": "15:00",
+      "lunchTime": "14:00",
       "lunchAfterSlot": 0,
       "eodTime": "18:00",
       "dailyNotes": "",
@@ -10335,8 +10335,8 @@
       },
       "sceneNums": [
         "9",
+        "9",
         "6",
-        "",
         "",
         "",
         "",
@@ -10348,8 +10348,8 @@
         ""
       ],
       "sceneLabels": [
-        "",
-        "",
+        "A",
+        "B",
         "",
         "",
         "",
