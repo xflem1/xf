@@ -310,27 +310,27 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Older Examiner",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
+          "name": "Examiner",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
+          "name": "Young Examiner",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
