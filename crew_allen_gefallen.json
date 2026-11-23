@@ -22,31 +22,31 @@
   },
   "scenes": {
     "1": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "Hamburg",
+      "time": "Day",
       "notes": "",
       "description": "",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MiniCMIT"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Man",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
+          "name": "Woman",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
