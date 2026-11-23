@@ -12,7 +12,7 @@
     "boomOp": "Merlin Meyer",
     "utility": "",
     "kitRecorder": "Sound Devices 833",
-    "kitMics": "Schoeps MK41, Schoeps MK4, Schoeps MiniCMIT, Schoeps KMIT, DPA 6060, DPA 6061",
+    "kitMics": "MK41, MK4, MiniCMIT, KMIT, 6060, 6061",
     "kitTxRx": "Wisycom MCR54, MTP61 x4, MTP41 x4",
     "kitComs": "Sennheiser G4",
     "crewPassword": "jan27",
@@ -867,7 +867,7 @@
       "tx": {
         "A": {
           "name": "Boom",
-          "type": "boom",
+          "type": "plant",
           "mic": "Schoeps MK41"
         },
         "B": {
@@ -897,12 +897,12 @@
         },
         "G": {
           "name": "Backseat Plant",
-          "type": "dia",
+          "type": "plant",
           "mic": "DPA 6060"
         },
         "H": {
           "name": "Plant Movable",
-          "type": "dia",
+          "type": "plant",
           "mic": "DPA 6060"
         }
       },
@@ -1324,51 +1324,51 @@
       "nurton": ""
     },
     "15": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT./EXT.",
+      "place": "RESTAURANT",
+      "time": "Evening",
       "notes": "",
-      "description": "",
+      "description": "As Anatol gets up and puts on his coat, he tries to get back with Stefanie -- but then Uncle Karl jovially and a little too hard slaps him on the shoulder.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Monika",
+          "type": "nodia",
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Herbert",
+          "type": "nodia",
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Granny",
+          "type": "nodia",
+          "mic": "DPA 6060"
         },
         "F": {
-          "name": "",
+          "name": "Uncle Karl",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "G": {
-          "name": "",
+          "name": "Tristan",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "H": {
-          "name": "",
+          "name": "Aunt Steffie",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         }
       },
       "shotList": [
