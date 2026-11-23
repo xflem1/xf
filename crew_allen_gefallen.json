@@ -305,7 +305,7 @@
       "place": "JOURNALIST SCHOOL - EXAM ROOM",
       "time": "Day",
       "notes": "",
-      "description": "Anatol is now expectantly in the intake interview:\nOLDER EXAMINER And\nyou have studied for a long time now – German studies and\nphilosophy...",
+      "description": "Anatol is now expectantly in the intake interview: They have a lengthy conversation (2.5 pages), likely all sitting in chairs.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -394,26 +394,26 @@
       "nurton": ""
     },
     "5": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "JOURNALIST SCHOOL - CORRIDOR",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "A cheerful, slightly eccentric coordinator leads Anatol through the corridor:\nCOORDINATOR So, this\nshould be quick now, you'll know this week…\nANATOL Ah\nwow, so fast already?\nCOORDINATOR\nAnd as they always say, \" Don't call us, we'll call you...\" Although—\nif we call, it's a good sign—the rejections come by email...\nANATOL\n(laughs somewhat nervously)\nAh, then I hope for a phone call...\nThe coordinator does not address this and refers to the\nBuffet where mountains of focaccia and Franzbrötchen are laid out:\nCOORDINATOR So,\nplease, help yourselves...\nANATOL\nAh great, thank you - (carefully reaches in)\nCOORDINATOR More,\ntake more -- otherwise it all gets thrown away! I cry hot tears every time...\nAnatol obeys and, half-gratefully and half-out of politeness, puts several Franzbrötchen (a type of sweet roll) and tomato\nfocaccia into his already overflowing backpack.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Coordinator",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
           "name": "",
