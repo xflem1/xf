@@ -1048,8 +1048,8 @@
       "intExt": "",
       "place": "",
       "time": "",
-      "notes": "granny",
-      "description": "",
+      "notes": "Theresa swapped to Granny as Theresa has no scripted dialogue. can swap sender back if needed.",
+      "description": "A little later: Anatol sits between his uncle and cousin, opposite him his aunt Stefanie, who is sitting next to Theresa. His parents and grandmother are at the other end of the table. Wine is being poured. Uncle Karl peppers his brother-in-law with questions about his building project – subtle rivalry between the men –\nwhile his wife Stefanie emphasizes, “I’m so sorry you can’t come to my charity art opening…” – “Yes, we’re sorry… I’m at an ENT conference in Kassel…”\nAnatol turns to his table neighbor Tristan.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -1072,7 +1072,7 @@
           "mic": "DPA 6060"
         },
         "E": {
-          "name": "Theresa",
+          "name": "Granny",
           "type": "dia",
           "mic": "DPA 6060"
         },
