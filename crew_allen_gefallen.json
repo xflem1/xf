@@ -1249,17 +1249,17 @@
         },
         "C": {
           "name": "Monika",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "D": {
           "name": "Herbert",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "E": {
           "name": "Granny",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "F": {
@@ -1269,7 +1269,7 @@
         },
         "G": {
           "name": "Tristan",
-          "type": "dia",
+          "type": "nodia",
           "mic": "DPA 6060"
         },
         "H": {
