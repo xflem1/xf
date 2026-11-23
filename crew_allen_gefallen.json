@@ -31,22 +31,22 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MiniCMIT"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
           "name": "Man",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "D": {
           "name": "Woman",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "E": {
           "name": "",
@@ -124,27 +124,27 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
           "name": "Older Examiner",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
           "name": "Examiner",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "E": {
           "name": "Young Examiner",
           "type": "nodia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -217,27 +217,27 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6060"
         },
         "C": {
           "name": "Voice?",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "D": {
           "name": "Person Leaving 1?",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
         "E": {
           "name": "Person Leaving 2?",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -310,27 +310,27 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
           "name": "Older Examiner",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
           "name": "Examiner",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "E": {
           "name": "Young Examiner",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -403,17 +403,17 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
           "name": "Coordinator",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
           "name": "",
@@ -496,12 +496,12 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "C": {
           "name": "",
@@ -589,17 +589,17 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6060"
         },
         "C": {
           "name": "Dog Groomer",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6060"
         },
         "D": {
           "name": "",
@@ -682,22 +682,22 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
         "C": {
           "name": "Dog Groomer",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "D": {
           "name": "Coordinator / dialogue reference",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "E": {
           "name": "",
@@ -775,32 +775,32 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
           "name": "Monika",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
           "name": "Herbert",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "E": {
           "name": "Theresa",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "F": {
           "name": "Grandmother",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "G": {
           "name": "",
@@ -868,42 +868,42 @@
         "A": {
           "name": "Boom",
           "type": "plant",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
           "name": "Monika",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "D": {
           "name": "Herbert",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "E": {
           "name": "Theresa",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "F": {
           "name": "Grandmother",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "G": {
           "name": "Backseat Plant",
           "type": "plant",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
         "H": {
           "name": "Plant Movable",
           "type": "plant",
-          "mic": "DPA 6060"
+          "mic": "6060"
         }
       },
       "shotList": [
@@ -961,42 +961,42 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
-          "name": "Monika",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "D": {
-          "name": "Herbert",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "E": {
-          "name": "Theresa",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "F": {
-          "name": "Uncle Karl",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "G": {
           "name": "Tristan",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
-        "H": {
+        "D": {
           "name": "Aunt Steffie",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
+        },
+        "E": {
+          "name": "Uncle Karl",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "F": {
+          "name": "Herbert",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "G": {
+          "name": "Monika",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "H": {
+          "name": "Theresa",
+          "type": "dia",
+          "mic": "6060"
         }
       },
       "shotList": [
@@ -1054,42 +1054,42 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
-          "name": "Monika",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "D": {
-          "name": "Herbert",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "E": {
-          "name": "Granny",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "F": {
-          "name": "Uncle Karl",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "G": {
           "name": "Tristan",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
-        "H": {
+        "D": {
           "name": "Aunt Steffie",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
+        },
+        "E": {
+          "name": "Uncle Karl",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "F": {
+          "name": "Herbert",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "G": {
+          "name": "Monika",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "H": {
+          "name": "Granny",
+          "type": "dia",
+          "mic": "6060"
         }
       },
       "shotList": [
@@ -1147,12 +1147,12 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "nodia",
-          "mic": "DPA 6060"
+          "mic": "6060"
         },
         "C": {
           "name": "",
@@ -1240,42 +1240,42 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
-          "name": "Monika",
-          "type": "nodia",
-          "mic": "DPA 6060"
-        },
-        "D": {
-          "name": "Herbert",
-          "type": "nodia",
-          "mic": "DPA 6060"
-        },
-        "E": {
-          "name": "Granny",
-          "type": "nodia",
-          "mic": "DPA 6060"
-        },
-        "F": {
-          "name": "Uncle Karl",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "G": {
           "name": "Tristan",
           "type": "nodia",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
-        "H": {
+        "D": {
           "name": "Aunt Steffie",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
+        },
+        "E": {
+          "name": "Uncle Karl",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "F": {
+          "name": "Herbert",
+          "type": "nodia",
+          "mic": "6060"
+        },
+        "G": {
+          "name": "Monika",
+          "type": "nodia",
+          "mic": "6060"
+        },
+        "H": {
+          "name": "Granny",
+          "type": "nodia",
+          "mic": "6060"
         }
       },
       "shotList": [
@@ -1333,42 +1333,42 @@
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": "Schoeps MK41"
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": "DPA 6061"
+          "mic": "6061"
         },
         "C": {
-          "name": "Monika",
-          "type": "nodia",
-          "mic": "DPA 6060"
-        },
-        "D": {
-          "name": "Herbert",
-          "type": "nodia",
-          "mic": "DPA 6060"
-        },
-        "E": {
-          "name": "Granny",
-          "type": "nodia",
-          "mic": "DPA 6060"
-        },
-        "F": {
-          "name": "Uncle Karl",
-          "type": "dia",
-          "mic": "DPA 6060"
-        },
-        "G": {
           "name": "Tristan",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6061"
         },
-        "H": {
+        "D": {
           "name": "Aunt Steffie",
           "type": "dia",
-          "mic": "DPA 6060"
+          "mic": "6060"
+        },
+        "E": {
+          "name": "Uncle Karl",
+          "type": "dia",
+          "mic": "6060"
+        },
+        "F": {
+          "name": "Herbert",
+          "type": "nodia",
+          "mic": "6060"
+        },
+        "G": {
+          "name": "Monika",
+          "type": "nodia",
+          "mic": "6060"
+        },
+        "H": {
+          "name": "Granny",
+          "type": "nodia",
+          "mic": "6060"
         }
       },
       "shotList": [
