@@ -1045,9 +1045,9 @@
       "nurton": "NT - Atmo"
     },
     "12": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "RESTAURANT",
+      "time": "Early Evening",
       "notes": "Theresa swapped to Granny as Theresa has only one line and says \"huh?\". can swap sender back if needed.",
       "description": "A little later: Anatol sits between his uncle and cousin, opposite him his aunt Stefanie, who is sitting next to Theresa. His parents and grandmother are at the other end of the table. Wine is being poured. Uncle Karl peppers his brother-in-law with questions about his building project – subtle rivalry between the men –\nwhile his wife Stefanie emphasizes, “I’m so sorry you can’t come to my charity art opening…” – “Yes, we’re sorry… I’m at an ENT conference in Kassel…”\nAnatol turns to his table neighbor Tristan.\n\nFour pages of dialogue. Tristan reveals he's moving back to Munich from his London banking job to be a sustainability consultant. After taklking about it at length, the conversation refocuses to Anatol, who is trying to pivot from 'wanting' to study in Hamburg and hide the fact that he didn't get accepted.\n\nThere is a flashback mid scene - likely shot on another shooting day. unsure how this will be planned as of yet.\n\nThey discuss Anatol's master thesis, and afterwards Aunt Steffie gives Anatol books as a birthday gift, they're travel guides for Hamburg. After asking if he has somewhere to stay, Anatol says no and Steffie goes to text her friends in Hamburg to ask if he can stay with them. Anatol lets slip that he didn't get into the University. ",
       "tx": {
@@ -1138,21 +1138,21 @@
       "nurton": ""
     },
     "13": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": " TOILET RESTAURANT",
+      "time": "Evening",
       "notes": "",
-      "description": "",
+      "description": "Anatol takes a deep breath, trying more and more aggressively to clean the shrinking stain on his trousers with soap.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Anatol",
+          "type": "nodia",
+          "mic": "DPA 6060"
         },
         "C": {
           "name": "",
@@ -1231,51 +1231,51 @@
       "nurton": ""
     },
     "14": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "RESTAURANT",
+      "time": "Evening",
       "notes": "",
-      "description": "",
+      "description": "Anatol heads back towards the table where they've reached the espresso table. He overhears them talking about the plight of journalism:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Monika",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
+          "name": "Herbert",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
+          "name": "Granny",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "F": {
-          "name": "",
+          "name": "Uncle Karl",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "G": {
-          "name": "",
+          "name": "Tristan",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "H": {
-          "name": "",
+          "name": "Aunt Steffie",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         }
       },
       "shotList": [
