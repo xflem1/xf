@@ -896,14 +896,14 @@
           "mic": "DPA 6060"
         },
         "G": {
-          "name": "",
+          "name": "Backseat Plant",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "H": {
-          "name": "",
+          "name": "Plant Movable",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         }
       },
       "shotList": [
