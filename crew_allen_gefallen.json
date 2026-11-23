@@ -119,32 +119,32 @@
       "place": "JOURNALIST SCHOOL - STAIRCASE & ROOM ",
       "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol runs up the stairs of the journalism school, taking two steps at a time, laden with a suitcase and backpack. He runs excitedly down a corridor, looking for the application room. He finds it. He throws open the door. A three-member panel looks up: a distinguished examiner in his late fifties, an older examiner with anthroposophical leanings, and a brisk younger examiner. Anatol, out of breath, happy. He introduces himself. He walks further into the room, takes off his backpack and continues talking, very quickly, dynamically: The seated examination committee, who looked at him somewhat irritatedly during his monologue, gave polite nods; he laughed at them: they talk for a quarter page.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "Old Examiner",
+          "name": "Older Examiner",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
+          "name": "Examiner",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Young Examiner",
+          "type": "nodia",
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
@@ -208,36 +208,36 @@
       "nurton": ""
     },
     "3": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "JOURNALIST SCHOOL - CORRIDOR",
+      "time": "Day",
+      "notes": "character names not mentioned but characters are described. cable anyone with dialogue on set.",
+      "description": "Anatol sits waiting, nervous. He looks at a poster on the wall depicting a fight between a tiger and a buffalo in the wild, a scene painted by Rousseau.\nHe looks at it. Exhales. Trys to relax. He's interrupted: He hears another applicant leave... thanking him... \"That was great...\" He hears the coordinator: \"Yeah, it's crazy... everything can change in a day like that... a whole life...\" He's called: \"Mr. Baumgarth?\"",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Voice?",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
+          "name": "Person Leaving 1?",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
+          "name": "Person Leaving 2?",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "F": {
           "name": "",
@@ -301,11 +301,11 @@
       "nurton": ""
     },
     "4": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "JOURNALIST SCHOOL - EXAM ROOM",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol is now expectantly in the intake interview:\nOLDER EXAMINER And\nyou have studied for a long time now – German studies and\nphilosophy...",
       "tx": {
         "A": {
           "name": "Boom",
