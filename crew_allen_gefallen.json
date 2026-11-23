@@ -584,7 +584,7 @@
       "place": "EBERSBERG - DOG SALON ",
       "time": "Day",
       "notes": "",
-      "description": "Anatol, as a roving reporter, interviews a dog groomer who is washing a dog with motivation and genuine interest. Around her are certificates, dog hair products and pictures from dog shows, as well as a graphic entitled “From Wolf to Lap Dog”. The dog groomer is monologuing, Anatol is recording and writing along:",
+      "description": "Anatol, as a roving reporter, interviews a dog groomer who is washing a dog with motivation and genuine interest. Around her are certificates, dog hair products and pictures from dog shows, as well as a graphic entitled “From Wolf to Lap Dog”. The dog groomer is monologuing, Anatol is recording and writing along: they talk for 1/3 page. \n\nShe says this and goes next door. Anatol wants to follow, but an excited dog next to him won't leave him alone, rummaging in his backpack with its snout. To calm the animal down, he discreetly gives it the tomato focaccia from journalism school. The dog groomer comes again, Anatol smiles at her. They continue talking.\n\nShe mentions how she started her business at a young age. Anatol is now on the defensive. While she starts blow-drying the dog, he tries to shout over her and justifies himself: His smartphone vibrates as he records her. It's the coordinator of the journalism school. The dog groomer, completely absorbed in her work, doesn't notice how he signals to her that he needs to answer the phone.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -673,31 +673,31 @@
       "nurton": "NT Dialogue backup."
     },
     "8": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "EBERSBERG DOG SALON - DOG PLAYROOM",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol has arrived at a dog slide, and with his mobile phone to his ear, he is excitedly talking to the coordinator. Anatol is told that he placed 6th, and only 5 applicants are accepted. Anatol sits down on the dog slide. Very slowly. Trying to hide the fact that his world is collapsing.\n\nCut. Anatol is lost at the bottom of the dog slide. His phone vibrates: MOM. Then DAD. He dismisses them both. The dog that had sniffed him comes in. Anatol strokes her affectionately, lets her comfort him, and rests his head on hers. Then the dog suddenly starts vomiting, on him, the slide, the floor. Anatol, awakened from his trance, tries to avoid the animal, then to mop up the tomato vomit. \n\nThe dog groomer talks while walking into the room. The dog groomer came in and was horrified to see the vomit that Anatol reflexively tried to hide. she asks if the dog was given tomatoes. Anatol and the dog groomer mop the floor together. Meanwhile, Anatol's phone vibrates again: MOM. The dog groomer\nlooks at his screen, Anatol follows her gaze, and says:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
-          "name": "",
+          "name": "Dog Groomer",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
-          "name": "",
+          "name": "Coordinator / dialogue reference",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
           "name": "",
@@ -762,45 +762,45 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "phone call. will the real actor call in? pre recorded? potential overlaps? ",
+      "nurton": "NT Dialogue if there are overlaps in scene."
     },
     "9": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "EXT.",
+      "place": "MUNICH CENTRAL STATION",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol runs from Munich Central Station across the street to his family -- an elegant, present group: his mother MONIKA, his father HERBERT, his sister THERESA (32), in the passenger seat the GRANDMOTHER, the grande dame of the family.\nA cheerful greeting, happy birthday wishes from everyone.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Monika",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
+          "name": "Herbert",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
+          "name": "Theresa",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "F": {
-          "name": "",
+          "name": "Grandmother",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "G": {
           "name": "",
@@ -855,45 +855,45 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "potential for crushed lavs when hugging. can boom get close?",
+      "nurton": "Dialogue NT if wind or crushed lavs are an issue."
     },
     "10": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "FAMILY CAR",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol squeezes into the back between his mother and sister as the elegant car drives through the city center:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Monika",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "D": {
-          "name": "",
+          "name": "Herbert",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "E": {
-          "name": "",
+          "name": "Theresa",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "F": {
-          "name": "",
+          "name": "Grandmother",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "G": {
           "name": "",
