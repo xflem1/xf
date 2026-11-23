@@ -397,8 +397,8 @@
       "intExt": "INT.",
       "place": "JOURNALIST SCHOOL - CORRIDOR",
       "time": "Day",
-      "notes": "",
-      "description": "A cheerful, slightly eccentric coordinator leads Anatol through the corridor:\nCOORDINATOR So, this\nshould be quick now, you'll know this week…\nANATOL Ah\nwow, so fast already?\nCOORDINATOR\nAnd as they always say, \" Don't call us, we'll call you...\" Although—\nif we call, it's a good sign—the rejections come by email...\nANATOL\n(laughs somewhat nervously)\nAh, then I hope for a phone call...\nThe coordinator does not address this and refers to the\nBuffet where mountains of focaccia and Franzbrötchen are laid out:\nCOORDINATOR So,\nplease, help yourselves...\nANATOL\nAh great, thank you - (carefully reaches in)\nCOORDINATOR More,\ntake more -- otherwise it all gets thrown away! I cry hot tears every time...\nAnatol obeys and, half-gratefully and half-out of politeness, puts several Franzbrötchen (a type of sweet roll) and tomato\nfocaccia into his already overflowing backpack.",
+      "notes": "walk and talk. amatol grabs food at the end",
+      "description": "A cheerful, slightly eccentric coordinator leads Anatol through the corridor:\nCOORDINATOR \nSo, this should be quick now, you'll know this week…\nANATOL \nAh wow, so fast already?\nCOORDINATOR\nAnd as they always say, \" Don't call us, we'll call you...\" Although— if we call, it's a good sign—the rejections come by email...\nANATOL\n(laughs somewhat nervously) Ah, then I hope for a phone call..\n\nThe coordinator does not address this and refers to the Buffet where mountains of focaccia and Franzbrötchen are laid out:\nCOORDINATOR \nSo, please, help yourselves...\nANATOL\nAh great, thank you - (carefully reaches in)\nCOORDINATOR \nMore, take more -- otherwise it all gets thrown away! I cry hot tears every time...\n\nAnatol obeys and, half-gratefully and half-out of politeness, puts several Franzbrötchen (a type of sweet roll) and tomato focaccia into his already overflowing backpack.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -487,21 +487,21 @@
       "nurton": ""
     },
     "6": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "REGIONAL RAIL",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol sits on the floor of the corridor in the crowded train on the way back to Ebersberg. In front of him is a spread-out newspaper and on his lap an open laptop. He is typing an article for the Ebersberger Merkur: “Dog years. Loneliness. The pet as a fetish in times of demographic change.” Completely focused, in his element.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6060"
         },
         "C": {
           "name": "",
@@ -577,29 +577,29 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Train Atmo"
     },
     "7": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "EBERSBERG - DOG SALON ",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol, as a roving reporter, interviews a dog groomer who is washing a dog with motivation and genuine interest. Around her are certificates, dog hair products and pictures from dog shows, as well as a graphic entitled “From Wolf to Lap Dog”. The dog groomer is monologuing, Anatol is recording and writing along:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "Schoeps MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "C": {
-          "name": "",
+          "name": "Dog Groomer",
           "type": "dia",
-          "mic": ""
+          "mic": "DPA 6061"
         },
         "D": {
           "name": "",
@@ -669,8 +669,8 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "Washing could be louder than dialogue",
+      "nurton": "NT Dialogue backup."
     },
     "8": {
       "intExt": "",
