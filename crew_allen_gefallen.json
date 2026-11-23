@@ -956,7 +956,7 @@
       "place": "OUTDOOR & INSIDE - RESTAURANT",
       "time": "Day",
       "notes": "",
-      "description": "They hurry towards the Italian restaurant, talking about their aunt: A lively, expensive Italian restaurant in Munich's city center.\nAnatol's parents and grandmother have already gone inside, Anatol Theresa and [the other person] stay back a little, watching the welcoming arias. At a table in the back sit Uncle Karl, Aunt Stefanie and Anatol's cousin TRISTAN (28). Elegant, stylish, relaxed, as they would have been there forever, while Anatol's family rushed towards them. Anatol and Theresa walk in their direction and whisper to each other:",
+      "description": "They hurry towards the Italian restaurant, talking about their aunt: A lively, expensive Italian restaurant in Munich's city center.\nAnatol's parents and grandmother have already gone inside, Anatol Theresa and [the other person] stay back a little, watching the welcoming arias. At a table in the back sit Uncle Karl, Aunt Stefanie and Anatol's cousin TRISTAN (28). Elegant, stylish, relaxed, as they would have been there forever, while Anatol's family rushed towards them. Anatol and Theresa walk in their direction and whisper to each other: they then greet carl. \n\nAnatol lets the congratulations of his uncle and aunt wash over him. Tristan, confident and casual, approaches Anatol and greets him very effusively. Hugs him very tightly... what Anatol responds with joyful enthusiasm, sounding like a completely different person:",
       "tx": {
         "A": {
           "name": "Boom",
@@ -994,7 +994,7 @@
           "mic": "DPA 6060"
         },
         "H": {
-          "name": "",
+          "name": "Aunt",
           "type": "dia",
           "mic": "DPA 6060"
         }
