@@ -26,7 +26,7 @@
       "place": "Hamburg",
       "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "ANATOL (late 20s) runs through downtown Hamburg, energetically pulling a rolling suitcase behind him, a backpack on the Back, frantically searching for his destination on Google Maps. He is asking passers-by for directions over a few different cuts.\n\nCUT, Anatol has found the Henri Nannen School, hurries across the street, gets honked at, “sorry sorry sorry...”",
       "tx": {
         "A": {
           "name": "Boom",
@@ -111,13 +111,13 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "how tight is the camera - can we boom?",
+      "nurton": "City Atmo"
     },
     "2": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "JOURNALIST SCHOOL - STAIRCASE & ROOM ",
+      "time": "Day",
       "notes": "",
       "description": "",
       "tx": {
@@ -127,12 +127,12 @@
           "mic": ""
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
           "mic": ""
         },
         "C": {
-          "name": "",
+          "name": "Old Examiner",
           "type": "dia",
           "mic": ""
         },
