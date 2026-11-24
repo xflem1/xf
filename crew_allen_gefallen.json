@@ -1793,7 +1793,7 @@
       "place": "Club",
       "time": "Night",
       "notes": "Will Benni really be on the phone? he's on set, so should say his phone line regardless. Dia NT from his sentence if not and watch for overlaps.",
-      "description": "Anatol wants to get past the doorman, who is pointing to the other side to exit. Anatol stares uncomprehendingly at the broad doorman, who stares at him impassively and makes no move to get out of the way. Frustrated, Anatol goes out to the other side as ordered. Outside, Anatol takes out his mobile phone, and at that very moment, BENNI rings. Anatol answers. Benni says he made it ans is trying to find Anatol. Anatol joins the queue in front of the club again, trying to get past the bouncer, to whom he smiles. But: The security guard wont let him back in, and Anatol argues he was just in there. \"Can you please piss off?\" comes from behind. The bouncer lets in a group of dolled-up, attractive people. TIME JUMP: BENNI shares a cigarette with Anatol outside. A friendly bond, Benni already tipsy:",
+      "description": "Anatol wants to get past the doorman, who is pointing to the other side to exit. Anatol stares uncomprehendingly at the broad doorman, who stares at him impassively and makes no move to get out of the way. Frustrated, Anatol goes out to the other side as ordered. Outside, Anatol takes out his mobile phone, and at that very moment, BENNI rings. Anatol answers. Benni says he made it ans is trying to find Anatol. Anatol joins the queue in front of the club again, trying to get past the bouncer, to whom he smiles. But: The security guard wont let him back in, and Anatol argues he was just in there. \"Can you please piss off?\" comes from behind. The bouncer lets in a group of dolled-up, attractive people. TIME JUMP: BENNI shares a cigarette with Anatol outside. A friendly bond, Benni already tipsy: they start a conversation, but Benni is told he has to go inside with his drink. Benni says he can go to another bar with Anatol, but Anatol says its ok because he has to \"get up early\".",
       "tx": {
         "A": {
           "name": "Boom",
@@ -1882,20 +1882,20 @@
       "nurton": "Benni Phone NT (if not recorded in scene)\nAtmo."
     },
     "21": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "S-BAHN STATION",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Anatol waits alone for the S-Bahn to Ebersberg, bathed in neon light. “Next S6 in 45 minutes.” He takes out his iPhone, looks at photos of himself and a young woman, Alina. On the beach, in a restaurant. Clicks on the WhatsApp chat with her… Texts: “How are you?” Deletes it. \"I'm in Munich, are you too?\" Deletes it. A heart emoticon. Deletes it.\nHe goes to Tristan's Instagram profile. He researches Tristan's consulting services and projects on their website, then goes to TEAM and PROJECTS.\nAnnoyed, he clicks it away, takes out his laptop, and continues writing his article about the dog groomer. He immerses himself in it…",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
+          "name": "Anatol",
+          "type": "nodia",
           "mic": ""
         },
         "C": {
@@ -1972,7 +1972,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Atmo."
     },
     "22": {
       "intExt": "",
