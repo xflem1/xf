@@ -1693,7 +1693,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Atmo"
     },
     "19": {
       "intExt": "INT./EXT.",
@@ -1786,34 +1786,34 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Atmo"
     },
     "20": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "EXT.",
+      "place": "Club",
+      "time": "Night",
+      "notes": "Will Benni really be on the phone? he's on set, so should say his phone line regardless. Dia NT from his sentence if not and watch for overlaps.",
+      "description": "Anatol wants to get past the doorman, who is pointing to the other side to exit. Anatol stares uncomprehendingly at the broad doorman, who stares at him impassively and makes no move to get out of the way. Frustrated, Anatol goes out to the other side as ordered. Outside, Anatol takes out his mobile phone, and at that very moment, BENNI rings. Anatol answers. Benni says he made it ans is trying to find Anatol. Anatol joins the queue in front of the club again, trying to get past the bouncer, to whom he smiles. But: The security guard wont let him back in, and Anatol argues he was just in there. \"Can you please piss off?\" comes from behind. The bouncer lets in a group of dolled-up, attractive people. TIME JUMP: BENNI shares a cigarette with Anatol outside. A friendly bond, Benni already tipsy:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MiniCMIT"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Benni",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Security Guard",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
@@ -1879,7 +1879,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Benni Phone NT (if not recorded in scene)\nAtmo."
     },
     "21": {
       "intExt": "",
