@@ -1606,38 +1606,38 @@
       "intExt": "INT.",
       "place": "CLUB BAR",
       "time": "Night",
-      "notes": "Long dialogue scene - 4 pages\nNo written dialogue for Philip but will likely improvise during introductions. ",
-      "description": "",
+      "notes": "Long dialogue scene - 4 pages\nNo written dialogue for Philip but will likely improvise during introductions. Same for Waitress.",
+      "description": "Anatol goes to Tristan, who has just been flirting with a waitress and is relaxing in a lounge with two Munich Mules.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
           "name": "Tristan",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "D": {
           "name": "Constantin",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "Philip",
           "type": "nodia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
-          "name": "",
+          "name": "Waitress",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "G": {
           "name": "",
