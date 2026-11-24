@@ -2258,7 +2258,7 @@
       "place": "APARTMENT BENNI & JOSEFA",
       "time": "Evening",
       "notes": "",
-      "description": "Anatol cheerfully sneaks into the living room of the somewhat too lavishly furnished apartment, where he hears Benni and Josefa's muffled voices from the kitchen. He then rushes loudly towards them, shouting an inside joke about friendship:  JOSEFA (32), Benni's wife, with a baby in her arms, signals to Anatol to be quieter. He whispers sorry, and Josefa says he just fell asleep. they talk briefly. Josefa strokes his back and goes out with the little one, who is making noises. Anatol turns to Benni. Hug. Benni offers him a drink. Anatol takes two bottles of beer out of his backpack and presents them to Benni. Looking at the backpack: He looks around, sees muesli ingredients on the shelf, individually labeled in preserving jars. Countless engagement and wedding announcements are on the refrigerator. Anatol opens a beer for Benni and himself. Benni says he doesn't drink at the moment, which confuses Anatol. At that moment, Josefa comes in, without her child. Benni quickly pushes the beer over to Anatol, noticing her gaze. Anatol gets loud while making a joke and Benni and Josefa sush him. Anatol closes the beers. ",
+      "description": "Anatol cheerfully sneaks into the living room of the somewhat too lavishly furnished apartment, where he hears Benni and Josefa's muffled voices from the kitchen. He then rushes loudly towards them, shouting an inside joke about friendship:  JOSEFA (32), Benni's wife, with a baby in her arms, signals to Anatol to be quieter. He whispers sorry, and Josefa says he just fell asleep. they talk briefly. Josefa strokes his back and goes out with the little one, who is making noises. Anatol turns to Benni. Hug. Benni offers him a drink. Anatol takes two bottles of beer out of his backpack and presents them to Benni. Looking at the backpack: He looks around, sees muesli ingredients on the shelf, individually labeled in preserving jars. Countless engagement and wedding announcements are on the refrigerator. Anatol opens a beer for Benni and himself. Benni says he doesn't drink at the moment, which confuses Anatol. At that moment, Josefa comes in, without her child. Benni quickly pushes the beer over to Anatol, noticing her gaze. Anatol gets loud while making a joke and Benni and Josefa sush him. Anatol closes the beers. They talk briefly about Anatols situation, and remind him they have visitors staying in a few days, Anatol says thats fine and he can just sleep on the couch, avoiding the hint. Benni and Josefa look concerned.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -2343,30 +2343,30 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "Baby may be loud at times. Not written as such in script, but it's possible. ",
       "nurton": ""
     },
     "26": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "KITCHEN BENNI & JOSEFA",
+      "time": "Night",
+      "notes": "Plant for video playback on laptop.",
+      "description": "Anatol, sitting at the kitchen table, drinking his beer alone, takes notes and googles internships – there's one advertised at the Süddeutsche Zeitung – and googles other journalism schools. He looks for a room in a shared apartment in Munich. He's shocked at how high the prices are.\nWatch the interviews on YouTube with the arts editor of the SZ: “We welcome the controversial arts editor Carmen Deuflhard to the question 'What can art do in a crisis?'” Applause, Deuflhard smiles.\nAnatol quietly practices addressing her: “Hello Ms. Deuflhard… I just read your article about loss of self and gender identity crises in contemporary literature…”",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Laptop ",
+          "type": "plant",
+          "mic": "6061"
         },
         "D": {
           "name": "",
