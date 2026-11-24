@@ -2254,31 +2254,31 @@
       "nurton": ""
     },
     "25": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "APARTMENT BENNI & JOSEFA",
+      "time": "Evening",
       "notes": "",
-      "description": "Anatol cheerfully sneaks into the living room of the somewhat too lavishly furnished apartment, where he hears Benni and Josefa's muffled voices from the kitchen. He then rushes loudly towards them, shouting an inside joke about friendship:  JOSEFA (32), Benni's wife, with a baby in her arms, signals to Anatol to be quieter. He whispers sorry, and Josefa says he just fell asleep.",
+      "description": "Anatol cheerfully sneaks into the living room of the somewhat too lavishly furnished apartment, where he hears Benni and Josefa's muffled voices from the kitchen. He then rushes loudly towards them, shouting an inside joke about friendship:  JOSEFA (32), Benni's wife, with a baby in her arms, signals to Anatol to be quieter. He whispers sorry, and Josefa says he just fell asleep. they talk briefly. Josefa strokes his back and goes out with the little one, who is making noises. Anatol turns to Benni. Hug. Benni offers him a drink. Anatol takes two bottles of beer out of his backpack and presents them to Benni. Looking at the backpack: He looks around, sees muesli ingredients on the shelf, individually labeled in preserving jars. Countless engagement and wedding announcements are on the refrigerator. Anatol opens a beer for Benni and himself. Benni says he doesn't drink at the moment, which confuses Anatol. At that moment, Josefa comes in, without her child. Benni quickly pushes the beer over to Anatol, noticing her gaze. Anatol gets loud while making a joke and Benni and Josefa sush him. Anatol closes the beers. ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Josefa",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Benni",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
