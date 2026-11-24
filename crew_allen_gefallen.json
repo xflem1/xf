@@ -2629,8 +2629,8 @@
       "intExt": "INT.",
       "place": "DANCE FLOOR GALLERY",
       "time": "Evening",
-      "notes": "",
-      "description": "Most people are at least 20 years older than Anatol. Stefanie and Carmen dance ecstatically to “Blurred Lines”. Anatol pours himself a beer, joins in, and they clap for him.\n\nHe moves more and more wildly, letting out his anger on himself. Deuflhard looks at him. Over the music, she calls out to him while dancing: they yell to eachother over the music as she asks him about his thesis.",
+      "notes": "Important that they are on 61s here.",
+      "description": "Most people are at least 20 years older than Anatol. Stefanie and Carmen dance ecstatically to “Blurred Lines”. Anatol pours himself a beer, joins in, and they clap for him.\n\nHe moves more and more wildly, letting out his anger on himself. Deuflhard looks at him. Over the music, she calls out to him while dancing: they yell to eachother over the music as she asks him about his thesis. Just as he's getting into his stride, she gives him a signal: her phone rings. She answers it, moves away,towards the wardrobe. Anatol watches her go. Follows her.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -2643,7 +2643,7 @@
           "mic": "6061"
         },
         "C": {
-          "name": "Stefanie",
+          "name": "",
           "type": "dia",
           "mic": "6060"
         },
@@ -2715,40 +2715,40 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "music playback. play music before take and pause for scene.",
       "nurton": ""
     },
     "30": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "CLOAKROOM GALLERY",
+      "time": "Evening",
+      "notes": "unsure if babysitter is on phone or there in person. Im guessing they're on the phone, but if on set - cable them.",
+      "description": "Anatol, keeping a safe distance, overhears the arts and culture writer seemingly arguing with a babysitter and complaining about her \"soon-to-be-ex-husband.\" Anatol pointedly searches his backpack. Suddenly, Deuflhard is standing next to him, talking on the phone. She gestures to her coat behind him. Anatol offers to help her into it—she takes it from him as she ends the call and nonchalantly hands him her business card. She asks if he can be at her office tomorrow at noon. Anatol is euphoric, but tries not to show his joy too much while accepting the offer.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Deulfhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "D": {
-          "name": "",
+          "name": "Culture Writer",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
+          "name": "Babysitter?",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -2809,24 +2809,24 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Atmo?"
     },
     "31": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "EXT.",
+      "place": "MUNICH CITY CENTER",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "...Anatol rides his bicycle happily and relaxed through Munich's city center at night... his plan has worked.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MiniCMIT"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Anatol",
+          "type": "nodia",
+          "mic": "6061"
         },
         "C": {
           "name": "",
@@ -2901,7 +2901,7 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "wind noise plus mixer placement.",
       "nurton": ""
     },
     "32": {
