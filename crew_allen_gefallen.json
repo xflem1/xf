@@ -2444,32 +2444,32 @@
       "place": "",
       "time": "",
       "notes": "",
-      "description": "Anatol appears in a suit jacket at the opening of his aunt Stefanie's art charity exhibition to meet Carmen Deuflhard.\nWaiters rush around with canapés and champagne glasses. Artful knitted textiles and sculptures in the shape of genitalia adorn\nthe walls, while dolls like something out of a horror film lie on the floor.\nHis aunt Stefanie comes running up to him, genuinely delighted:",
+      "description": "Anatol appears in a suit jacket at the opening of his aunt Stefanie's art charity exhibition to meet Carmen Deuflhard. Waiters rush around with canapés and champagne glasses. Artful knitted textiles and sculptures in the shape of genitalia adorn the walls, while dolls like something out of a horror film lie on the floor.\nHis aunt Stefanie comes running up to him, genuinely delighted:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
           "name": "Stefanie",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
+          "name": "Older Man",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -2530,7 +2530,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Atmo"
     },
     "28": {
       "intExt": "",
