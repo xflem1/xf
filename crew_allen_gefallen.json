@@ -1607,7 +1607,7 @@
       "place": "CLUB BAR",
       "time": "Night",
       "notes": "Long dialogue scene - 4 pages\nNo written dialogue for Philip but will likely improvise during introductions. Same for Waitress.",
-      "description": "Anatol goes to Tristan, who has just been flirting with a waitress and is relaxing in a lounge with two Munich Mules. Tristan announces he will be a father. Tristan asks about Anatol's love life and asks if he's still into Alina. Anatol says they're on and off, and Tristan reveals that she's dating a friend of his from London which surprises Anatol.  Tristan spots his friends, they yell and greet eachother and congratulate Tristan on his engagement. They clink glasses, Anatol tries to join in the congratulations with as much cheer as possible, “Yeah, that’s crazy…”. Then he downs his drink and tries to digest the news about Alina. Tristan watches, seemingly stunned, with his colleagues; how they toast him, how they sway to house beats. He suddenly stands up:",
+      "description": "Anatol goes to Tristan, who has just been flirting with a waitress and is relaxing in a lounge with two Munich Mules. Tristan announces he will be a father. Tristan asks about Anatol's love life and asks if he's still into Alina. Anatol says they're on and off, and Tristan reveals that she's dating a friend of his from London which surprises Anatol.  Tristan spots his friends, they yell and greet eachother and congratulate Tristan on his engagement. They clink glasses, Anatol tries to join in the congratulations with as much cheer as possible, “Yeah, that’s crazy…”. Then he downs his drink and tries to digest the news about Alina. Tristan watches, seemingly stunned, with his colleagues; how they toast him, how they sway to house beats. He suddenly stands up: Anatol tries to pay for the drinks. Tristan and the other two try to refuse, but Anatol insists. He inserted his parents' credit card into the card reader. It was declined. Again. Rejected again. “Ah shit, this should actually work… Huh, but the PIN is correct…” He's terribly embarrassed; under the watchful eyes of the group and the waitress, he takes out his own debit card to pay for the overpriced drinks. Tristan intervenes: Tristan will undoubtedly take the card reader from him and give the waitress a generous tip, demonstratively more than Anatol.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -1696,11 +1696,11 @@
       "nurton": ""
     },
     "19": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT./EXT.",
+      "place": "CLUB",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Tristan accompanied Anatol to the exit. He hugged him very tightly, said kindly and seemingly very empathetically: ",
       "tx": {
         "A": {
           "name": "Boom",
