@@ -2444,7 +2444,7 @@
       "place": "",
       "time": "",
       "notes": "",
-      "description": "Anatol appears in a suit jacket at the opening of his aunt Stefanie's art charity exhibition to meet Carmen Deuflhard. Waiters rush around with canapés and champagne glasses. Artful knitted textiles and sculptures in the shape of genitalia adorn the walls, while dolls like something out of a horror film lie on the floor.\nHis aunt Stefanie comes running up to him, genuinely delighted:",
+      "description": "Anatol appears in a suit jacket at the opening of his aunt Stefanie's art charity exhibition to meet Carmen Deuflhard. Waiters rush around with canapés and champagne glasses. Artful knitted textiles and sculptures in the shape of genitalia adorn the walls, while dolls like something out of a horror film lie on the floor.\nHis aunt Stefanie comes running up to him, genuinely delighted: they talk, but she doesn't seem to remember her promise to connect him with Carmen Deuflhard at all, and proudly shows him her art. She spots someone, waves and calls out \"hi,\" blows kisses. As she's about to turn her attention to new guests, Anatol asks cautiously: Anatol points out and asks if that is Defulhard. Stefanie stares at him. A slightly awkward pause. She seems somewhat piqued when she realizes why he's really here. Anatol gestures toward the puppet installation, looking for help. Stefanie switches demeanour dejectedly, and offers to introduce Anatol. She makes her way through the throng of art enthusiasts and leads them to a distinguished group, among which is the arts and culture journalist Carmen Deuflhard. Early fifties, striking, poised. Stefanie taps her on the shoulder. The two women embrace, exchanging inside jokes and laughing heartily, while Anatol\nis eyed curiously by the older gentlemen in Deuflhard's entourage, until his aunt turns back to the group in a state of euphoria.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -2529,8 +2529,8 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": "Atmo"
+      "problems": "Stefanie and Defulhard hugging while greeting could cause lav crush.\nextras need to be silent. ",
+      "nurton": "Atmo\nDia NT in spots where required"
     },
     "28": {
       "intExt": "",
