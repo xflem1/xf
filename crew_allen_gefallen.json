@@ -1603,10 +1603,10 @@
       "nurton": ""
     },
     "18": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
+      "intExt": "INT.",
+      "place": "CLUB BAR",
+      "time": "Night",
+      "notes": "Long dialogue scene - 4 pages\nNo written dialogue for Philip but will likely improvise during introductions. ",
       "description": "",
       "tx": {
         "A": {
@@ -1615,23 +1615,23 @@
           "mic": ""
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
           "mic": ""
         },
         "C": {
-          "name": "",
+          "name": "Tristan",
           "type": "dia",
           "mic": ""
         },
         "D": {
-          "name": "",
+          "name": "Constantin",
           "type": "dia",
           "mic": ""
         },
         "E": {
-          "name": "",
-          "type": "dia",
+          "name": "Philip",
+          "type": "nodia",
           "mic": ""
         },
         "F": {
