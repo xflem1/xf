@@ -1700,22 +1700,22 @@
       "place": "CLUB",
       "time": "Night",
       "notes": "",
-      "description": "Tristan accompanied Anatol to the exit. He hugged him very tightly, said kindly and seemingly very empathetically: ",
+      "description": "Tristan accompanied Anatol to the exit. He hugged him very tightly, said kindly and seemingly very empathetically: They talk about Alina and Tristan says he could work at his consulting firm if Journalism doesn't work out for Anatol. Anatol pushes back on this.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Tristan",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "",
