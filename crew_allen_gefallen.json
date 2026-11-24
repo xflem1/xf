@@ -1421,7 +1421,7 @@
       "place": "",
       "time": "",
       "notes": "Senders for non-dia aren't essential. Only written under the assumption that they will need to be wearing their mics from the prior scene anyway. May as well keep them on / pre-cable them. ",
-      "description": "Saying goodbye to parents, grandmother, uncle and aunt, and Theresa, who has to catch her train. The parents: \"Well,\nhave fun with your friends...\" The mother hands Anatol her credit card. ",
+      "description": "Saying goodbye to parents, grandmother, uncle and aunt, and Theresa, who has to catch her train. The parents: \"Well,\nhave fun with your friends...\" The mother hands Anatol her credit card. Anatol briefly discusses with Monika over who should pay, Anatol talks with Steffie about going to the event after she asks for the Hamburg book back. Tristan says he will now join Anatol on his \"night out\".",
       "tx": {
         "A": {
           "name": "Boom",
@@ -1510,26 +1510,26 @@
       "nurton": ""
     },
     "17": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "CLUB TOILET",
+      "time": "Night",
+      "notes": "no music playing on set during take - added in post.\nNo written dialogue but speaking is implied.",
+      "description": "Anatol is in a toilet cubicle at the club, while outside, \"I Gotta Feeling\" by the Black Eyed Peas is blasting. He's trying, somewhat desperately, to reach various friends.\nThe answers are sobering: “No, we’re at my parents’ house…” “Ah, I’m still having dinner…” “Sorry, we’re having a leisurely dinner today…”\nHe makes a voice message for his best friend Benni, whom he also can't reach: \"...Benni I need you here... I'm at the Lucky Who with my cousin and it's all pretty terrible... can you somehow get away?\"\nAnatol scrolls to the name ALINA. He looks at it. He considers calling her. He clicks on her picture. On her name. He hangs up immediately. He goes to the mirror and, somewhat paranoid, tries again to treat the barely visible stains on his trousers with soap.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Phone lines reference / OS?",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "",
