@@ -2626,36 +2626,36 @@
       "nurton": ""
     },
     "29": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "DANCE FLOOR GALLERY",
+      "time": "Evening",
       "notes": "",
-      "description": "",
+      "description": "Most people are at least 20 years older than Anatol. Stefanie and Carmen dance ecstatically to “Blurred Lines”. Anatol pours himself a beer, joins in, and they clap for him.\n\nHe moves more and more wildly, letting out his anger on himself. Deuflhard looks at him. Over the music, she calls out to him while dancing: they yell to eachother over the music as she asks him about his thesis.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Stefanie",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "E": {
           "name": "",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
           "name": "",
