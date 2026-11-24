@@ -2536,33 +2536,33 @@
       "intExt": "INT.",
       "place": "GALLERY",
       "time": "Evening",
-      "notes": "",
-      "description": "A little later, the atmosphere is louder and more relaxed. Anatol drinks to bolster his courage, discreetly follows Carmen Deuflhard, and then, seemingly by chance, stands next to her in front of a moss-covered sculpture, which she contemplates meditatively. Just as she is about to move on, he gives himself a sudden impulse:",
+      "notes": "Record announcer as reference if said aloud on set.",
+      "description": "A little later, the atmosphere is louder and more relaxed. Anatol drinks to bolster his courage, discreetly follows Carmen Deuflhard, and then, seemingly by chance, stands next to her in front of a moss-covered sculpture, which she contemplates meditatively. Just as she is about to move on, he gives himself a sudden impulse: Anatol speaks with Deulfhard, and as he starts to gain her interest, Blurred Lines is played, the opening on the dance floor is announced, and Stefanie grabs and pulls her away to the dace floor exclaiming that its their song. She also invites Anatol, and whispers in his ear asking if he promises to have fun tonight. They go to the dance floor.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Stefanie",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
+          "name": "Announcer?",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -2622,7 +2622,7 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "music queue \"blurred lines\" in scene. shouldn't be played on set ideally.",
       "nurton": ""
     },
     "29": {
