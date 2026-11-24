@@ -1327,7 +1327,7 @@
       "intExt": "INT./EXT.",
       "place": "RESTAURANT",
       "time": "Evening",
-      "notes": "",
+      "notes": "Senders for non-dia aren't essential. Only written under the assumption that they will need to be wearing their mics from the prior scene anyway. May as well keep them on / pre-cable them. ",
       "description": "As Anatol gets up and puts on his coat, he tries to get back with Stefanie -- but then Uncle Karl jovially and a little too hard slaps him on the shoulder. Anatol fakes having birthday plans and tries to find his way out of needing to invite Tristan (which he only just succeeds at).\n\nTristan laughs and puts on his Barbour jacket. Anatol slings his backpack over his shoulder with relief.",
       "tx": {
         "A": {
@@ -1420,48 +1420,48 @@
       "intExt": "",
       "place": "",
       "time": "",
-      "notes": "",
-      "description": "",
+      "notes": "Senders for non-dia aren't essential. Only written under the assumption that they will need to be wearing their mics from the prior scene anyway. May as well keep them on / pre-cable them. ",
+      "description": "Saying goodbye to parents, grandmother, uncle and aunt, and Theresa, who has to catch her train. The parents: \"Well,\nhave fun with your friends...\" The mother hands Anatol her credit card. ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Tristan",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "D": {
-          "name": "",
+          "name": "Aunt Steffie",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Uncle Karl",
+          "type": "nodia",
+          "mic": "6060"
         },
         "F": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Herbert",
+          "type": "nodia",
+          "mic": "6060"
         },
         "G": {
-          "name": "",
+          "name": "Monika",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "H": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Granny",
+          "type": "nodia",
+          "mic": "6060"
         }
       },
       "shotList": [
