@@ -1975,16 +1975,16 @@
       "nurton": "Atmo."
     },
     "22": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "EBERSBERGER MERKUR OFFICE",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol sits expectantly in front of his Ebersberg editor-in-chief SCHIRRER, an engaging, somewhat hot-tempered figure. Schirrer fishes Anatol's article \"Dog Years. Loneliness\" out from the chaotic desk . He has highlighted a lot in red. ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "",
