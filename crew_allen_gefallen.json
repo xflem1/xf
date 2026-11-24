@@ -974,12 +974,12 @@
           "mic": "6061"
         },
         "D": {
-          "name": "Aunt Steffie",
+          "name": "Stefanie",
           "type": "dia",
           "mic": "6060"
         },
         "E": {
-          "name": "Uncle Karl",
+          "name": "Karl",
           "type": "dia",
           "mic": "6060"
         },
@@ -1067,12 +1067,12 @@
           "mic": "6061"
         },
         "D": {
-          "name": "Aunt Steffie",
+          "name": "Stefanie",
           "type": "dia",
           "mic": "6060"
         },
         "E": {
-          "name": "Uncle Karl",
+          "name": "Karl",
           "type": "dia",
           "mic": "6060"
         },
@@ -1253,12 +1253,12 @@
           "mic": "6061"
         },
         "D": {
-          "name": "Aunt Steffie",
+          "name": "Stefanie",
           "type": "dia",
           "mic": "6060"
         },
         "E": {
-          "name": "Uncle Karl",
+          "name": "Karl",
           "type": "dia",
           "mic": "6060"
         },
@@ -1346,12 +1346,12 @@
           "mic": "6061"
         },
         "D": {
-          "name": "Aunt Steffie",
+          "name": "Stefanie",
           "type": "dia",
           "mic": "6060"
         },
         "E": {
-          "name": "Uncle Karl",
+          "name": "Karl",
           "type": "dia",
           "mic": "6060"
         },
@@ -1417,9 +1417,9 @@
       "nurton": ""
     },
     "16": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "EXT.",
+      "place": "OUTDOOR RESTAURANT",
+      "time": "Evening",
       "notes": "Senders for non-dia aren't essential. Only written under the assumption that they will need to be wearing their mics from the prior scene anyway. May as well keep them on / pre-cable them. ",
       "description": "Saying goodbye to parents, grandmother, uncle and aunt, and Theresa, who has to catch her train. The parents: \"Well,\nhave fun with your friends...\" The mother hands Anatol her credit card. Anatol briefly discusses with Monika over who should pay, Anatol talks with Steffie about going to the event after she asks for the Hamburg book back. Tristan says he will now join Anatol on his \"night out\".",
       "tx": {
@@ -1439,12 +1439,12 @@
           "mic": "6061"
         },
         "D": {
-          "name": "Aunt Steffie",
+          "name": "Stefanie",
           "type": "dia",
           "mic": "6060"
         },
         "E": {
-          "name": "Uncle Karl",
+          "name": "Karl",
           "type": "nodia",
           "mic": "6060"
         },
@@ -2444,7 +2444,7 @@
       "place": "",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Anatol appears in a suit jacket at the opening of his aunt Stefanie's art charity exhibition to meet Carmen Deuflhard.\nWaiters rush around with canapés and champagne glasses. Artful knitted textiles and sculptures in the shape of genitalia adorn\nthe walls, while dolls like something out of a horror film lie on the floor.\nHis aunt Stefanie comes running up to him, genuinely delighted:",
       "tx": {
         "A": {
           "name": "Boom",
@@ -2452,12 +2452,12 @@
           "mic": ""
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
           "mic": ""
         },
         "C": {
-          "name": "",
+          "name": "Stefanie",
           "type": "dia",
           "mic": ""
         },
