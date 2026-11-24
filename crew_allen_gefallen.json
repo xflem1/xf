@@ -2072,22 +2072,22 @@
       "place": "MUNICH SCHWABING",
       "time": "Early evening",
       "notes": "",
-      "description": "Anatol in Munich. He cycles fully loaded through Schwabing, where there's an after-work atmosphere, manages\nto keep his balance, talks on the phone, headphones in, with his sister: He asks if he can stay in her flat (and borrow money?). Theresa says no, and tells him to asks their mum. ",
+      "description": "Anatol in Munich. He cycles fully loaded through Schwabing, where there's an after-work atmosphere, manages to keep his balance, talks on the phone, headphones in, with his sister: He asks if he can stay in her flat (and borrow money?). Theresa says no, and tells him to asks their mum. Anatol says no, and Theresa implies he'll likely have to stay with Benni.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MiniCMIT"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "Theresa",
+          "name": "Theresa?",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "",
@@ -2157,30 +2157,30 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "very difficult scene. Can't guarantee clean audio. Will theresa be on set even though her voice will come through earphones? If not, record NT on another day. Where will mixer be? follow car?",
+      "nurton": "Dialogue NT"
     },
     "24": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "EXT.",
+      "place": "APARTMENT BENNI & JOSEFA",
+      "time": "Evening",
       "notes": "",
-      "description": "",
+      "description": "Anatol rings the doorbell. He sounds very euphoric and expectant.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MiniCMIT"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Anatol",
+          "type": "nodia",
+          "mic": "6060"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Door",
+          "type": "plant",
+          "mic": "6060"
         },
         "D": {
           "name": "",
