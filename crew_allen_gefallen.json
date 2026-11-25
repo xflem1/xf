@@ -3653,7 +3653,7 @@
       "place": "SZ: ARTS & CULTURAL EDITORIAL",
       "time": "Day",
       "notes": "",
-      "description": "A few hours later. Anatol at his desk, his gaze focused on the hate comments on the arts and culture website, something like: “So you’re in favor of mass rapes, knife attacks, warmongers and against families with children.” He deletes, types detailed replies very quickly and takes notes. Anatol, the assistant Robert, walks past outside. He sees him, takes off his headphones, and hurries after him into his office. ",
+      "description": "A few hours later. Anatol at his desk, his gaze focused on the hate comments on the arts and culture website, something like: “So you’re in favor of mass rapes, knife attacks, warmongers and against families with children.” He deletes, types detailed replies very quickly and takes notes. Anatol, the assistant Robert, walks past outside. He sees him, takes off his headphones, and hurries after him into his office. \n\nAnatol asks about the pay, and Robert says he'll discuss that with someone tomorrow. Anatol tries to pitch a story where he interviews the people who leave hate speech, but Robert shuts it down quickly, and reminds him he's doing a traineeship. Robert then tells Anatol to deliver a stack of documents to Deulfhard's house, Anatol asks if it's the manuscript for the new Leif Randt. Robert smiles knowingly. Anatol is excited.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -3672,7 +3672,7 @@
         },
         "D": {
           "name": "",
-          "type": "nodia",
+          "type": "dia",
           "mic": "6060"
         },
         "E": {
@@ -3839,7 +3839,7 @@
       "place": "",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Anatol cycles hurriedly to Carmen Deuflhard's apartment. He receives a call from Tristan, answers it, and is now brimming\nwith confidence. ",
       "tx": {
         "A": {
           "name": "Boom",
