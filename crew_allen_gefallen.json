@@ -4021,26 +4021,26 @@
       "nurton": "NT Piano playing. "
     },
     "44": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "KITCHEN EDITOR-IN-CHIEF",
+      "time": "Evening",
       "notes": "",
-      "description": "Anatol makes an onion poultice for Paul's ear using one of his socks. He monologues while cutting onions, watched\ncuriously by Paul:",
+      "description": "Anatol makes an onion poultice for Paul's ear using one of his socks. He monologues while cutting onions, watched curiously by Paul. They talk. Tears streamed down Anatol's face as he cut onions. Anatol theatrically pretends to \"cry\" sadly, which makes Paul laugh. Anatol wants to put the onion in the sock. Paul asks Anatol to pretend to cry again. Anatol grimaces and cries. He works himself up into tears: “Enjoy that you still have everything ahead of you! Enjoy it!” Paul likes it. Now he holds out the sock to him. As he walks with Paul towards the children's room, Anatol looks around with interest: intellectual furnishings, countless books, framed editorials, photos with Carmen and prominent artists…",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Paul",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "",
