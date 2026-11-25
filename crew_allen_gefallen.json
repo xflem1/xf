@@ -2909,47 +2909,47 @@
       "place": "LIVING ROOM BENNI & JOSEFA + BALCONY",
       "time": "Night",
       "notes": "Long dialogue scene. 5 and a half pages.",
-      "description": "Anatol enters enthusiastically. The dinner party, two couples – JOSEFA, BENNI and their guests SVEN and RAPHAEL – has just finished their main course and looks towards him. Anatol moves towards the table to Benni and hugs him, doing so: Anatol walks in talking about how he hunted down Deulfhard and then he and the guests all introduce themselves. Anatol is clearly interrupting and is late to the dinner, they've all already eaten. Josefa fetches his plate from the kitchen.  Benni tries to signal to Anatol that the seat he sat down in is already taken by- but Alina walks in as he says this, she was smoking on the balcony. They greet eachother. They have an awkward catchup about why they're both in Munich and their current life situations. Anatol asks if she wants to have another cigarette on the balcony (to catch up privately). Raphael, who apparently doesn't realize that Anatol wants to be alone with Alina, cheerfully joins the two of them.\n\nTIME JUMP: On the BALCONY. Anatol is nervous, but different than usual, more relaxed. He lets Alina light his lighter. He quite obviously touches her hand, seemingly to protect the lighter from the (non-existent) wind. She allows it. Eye contact. Raphael (who is smoking an IQOS cigarette) seems unfazed by the tense situation between the two and stares at them intently. Anatol and Alina, aware of the awkwardness of the situation with Raphael, try to lighten the mood. They talk for a page about what Alina is doing in New York, she mentions jokingly that she needs to move to a cabin in the woods to finish her thesis, Anatol says he would go with her to make the fires and keep her worm. A moment between the two. Anatol endures the silence. Raphael looks curiously back and forth between the two. Then Josefa pokes her head through the balcony door: Josefa says that dessert is ready. Anatol gives a thumbs-up, Alina makes a gesture like \"we'll just finish our smoke quickly,\" and Raphael and Josefa go back inside. Anatol, happy to finally be alone with Alina, looks at her. They smile at each other over Josefa, in unison. ",
+      "description": "Anatol enters enthusiastically. The dinner party, two couples – JOSEFA, BENNI and their guests SVEN and RAPHAEL – has just finished their main course and looks towards him. Anatol moves towards the table to Benni and hugs him, doing so: Anatol walks in talking about how he hunted down Deulfhard and then he and the guests all introduce themselves. Anatol is clearly interrupting and is late to the dinner, they've all already eaten. Josefa fetches his plate from the kitchen.  Benni tries to signal to Anatol that the seat he sat down in is already taken by- but Alina walks in as he says this, she was smoking on the balcony. They greet eachother. They have an awkward catchup about why they're both in Munich and their current life situations. Anatol asks if she wants to have another cigarette on the balcony (to catch up privately). Raphael, who apparently doesn't realize that Anatol wants to be alone with Alina, cheerfully joins the two of them.\n\nTIME JUMP: On the BALCONY. Anatol is nervous, but different than usual, more relaxed. He lets Alina light his lighter. He quite obviously touches her hand, seemingly to protect the lighter from the (non-existent) wind. She allows it. Eye contact. Raphael (who is smoking an IQOS cigarette) seems unfazed by the tense situation between the two and stares at them intently. Anatol and Alina, aware of the awkwardness of the situation with Raphael, try to lighten the mood. They talk for a page about what Alina is doing in New York, she mentions jokingly that she needs to move to a cabin in the woods to finish her thesis, Anatol says he would go with her to make the fires and keep her worm. A moment between the two. Anatol endures the silence. Raphael looks curiously back and forth between the two. Then Josefa pokes her head through the balcony door: Josefa says that dessert is ready. Anatol gives a thumbs-up, Alina makes a gesture like \"we'll just finish our smoke quickly,\" and Raphael and Josefa go back inside. Anatol, happy to finally be alone with Alina, looks at her. They smile at each other over Josefa, in unison. They talk for 2 pages about what Anatol is doing, he lies about his opportunities as usual. Benni shouts out that his food is getting cold. Alina tries to exit the situation and tells Anatol to \"just write me\" when he desperately mentions catching up soon. They awkwardly hug. Alina hugs Josefa goodbye. Anatol tries to decipher the sound. He sits down at the table and tries to signal to Benni, \"Why didn't you tell me she was here?\" but Benni doesn't seem to notice him. Anatol keeps an eye on Alina, watching her longingly as she talks to Josefa and puts on her jacket. Raphael wants to continue talking: he asks what the oversized genitals were at the gallery that Anatol mentioned. The apartment door clicks shut, Alina is gone. You can see the wheels turning in Anatol's head. But he turns to Raphael and tries to concentrate on small talk.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
           "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
           "name": "Benni",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "Josefa",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "Alina",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
           "name": "Sven",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "G": {
           "name": "Raphael",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "H": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Table",
+          "type": "plant",
+          "mic": "6060"
         }
       },
       "shotList": [
@@ -2994,55 +2994,55 @@
           "status": "upcoming"
         }
       ],
-      "problems": "Balcony scene may be tricky for boom op. make sure to take time to figure out a good standing position. ",
+      "problems": "Balcony scene may be tricky for boom op. make sure to take time to figure out a good standing position. \nCutlery noise could be an issue.",
       "nurton": ""
     },
     "33": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "KITCHEN BENNI & JOSEFA",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Anatol loads the dishwasher while he hears the others talking in hushed voices in the next room. He pauses: It's about Alina and him. He tries to understand what they're saying.\n\nJOSEFA: No, no, she just had something going on with Anatol one summer... Yes, Anatol was always so in love with her...\n\nBENNI: Yeah, well, that's been going on on and off since school—she's his great love...\n\nJOSEFA: But I think Alina just needs that sense of security… Gregor is so good for her… he fought so hard for her… he was in New York and then stayed especially for her… Caro used to think he was so hot—and so did I… (playfully to Benni) Scha-hatz, I THINK he was hot… Amused laughter inside. Anatol is processing what he's heard. He chooses to take the offensive.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Anatol",
+          "type": "nodia",
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Benni",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Josefa",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Sven",
+          "type": "nodia",
+          "mic": "6060"
         },
         "G": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Raphael",
+          "type": "nodia",
+          "mic": "6060"
         },
         "H": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Table",
+          "type": "plant",
+          "mic": "6060"
         }
       },
       "shotList": [
@@ -3088,54 +3088,54 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "NT - People talking in the next room. might need to record after prior scene."
     },
     "34": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "DINING ROOM BENNI & JOSEFA",
+      "time": "Night",
+      "notes": "3 page dia scene",
+      "description": "Anatol goes inside. They fall silent. They look at him. He sits down. He tries to concentrate on the dessert. After a pause, Josefa tries to engage him in conversation: she mentions the engagement announcement she received from Tristan. She hands him the engagement announcement, Anatol, looking at the photo of the couple in traditional dress in a somewhat unsubtle and disparaging manner: A short, slightly awkward pause. Sven, spooning out the mascarpone says that Josefa \"didn't miss the sugar at all\". Anatol, in a displacement activity, tries to lift the mood: Anatol asks \"where the train is\", Benni laughs, Anatol explains the inside joke from a holiday with Benni and Tristan in Italy, where ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Benni",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Josefa",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
-          "name": "",
+          "name": "Sven",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "G": {
-          "name": "",
+          "name": "Raphael",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "H": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Table",
+          "type": "plant",
+          "mic": "6060"
         }
       },
       "shotList": [
