@@ -4490,27 +4490,27 @@
       "place": "LITERATURE HOUSE",
       "time": "Day",
       "notes": "",
-      "description": "Anatol arrives at the Literaturhaus the next morning, hungover and uncertain, for his interview with Carmen. He parks his bicycle. He glances around, slightly nervous. He sees a group at the entrance with Carmen in the middle, who moves inside when she spots him. Anatol speeds up, following him through the glass door. Carmen whispers something to her assistant Robert and then turns her attention to her interviewee. Robert bustles towards Anatol: ",
+      "description": "Anatol arrives at the Literaturhaus the next morning, hungover and uncertain, for his interview with Carmen. He parks his bicycle. He glances around, slightly nervous. He sees a group at the entrance with Carmen in the middle, who moves inside when she spots him. Anatol speeds up, following him through the glass door. Carmen whispers something to her assistant Robert and then turns her attention to her interviewee. Robert bustles towards Anatol: informing him that they can't extend his internship, insinuating that he's done with SZ. Anatol slowly walks over to the bicycles. He tries to unlock his bike, but it falls over. Instead of picking it up, he kicks it. Like dominoes, the other wheels also fall over. Anatols Swears.\n\nHe sits down on the ground next to the overturned bicycles. It attracts blank stares. Then he notices Alina on the other side of the street. He quickly tries to hide behind the wheels. But she has already discovered him and comes over to him. She asks him what he's doing, he says he has an interview and accidentally knocked over all the bikes. He begins to pick them all back up. She puts down her luggage and begins to pick up the wheels with him. She says she's going to Plön now, and that it's a shame that Anatol isn't going anymore since they're so close. Anatol pivots in the moment, says that saying in Munich isn't set in stone and asks her if she wants to go for coffee. As she says they were planning on having breakfast at the Literaturhaus, Gregor walks over and He puts his arm around Alina. Alina looks at Anatol, somewhat nervously. They three of them exchange introductions. Anatol is dismayed, but smiles at Gregor and acts very demonstratively cheerful: He shakes Gregor's hand, holding it a little longer than necessary. A brief, awkward silence. Gregor tells him to come to breakfast, but Anatol realises that he 'still has the interview'. Alina says that he works at the SZ and Gregor asks him about it. Anatol mentions a war reporter who was in Afghanistan. Gregor asks if Anatol was there, he says no. Alina mentions that Gregor was posted there for a year, Gregor says it was for Doctors Without Borders. ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Robert",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Alina",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
