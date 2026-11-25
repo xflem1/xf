@@ -4579,36 +4579,36 @@
       "nurton": ""
     },
     "50": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "OLD ROOM ANATOL",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol lies listlessly in bed. Depressed, hopeless. In his old room, surrounded by unpacked suitcases, full boxes, stacks of newspapers, and his father's rowing machine. He hears his parents calling from downstairs: \"Anatol? Anatol, are you there?\" — he doesn't answer. Off-screen:\nMONIKA: Anatol, would you like to eat with us?\nHERBERT: Anatol, could you please help your mother?\nMONIKA: Anatol, don't you have to work? Anatol, is everything okay?\n\nAnatol doesn't reply. He googles shared apartments in Munich again. The cheapest one costs 800 euros. He looks at his bank balance -- it's in the red. He looks at Gregor and his human rights projects on LinkedIn. He looks at Gregor on social media, a picture of Gregor playing beach volleyball, well-trained. Anatol googles Reporters Without Borders. Then he goes to Tristan's Instagram profile again. He sees Tristan with Ann-Christin (\"she said yes\"). Pictures of Tristan at a keynote speech. His sister tries to reach him, but he doesn't answer. He hears his parents arguing. He doesn't understand what it's about. His phone rings again: Tristan. He rejects the call. The following is a voice message from Tristan: Hey my dear, man, you're harder to reach than the Pope… hey, you have to save us—those waiter jerks for our engagement tomorrow have bailed… no worries, we'll pay you of course—and hey, where do you actually live right now?!\nThe voice message triggers Anatol to get up.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Monika",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Herbert",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Movable",
+          "type": "plant",
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -4669,7 +4669,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "NT Dia first line shouting from distance (if required). \nNT Parents argument."
     },
     "51": {
       "intExt": "",
