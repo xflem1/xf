@@ -3742,21 +3742,21 @@
       "nurton": ""
     },
     "41": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "EXT.",
+      "place": "ROAD ON THE WAY TO DEUFLHARD",
+      "time": "Early Evening",
+      "notes": "Will Tristan be on set or will his lines be dubbed? Record as NT on another shooting day? ",
+      "description": "Anatol cycles hurriedly to Carmen Deuflhard's apartment. He receives a call from Tristan, answers it, and is now brimming with confidence. Anatol says he's now working for SZ and has to deliver important documents. Tristan tries to pitch him a job, saying his firm want to start a sustainability podcast and that he wants to put Anatol's name forward. Tristan says they can discuss it at his engagement party. Anatol, hurrying to park his bicycle in front of Deuflhard's house. Anatol says \"No, Tristan, I don't want to go to a consultation... sorry, I have to stop—I have to go to my boss now\".",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
           "name": "",
@@ -3831,35 +3831,35 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
-      "nurton": ""
+      "problems": "Dialogue on bike, wind.\nMixer placement.",
+      "nurton": "NT dialogue backup"
     },
     "42": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "STAIRWELL / EDITOR-IN-CHIEF'S APARTMENT",
+      "time": "Early Evening",
       "notes": "",
-      "description": "Anatol cycles hurriedly to Carmen Deuflhard's apartment. He receives a call from Tristan, answers it, and is now brimming\nwith confidence. ",
+      "description": "An agitated babysitter, Dora (around 60), opens the door for Anatol. She has her mobile phone to her ear. In the\nbackground, a crying child, Paul, the six-year-old son of Carmen Deuflhard.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "D": {
-          "name": "",
+          "name": "Dora",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
@@ -3925,7 +3925,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Child crying (if on set)"
     },
     "43": {
       "intExt": "",
