@@ -4397,7 +4397,7 @@
       "place": " TOILET / LIVING ROOM EDITOR-IN-CHIEF",
       "time": "Night",
       "notes": "",
-      "description": "Anatol practices different variations in the mirror above the sink: “And I also heard that a traineeship is becoming available? Ah, and is it possible that a traineeship will become available?”\n\nJazz music is playing in the dining room. Anatol comes out of the bathroom and is met by the somewhat tipsy Carmen, who approaches him intimately with two new bottles of wine, whispering: ",
+      "description": "Anatol practices different variations in the mirror above the sink: “And I also heard that a traineeship is becoming available? Ah, and is it possible that a traineeship will become available?”\n\nJazz music is playing in the dining room. Anatol comes out of the bathroom and is met by the somewhat tipsy Carmen, who approaches him intimately with two new bottles of wine, whispering about paul.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -4482,7 +4482,7 @@
           "status": "upcoming"
         }
       ],
-      "problems": "music playing - do as many takes without as possible, but may be needed to set the mood.",
+      "problems": "music playing - do as many takes without as possible, but may be needed to set the mood. This is especially important for whispered dialogue at start of scene. ",
       "nurton": "Any dialogue that overlaps music"
     },
     "49": {
