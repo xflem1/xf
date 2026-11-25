@@ -4114,36 +4114,36 @@
       "nurton": ""
     },
     "45": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "CHILDREN'S ROOM PAUL DEUFLHARD",
+      "time": "Evening",
       "notes": "",
-      "description": "Anatol makes an onion poultice for Paul's ear using one of his socks. He monologues while cutting onions, watched\ncuriously by Paul:",
+      "description": "Anatol reads to Paul from a \"Three Investigators\" book , changing the voices. He does it really well. Paul lies blissfully in bed, with an onion poultice around his ear, listening intently.\nSuddenly, there's a loud clearing of the throat. Anatol spins around, startled. A gray-haired man in his mid-50s, Gunther Deuflhard, stands in the doorway, watching Anatol suspiciously. Gunther speaks with Paul, Paul is surprised he's here. He hugs his son. Anatol quickly stands up: Anatol introduces himself and tries to explain why he's there, but Gunther dismisses the matter. Beat. Anatol doesn't understand; something's in the air. Gunther Deuflhard examines his son's onion poultice. Anatol tries to explain the Onion, but Gunther says \"ah so you already have a key do you\", Anatol explains that Dora let him in, Gunther replies \"ah so you already know her too\". Anatol notices that something else is also being negotiated. Anatol says that knowing her would be an \"exaggeration\". Deuflhard, dismissive, with passive-aggressive politeness says that no-one has to explain themselves. They all talk briefly, Gunther dismisses Anatol, but Paul demands that he cry again. Anatol is uncomfortable, but reluctantly he submits to the child and tries -- under Deuflhard's bewildered gaze -- once again to play at a \"crying fit\" and says \"howling\". Anatol says bye. Now Paul doesn't find it so funny anymore; he looks rather bored. Anatol quickly goes out, observing Deuflhard's clear gaze.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Paul",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Gunther",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Bed",
+          "type": "plant",
+          "mic": "6060"
         },
         "F": {
           "name": "",
@@ -4203,35 +4203,35 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "bedsheet on paul or laying position on bed could be an issue with lav, have plant ready.",
       "nurton": ""
     },
     "46": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "EDITOR-IN-CHIEF'S APARTMENT",
+      "time": "Evening",
       "notes": "",
-      "description": "",
+      "description": "Anatol is just putting on his shoes in the wardrobe and about to leave when the apartment door opens: Carmen Deuflhard comes in. She immediately throws her arms around Anatol, exhausted. A complete contrast to her distant behavior in the newsroom. They talk briefly. Just then, Gunther Deuflhard enters the corridor and observes Anatol and his wife lying in each other's arms. Carmen notices him, Anatol tries to break free from the embrace, but Carmen continues to hold him tight while she asks why Gunther is there. They have an uncomfortable conversation as Gunther is clearly trying to rekindle their relationship. Meanwhile, Anatol tries to say goodbye discreetly. Carmen clearly signals to him to stay.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Gunther",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
