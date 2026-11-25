@@ -3556,31 +3556,31 @@
       "nurton": ""
     },
     "39": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "SZ: ARTS & CULTURAL EDITORIAL",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "Anatol appears slightly out of breath in Carmen Deuflhard's arts and culture section. Modern, light-filled offices. A confident young man in his thirties, Robert, Carmen Deuflhard's assistant, leads Anatol through the corridors of the SZ. As they walk past glass-fronted offices, Anatol somewhat energetically pulls his CV out of his backpack. They talk briefly. The assistant leads Anatol to an empty workspace. Robert says \"So, here are your login details, and here's everything that falls under hate speech. Please delete it immediately\".  Anatol realizes he has to delete the hate comments under the arts and culture articles. He masks his disappointment: Anatol said he can do it, and Robert jokes and tells him to listen to classical music while doing so, because the last intern 'commit suicide'. Anatol sits down and processes his disappointment. Deuflhard walks outside through the hallway, nodding to him. He smiles and waves back, watches her go, and feels hope again.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Robert",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Deulfhard",
+          "type": "nodia",
+          "mic": "6060"
         },
         "E": {
           "name": "",
@@ -3645,35 +3645,35 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "glass fronted offices, be careful of boom reflections. ",
       "nurton": ""
     },
     "40": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "SZ: ARTS & CULTURAL EDITORIAL",
+      "time": "Day",
       "notes": "",
-      "description": "",
+      "description": "A few hours later. Anatol at his desk, his gaze focused on the hate comments on the arts and culture website, something like: “So you’re in favor of mass rapes, knife attacks, warmongers and against families with children.” He deletes, types detailed replies very quickly and takes notes. Anatol, the assistant Robert, walks past outside. He sees him, takes off his headphones, and hurries after him into his office. ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Robert",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
           "name": "",
-          "type": "dia",
-          "mic": ""
+          "type": "nodia",
+          "mic": "6060"
         },
         "E": {
           "name": "",
