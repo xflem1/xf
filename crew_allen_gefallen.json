@@ -4300,31 +4300,31 @@
       "nurton": ""
     },
     "47": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "DINING ROOM EDITOR-IN-CHIEF",
+      "time": "Night",
       "notes": "",
       "description": "",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Gunther",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
