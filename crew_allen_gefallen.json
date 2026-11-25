@@ -3838,8 +3838,8 @@
       "intExt": "INT.",
       "place": "STAIRWELL / EDITOR-IN-CHIEF'S APARTMENT",
       "time": "Early Evening",
-      "notes": "",
-      "description": "An agitated babysitter, Dora (around 60), opens the door for Anatol. She has her mobile phone to her ear. In the\nbackground, a crying child, Paul, the six-year-old son of Carmen Deuflhard.",
+      "notes": "will Deuflhard be on set for her lines? ",
+      "description": "An agitated babysitter, Dora (around 60), opens the door for Anatol. She has her mobile phone to her ear. In the background, a crying child, Paul, the six-year-old son of Carmen Deuflhard. Anatol speaks to Deuflhard through the phone of the babysitter, she asks if he can take care of her sick son, which confuses Anatol. Dora and Deuflhard explain that Dora's mum has had a fall and she needs to leave urgently, leaving no-one with Paul. Anatol sees this as an opportunity to finally get in touch with the renowned boss: Dauflhard call him a sweetheart and tell him to give the package to Paul. ",
       "tx": {
         "A": {
           "name": "Boom",
@@ -3925,44 +3925,44 @@
         }
       ],
       "problems": "",
-      "nurton": "Child crying (if on set)"
+      "nurton": "Child crying (if on set)\nDeuflhard dia NT"
     },
     "43": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "EDITOR-IN-CHIEF'S APARTMENT",
+      "time": "Early Evening",
       "notes": "",
-      "description": "",
+      "description": "As instructed by Carmen, Anatol hands the mysterious package to the shy Paul. Inside is a piano book: Classic for Kids. Paul's face doesn't look too happy.\n\nTIME JUMP. They are sitting at the piano. Anatol is accompanying little Paul on a Mozart piece for children. He suddenly stops and tells paul to try playing alone. Paul continues playing alone, makes mistakes, then stops. Paul says he hates playing piano. Anatol tries to encourage him. Paul suddenly starts to cry and touches his ear saying he has an earache. Anatol says \"Oh, oh no… ah- but do you know what you can do about earaches?\"",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Paul",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Piano L",
+          "type": "plant",
+          "mic": "6061"
         },
         "E": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Piano R",
+          "type": "plant",
+          "mic": "6061"
         },
         "F": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Boom Piano",
+          "type": "plant",
+          "mic": "MK4"
         },
         "G": {
           "name": "",
@@ -4018,14 +4018,14 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "NT Piano playing. "
     },
     "44": {
       "intExt": "",
       "place": "",
       "time": "",
       "notes": "",
-      "description": "",
+      "description": "Anatol makes an onion poultice for Paul's ear using one of his socks. He monologues while cutting onions, watched\ncuriously by Paul:",
       "tx": {
         "A": {
           "name": "Boom",
