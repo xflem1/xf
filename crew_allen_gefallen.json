@@ -4393,46 +4393,46 @@
       "nurton": "Paul line"
     },
     "48": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": " TOILET / LIVING ROOM EDITOR-IN-CHIEF",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Anatol practices different variations in the mirror above the sink: “And I also heard that a traineeship is becoming available? Ah, and is it possible that a traineeship will become available?”\n\nJazz music is playing in the dining room. Anatol comes out of the bathroom and is met by the somewhat tipsy Carmen, who approaches him intimately with two new bottles of wine, whispering:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Deuflhard",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Gunther",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
-          "name": "",
+          "name": "Paul",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "F": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Movable",
+          "type": "plant",
+          "mic": "6060"
         },
         "G": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Movable",
+          "type": "plant",
+          "mic": "6060"
         },
         "H": {
           "name": "",
