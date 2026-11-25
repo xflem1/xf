@@ -2905,11 +2905,11 @@
       "nurton": ""
     },
     "32": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "LIVING ROOM BENNI & JOSEFA",
+      "time": "Night",
+      "notes": "Long dialogue scene. 5 and a half pages.",
+      "description": "Anatol enters enthusiastically. The dinner party, two couples – JOSEFA, BENNI and their guests SVEN and RAPHAEL – has just finished their main course and looks towards him. Anatol moves towards the table to Benni and hugs him, doing so:",
       "tx": {
         "A": {
           "name": "Boom",
@@ -2917,32 +2917,32 @@
           "mic": ""
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
           "mic": ""
         },
         "C": {
-          "name": "",
+          "name": "Benni",
           "type": "dia",
           "mic": ""
         },
         "D": {
-          "name": "",
+          "name": "Josefa",
           "type": "dia",
           "mic": ""
         },
         "E": {
-          "name": "",
+          "name": "Alina",
           "type": "dia",
           "mic": ""
         },
         "F": {
-          "name": "",
+          "name": "Sven",
           "type": "dia",
           "mic": ""
         },
         "G": {
-          "name": "",
+          "name": "Raphael",
           "type": "dia",
           "mic": ""
         },
