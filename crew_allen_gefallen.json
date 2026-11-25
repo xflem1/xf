@@ -2905,7 +2905,7 @@
       "nurton": ""
     },
     "32": {
-      "intExt": "INT.",
+      "intExt": "INT./EXT.",
       "place": "LIVING ROOM BENNI & JOSEFA + BALCONY",
       "time": "Night",
       "notes": "Long dialogue scene. 5 and a half pages.",
@@ -3095,7 +3095,7 @@
       "place": "DINING ROOM BENNI & JOSEFA",
       "time": "Night",
       "notes": "3 page dia scene",
-      "description": "Anatol goes inside. They fall silent. They look at him. He sits down. He tries to concentrate on the dessert. After a pause, Josefa tries to engage him in conversation: she mentions the engagement announcement she received from Tristan. She hands him the engagement announcement, Anatol, looking at the photo of the couple in traditional dress in a somewhat unsubtle and disparaging manner: A short, slightly awkward pause. Sven, spooning out the mascarpone says that Josefa \"didn't miss the sugar at all\". Anatol, in a displacement activity, tries to lift the mood: Anatol asks \"where the train is\", Benni laughs, Anatol explains the inside joke from a holiday with Benni in Italy, where an odd stranger asked them where the train was in a strange voice, and they use it to mock people that seem ridiculous. Looking at Benni for help, who is uncomfortable, which The space the story occupies (and leaves Anatol somewhat exposed): Benni clarifies he wasn't disabled to ease the tension (Because Anatol's portrayal insinuated he could have been). Sven asks if they can not use the word for disabled because his brother is disabled. Anatol throws Josefa under the bus for saying it first. Raphael says he sometimes accidentally does it too, trying to ease the tension. Anatol throws Benni under the bus for saying it on his birthday to the Bouncer. Benni tries to send signals to Anatol with fixed eyes, but Anatol realizes them too late: Anatol blurts out it was the other day at his birthday before thinking. Josefa presses Benni about this. ",
+      "description": "Anatol goes inside. They fall silent. They look at him. He sits down. He tries to concentrate on the dessert. After a pause, Josefa tries to engage him in conversation: she mentions the engagement announcement she received from Tristan. She hands him the engagement announcement, Anatol, looking at the photo of the couple in traditional dress in a somewhat unsubtle and disparaging manner: A short, slightly awkward pause. Sven, spooning out the mascarpone says that Josefa \"didn't miss the sugar at all\". Anatol, in a displacement activity, tries to lift the mood: Anatol asks \"where the train is\", Benni laughs, Anatol explains the inside joke from a holiday with Benni in Italy, where an odd stranger asked them where the train was in a strange voice, and they use it to mock people that seem ridiculous. Looking at Benni for help, who is uncomfortable, which The space the story occupies (and leaves Anatol somewhat exposed): Benni clarifies he wasn't disabled to ease the tension (Because Anatol's portrayal insinuated he could have been). Sven asks if they can not use the word for disabled because his brother is disabled. Anatol throws Josefa under the bus for saying it first. Raphael says he sometimes accidentally does it too, trying to ease the tension. Anatol throws Benni under the bus for saying it on his birthday to the Bouncer. Benni tries to send signals to Anatol with fixed eyes, but Anatol realizes them too late: Anatol blurts out it was the other day at his birthday before thinking. Josefa presses Benni about this. Anatol tries to cover but Josefa keeps pushing. Anatol continues to cover, but half way through erratically switches to the offensive, and asks Josefa why he shouldn't be able to celebrate his birthday with his best friend. He accuses her of being more conventional than her parents, and accuses her of think she has to sacrifice everything including her career for her son. Benni tells him to shut up. The child in the next room starts screaming. Awkward glances. Josefa says \"great, thanks Anatol\". Benni starts to get up, but Josefa is faster, doesn't even glance at Anatol, and leaves. An awkward silence falls over the table. You can hear Josefa trying to calm the child. Into the silence, Anatol asks Sven what kind of disability his brother has. Sven says he had a driving accident. Anatol tries to apologise and Sven shuts it down saying he doesn't want to talk about it anymore. Josefa, who has come back in with her tired child in her arms, empathetically strokes Sven's back and signals to\nAnatol to please not say anything more.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -3180,30 +3180,30 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "be prepared for raised voices mid scene. ",
       "nurton": ""
     },
     "35": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "INT.",
+      "place": "LIVING ROOM / KITCHEN BENNI & JOSEFA",
+      "time": "Night",
       "notes": "",
-      "description": "",
+      "description": "Anatol tosses and turns sleeplessly on the uncomfortable guest sofa. Travel bag and backpack around him.\nHe goes into the kitchen. He looks at the countless engagement announcements on the refrigerator door. Among them is a picture of Tristan and his fiancée Ann-Christin in traditional dress. Anatol impulsively pushes it behind others. His gaze lingers on a photo, a group picture by the sea, all of them a bit younger.\nAlina, next to Anatol. He looks at it. “It was nice to see you again,” he begins to text Alina… then deletes it. “I’d forgotten how much I missed you—” Delete it. And try to go back to sleep.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Movable",
+          "type": "plant",
+          "mic": "6060"
         },
         "D": {
           "name": "",
@@ -3273,35 +3273,35 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "Anatol sleeping will crush lav, could also be shirtless.",
       "nurton": ""
     },
     "36": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "APARTMENT BENNI & JOSEFA",
+      "time": "Morning",
+      "notes": "Dialogue is implied",
+      "description": "Anatol, in the entrance of Benni and Josefa, shoulders his luggage. Apparently, his outburst of anger last night had consequences.\nBut Benni and Josefa are now standing arm in arm in front of him, as if nothing had happened. They say goodbye very politely. Everyone is keeping up appearances. As he shoulders his backpack:",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "C": {
-          "name": "",
+          "name": "Benni",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Josefa",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "E": {
           "name": "",
@@ -3366,25 +3366,25 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "be prepared for back page when cabling, straps ideally shouldn't run across cable.",
       "nurton": ""
     },
     "37": {
-      "intExt": "",
-      "place": "",
-      "time": "",
+      "intExt": "EXT.",
+      "place": "MUNICH ",
+      "time": "Morning",
       "notes": "",
-      "description": "",
+      "description": "Anatol cycles hurriedly, laden with his luggage, to his parents' house.",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MiniCMIT"
         },
         "B": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Anatol",
+          "type": "nodia",
+          "mic": "6060"
         },
         "C": {
           "name": "",
@@ -3459,40 +3459,40 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "Where will mixer be? follow car?\nWind on lav",
       "nurton": ""
     },
     "38": {
-      "intExt": "",
-      "place": "",
-      "time": "",
-      "notes": "",
-      "description": "",
+      "intExt": "INT.",
+      "place": "PARENTAL HOME",
+      "time": "Morning",
+      "notes": "2.5 page dialogue scene ",
+      "description": "Anatol arrives rushed with all his belongings at his elegant, middle-class parents' house, wanting to quickly unload his things with his parents before the meeting at the SZ editorial office. As he unlocks the door, the front door is opened from the inside: Two furniture movers are maneuvering the parents' grand piano out.\nAnatol, as he squeezes through the door and briefs exchanges with the mover. Anatol makes way, and behind them appears his father Herbert, who somewhat frantically carries the piano's legs behind him. He seems overwhelmed to see his son. He asks what Anatol is doing here and Anatol says he's in a rush. Anatol's mother also comes out of the living room, completely surprised: ",
       "tx": {
         "A": {
           "name": "Boom",
           "type": "boom",
-          "mic": ""
+          "mic": "MK41"
         },
         "B": {
-          "name": "",
+          "name": "Anatol",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "C": {
-          "name": "",
+          "name": "Herbert",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "D": {
-          "name": "",
+          "name": "Monika",
           "type": "dia",
           "mic": ""
         },
         "E": {
-          "name": "",
+          "name": "Mover",
           "type": "dia",
-          "mic": ""
+          "mic": "6060"
         },
         "F": {
           "name": "",
