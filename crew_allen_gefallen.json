@@ -2906,10 +2906,10 @@
     },
     "32": {
       "intExt": "INT.",
-      "place": "LIVING ROOM BENNI & JOSEFA",
+      "place": "LIVING ROOM BENNI & JOSEFA + BALCONY",
       "time": "Night",
       "notes": "Long dialogue scene. 5 and a half pages.",
-      "description": "Anatol enters enthusiastically. The dinner party, two couples – JOSEFA, BENNI and their guests SVEN and RAPHAEL – has just finished their main course and looks towards him. Anatol moves towards the table to Benni and hugs him, doing so:",
+      "description": "Anatol enters enthusiastically. The dinner party, two couples – JOSEFA, BENNI and their guests SVEN and RAPHAEL – has just finished their main course and looks towards him. Anatol moves towards the table to Benni and hugs him, doing so: Anatol walks in talking about how he hunted down Deulfhard and then he and the guests all introduce themselves. Anatol is clearly interrupting and is late to the dinner, they've all already eaten. Josefa fetches his plate from the kitchen.  Benni tries to signal to Anatol that the seat he sat down in is already taken by- but Alina walks in as he says this, she was smoking on the balcony. They greet eachother. They have an awkward catchup about why they're both in Munich and their current life situations. Anatol asks if she wants to have another cigarette on the balcony (to catch up privately). Raphael, who apparently doesn't realize that Anatol wants to be alone with Alina, cheerfully joins the two of them.\n\nTIME JUMP: On the BALCONY. Anatol is nervous, but different than usual, more relaxed. He lets Alina light his lighter. He quite obviously touches her hand, seemingly to protect the lighter from the (non-existent) wind. She allows it. Eye contact. Raphael (who is smoking an IQOS cigarette) seems unfazed by the tense situation between the two and stares at them intently. Anatol and Alina, aware of the awkwardness of the situation with Raphael, try to lighten the mood.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -2994,7 +2994,7 @@
           "status": "upcoming"
         }
       ],
-      "problems": "",
+      "problems": "Balcony scene may be tricky for boom op. make sure to take time to figure out a good standing position. ",
       "nurton": ""
     },
     "33": {
