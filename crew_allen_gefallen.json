@@ -4303,8 +4303,8 @@
       "intExt": "INT.",
       "place": "DINING ROOM EDITOR-IN-CHIEF",
       "time": "Night",
-      "notes": "",
-      "description": "",
+      "notes": "Will paul be on set? if not, record his line in an earlier scene. ",
+      "description": "The three of them are now sitting at the dining table. An abstract nature painting hangs on the wall. An awkward silence hangs in the air. Anatol eats the spring rolls they brought and asks polite questions to break the silence. Anatol asks where he got the food, Gunther said close to his office. Anatol asks what he does, and hw says he's a professor. Deulfhard adds that he does Architectural history and monument preservation.  She says the words with a charged ambiguity, fixing her gaze on her soon-to-be ex-husband, who avoids her eyes.\n“Mommy… Mommy I can’t sleep…” Paul can be heard calling. Carmen gets up to go to Paul's room. As she does so, she casually touches Anatol's shoulder with her hand, which Gunther notices. Gunther and Anatol sit opposite each other in silence. They engage in small talk about Architecture, Anatol brings up a famous author and quotes them as usual. Gunther Deuflhard pours himself and Anatol wine.\n\nTIME JUMP: The two men have grown closer emotionally while drinking. Anatol nods in agreement, while Gunther Deuflhard monologues about Heidegger and housing estates: “You know, Heidegger made a point there -- and that’s what I try to instill in my students, as they’re called these days -- that’s why Germany is often a STUPID country to me, because when we say, thinking means living means building, and you look at the houses, you see how cognitively incapable people are - how did I come up with that?” they continue discussing. Carmen Deuflhard quietly entered and watched the fraternization with surprise. She asks Gunther if he's boring Anatol. Anatol wants to save the mood and prove himself while she sits opposite him and pours more wine: they continue to talk as a group. Gunther tries to stroke her arm, which she then pulls away. In an attempt to defuse the tense atmosphere, Anatol interjects continuing the prior conversation. Deulfhard asks Anatol to join an interview with Meyer tomorrow. She smiles at him meaningfully. Anatol blushes slightly and smiles back. She takes a spring roll from his plate, brushing against his hand for a little too long. Anatol reflexively reaches for his wine glass, drinks, and then notices Gunther Deuflhard staring at him. Anatol suddenly stands up, bumping his head on the edge of the table. he excuses himself and goes to the toilet. Silence from the dining room.",
       "tx": {
         "A": {
           "name": "Boom",
@@ -4327,19 +4327,19 @@
           "mic": "6060"
         },
         "E": {
-          "name": "",
+          "name": "Paul",
           "type": "dia",
-          "mic": ""
+          "mic": "6061"
         },
         "F": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Movable",
+          "type": "plant",
+          "mic": "6060"
         },
         "G": {
-          "name": "",
-          "type": "dia",
-          "mic": ""
+          "name": "Movable",
+          "type": "plant",
+          "mic": "6060"
         },
         "H": {
           "name": "",
@@ -4390,7 +4390,7 @@
         }
       ],
       "problems": "",
-      "nurton": ""
+      "nurton": "Paul line"
     },
     "48": {
       "intExt": "",
